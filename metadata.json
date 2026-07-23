@@ -1,0 +1,6 @@
+{
+  "name": "Units Convertors",
+  "description": "A beautiful, lightning-fast multi-tool converter website featuring extensive converters across 24 categories including Length, Mass, Area, Volume, Light, Sound, Force, and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        if (typeof window !== 'undefined') {
+          try {
+            var originalFetch = window.fetch;
+            var currentFetch = originalFetch;
+            Object.defineProperty(window, 'fetch', {
+              get: function() {
+                return currentFetch;
+              },
+              set: function(val) {
+                currentFetch = val;
+              },
+              configurable: true,
+              enumerable: true
+            });
+          } catch (e) {
+            try {
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: function() {
+                  return currentFetch;
+                },
+                set: function(val) {
+                  currentFetch = val;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e2) {
+              console.warn('Fetch polyfill failed:', e2);
+            }
+          }
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Convert length, weight, temperature, area, volume, pressure, energy, and hundreds of other units with fast, accurate, and easy-to-use online conversion tools." />
+    <meta name="keywords" content="unit converter, metric to imperial, math conversion, temperature converter, length converter, area converter, weight converter, high accuracy conversions" />
+    <title>Unit Converter | Free Online Unit Conversion Tools - UnitsConvertors.com</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#2563EB" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- 
+    Service worker is disabled in the sandboxed preview environment to prevent clashes 
+    with the platform's secure fetch proxying. You can re-enable this for production.
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(err => {
+            console.log("Service Worker registration failed: ", err);
+          });
+        });
+      }
+    </script>
+    -->
+  </body>
+</html>
+
