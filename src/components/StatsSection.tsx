@@ -34,7 +34,7 @@ export default function StatsSection() {
         {stats.map((item, idx) => (
           <div
             key={idx}
-            className="p-5 rounded-2xl border border-slate-200/60 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-sm flex flex-col gap-1 items-center justify-center text-center hover:shadow-lg transition-all duration-300"
+            className="p-5 rounded-2xl border border-[var(--border-subtle)] dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/40 hover:bg-[var(--surface-hover)] dark:hover:bg-slate-900/60 backdrop-blur-sm flex flex-col gap-1 items-center justify-center text-center hover:shadow-md transition-all duration-300"
           >
             <span className={`font-display text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r ${item.gradient}`}>
               {item.metric}

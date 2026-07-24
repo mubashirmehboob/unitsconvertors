@@ -315,8 +315,8 @@ export default function ConverterTool({
         <div className="absolute bottom-0 left-0 h-40 w-40 bg-gradient-to-tr from-emerald-500/5 to-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
 
         {/* Action Tray */}
-        <div className="hidden sm:flex items-center justify-between mb-4 no-print">
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-50/80 to-cyan-50/80 dark:from-blue-950/35 dark:to-cyan-950/35 text-blue-700 dark:text-cyan-400 text-[10px] sm:text-[11px] font-black tracking-widest uppercase border border-blue-200/40 dark:border-cyan-500/25 shadow-sm transition-all hover:scale-102">
+        <div className="flex items-center justify-between mb-4 no-print">
+          <div className="hidden sm:inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-50/80 to-cyan-50/80 dark:from-blue-950/35 dark:to-cyan-950/35 text-blue-700 dark:text-cyan-400 text-[10px] sm:text-[11px] font-black tracking-widest uppercase border border-blue-200/40 dark:border-cyan-500/25 shadow-sm transition-all">
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -324,29 +324,35 @@ export default function ConverterTool({
             <span>HIGH-PRECISION CONVERSION ENGINE</span>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-2">
             {/* Scientific Calculator Button */}
             <button
+              type="button"
               onClick={() => setCalcOpen(!calcOpen)}
-              className={`h-10 w-10 rounded-xl border flex items-center justify-center transition-all shadow-sm ${
+              aria-expanded={calcOpen}
+              aria-controls="scientific-calculator-panel"
+              className={`h-11 w-11 sm:h-10 sm:w-10 rounded-xl border flex items-center justify-center transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                 calcOpen 
                   ? "bg-blue-600 border-blue-600 text-white" 
                   : "bg-white border-slate-200 hover:bg-slate-50 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300"
               }`}
               title="Open Scientific Calculator"
+              aria-label="Open Scientific Calculator"
             >
               <Calculator className="h-4 w-4" />
             </button>
 
             {/* Toggle Bookmark */}
             <button
+              type="button"
               onClick={() => onToggleFavorite(favoriteId)}
-              className={`h-10 w-10 rounded-xl border flex items-center justify-center transition-all shadow-sm ${
+              className={`h-11 w-11 sm:h-10 sm:w-10 rounded-xl border flex items-center justify-center transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                 isFavorite 
                   ? "bg-rose-50 border-rose-200 text-rose-500 dark:bg-rose-950/30 dark:border-rose-900/40" 
                   : "bg-white border-slate-200 hover:bg-slate-50 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300"
               }`}
               title={isFavorite ? "Remove from bookmarks" : "Save to bookmarks"}
+              aria-label={isFavorite ? "Remove from bookmarks" : "Save to bookmarks"}
             >
               <Heart className={`h-4 w-4 ${isFavorite ? "fill-rose-500 text-rose-500" : "text-slate-500"}`} />
             </button>
@@ -356,7 +362,7 @@ export default function ConverterTool({
 
         {/* SCIENTIFIC CALCULATOR MODULE */}
         {calcOpen && (
-          <div className="mb-6 p-5 rounded-3xl bg-slate-50/80 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl relative animate-in fade-in-50 zoom-in-95 duration-200 no-print">
+          <div id="scientific-calculator-panel" className="mb-6 p-5 rounded-3xl bg-slate-50/80 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl relative animate-in fade-in-50 zoom-in-95 duration-200 no-print">
             {/* Title / Close bar */}
             <div className="flex items-center justify-between mb-4 border-b border-slate-200/60 dark:border-slate-800 pb-3">
               <span className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
@@ -366,8 +372,9 @@ export default function ConverterTool({
               <button
                 type="button"
                 onClick={() => setCalcOpen(false)}
-                className="h-6 w-6 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 dark:bg-rose-950/30 dark:hover:bg-rose-900/40 dark:text-rose-400 font-bold flex items-center justify-center text-xs shadow-sm transition-all border border-rose-100/60 dark:border-rose-900/30"
+                className="h-8 w-8 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 dark:bg-rose-950/30 dark:hover:bg-rose-900/40 dark:text-rose-400 font-bold flex items-center justify-center text-xs shadow-sm transition-all border border-rose-100/60 dark:border-rose-900/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
                 title="Close Calculator"
+                aria-label="Close Calculator"
               >
                 ✕
               </button>
@@ -920,24 +927,43 @@ export default function ConverterTool({
             </div>
             
             <div className="flex flex-col items-start text-left overflow-hidden max-w-full">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-black tracking-wider uppercase text-[9px] mb-1.5 shadow-[0_0_12px_rgba(16,185,129,0.05)]">
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-black tracking-wider uppercase text-[9px] mb-1.5 shadow-[0_0_12px_rgba(16,185,129,0.05)]">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                 MATHEMATICALLY VERIFIED EQUATION
               </span>
               <div className="text-lg font-sans font-black text-slate-900 dark:text-white break-words max-w-full leading-snug">
-                <span dangerouslySetInnerHTML={{ __html: formattedInputResult.html }} /> {fromUnit?.plural} = <span className="text-blue-600 dark:text-cyan-400" dangerouslySetInnerHTML={{ __html: formattedOutputResult.html }} /> {toUnit?.plural}
+                <span dangerouslySetInnerHTML={{ __html: formattedInputResult.html }} />{" "}
+                <span className="hidden sm:inline">{fromUnit?.plural}</span>
+                <span className="inline sm:hidden">{fromUnit?.symbol?.toUpperCase()}</span> ={" "}
+                <span className="text-blue-600 dark:text-cyan-400" dangerouslySetInnerHTML={{ __html: formattedOutputResult.html }} />{" "}
+                <span className="hidden sm:inline">{toUnit?.plural}</span>
+                <span className="inline sm:hidden">{toUnit?.symbol?.toUpperCase()}</span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 no-print shrink-0">
+          <div className="hidden sm:flex items-center gap-2 no-print shrink-0">
+            {/* Copy Result Button */}
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="h-11 px-3.5 rounded-xl border border-blue-200 dark:border-blue-900/40 bg-blue-50 dark:bg-blue-950/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-cyan-400 font-bold text-xs flex items-center gap-1.5 transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              title="Copy conversion equation"
+              aria-label="Copy conversion equation"
+            >
+              {copied ? <Check className="h-4 w-4 stroke-[3]" /> : <Copy className="h-4 w-4" />}
+              <span>{copied ? "Copied!" : "Copy"}</span>
+            </button>
+
             {/* Reset */}
             <button
+              type="button"
               onClick={handleReset}
-              className="h-11 w-11 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all shadow-sm"
-              title="Reset values"
+              className="h-11 w-11 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 flex items-center justify-center transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              title="Reset value to 1"
+              aria-label="Reset value to 1"
             >
-              <RotateCcw className="h-5 w-5" />
+              <RotateCcw className="h-4.5 w-4.5" />
             </button>
           </div>
         </div>

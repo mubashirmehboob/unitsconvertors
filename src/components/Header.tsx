@@ -506,12 +506,15 @@ export default function Header({
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 ml-auto" id="desktop-nav">
+          <nav className="hidden lg:flex items-center gap-6 ml-auto" id="desktop-nav" aria-label="Main navigation">
             {/* Mega Menu Toggle (Categories) */}
             <div ref={megaMenuRef} className="relative">
               <button
+                type="button"
                 onClick={() => setMegaMenuOpen(!megaMenuOpen)}
-                className="flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2"
+                aria-expanded={megaMenuOpen}
+                aria-haspopup="true"
+                className="flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2"
               >
                 Categories
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${megaMenuOpen ? "rotate-180" : ""}`} />
@@ -525,11 +528,20 @@ export default function Header({
                     return (
                       <div
                         key={cat.id}
+                        role="button"
+                        tabIndex={0}
                         onClick={() => {
                           onNavigate(cat.id);
                           setMegaMenuOpen(false);
                         }}
-                        className={`flex items-center gap-3 p-2.5 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition-all ${
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            onNavigate(cat.id);
+                            setMegaMenuOpen(false);
+                          }
+                        }}
+                        className={`flex items-center gap-3 p-2.5 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                           currentCategory === cat.id ? `${style.bg} ${style.text}` : "text-slate-700 dark:text-slate-300"
                         }`}
                       >
@@ -548,22 +560,25 @@ export default function Header({
             </div>
 
             <button 
+              type="button"
               onClick={() => onNavigate("home", undefined, undefined, "about")}
-              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
             >
               About
             </button>
 
             <button 
+              type="button"
               onClick={() => onNavigate("home", undefined, undefined, "contact")}
-              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
             >
               Contact
             </button>
 
             <button 
+              type="button"
               onClick={() => onNavigate("home", undefined, undefined, "privacy")}
-              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
             >
               Privacy
             </button>
@@ -575,6 +590,7 @@ export default function Header({
                 <input
                   type="text"
                   placeholder="Search 500+ converters..."
+                  aria-label="Search unit converters"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setSearchFocused(true)}
@@ -592,13 +608,23 @@ export default function Header({
                     return (
                       <div
                         key={`${res.category.id}-${res.slug}`}
+                        role="button"
+                        tabIndex={0}
                         onClick={() => {
                           onNavigate(res.category.id, res.from.id, res.to.id);
                           setSearchFocused(false);
                           setSearchQuery("");
                         }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            onNavigate(res.category.id, res.from.id, res.to.id);
+                            setSearchFocused(false);
+                            setSearchQuery("");
+                          }
+                        }}
                         onMouseEnter={() => setSelectedIndex(idx)}
-                        className={`flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-colors ${
+                        className={`flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                           idx === selectedIndex 
                             ? "bg-slate-100 dark:bg-slate-900 text-blue-600 dark:text-blue-400" 
                             : "text-slate-700 dark:text-slate-300"
@@ -625,9 +651,10 @@ export default function Header({
 
             {/* Dark Mode Toggle */}
             <button
+              type="button"
               onClick={() => setDarkMode(!darkMode)}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
-              aria-label="Toggle theme"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              aria-label={darkMode ? "Switch to light theme" : "Switch to dark theme"}
             >
               {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
@@ -635,10 +662,11 @@ export default function Header({
             {/* Favorites Count */}
             {favorites.length > 0 && (
               <button 
+                type="button"
                 onClick={() => onNavigate("home", undefined, undefined, "favorites")}
-                className="flex items-center gap-1.5 text-sm font-medium text-rose-600 dark:text-rose-400 hover:opacity-80 transition-opacity"
-                title="Favorites"
-                aria-label="Favorites"
+                className="flex items-center gap-1.5 text-sm font-medium text-rose-600 dark:text-rose-400 hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded-lg px-2 py-1"
+                title="View my bookmarked favorites"
+                aria-label={`View my bookmarked favorites (${favorites.length})`}
               >
                 <Heart className="h-4 w-4 fill-rose-600 dark:fill-rose-400" />
                 ({favorites.length})
@@ -650,17 +678,21 @@ export default function Header({
           <div className="lg:hidden flex items-center gap-2">
             {/* Dark Mode Toggle for Mobile */}
             <button
+              type="button"
               onClick={() => setDarkMode(!darkMode)}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
-              aria-label="Toggle theme"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              aria-label={darkMode ? "Switch to light theme" : "Switch to dark theme"}
             >
               {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
 
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
-              aria-label="Open mobile menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-drawer"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>

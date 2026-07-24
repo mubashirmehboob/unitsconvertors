@@ -1,9 +1,344 @@
 import React, { useState, useEffect } from "react";
-import { HelpCircle, ChevronDown, Layers } from "lucide-react";
+import { HelpCircle, ChevronDown, Layers, BookOpen, ArrowRight, ChevronRight, Award, Compass, Link2 } from "lucide-react";
 import { Category, Unit } from "../types";
 import { generateSEOContent, performConversion, getStringHash } from "../utils/conversionEngine";
 import { customLengthArticles, isSeoReady } from "../data/articles";
 import { categoriesData } from "../data/convertersData";
+
+// --- REUSABLE SUB-COMPONENTS FOR TOPICAL SEO & INTERNAL LINKING ---
+
+interface RelatedConvertersCardsProps {
+  items: Array<{ label: string; from: string; to: string }>;
+  category: Category;
+  fromUnit: Unit;
+  toUnit: Unit;
+  onNavigate: (category: string, fromUnit?: string, toUnit?: string) => void;
+  key?: React.Key;
+}
+
+function RelatedConvertersCards({
+  items,
+  category,
+  fromUnit,
+  toUnit,
+  onNavigate
+}: RelatedConvertersCardsProps) {
+  return (
+    <section className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col gap-4">
+      <div className="flex flex-col gap-1">
+        <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+          Related {category.name} Converters
+        </h3>
+        <p className="text-xs text-slate-500 dark:text-slate-400">
+          Explore closely linked unit pairs sharing source unit <span className="font-semibold text-slate-700 dark:text-slate-300">"{fromUnit.name}"</span> or target unit <span className="font-semibold text-slate-700 dark:text-slate-300">"{toUnit.name}"</span>.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-2">
+        {items.map((item, idx) => {
+          const fromU = category.units.find(u => u.id === item.from) || fromUnit;
+          const toU = category.units.find(u => u.id === item.to) || toUnit;
+          const isReverse = item.from === toUnit.id && item.to === fromUnit.id;
+          const isSameSource = item.from === fromUnit.id;
+
+          return (
+            <a
+              key={idx}
+              href={`/${category.id}/${item.from}-to-${item.to}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(category.id, item.from, item.to);
+              }}
+              className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/80 dark:hover:border-cyan-500/80 hover:shadow-sm transition-all duration-200 flex flex-col justify-between gap-3 group text-left"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 group-hover:bg-blue-50 group-hover:text-blue-600 dark:group-hover:bg-cyan-950/50 dark:group-hover:text-cyan-400 transition-colors">
+                  {fromU.symbol} → {toU.symbol}
+                </span>
+                {isReverse ? (
+                  <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400 border border-amber-200/50 dark:border-amber-800/40">
+                    Reverse
+                  </span>
+                ) : isSameSource ? (
+                  <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-cyan-400 border border-blue-200/50 dark:border-blue-900/40">
+                    Same Source
+                  </span>
+                ) : null}
+              </div>
+
+              <div className="flex flex-col gap-0.5">
+                <h4 className="font-display font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                  Convert {fromU.name} to {toU.name}
+                </h4>
+                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">
+                  {fromU.symbol} to {toU.symbol} conversion pair in {category.name}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-cyan-400 group-hover:translate-x-1 transition-transform">
+                <span>Convert {fromU.symbol} to {toU.symbol}</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+interface RelatedGuidesSectionProps {
+  category: Category;
+  customArticles?: Array<{ title: string; description: string; from: string; to: string }>;
+  onNavigate: (category: string, fromUnit?: string, toUnit?: string) => void;
+  key?: React.Key;
+}
+
+function RelatedGuidesSection({
+  category,
+  customArticles,
+  onNavigate
+}: RelatedGuidesSectionProps) {
+  const defaultCategoryGuides: Record<string, Array<{ title: string; description: string; from: string; to: string; badge: string }>> = {
+    pressure: [
+      {
+        title: "Pressure Measurement Standards & SI Units Guide",
+        description: "Comprehensive scientific overview of Pascal, Bar, PSI, and atmospheric pressure scales.",
+        from: "pascal",
+        to: "bar",
+        badge: "Standards Guide"
+      },
+      {
+        title: "Atmospheric & Barometric Pressure Calculations",
+        description: "Understanding standard atmosphere (atm) and mmHg medical/meteorological standards.",
+        from: "pascal",
+        to: "atmosphere",
+        badge: "Meteorology"
+      },
+      {
+        title: "Engineering PSI vs Medical mmHg Measurements",
+        description: "How industrial hydraulic pressure metrics relate to physiological fluid pressures.",
+        from: "pascal",
+        to: "mmhg",
+        badge: "Engineering"
+      }
+    ],
+    length: [
+      {
+        title: "SI Length Units & Metric Prefixes Guide",
+        description: "Detailed analysis of standard meter definitions and power-of-10 submultiples.",
+        from: "meter",
+        to: "kilometer",
+        badge: "Metric System"
+      },
+      {
+        title: "Imperial vs Metric Distance & Height Guide",
+        description: "Translating international feet, inches, and yards to metric meters accurately.",
+        from: "meter",
+        to: "foot",
+        badge: "Conversion Standards"
+      },
+      {
+        title: "Micron & Nanometer Sizing in Engineering",
+        description: "Microscopic length measurements used in semiconductor and medical manufacturing.",
+        from: "meter",
+        to: "micrometer",
+        badge: "Precision Sizing"
+      }
+    ],
+    "weight-mass": [
+      {
+        title: "Physics of Mass vs Weight & Kilogram Standards",
+        description: "International prototype kilogram, Planck constant definitions, and avoirdupois pounds.",
+        from: "kilogram",
+        to: "pound",
+        badge: "Physics Guide"
+      },
+      {
+        title: "Shipping Freight & Bulk Cargo Mass Scales",
+        description: "Metric tons, UK imperial long tons, and US short tons in international logistics.",
+        from: "metric-ton",
+        to: "pound",
+        badge: "Logistics"
+      }
+    ]
+  };
+
+  const guides = customArticles && customArticles.length > 0 
+    ? customArticles.map(art => ({ ...art, badge: "Educational Resource" }))
+    : (defaultCategoryGuides[category.id] || [
+        {
+          title: `${category.name} Unit Standards & Measurement Guide`,
+          description: `Educational reference guide covering core units and conversion formulas in ${category.name}.`,
+          from: category.units[0]?.id || "",
+          to: category.units[1]?.id || "",
+          badge: "Category Guide"
+        },
+        {
+          title: `SI & Imperial ${category.name} Calculations`,
+          description: `Compare metric and customary unit definitions across scientific and industrial uses.`,
+          from: category.units[0]?.id || "",
+          to: category.units[2]?.id || category.units[1]?.id || "",
+          badge: "Educational Guide"
+        }
+      ]);
+
+  return (
+    <section className="flex flex-col gap-4">
+      <div className="flex flex-col gap-1">
+        <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+          Related Educational Guides & Standards
+        </h3>
+        <p className="text-xs text-slate-500 dark:text-slate-400">
+          In-depth scientific guides explaining measurement history, SI standards, and industrial applications.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-1">
+        {guides.map((guide, idx) => (
+          <a
+            key={idx}
+            href={`/${category.id}/${guide.from}-to-${guide.to}`}
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate(category.id, guide.from, guide.to);
+            }}
+            className="p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 hover:border-indigo-500/80 dark:hover:border-indigo-500/80 hover:bg-white dark:hover:bg-slate-900 hover:shadow-sm transition-all duration-200 flex flex-col justify-between gap-3 text-left group"
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded bg-indigo-100/70 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300">
+                {guide.badge}
+              </span>
+              <BookOpen className="h-4 w-4 text-indigo-500/70 group-hover:text-indigo-600 transition-colors" />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <h4 className="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                {guide.title}
+              </h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                {guide.description}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-1 transition-transform">
+              <span>Read {guide.title}</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+interface ExploreMoreSectionProps {
+  category: Category;
+  fromUnit: Unit;
+  toUnit: Unit;
+  onNavigate: (category: string, fromUnit?: string, toUnit?: string) => void;
+  key?: React.Key;
+}
+
+function ExploreMoreSection({
+  category,
+  fromUnit,
+  toUnit,
+  onNavigate
+}: ExploreMoreSectionProps) {
+  const popularInCat = category.units.flatMap(u1 => 
+    category.units.filter(u2 => u2.id !== u1.id).map(u2 => ({
+      from: u1,
+      to: u2,
+      label: `Convert ${u1.name} to ${u2.name}`
+    }))
+  ).slice(0, 6);
+
+  return (
+    <section className="p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/30 flex flex-col gap-6" id="explore-more-section">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/60 dark:border-slate-800 pb-5">
+        <div className="flex flex-col gap-1">
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Explore More {category.name} Conversions
+          </h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Never hit a dead end. Navigate back to the parent category or discover widely searched {category.name} unit pairings.
+          </p>
+        </div>
+
+        <a
+          href={`/${category.id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate(category.id);
+          }}
+          className="h-10 px-5 rounded-xl bg-slate-900 dark:bg-slate-800 text-white font-bold text-xs hover:bg-blue-600 dark:hover:bg-blue-600 transition-all flex items-center justify-center gap-2 shrink-0 shadow-sm"
+        >
+          <span>Explore All {category.name} Converters</span>
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+          Popular {category.name} Conversions
+        </h4>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          {popularInCat.map((item, idx) => (
+            <a
+              key={idx}
+              href={`/${category.id}/${item.from.id}-to-${item.to.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(category.id, item.from.id, item.to.id);
+              }}
+              className="p-3.5 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all flex items-center justify-between group"
+            >
+              <span className="text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                {item.label}
+              </span>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface ReferencesSectionProps {
+  references?: string[];
+  key?: React.Key;
+}
+
+function ReferencesSection({ references }: ReferencesSectionProps) {
+  const defaultRefs = [
+    "International Bureau of Weights and Measures (BIPM). <em>The International System of Units (SI Brochure)</em>, 9th edition, 2019.",
+    "National Institute of Standards and Technology (NIST). <em>Guide for the Use of the International System of Units (SI)</em>, NIST Special Publication 811.",
+    "International Organization for Standardization (ISO). <em>ISO 80000-1: Quantities and Units — Part 1: General</em>.",
+    "CODATA Internationally Recommended Values of the Fundamental Physical Constants."
+  ];
+
+  const items = references && references.length > 0 ? references : defaultRefs;
+
+  return (
+    <section className="flex flex-col gap-4">
+      <div className="flex items-center gap-2">
+        <Award className="h-5 w-5 text-blue-500" />
+        <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+          Scientific & Regulatory References
+        </h3>
+      </div>
+      <div className="p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
+        <ul className="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+          {items.map((ref, idx) => (
+            <li key={idx} dangerouslySetInnerHTML={{ __html: ref }} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
 
 interface SEOContentProps {
   category: Category;
@@ -476,14 +811,8 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
     return (
       <article className="w-full flex flex-col gap-10 mt-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base" id="seo-article">
         
-        {/* 1. Article Introduction Header */}
+        {/* Step 4: Quick Summary / Quick Answer Box & Intro */}
         <section className="flex flex-col gap-4">
-          <h2 className="font-display text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-            {customArticle.h1}
-          </h2>
-          
-
-
           <div className="prose dark:prose-invert max-w-none flex flex-col gap-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             {customArticle.introduction.map((p, idx) => (
               <p key={idx}>{p}</p>
@@ -491,7 +820,6 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </div>
         </section>
 
-        {/* 2. Quick Answer Box */}
         {customArticle.quickAnswer && (
           <section className="p-6 sm:p-8 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-center gap-6 justify-between">
             <div className="flex flex-col gap-2 max-w-lg" style={{ width: '520px' }}>
@@ -512,48 +840,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </section>
         )}
 
-        {/* 3. Unit Definitions */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/10 flex flex-col gap-3">
-            <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-blue-500" />
-              {customArticle.aboutSourceUnit.title}
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              {customArticle.aboutSourceUnit.text}
-            </p>
-          </div>
-          
-          <div className="p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/10 flex flex-col gap-3">
-            <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-cyan-500" />
-              {customArticle.aboutTargetUnit.title}
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              {customArticle.aboutTargetUnit.text}
-            </p>
-          </div>
-        </section>
-
-        {/* 4. Conversion Relationship */}
-        <section className="flex flex-col gap-4">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-            {customArticle.relationshipTitle || `The Relationship Between ${fromUnit.name} and ${toUnit.name}`}
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-            {customArticle.relationship}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            {customArticle.relationshipItems?.map((item, idx) => (
-              <div key={idx} className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{item.label}</span>
-                <span className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">{item.value}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 5. How to Convert */}
+        {/* Step 5: Formula & How to Convert */}
         <section className="flex flex-col gap-4">
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
             {customArticle.formulaTitle || `How to Convert ${fromUnit.name} to ${toUnit.name}`}
@@ -582,7 +869,48 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </section>
         )}
 
-        {/* 6. Worked Examples */}
+        {/* Step 6 & Step 7: About Source Unit & About Target Unit */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-xs flex flex-col gap-3">
+            <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-blue-500" />
+              {customArticle.aboutSourceUnit.title}
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              {customArticle.aboutSourceUnit.text}
+            </p>
+          </div>
+          
+          <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-xs flex flex-col gap-3">
+            <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-cyan-500" />
+              {customArticle.aboutTargetUnit.title}
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              {customArticle.aboutTargetUnit.text}
+            </p>
+          </div>
+        </section>
+
+        {/* Step 8: Unit Relationship */}
+        <section className="flex flex-col gap-4">
+          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+            {customArticle.relationshipTitle || `The Relationship Between ${fromUnit.name} and ${toUnit.name}`}
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            {customArticle.relationship}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+            {customArticle.relationshipItems?.map((item, idx) => (
+              <div key={idx} className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{item.label}</span>
+                <span className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Step 9: Step-by-Step Conversion Examples */}
         <section className="flex flex-col gap-4">
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
             {customArticle.examples.title}
@@ -602,7 +930,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </div>
         </section>
 
-        {/* 7. Conversion Table */}
+        {/* Step 10: Quick Reference Conversion Table */}
         <section className="flex flex-col gap-4">
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
             {customArticle.table.title}
@@ -610,18 +938,19 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <table className="w-full text-left text-sm border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+                <tr className="bg-[var(--background-secondary)] dark:bg-slate-950 border-b border-[var(--border-subtle)] dark:border-slate-800">
                   {customArticle.table.headers.map((h, hIdx) => (
                     <th key={hIdx} className="p-4 font-bold text-slate-900 dark:text-white">{h}</th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900/50">
+              <tbody className="divide-y divide-[var(--divider-subtle)] dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-900/50">
                 {customArticle.table.rows.map((row, rIdx) => (
-                  <tr key={rIdx} className="hover:bg-slate-50/50 dark:hover:bg-slate-950/20 transition-all">
+                  <tr key={rIdx} className="hover:bg-[var(--surface-hover)] dark:hover:bg-slate-950/20 transition-all">
                     <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400">{row.fromVal}</td>
                     <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.toVal}</td>
                     <td className="p-4 text-xs text-slate-400 font-mono">{row.extra}</td>
+                    {row.extra2 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400">{row.extra2}</td>}
                   </tr>
                 ))}
               </tbody>
@@ -642,7 +971,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </section>
         )}
 
-        {/* 8. Practical Applications */}
+        {/* Step 11: Real-World Applications */}
         <section className="flex flex-col gap-4">
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
             {customArticle.applications.title}
@@ -659,7 +988,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </div>
         </section>
 
-        {/* 9. Common Mistakes */}
+        {/* Step 12: Common Pitfalls & Mistakes */}
         {customArticle.pitfalls && (
           <section className="flex flex-col gap-4">
             <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
@@ -673,7 +1002,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </section>
         )}
 
-        {/* 10. FAQs */}
+        {/* Step 13: Frequently Asked Questions (FAQ) Accordion */}
         <section className="flex flex-col gap-4">
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <HelpCircle className="h-5 w-5 text-blue-500" />
@@ -699,37 +1028,32 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </div>
         </section>
 
-        {/* 11. Related Converters */}
-        <section className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col gap-4">
-          <h3 className="font-display text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-            Related Converters
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {getDynamicRelatedList(customArticle.relatedList).map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleInternalLink(item.from, item.to)}
-                className="text-xs font-semibold px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-500 dark:hover:text-blue-400 bg-slate-50 dark:bg-slate-900 transition-all"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </section>
+        {/* Step 14: Related Converters Cards */}
+        <RelatedConvertersCards
+          items={getDynamicRelatedList(customArticle.relatedList)}
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
 
-        {/* 12. References */}
-        {customArticle.references && (
-          <section className="flex flex-col gap-4">
-            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-              References
-            </h3>
-            <ul className="list-disc pl-5 space-y-1.5 text-slate-500 dark:text-slate-400 text-xs md:text-sm">
-              {customArticle.references.map((ref, idx) => (
-                <li key={idx} dangerouslySetInnerHTML={{ __html: ref }} />
-              ))}
-            </ul>
-          </section>
-        )}
+        {/* Step 15: Related Educational Guides / Articles */}
+        <RelatedGuidesSection
+          category={category}
+          customArticles={customArticle.relatedArticles}
+          onNavigate={onNavigate}
+        />
+
+        {/* Step 16: Explore More & Topic Cluster Navigation */}
+        <ExploreMoreSection
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
+
+        {/* Step 17: Scientific & Regulatory References */}
+        <ReferencesSection references={customArticle.references} />
 
       </article>
     );
@@ -2363,35 +2687,30 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
         </section>
 
         {/* 11. Related Converters */}
-        <section className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col gap-4">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-            Related Converters
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {relatedList.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleInternalLink(item.from, item.to)}
-                className="text-xs font-semibold px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-500 dark:hover:text-blue-400 bg-slate-50 dark:bg-slate-900 transition-all"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </section>
+        <RelatedConvertersCards
+          items={relatedList}
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
 
-        {/* 12. References */}
-        <section className="flex flex-col gap-4">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-            References
-          </h3>
-          <ul className="list-disc pl-5 space-y-1.5 text-slate-500 dark:text-slate-400 text-xs md:text-sm">
-            <li>International Bureau of Weights and Measures (BIPM). <em>The International System of Units (SI Brochure)</em>.</li>
-            <li>National Institute of Standards and Technology (NIST). <em>Guide for the Use of the International System of Units (SI).</em></li>
-            <li>CODATA Internationally Recommended Values of the Fundamental Physical Constants.</li>
-            <li>ISO 80000 — Quantities and Units.</li>
-          </ul>
-        </section>
+        {/* 12. Related Guides */}
+        <RelatedGuidesSection
+          category={category}
+          onNavigate={onNavigate}
+        />
+
+        {/* 13. Explore More */}
+        <ExploreMoreSection
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
+
+        {/* 14. Scientific & Regulatory References */}
+        <ReferencesSection />
 
       </article>
     );
@@ -2458,28 +2777,48 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
     {
       id: "related",
       node: (
-        <section className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col gap-4" key="related">
-          <h4 className="font-display text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-            Related {category.name} Converters
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {getDynamicRelatedList().map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleInternalLink(item.from, item.to)}
-                className="text-xs font-semibold px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-500 dark:hover:text-blue-400 bg-slate-50 dark:bg-slate-900 transition-all"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </section>
+        <RelatedConvertersCards
+          key="related"
+          items={getDynamicRelatedList()}
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
+      )
+    },
+    {
+      id: "guides",
+      node: (
+        <RelatedGuidesSection
+          key="guides"
+          category={category}
+          onNavigate={onNavigate}
+        />
+      )
+    },
+    {
+      id: "explore",
+      node: (
+        <ExploreMoreSection
+          key="explore"
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
+      )
+    },
+    {
+      id: "references",
+      node: (
+        <ReferencesSection key="references" />
       )
     }
   ];
 
   // Render standard blocks in exact recommended page order for full topical authority
-  const standardOrder = ["intro", "formula", "table", "solver", "examples", "history", "faqs", "related", "references"];
+  const standardOrder = ["intro", "formula", "table", "solver", "examples", "history", "faqs", "related", "guides", "explore", "references"];
 
   const renderedStandardNodes = standardOrder
     .map(id => standardBlocks.find(b => b.id === id))

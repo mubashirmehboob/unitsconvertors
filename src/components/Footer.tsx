@@ -42,10 +42,10 @@ export default function Footer({ onNavigate }: FooterProps) {
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500" />
 
       <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           
           {/* Column 1: Brand Info */}
-          <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-3">
+          <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-2">
             <div onClick={() => onNavigate("home")} className="flex items-center gap-2 cursor-pointer group w-fit">
               <Logo size="sm" />
               <span className="font-sans text-lg font-bold tracking-tight text-slate-900 dark:text-white select-none">
@@ -63,7 +63,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 href="https://facebook.com" 
                 target="_blank" 
                 rel="noreferrer referrer" 
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-100 dark:border-blue-950 bg-blue-50/50 dark:bg-blue-950/20 text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:shadow-lg hover:shadow-blue-500/15 transition-all duration-300"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-100 dark:border-blue-950 bg-blue-50/50 dark:bg-blue-950/20 text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:shadow-lg hover:shadow-blue-500/15 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label="Facebook"
               >
                 <Facebook className="h-4.5 w-4.5" />
@@ -72,7 +72,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 href="https://twitter.com" 
                 target="_blank" 
                 rel="noreferrer referrer" 
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-slate-100 hover:shadow-lg transition-all duration-300"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-slate-100 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label="X (formerly Twitter)"
               >
                 <span className="font-black text-sm">𝕏</span>
@@ -81,7 +81,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noreferrer referrer" 
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-pink-100 dark:border-pink-950 bg-pink-50/50 dark:bg-pink-950/20 text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-[#E1306C] hover:shadow-lg hover:shadow-pink-500/15 transition-all duration-300"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-pink-100 dark:border-pink-950 bg-pink-50/50 dark:bg-pink-950/20 text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-[#E1306C] hover:shadow-lg hover:shadow-pink-500/15 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
                 aria-label="Instagram"
               >
                 <Instagram className="h-4.5 w-4.5" />
@@ -90,7 +90,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noreferrer referrer" 
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/50 dark:bg-sky-950/20 text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:shadow-lg hover:shadow-blue-600/15 transition-all duration-300"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/50 dark:bg-sky-950/20 text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:shadow-lg hover:shadow-blue-600/15 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4.5 w-4.5" />
@@ -105,32 +105,32 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h3>
             <ul className="flex flex-col gap-2.5 text-sm text-slate-500 dark:text-slate-400">
               <li>
-                <button onClick={() => { onNavigate("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => { onNavigate("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Home
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "about")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "about")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   About Us
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "contact")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "contact")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Contact Us
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "privacy")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "privacy")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Privacy Policy
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "terms")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "terms")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Terms & Conditions
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "disclaimer")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "disclaimer")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Disclaimer Notice
                 </button>
               </li>
@@ -144,32 +144,32 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h3>
             <ul className="flex flex-col gap-2.5 text-sm text-slate-500 dark:text-slate-400">
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "sitemap")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "sitemap")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   HTML Sitemap
                 </button>
               </li>
               <li>
-                <a href="/sitemap.xml" target="_blank" className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block">
+                <a href="/sitemap.xml" target="_blank" className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   XML Sitemap
                 </a>
               </li>
               <li>
-                <button onClick={() => onNavigate("home")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Categories Directory
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "sitemap")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "sitemap")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   All 500+ Converters
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "favorites")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium">
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "favorites")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Bookmarked Favorites
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate("home", undefined, undefined, "validator")} className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:underline transition-colors text-left font-bold flex items-center gap-1.5 whitespace-nowrap"><span className="h-2 w-2 rounded-full bg-emerald-500 inline-block animate-pulse" />NIST Engine Validator</button>
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "validator")} className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:underline transition-colors text-left font-bold flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded px-1"><span className="h-2 w-2 rounded-full bg-emerald-500 inline-block animate-pulse" />NIST Engine Validator</button>
               </li>
             </ul>
           </div>

@@ -137,8 +137,17 @@ export default function FeaturedConverters({ onNavigate }: FeaturedConvertersPro
           {featured.map((item, idx) => (
             <div
               key={idx}
+              role="button"
+              tabIndex={0}
               onClick={() => onNavigate(item.cat, item.from, item.to)}
-              className="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-blue-500 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between h-40"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onNavigate(item.cat, item.from, item.to);
+                }
+              }}
+              aria-label={`Convert ${item.title}`}
+              className="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:bg-[#F8FAFC] dark:hover:bg-slate-900/60 hover:border-blue-500 hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between h-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
@@ -186,8 +195,17 @@ export default function FeaturedConverters({ onNavigate }: FeaturedConvertersPro
           {recentlyAdded.map((item, idx) => (
             <div
               key={idx}
+              role="button"
+              tabIndex={0}
               onClick={() => onNavigate(item.cat, item.from, item.to)}
-              className="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-cyan-500 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between h-40"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onNavigate(item.cat, item.from, item.to);
+                }
+              }}
+              aria-label={`Launch calculator for ${item.title}`}
+              className="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:bg-[#F8FAFC] dark:hover:bg-slate-900/60 hover:border-cyan-500 hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between h-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">

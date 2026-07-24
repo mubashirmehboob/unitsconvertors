@@ -2,11 +2,44 @@
 
 @variant dark (&:where(.dark, .dark *));
 
+:root {
+  --background-primary: #ffffff;
+  --background-secondary: #f8fafc;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --border-subtle: #e5e7eb;
+  --divider-subtle: #eef2f7;
+}
+
+.dark {
+  --background-primary: #020617;
+  --background-secondary: #0f172a;
+  --surface: #0f172a;
+  --surface-hover: #1e293b;
+  --border-subtle: #1e293b;
+  --divider-subtle: #1e293b;
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-display: "Space Grotesk", sans-serif;
+
+  --color-bg-primary: var(--background-primary);
+  --color-bg-secondary: var(--background-secondary);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border-subtle: var(--border-subtle);
+  --color-divider-subtle: var(--divider-subtle);
 }
+
+/* Helper semantic utility classes for clean design system tokens */
+.bg-primary { background-color: var(--background-primary); }
+.bg-secondary { background-color: var(--background-secondary); }
+.bg-surface { background-color: var(--surface); }
+.hover\:bg-surface-hover:hover { background-color: var(--surface-hover); }
+.border-subtle { border-color: var(--border-subtle); }
+.divide-subtle > :not([hidden]) ~ :not([hidden]) { border-color: var(--divider-subtle); }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {

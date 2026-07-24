@@ -46,7 +46,7 @@ export interface CustomArticleData {
   table: {
     title: string;
     headers: string[];
-    rows: { fromVal: string; toVal: string; extra: string }[];
+    rows: { fromVal: string; toVal: string; extra: string; extra2?: string }[];
   };
   applications: {
     title: string;
@@ -62,5 +62,6 @@ export interface CustomArticleData {
     questionId?: string;
   }[];
   relatedList: { label: string; from: string; to: string }[];
+  relatedArticles?: { title: string; description: string; from: string; to: string }[];
   references: string[];
 }

@@ -93,7 +93,7 @@ export default function InternalLinkingDirectory({
 
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-6" id="seo-linking-directory">
-      <div className="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/10 backdrop-blur-sm flex flex-col gap-6">
+      <div className="p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] dark:border-slate-800 bg-[var(--background-secondary)] dark:bg-slate-900/10 backdrop-blur-sm flex flex-col gap-6">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">

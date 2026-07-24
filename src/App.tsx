@@ -578,7 +578,7 @@ export default function App() {
                   <FeaturedConverters onNavigate={handleNavigate} />
 
                   {/* WHY CHOOSE US (6 PREMIUM FEATURE CARDS) */}
-                  <section className="bg-slate-50/50 dark:bg-slate-900/10 border-y border-slate-200/80 dark:border-slate-800/80 py-[25px]">
+                  <section className="bg-[var(--background-secondary)] dark:bg-slate-900/10 border-y border-[var(--border-subtle)] dark:border-slate-800/80 py-[32px] my-2">
                     <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
                       <div className="text-center max-w-xl mx-auto flex flex-col gap-2">
                         <h2 className="font-display text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">

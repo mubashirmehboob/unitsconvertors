@@ -135,6 +135,17 @@ import { kilometerPerHourToMilePerHour } from "./kilometerPerHourToMilePerHour";
 import { kilometerPerHourToKnot } from "./kilometerPerHourToKnot";
 import { kilometerPerHourToMach } from "./kilometerPerHourToMach";
 
+import { pascalToKilopascal } from "./pascalToKilopascal";
+import { pascalToMegapascal } from "./pascalToMegapascal";
+import { pascalToBar } from "./pascalToBar";
+import { pascalToMillibar } from "./pascalToMillibar";
+import { pascalToPsi } from "./pascalToPsi";
+import { pascalToAtmosphere } from "./pascalToAtmosphere";
+import { pascalToTorr } from "./pascalToTorr";
+import { pascalToMmhg } from "./pascalToMmhg";
+import { kilopascalToPascal } from "./kilopascalToPascal";
+import { kilopascalToMegapascal } from "./kilopascalToMegapascal";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -270,7 +281,18 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "kilometer-per-hour-to-meter-per-second": kilometerPerHourToMeterPerSecond,
   "kilometer-per-hour-to-mile-per-hour": kilometerPerHourToMilePerHour,
   "kilometer-per-hour-to-knot": kilometerPerHourToKnot,
-  "kilometer-per-hour-to-mach": kilometerPerHourToMach
+  "kilometer-per-hour-to-mach": kilometerPerHourToMach,
+
+  "pascal-to-kilopascal": pascalToKilopascal,
+  "pascal-to-megapascal": pascalToMegapascal,
+  "pascal-to-bar": pascalToBar,
+  "pascal-to-millibar": pascalToMillibar,
+  "pascal-to-psi": pascalToPsi,
+  "pascal-to-atmosphere": pascalToAtmosphere,
+  "pascal-to-torr": pascalToTorr,
+  "pascal-to-mmhg": pascalToMmhg,
+  "kilopascal-to-pascal": kilopascalToPascal,
+  "kilopascal-to-megapascal": kilopascalToMegapascal
 };
 
 export interface ArticleMetadata {
@@ -422,7 +444,18 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "kilometer-per-hour-to-meter-per-second": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.9 },
   "kilometer-per-hour-to-mile-per-hour": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.9 },
   "kilometer-per-hour-to-knot": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.9 },
-  "kilometer-per-hour-to-mach": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.8 }
+  "kilometer-per-hour-to-mach": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.8 },
+
+  "pascal-to-kilopascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
+  "pascal-to-megapascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 },
+  "pascal-to-bar": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
+  "pascal-to-millibar": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
+  "pascal-to-psi": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
+  "pascal-to-atmosphere": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
+  "pascal-to-torr": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 },
+  "pascal-to-mmhg": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
+  "kilopascal-to-pascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
+  "kilopascal-to-megapascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 }
 };
 
 export const seoReadySlugs = new Set<string>(

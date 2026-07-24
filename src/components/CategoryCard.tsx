@@ -15,8 +15,17 @@ export default function CategoryCard({ category, onNavigate }: CategoryCardProps
 
   return (
     <div 
+      role="button"
+      tabIndex={0}
       onClick={() => onNavigate(category.id)}
-      className={`group relative flex flex-col items-center justify-center rounded-[24px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 px-2 pt-[15px] pb-[15px] hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/20 dark:hover:shadow-black/30 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all duration-300 ease-out cursor-pointer min-h-[120px]`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onNavigate(category.id);
+        }
+      }}
+      aria-label={`${category.name} Converters`}
+      className={`group relative flex flex-col items-center justify-center rounded-[24px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 px-2 pt-[15px] pb-[15px] hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/20 dark:hover:shadow-black/30 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all duration-300 ease-out cursor-pointer min-h-[120px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900`}
       id={`cat-card-${category.id}`}
     >
       {/* Subtle background glow effect */}
