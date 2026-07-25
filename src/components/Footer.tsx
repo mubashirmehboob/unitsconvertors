@@ -54,7 +54,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </div>
             
             <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              Units Convertors makes unit conversion simple, fast, and accurate for everyone. Whether you're studying, building, cooking, coding, or working on professional projects, our tools are here to help. Get precise results instantly with a clean, distraction-free experience that's always free to use.
+              UnitsConvertors.com provides fast, accurate, and free online unit conversion tools for students, engineers, scientists, developers, businesses, and everyday users. Convert thousands of measurement units instantly with precision and confidence.
             </p>
 
             {/* Social Media Links with Custom Brand Coloring */}

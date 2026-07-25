@@ -146,6 +146,17 @@ import { pascalToMmhg } from "./pascalToMmhg";
 import { kilopascalToPascal } from "./kilopascalToPascal";
 import { kilopascalToMegapascal } from "./kilopascalToMegapascal";
 
+import { jouleToKilojoule } from "./jouleToKilojoule";
+import { jouleToCalorie } from "./jouleToCalorie";
+import { jouleToKilocalorie } from "./jouleToKilocalorie";
+import { jouleToWattHour } from "./jouleToWattHour";
+import { jouleToKilowattHour } from "./jouleToKilowattHour";
+import { jouleToBtu } from "./jouleToBtu";
+import { jouleToElectronVolt } from "./jouleToElectronVolt";
+import { jouleToErg } from "./jouleToErg";
+import { jouleToFootPound } from "./jouleToFootPound";
+import { kilojouleToJoule } from "./kilojouleToJoule";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -292,7 +303,18 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "pascal-to-torr": pascalToTorr,
   "pascal-to-mmhg": pascalToMmhg,
   "kilopascal-to-pascal": kilopascalToPascal,
-  "kilopascal-to-megapascal": kilopascalToMegapascal
+  "kilopascal-to-megapascal": kilopascalToMegapascal,
+
+  "joule-to-kilojoule": jouleToKilojoule,
+  "joule-to-calorie": jouleToCalorie,
+  "joule-to-kilocalorie": jouleToKilocalorie,
+  "joule-to-watt-hour": jouleToWattHour,
+  "joule-to-kilowatt-hour": jouleToKilowattHour,
+  "joule-to-btu": jouleToBtu,
+  "joule-to-electron-volt": jouleToElectronVolt,
+  "joule-to-erg": jouleToErg,
+  "joule-to-foot-pound": jouleToFootPound,
+  "kilojoule-to-joule": kilojouleToJoule
 };
 
 export interface ArticleMetadata {
@@ -455,7 +477,18 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "pascal-to-torr": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 },
   "pascal-to-mmhg": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
   "kilopascal-to-pascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
-  "kilopascal-to-megapascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 }
+  "kilopascal-to-megapascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 },
+
+  "joule-to-kilojoule": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
+  "joule-to-calorie": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
+  "joule-to-kilocalorie": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
+  "joule-to-watt-hour": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
+  "joule-to-kilowatt-hour": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
+  "joule-to-btu": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
+  "joule-to-electron-volt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
+  "joule-to-erg": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
+  "joule-to-foot-pound": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
+  "kilojoule-to-joule": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

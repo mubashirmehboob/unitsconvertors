@@ -791,7 +791,6 @@ export default function ConverterTool({
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest flex items-center gap-1">
                 Accuracy Precision
-                <span className="inline-flex items-center justify-center h-3.5 w-3.5 rounded-full border border-slate-300 dark:border-slate-700 text-[9px] text-slate-400 dark:text-slate-500 font-bold cursor-help" title="Configure decimal place rounding or significant figures output depth">i</span>
               </span>
               <span className="text-xs font-sans font-black text-blue-600 dark:text-cyan-400">
                 {precision} Decimals
@@ -927,10 +926,6 @@ export default function ConverterTool({
             </div>
             
             <div className="flex flex-col items-start text-left overflow-hidden max-w-full">
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-black tracking-wider uppercase text-[9px] mb-1.5 shadow-[0_0_12px_rgba(16,185,129,0.05)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                MATHEMATICALLY VERIFIED EQUATION
-              </span>
               <div className="text-lg font-sans font-black text-slate-900 dark:text-white break-words max-w-full leading-snug">
                 <span dangerouslySetInnerHTML={{ __html: formattedInputResult.html }} />{" "}
                 <span className="hidden sm:inline">{fromUnit?.plural}</span>
