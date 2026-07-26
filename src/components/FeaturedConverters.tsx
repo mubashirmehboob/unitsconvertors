@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronRight, ArrowRight, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 
 interface FeaturedConvertersProps {
   onNavigate: (category: string, fromUnit?: string, toUnit?: string) => void;
@@ -213,7 +213,7 @@ export default function FeaturedConverters({ onNavigate }: FeaturedConvertersPro
                     {item.badge}
                   </span>
                   <span className="flex items-center gap-1 text-[9px] font-black text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
-                    <Sparkles className="h-3 w-3 animate-pulse" /> NEW
+                    NEW
                   </span>
                 </div>
                 <h4 className="font-display font-black text-slate-900 dark:text-white text-base leading-snug group-hover:text-cyan-600 dark:group-hover:text-emerald-400 transition-colors">

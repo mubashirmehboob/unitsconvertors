@@ -538,43 +538,52 @@ export const categoriesData: Category[] = [
       const intensityToDb = (i: number) => i <= 0 ? -120 : 10 * Math.log10(i / 1e-12);
       const phonToSone = (ph: number) => Math.pow(2, (ph - 40) / 10);
       const soneToPhon = (s: number) => s <= 0 ? 0 : 40 + 10 * Math.log2(s);
-      const freqToWave = (hz: number) => hz === 0 ? 0 : 343 / hz;
-      const waveToFreq = (w: number) => w === 0 ? 0 : 343 / w;
-      const bpmToHz = (bpm: number) => bpm / 60;
-      const hzToBpm = (hz: number) => hz * 60;
       const midiToFreq = (midi: number) => 440 * Math.pow(2, (midi - 69) / 12);
       const freqToMidi = (hz: number) => hz <= 0 ? 0 : 69 + 12 * Math.log2(hz / 440);
 
-      if (from === "decibel" || from === "decibel-spl") {
-        if (to === "pascal-sound" || to === "sound-pressure") return dbToPascal(value);
-        if (to === "sound-intensity" || to === "watt-m2-sound") return dbToIntensity(value);
-        if (to === "bel") return value / 10;
-        if (to === "neper") return value / 8.6858896;
+      const dbUnits = new Set([
+        "decibel", "decibel-spl", "dba-sound", "sound-power-level",
+        "sound-intensity-level", "sound-exposure-level", "db-gain-loss"
+      ]);
+      const pressureUnits = new Set(["pascal-sound", "sound-pressure"]);
+      const intensityUnits = new Set(["sound-intensity", "watt-m2-sound"]);
+
+      // 1. Logarithmic, Pressure & Intensity conversions
+      const isLogFrom = dbUnits.has(from) || from === "bel" || from === "neper" || pressureUnits.has(from) || intensityUnits.has(from);
+      const isLogTo = dbUnits.has(to) || to === "bel" || to === "neper" || pressureUnits.has(to) || intensityUnits.has(to);
+
+      if (isLogFrom && isLogTo) {
+        let db = value;
+        if (from === "bel") db = value * 10;
+        else if (from === "neper") db = value * 8.685889638;
+        else if (pressureUnits.has(from)) db = pascalToDb(value);
+        else if (intensityUnits.has(from)) db = intensityToDb(value);
+
+        if (to === "bel") return db / 10;
+        if (to === "neper") return db / 8.685889638;
+        if (pressureUnits.has(to)) return dbToPascal(db);
+        if (intensityUnits.has(to)) return dbToIntensity(db);
+        return db;
       }
-      if (from === "pascal-sound" || from === "sound-pressure") {
-        if (to === "decibel" || to === "decibel-spl") return pascalToDb(value);
-        if (to === "bel") return pascalToDb(value) / 10;
-      }
-      if (from === "sound-intensity" || from === "watt-m2-sound") {
-        if (to === "decibel" || to === "decibel-spl") return intensityToDb(value);
-        if (to === "bel") return intensityToDb(value) / 10;
-      }
+
+      // 2. Loudness Phon <-> Sone
       if (from === "phon" && to === "sone") return phonToSone(value);
       if (from === "sone" && to === "phon") return soneToPhon(value);
-      if (from === "frequency-sound" && to === "wavelength-sound") return freqToWave(value);
-      if (from === "wavelength-sound" && to === "frequency-sound") return waveToFreq(value);
-      if (from === "bpm-tempo" && to === "frequency-sound") return bpmToHz(value);
-      if (from === "frequency-sound" && to === "bpm-tempo") return hzToBpm(value);
-      if (from === "pitch-midi" && to === "frequency-sound") return midiToFreq(value);
-      if (from === "frequency-sound" && to === "pitch-midi") return freqToMidi(value);
 
-      if (from === "bel") {
-        if (to === "decibel" || to === "decibel-spl") return value * 10;
-        if (to === "neper") return (value * 10) / 8.6858896;
-      }
-      if (from === "neper") {
-        if (to === "decibel" || to === "decibel-spl") return value * 8.6858896;
-        if (to === "bel") return (value * 8.6858896) / 10;
+      // 3. Acoustics & Frequency domain
+      const freqUnits = new Set(["frequency-sound", "infrasound-frequency-hz", "ultrasonic-frequency-khz", "wavelength-sound", "bpm-tempo", "pitch-midi"]);
+      if (freqUnits.has(from) && freqUnits.has(to)) {
+        let hz = value;
+        if (from === "ultrasonic-frequency-khz") hz = value * 1000;
+        else if (from === "bpm-tempo") hz = value / 60;
+        else if (from === "pitch-midi") hz = midiToFreq(value);
+        else if (from === "wavelength-sound") hz = value === 0 ? 0 : 343 / value;
+
+        if (to === "ultrasonic-frequency-khz") return hz / 1000;
+        if (to === "bpm-tempo") return hz * 60;
+        if (to === "pitch-midi") return freqToMidi(hz);
+        if (to === "wavelength-sound") return hz === 0 ? 0 : 343 / hz;
+        return hz;
       }
 
       const soundFactors: Record<string, number> = {

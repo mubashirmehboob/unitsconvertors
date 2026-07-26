@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /favicon.ico
+Allow: /*.png
+Allow: /*.ico
+Allow: /*.svg
+
+Sitemap: https://unitsconvertors.com/sitemap.xml

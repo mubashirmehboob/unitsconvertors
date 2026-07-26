@@ -169,7 +169,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "validator")} className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:underline transition-colors text-left font-bold flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded px-1"><span className="h-2 w-2 rounded-full bg-emerald-500 inline-block animate-pulse" />NIST Engine Validator</button>
+                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "validator")} className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:underline transition-colors text-left font-bold flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded px-1"><span className="h-2 w-2 rounded-full bg-emerald-500 inline-block animate-pulse" />Validation Report</button>
               </li>
             </ul>
           </div>
@@ -179,7 +179,7 @@ export default function Footer({ onNavigate }: FooterProps) {
         {/* Lower Divider & Copyright */}
         <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative min-h-[44px] gap-4">
           <span className="text-xs text-slate-400 dark:text-slate-500 text-center max-w-xl">
-            &copy; {new Date().getFullYear()} Units Convertors. All rights reserved. Precise metrics computed natively in the browser.
+            &copy; {new Date().getFullYear()} Units Convertors. All rights reserved. Fast &bull; Accurate &bull; Privacy-Friendly
           </span>
           
           {/* Back to Top button */}
