@@ -210,7 +210,7 @@ export default function App() {
   // Dynamically set homepage SEO metadata when returning to home page
   useEffect(() => {
     if (route.page === "home") {
-      document.title = "Unit Converter | Free Online Unit Conversion Tools - UnitsConvertors.com";
+      document.title = "UnitsConvertors.com | Free Online Unit Conversion Tools";
       const metaDescTag = document.querySelector('meta[name="description"]');
       const homeDesc = "Convert length, weight, temperature, area, volume, pressure, energy, and hundreds of other units with fast, accurate, and easy-to-use online conversion tools.";
       if (metaDescTag) {

@@ -649,4 +649,28 @@ Before finalizing any converter article, automatically verify:
 6. Every redesign, refactor, optimization, bug fix, feature addition, dependency update, or code generation must preserve Google Analytics.
 7. Before finishing any task, always verify that the GA4 code is still present and correctly configured.
 
+---
+
+## Chapter 13 — Permanent SEO & Branding Requirement
+
+### 13.1 Homepage SEO Title & Meta Description
+* Homepage Title: `UnitsConvertors.com | Free Online Unit Conversion Tools`
+* Homepage Meta Description: MUST remain preserved as `"Convert length, weight, temperature, area, volume, pressure, energy, and hundreds of other units with fast, accurate, and easy-to-use online conversion tools."`
+* Do NOT modify, replace, or remove this meta description or title during future updates.
+
+### 13.2 Logo & Website Favicons
+* Re-use the exact Header/Footer blue rounded ruler logo (`src/components/Logo.tsx`) across all branding touchpoints.
+* The following icons generated from the logo MUST be preserved in `/public`:
+  * `favicon.ico`
+  * `favicon-16x16.png`
+  * `favicon-32x32.png`
+  * `favicon-48x48.png`
+  * `apple-touch-icon.png` (180x180)
+  * `android-chrome-192x192.png`
+  * `android-chrome-512x512.png`
+  * `mstile-150x150.png`
+  * `site.webmanifest` & `manifest.json`
+* All header/footer logo representations, browser favicon links, and PWA manifest icon references must remain consistent and linked in `/index.html`.
+
+
 
