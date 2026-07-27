@@ -183,7 +183,7 @@ export default function FeaturedConverters({ onNavigate }: FeaturedConvertersPro
               Database Updates
             </span>
             <h2 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mt-2">
-              Recently Added Calculators
+              Recently Added Converters
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
               Newest verified mathematical coefficients integrated into our standard conversion index.

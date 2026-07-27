@@ -102,6 +102,15 @@ import { literToQuartUs } from "./literToQuartUs";
 import { literToPintUs } from "./literToPintUs";
 import { literToCupUs } from "./literToCupUs";
 
+import { milliliterToLiter } from "./milliliterToLiter";
+import { milliliterToCupUs } from "./milliliterToCupUs";
+import { milliliterToTablespoonUs } from "./milliliterToTablespoonUs";
+import { milliliterToTeaspoonUs } from "./milliliterToTeaspoonUs";
+import { milliliterToFluidOunceUs } from "./milliliterToFluidOunceUs";
+import { milliliterToPintUs } from "./milliliterToPintUs";
+import { milliliterToQuartUs } from "./milliliterToQuartUs";
+import { milliliterToGallonUs } from "./milliliterToGallonUs";
+
 import { celsiusToFahrenheit } from "./celsiusToFahrenheit";
 import { celsiusToKelvin } from "./celsiusToKelvin";
 import { celsiusToRankine } from "./celsiusToRankine";
@@ -167,6 +176,19 @@ import { wattToCaloriePerSecond } from "./wattToCaloriePerSecond";
 import { kilowattToWatt } from "./kilowattToWatt";
 import { kilowattToMegawatt } from "./kilowattToMegawatt";
 import { kilowattToGigawatt } from "./kilowattToGigawatt";
+
+import { mpgUsToMpgUk } from "./mpgUsToMpgUk";
+import { mpgUsToKmPerLiter } from "./mpgUsToKmPerLiter";
+import { mpgUsToLitersPer100km } from "./mpgUsToLitersPer100km";
+import { mpgUsToLitersPerKm } from "./mpgUsToLitersPerKm";
+
+import { mpgUkToMpgUs } from "./mpgUkToMpgUs";
+import { mpgUkToKmPerLiter } from "./mpgUkToKmPerLiter";
+import { mpgUkToLitersPer100km } from "./mpgUkToLitersPer100km";
+import { mpgUkToLitersPerKm } from "./mpgUkToLitersPerKm";
+
+import { kmPerLiterToMpgUs } from "./kmPerLiterToMpgUs";
+import { kmPerLiterToMpgUk } from "./kmPerLiterToMpgUk";
 
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
@@ -272,6 +294,15 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "liter-to-pint-us": literToPintUs,
   "liter-to-cup-us": literToCupUs,
 
+  "milliliter-to-liter": milliliterToLiter,
+  "milliliter-to-cup-us": milliliterToCupUs,
+  "milliliter-to-tablespoon-us": milliliterToTablespoonUs,
+  "milliliter-to-teaspoon-us": milliliterToTeaspoonUs,
+  "milliliter-to-fluid-ounce-us": milliliterToFluidOunceUs,
+  "milliliter-to-pint-us": milliliterToPintUs,
+  "milliliter-to-quart-us": milliliterToQuartUs,
+  "milliliter-to-gallon-us": milliliterToGallonUs,
+
   "celsius-to-fahrenheit": celsiusToFahrenheit,
   "celsius-to-kelvin": celsiusToKelvin,
   "celsius-to-rankine": celsiusToRankine,
@@ -336,7 +367,20 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "watt-to-calorie-per-second": wattToCaloriePerSecond,
   "kilowatt-to-watt": kilowattToWatt,
   "kilowatt-to-megawatt": kilowattToMegawatt,
-  "kilowatt-to-gigawatt": kilowattToGigawatt
+  "kilowatt-to-gigawatt": kilowattToGigawatt,
+
+  "mpg-us-to-mpg-uk": mpgUsToMpgUk,
+  "mpg-us-to-km-per-liter": mpgUsToKmPerLiter,
+  "mpg-us-to-liters-per-100km": mpgUsToLitersPer100km,
+  "mpg-us-to-liters-per-km": mpgUsToLitersPerKm,
+
+  "mpg-uk-to-mpg-us": mpgUkToMpgUs,
+  "mpg-uk-to-km-per-liter": mpgUkToKmPerLiter,
+  "mpg-uk-to-liters-per-100km": mpgUkToLitersPer100km,
+  "mpg-uk-to-liters-per-km": mpgUkToLitersPerKm,
+
+  "km-per-liter-to-mpg-us": kmPerLiterToMpgUs,
+  "km-per-liter-to-mpg-uk": kmPerLiterToMpgUk
 };
 
 export interface ArticleMetadata {
@@ -521,7 +565,29 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "watt-to-calorie-per-second": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
   "kilowatt-to-watt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
   "kilowatt-to-megawatt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
-  "kilowatt-to-gigawatt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 }
+  "kilowatt-to-gigawatt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
+
+  "mpg-us-to-mpg-uk": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "mpg-us-to-km-per-liter": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "mpg-us-to-liters-per-100km": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "mpg-us-to-liters-per-km": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.8 },
+
+  "mpg-uk-to-mpg-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "mpg-uk-to-km-per-liter": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "mpg-uk-to-liters-per-100km": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "mpg-uk-to-liters-per-km": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.8 },
+
+  "km-per-liter-to-mpg-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "km-per-liter-to-mpg-uk": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+
+  "milliliter-to-liter": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-cup-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-tablespoon-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-teaspoon-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-fluid-ounce-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-pint-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-quart-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-gallon-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

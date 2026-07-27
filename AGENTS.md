@@ -587,3 +587,36 @@ To maintain maximum code consistency, clean formulas, and zero deviation across 
   1. The input value is first scaled to the category's **Canonical Base Unit**.
   2. The base-unit value is then scaled to the target **To Unit**.
 * **Benefit:** Eliminates $N^2$ formula configurations down to $N$ factors per category, ensuring pristine reversibility, flawless calibration, and ease of expansion.
+
+---
+
+## Chapter 11 — Critical Measurement Standard Rule (Mandatory for All Articles)
+
+### 11.1 Absolute Unit Definition Consistency
+Before generating ANY converter article or updating conversion factors, you MUST determine the official definition of every unit used in the converter. Never assume that similarly named units are identical.
+
+Every article, conversion engine, formula, example, table, FAQ, metadata, quick answer, related converter, and conversion factor MUST use the exact same official unit definition. Internal consistency is mandatory.
+
+### 11.2 Standard Matching
+If multiple international definitions exist for a unit (US Customary, Imperial, Metric, Legal, Survey, International, etc.), ALWAYS use the exact definition specified by the converter name:
+* **Cup (US):** Exactly $236.5882365\text{ mL}$ ($1\text{ L} = 4.2267528377\text{ US Cups}$)
+* **Cup (Metric):** Exactly $250\text{ mL}$ ($1\text{ L} = 4.0000\text{ Metric Cups}$)
+* **Nutrition Cup (FDA):** Exactly $240\text{ mL}$ ($1\text{ L} = 4.166666667\text{ Nutrition Cups}$)
+* **Pint (US Liquid) $\neq$ Pint (Imperial)**
+* **Quart (US Liquid) $\neq$ Quart (Imperial)**
+* **Gallon (US) $\neq$ Gallon (Imperial)**
+* **Fluid Ounce (US) $\neq$ Fluid Ounce (Imperial)**
+* **Ton (US Short) $\neq$ Ton (Imperial Long) $\neq$ Metric Tonne**
+
+NEVER mix standards inside the same article or converter configuration.
+
+### 11.3 Mandatory Pre-Finalization Validation Checklist
+Before finalizing any converter article, automatically verify:
+1. **Unit Definition:** Matches the converter title exactly across all sections.
+2. **Conversion Engine:** Uses the official conversion factor corresponding to the specified standard.
+3. **Formula & Quick Answer:** Exactly reflect the engine's conversion factor.
+4. **Worked Examples & Tables:** Reproduce calculations using the exact conversion factor.
+5. **Reverse Conversions:** Equal the mathematical reciprocal.
+6. **FAQs & Related Links:** Strictly adhere to the same unit definition without introducing alternative unit definitions as the primary calculation.
+7. **Authoritative References:** Derived from recognized international standards (NIST SP 811, BIPM SI Brochure, USDA, FDA, ISO).
+

@@ -88,7 +88,7 @@ export const categoriesData: Category[] = [
       { id: "gallon-uk", name: "Gallon (UK)", plural: "Gallons (UK)", symbol: "gal (UK)", factor: 4.54609 },
       { id: "quart-us", name: "Quart", plural: "Quarts (US)", symbol: "qt", factor: 0.946352946 },
       { id: "pint-us", name: "Pint", plural: "Pints (US)", symbol: "pt", factor: 0.473176473 },
-      { id: "cup-us", name: "Cup", plural: "Cups (US)", symbol: "cp", factor: 0.24 },
+      { id: "cup-us", name: "Cup (US)", plural: "Cups (US)", symbol: "cup", factor: 0.2365882365 },
       { id: "fluid-ounce-us", name: "Fluid Ounce", plural: "Fluid Ounces (US)", symbol: "fl oz", factor: 0.0295735295 },
       { id: "barrel", name: "Oil Barrel", plural: "Barrels (Oil)", symbol: "bbl", factor: 158.987294928 }
     ]
@@ -356,13 +356,13 @@ export const categoriesData: Category[] = [
     units: [
       { id: "milliliter", name: "Milliliter", plural: "Milliliters", symbol: "mL", factor: 1 },
       { id: "liter", name: "Liter", plural: "Liters", symbol: "L", factor: 1000 },
-      { id: "cup-us", name: "Cup (US)", plural: "Cups (US)", symbol: "cup", factor: 240 },
-      { id: "tablespoon-us", name: "Tablespoon (US)", plural: "Tablespoons (US)", symbol: "tbsp", factor: 14.7868 },
-      { id: "teaspoon-us", name: "Teaspoon (US)", plural: "Teaspoons (US)", symbol: "tsp", factor: 4.92892 },
-      { id: "fluid-ounce-us", name: "Fluid Ounce (US)", plural: "Fluid Ounces (US)", symbol: "fl oz", factor: 29.5735 },
-      { id: "pint-us", name: "Pint (US)", plural: "Pints (US)", symbol: "pt", factor: 473.176 },
-      { id: "quart-us", name: "Quart (US)", plural: "Quarts (US)", symbol: "qt", factor: 946.353 },
-      { id: "gallon-us", name: "Gallon (US)", plural: "Gallons (US)", symbol: "gal", factor: 3785.41 }
+      { id: "cup-us", name: "Cup (US)", plural: "Cups (US)", symbol: "cup", factor: 236.5882365 },
+      { id: "tablespoon-us", name: "Tablespoon (US)", plural: "Tablespoons (US)", symbol: "tbsp", factor: 14.78676478125 },
+      { id: "teaspoon-us", name: "Teaspoon (US)", plural: "Teaspoons (US)", symbol: "tsp", factor: 4.92892159375 },
+      { id: "fluid-ounce-us", name: "Fluid Ounce (US)", plural: "Fluid Ounces (US)", symbol: "fl oz", factor: 29.5735295625 },
+      { id: "pint-us", name: "Pint (US)", plural: "Pints (US)", symbol: "pt", factor: 473.176473 },
+      { id: "quart-us", name: "Quart (US)", plural: "Quarts (US)", symbol: "qt", factor: 946.352946 },
+      { id: "gallon-us", name: "Gallon (US)", plural: "Gallons (US)", symbol: "gal", factor: 3785.411784 }
     ]
   },
   {

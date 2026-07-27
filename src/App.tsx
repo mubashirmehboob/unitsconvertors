@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { 
   Ruler, HelpCircle, ChevronRight, Check, History, Heart, 
-  Trash2, Sparkles, Star, Award, Shield, CheckCircle, ArrowRight,
+  Trash2, Sparkles, Moon, Star, Award, Shield, CheckCircle, ArrowRight,
   TrendingUp, Compass, Mail, Phone, MapPin, List, Eye, ArrowUpDown, ChevronDown,
   Zap, Lock, Info, Search, Layers
 } from "lucide-react";
@@ -632,7 +632,7 @@ export default function App() {
                         {/* Card 4: Dark Mode Support */}
                         <div className="flex gap-4 p-5 sm:p-6 bg-white dark:bg-slate-900/55 border border-slate-200/60 dark:border-slate-800/60 rounded-[24px] shadow-sm hover:scale-[1.01] hover:shadow-md transition-all duration-300">
                           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-600 dark:bg-purple-950 dark:text-purple-400 border border-purple-100/10 flex-shrink-0">
-                            <Sparkles className="h-5.5 w-5.5" />
+                            <Moon className="h-5.5 w-5.5" />
                           </div>
                           <div className="flex flex-col gap-1 text-left">
                             <h4 className="font-display font-bold text-slate-800 dark:text-white text-sm sm:text-base tracking-tight">Dark Mode Support</h4>
