@@ -620,3 +620,33 @@ Before finalizing any converter article, automatically verify:
 6. **FAQs & Related Links:** Strictly adhere to the same unit definition without introducing alternative unit definitions as the primary calculation.
 7. **Authoritative References:** Derived from recognized international standards (NIST SP 811, BIPM SI Brochure, USDA, FDA, ISO).
 
+---
+
+## Chapter 12 — Permanent Google Analytics 4 (GA4) Requirement
+
+### 12.1 GA4 Measurement ID & Script
+* The website uses **Google Analytics 4 (GA4)** with Measurement ID: **G-2R3XBNGEHS**.
+* The tracking snippet MUST always exist inside the `<head>` section of `/index.html`:
+
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2R3XBNGEHS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2R3XBNGEHS');
+</script>
+```
+
+### 12.2 Preservation Rules
+1. Always preserve the Google Analytics integration during every code update.
+2. Always ensure the GA4 tracking code exists inside the `<head>` section of `index.html`.
+3. If `index.html` is recreated, regenerated, replaced, or overwritten for any reason, automatically restore the GA4 code before completing the task.
+4. Never create duplicate GA4 scripts. There must always be exactly one GA4 installation.
+5. Never change the Measurement ID (`G-2R3XBNGEHS`).
+6. Every redesign, refactor, optimization, bug fix, feature addition, dependency update, or code generation must preserve Google Analytics.
+7. Before finishing any task, always verify that the GA4 code is still present and correctly configured.
+
+

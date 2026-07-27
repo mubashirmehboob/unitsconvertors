@@ -190,6 +190,17 @@ import { mpgUkToLitersPerKm } from "./mpgUkToLitersPerKm";
 import { kmPerLiterToMpgUs } from "./kmPerLiterToMpgUs";
 import { kmPerLiterToMpgUk } from "./kmPerLiterToMpgUk";
 
+import { byteToBit } from "./byteToBit";
+import { byteToKilobit } from "./byteToKilobit";
+import { byteToKilobyte } from "./byteToKilobyte";
+import { byteToMegabit } from "./byteToMegabit";
+import { byteToMegabyte } from "./byteToMegabyte";
+import { byteToGigabit } from "./byteToGigabit";
+import { byteToGigabyte } from "./byteToGigabyte";
+import { byteToTerabit } from "./byteToTerabit";
+import { byteToTerabyte } from "./byteToTerabyte";
+import { byteToPetabyte } from "./byteToPetabyte";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -380,7 +391,18 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "mpg-uk-to-liters-per-km": mpgUkToLitersPerKm,
 
   "km-per-liter-to-mpg-us": kmPerLiterToMpgUs,
-  "km-per-liter-to-mpg-uk": kmPerLiterToMpgUk
+  "km-per-liter-to-mpg-uk": kmPerLiterToMpgUk,
+
+  "byte-to-bit": byteToBit,
+  "byte-to-kilobit": byteToKilobit,
+  "byte-to-kilobyte": byteToKilobyte,
+  "byte-to-megabit": byteToMegabit,
+  "byte-to-megabyte": byteToMegabyte,
+  "byte-to-gigabit": byteToGigabit,
+  "byte-to-gigabyte": byteToGigabyte,
+  "byte-to-terabit": byteToTerabit,
+  "byte-to-terabyte": byteToTerabyte,
+  "byte-to-petabyte": byteToPetabyte
 };
 
 export interface ArticleMetadata {
@@ -587,7 +609,18 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "milliliter-to-fluid-ounce-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "milliliter-to-pint-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "milliliter-to-quart-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
-  "milliliter-to-gallon-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 }
+  "milliliter-to-gallon-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+
+  "byte-to-bit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-kilobit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-kilobyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-megabit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-megabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-gigabit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-gigabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-terabit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-terabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "byte-to-petabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(
