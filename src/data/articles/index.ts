@@ -12,6 +12,7 @@ import { meterToHand } from "./meterToHand";
 import { meterToCubit } from "./meterToCubit";
 import { meterToKilometer } from "./meterToKilometer";
 import { meterToCentimeter } from "./meterToCentimeter";
+import { meterToMillimeter } from "./meterToMillimeter";
 
 import { kilometerToMeter } from "./kilometerToMeter";
 import { kilometerToCentimeter } from "./kilometerToCentimeter";
@@ -201,6 +202,17 @@ import { byteToTerabit } from "./byteToTerabit";
 import { byteToTerabyte } from "./byteToTerabyte";
 import { byteToPetabyte } from "./byteToPetabyte";
 
+import { kgPerCubicMeterToGramPerCubicCentimeter } from "./kgPerCubicMeterToGramPerCubicCentimeter";
+import { kgPerCubicMeterToPoundPerCubicFoot } from "./kgPerCubicMeterToPoundPerCubicFoot";
+import { kgPerCubicMeterToGramPerLiter } from "./kgPerCubicMeterToGramPerLiter";
+import { kgPerCubicMeterToPoundPerGallonUs } from "./kgPerCubicMeterToPoundPerGallonUs";
+import { kgPerCubicMeterToOuncePerCubicInch } from "./kgPerCubicMeterToOuncePerCubicInch";
+import { gramPerCubicCentimeterToKgPerCubicMeter } from "./gramPerCubicCentimeterToKgPerCubicMeter";
+import { gramPerCubicCentimeterToPoundPerCubicFoot } from "./gramPerCubicCentimeterToPoundPerCubicFoot";
+import { gramPerCubicCentimeterToGramPerLiter } from "./gramPerCubicCentimeterToGramPerLiter";
+import { gramPerCubicCentimeterToPoundPerGallonUs } from "./gramPerCubicCentimeterToPoundPerGallonUs";
+import { gramPerCubicCentimeterToOuncePerCubicInch } from "./gramPerCubicCentimeterToOuncePerCubicInch";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -208,6 +220,7 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-inch": meterToInch,
   "meter-to-kilometer": meterToKilometer,
   "meter-to-centimeter": meterToCentimeter,
+  "meter-to-millimeter": meterToMillimeter,
   "meter-to-nautical-mile": meterToNmi,
   "meter-to-rod": meterToRod,
   "meter-to-chain": meterToChain,
@@ -402,7 +415,18 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "byte-to-gigabyte": byteToGigabyte,
   "byte-to-terabit": byteToTerabit,
   "byte-to-terabyte": byteToTerabyte,
-  "byte-to-petabyte": byteToPetabyte
+  "byte-to-petabyte": byteToPetabyte,
+
+  "kilogram-per-cubic-meter-to-gram-per-cubic-centimeter": kgPerCubicMeterToGramPerCubicCentimeter,
+  "kilogram-per-cubic-meter-to-pound-per-cubic-foot": kgPerCubicMeterToPoundPerCubicFoot,
+  "kilogram-per-cubic-meter-to-gram-per-liter": kgPerCubicMeterToGramPerLiter,
+  "kilogram-per-cubic-meter-to-pound-per-gallon-us": kgPerCubicMeterToPoundPerGallonUs,
+  "kilogram-per-cubic-meter-to-ounce-per-cubic-inch": kgPerCubicMeterToOuncePerCubicInch,
+  "gram-per-cubic-centimeter-to-kilogram-per-cubic-meter": gramPerCubicCentimeterToKgPerCubicMeter,
+  "gram-per-cubic-centimeter-to-pound-per-cubic-foot": gramPerCubicCentimeterToPoundPerCubicFoot,
+  "gram-per-cubic-centimeter-to-gram-per-liter": gramPerCubicCentimeterToGramPerLiter,
+  "gram-per-cubic-centimeter-to-pound-per-gallon-us": gramPerCubicCentimeterToPoundPerGallonUs,
+  "gram-per-cubic-centimeter-to-ounce-per-cubic-inch": gramPerCubicCentimeterToOuncePerCubicInch
 };
 
 export interface ArticleMetadata {
@@ -620,7 +644,18 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "byte-to-gigabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "byte-to-terabit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "byte-to-terabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
-  "byte-to-petabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 }
+  "byte-to-petabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+
+  "kilogram-per-cubic-meter-to-gram-per-cubic-centimeter": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilogram-per-cubic-meter-to-pound-per-cubic-foot": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilogram-per-cubic-meter-to-gram-per-liter": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilogram-per-cubic-meter-to-pound-per-gallon-us": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilogram-per-cubic-meter-to-ounce-per-cubic-inch": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "gram-per-cubic-centimeter-to-kilogram-per-cubic-meter": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "gram-per-cubic-centimeter-to-pound-per-cubic-foot": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "gram-per-cubic-centimeter-to-gram-per-liter": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "gram-per-cubic-centimeter-to-pound-per-gallon-us": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "gram-per-cubic-centimeter-to-ounce-per-cubic-inch": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

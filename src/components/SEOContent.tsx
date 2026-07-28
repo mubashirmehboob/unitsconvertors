@@ -619,17 +619,15 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       }))
     };
 
-    // 3. WebPage Schema
-    const pageTitle = customArticle
-      ? customArticle.seoTitle
-      : (isMeterToKm 
-          ? "Meter to Kilometer Converter - m to km" 
-          : (isMeterToCm ? "Meter to Centimeter Converter - m to cm" : (isMeterToMm ? "Meter to Millimeter Converter - m to mm" : (isMeterToUm ? "Meter to Micrometer Converter - m to µm" : (isMeterToNm ? "Meter to Nanometer Converter - m to nm" : article.title)))));
-    const pageDesc = customArticle
-      ? customArticle.metaDescription
-      : (isMeterToKm 
-          ? "A meter to kilometer converter helps you change measurements from meters (m) into kilometers (km) without doing manual calculations. Since both units belong to the International System of Units (SI), converting between them is straightforward." 
-          : (isMeterToCm ? "A meter to centimeter converter helps you easily switch measurements from meters (m) into centimeters (cm) with high precision. Since both units belong to the metric system, converting between them is exact." : (isMeterToMm ? "Convert meters to millimeters (m to mm) with our high-accuracy converter. Learn the formula, step-by-step calculation, conversion table, and real-world applications of SI length measurements." : (isMeterToUm ? "Convert meters to micrometers (m to µm) with our high-accuracy converter. Learn the formula, step-by-step calculation, conversion table, and real-world applications of SI length measurements." : (isMeterToNm ? "Convert meters to nanometers (m to nm) with our high-accuracy converter. Learn the formula, step-by-step calculation, conversion table, and real-world applications of SI length measurements." : article.metaDescription)))));
+    // Standard title & description calculation conforming to permanent rules
+    const standardTitle = `${fromUnit.name} to ${toUnit.name} Converter (${fromUnit.symbol} to ${toUnit.symbol}) | UnitsConvertors.com`;
+    const rawTitle = customArticle ? customArticle.seoTitle : standardTitle;
+    const pageTitle = rawTitle.includes("UnitsConvertors.com")
+      ? rawTitle
+      : standardTitle;
+
+    const standardDesc = `Convert ${fromUnit.name.toLowerCase()} to ${toUnit.name.toLowerCase()} (${fromUnit.symbol} to ${toUnit.symbol}) instantly using our free online converter. View the exact formula, conversion table, worked examples, FAQs and accurate results on UnitsConvertors.com.`;
+    const pageDesc = customArticle ? customArticle.metaDescription : standardDesc;
 
     const webPageSchema = {
       "@context": "https://schema.org",
@@ -661,7 +659,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
     scriptTag.text = JSON.stringify([breadcrumbSchema, faqSchema, webPageSchema]);
 
     // Update document title and metadata
-    document.title = `${pageTitle} - Units Convertors`;
+    document.title = pageTitle;
     
     const metaDescTag = document.querySelector('meta[name="description"]');
     if (metaDescTag) {
@@ -672,6 +670,47 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       newMeta.content = pageDesc;
       document.head.appendChild(newMeta);
     }
+
+    // Canonical URL
+    const canonicalUrl = `${window.location.origin}/${category.id}/${fromUnit.id}-to-${toUnit.id}`;
+    let canonicalTag = document.querySelector('link[rel="canonical"]');
+    if (!canonicalTag) {
+      canonicalTag = document.createElement("link");
+      canonicalTag.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalTag);
+    }
+    canonicalTag.setAttribute("href", canonicalUrl);
+
+    // Open Graph Tags
+    const setMetaProperty = (property: string, content: string) => {
+      let el = document.querySelector(`meta[property="${property}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("property", property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    setMetaProperty("og:title", pageTitle);
+    setMetaProperty("og:description", pageDesc);
+    setMetaProperty("og:url", canonicalUrl);
+    setMetaProperty("og:type", "website");
+
+    // Twitter Tags
+    const setMetaName = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    setMetaName("twitter:card", "summary_large_image");
+    setMetaName("twitter:title", pageTitle);
+    setMetaName("twitter:description", pageDesc);
 
     // Dynamic SEO indexing control based on article completeness
     const hasCompleteArticle = isSeoReady(fromUnit.id, toUnit.id);
