@@ -213,6 +213,28 @@ import { gramPerCubicCentimeterToGramPerLiter } from "./gramPerCubicCentimeterTo
 import { gramPerCubicCentimeterToPoundPerGallonUs } from "./gramPerCubicCentimeterToPoundPerGallonUs";
 import { gramPerCubicCentimeterToOuncePerCubicInch } from "./gramPerCubicCentimeterToOuncePerCubicInch";
 
+import { voltToKilovolt } from "./voltToKilovolt";
+import { voltToMillivolt } from "./voltToMillivolt";
+import { voltToMicrovolt } from "./voltToMicrovolt";
+import { voltToMegavolt } from "./voltToMegavolt";
+import { kilovoltToVolt } from "./kilovoltToVolt";
+import { kilovoltToMillivolt } from "./kilovoltToMillivolt";
+import { kilovoltToMicrovolt } from "./kilovoltToMicrovolt";
+import { kilovoltToMegavolt } from "./kilovoltToMegavolt";
+import { millivoltToVolt } from "./millivoltToVolt";
+import { millivoltToKilovolt } from "./millivoltToKilovolt";
+
+import { moleToMillimole } from "./moleToMillimole";
+import { moleToMicromole } from "./moleToMicromole";
+import { moleToNanomole } from "./moleToNanomole";
+import { moleToKilomole } from "./moleToKilomole";
+import { millimoleToMole } from "./millimoleToMole";
+import { millimoleToMicromole } from "./millimoleToMicromole";
+import { millimoleToNanomole } from "./millimoleToNanomole";
+import { millimoleToKilomole } from "./millimoleToKilomole";
+import { micromoleToMole } from "./micromoleToMole";
+import { micromoleToMillimole } from "./micromoleToMillimole";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -426,7 +448,29 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "gram-per-cubic-centimeter-to-pound-per-cubic-foot": gramPerCubicCentimeterToPoundPerCubicFoot,
   "gram-per-cubic-centimeter-to-gram-per-liter": gramPerCubicCentimeterToGramPerLiter,
   "gram-per-cubic-centimeter-to-pound-per-gallon-us": gramPerCubicCentimeterToPoundPerGallonUs,
-  "gram-per-cubic-centimeter-to-ounce-per-cubic-inch": gramPerCubicCentimeterToOuncePerCubicInch
+  "gram-per-cubic-centimeter-to-ounce-per-cubic-inch": gramPerCubicCentimeterToOuncePerCubicInch,
+
+  "volt-to-kilovolt": voltToKilovolt,
+  "volt-to-millivolt": voltToMillivolt,
+  "volt-to-microvolt": voltToMicrovolt,
+  "volt-to-megavolt": voltToMegavolt,
+  "kilovolt-to-volt": kilovoltToVolt,
+  "kilovolt-to-millivolt": kilovoltToMillivolt,
+  "kilovolt-to-microvolt": kilovoltToMicrovolt,
+  "kilovolt-to-megavolt": kilovoltToMegavolt,
+  "millivolt-to-volt": millivoltToVolt,
+  "millivolt-to-kilovolt": millivoltToKilovolt,
+
+  "mole-to-millimole": moleToMillimole,
+  "mole-to-micromole": moleToMicromole,
+  "mole-to-nanomole": moleToNanomole,
+  "mole-to-kilomole": moleToKilomole,
+  "millimole-to-mole": millimoleToMole,
+  "millimole-to-micromole": millimoleToMicromole,
+  "millimole-to-nanomole": millimoleToNanomole,
+  "millimole-to-kilomole": millimoleToKilomole,
+  "micromole-to-mole": micromoleToMole,
+  "micromole-to-millimole": micromoleToMillimole
 };
 
 export interface ArticleMetadata {
@@ -655,7 +699,29 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "gram-per-cubic-centimeter-to-pound-per-cubic-foot": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
   "gram-per-cubic-centimeter-to-gram-per-liter": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
   "gram-per-cubic-centimeter-to-pound-per-gallon-us": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
-  "gram-per-cubic-centimeter-to-ounce-per-cubic-inch": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 }
+  "gram-per-cubic-centimeter-to-ounce-per-cubic-inch": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+
+  "volt-to-kilovolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "volt-to-millivolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "volt-to-microvolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "volt-to-megavolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilovolt-to-volt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilovolt-to-millivolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilovolt-to-microvolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "kilovolt-to-megavolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "millivolt-to-volt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "millivolt-to-kilovolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+
+  "mole-to-millimole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "mole-to-micromole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "mole-to-nanomole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "mole-to-kilomole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "millimole-to-mole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "millimole-to-micromole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "millimole-to-nanomole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "millimole-to-kilomole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "micromole-to-mole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "micromole-to-millimole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(
