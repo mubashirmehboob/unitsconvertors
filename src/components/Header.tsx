@@ -4,10 +4,11 @@ import {
   Zap, Activity, Droplet, ChefHat, Database, Cpu, Lightbulb, Atom,
   Search, Moon, Sun, Menu, X, Heart, Info, Mail, ChevronDown, Sparkles,
   Volume2, Hammer, Waves, Compass, HardHat, Wifi, Shield, Orbit,
-  RotateCw, Battery, Radio, TrendingUp, Layers
+  RotateCw, Battery, Radio, TrendingUp, Layers, Calculator
 } from "lucide-react";
 import Logo from "./Logo";
 import { categoriesData } from "../data/convertersData";
+import { engineeringCalculatorsData } from "../data/calculatorsData";
 import { Category, Unit } from "../types";
 
 // Icon mapper for categories
@@ -25,15 +26,15 @@ export const categoryIconMap: Record<string, React.ComponentType<any>> = {
   "fuel-economy": Droplet,
   "cooking": ChefHat,
   "data-storage": Database,
-  "engineering": Layers, // repurposed as Density
-  "electrical": Zap, // repurposed as Voltage
-  "scientific": Atom, // repurposed as Amount of Substance
+  "engineering": Layers, // Density
+  "electrical": Zap, // Voltage
+  "scientific": Atom, // Amount of Substance
   "light": Sun,
   "sound": Volume2,
   "force": Hammer,
   "flow": Waves,
   "angle": Compass,
-  "electricity": Activity, // repurposed as Electric Current
+  "electricity": Activity, // Electric Current
   "construction": HardHat,
   "data-transfer": Wifi,
   "solid-angle": Orbit,
@@ -44,6 +45,21 @@ export const categoryIconMap: Record<string, React.ComponentType<any>> = {
   "inductance": Waves,
   "electric-charge": Battery,
   "radioactivity": Radio
+};
+
+// Icon mapper for engineering calculator disciplines
+export const calcIconMap: Record<string, React.ComponentType<any>> = {
+  "Zap": Zap,
+  "RotateCw": RotateCw,
+  "HardHat": HardHat,
+  "Atom": Atom,
+  "Sun": Sun,
+  "Thermometer": Thermometer,
+  "Droplet": Droplet,
+  "Waves": Waves,
+  "Cpu": Cpu,
+  "Grid": Grid,
+  "Compass": Compass
 };
 
 export interface CategoryStyle {
@@ -380,7 +396,10 @@ export default function Header({
   setDarkMode
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const [unitConvertersOpen, setUnitConvertersOpen] = useState(false);
+  const [engCalculatorsOpen, setEngCalculatorsOpen] = useState(false);
+  const [mobileUnitConvertersOpen, setMobileUnitConvertersOpen] = useState(true);
+  const [mobileEngCalculatorsOpen, setMobileEngCalculatorsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<{
     category: Category;
@@ -390,19 +409,27 @@ export default function Header({
     slug: string;
   }[]>([]);
   const [searchFocused, setSearchFocused] = useState(false);
+  const [searchExpanded, setSearchExpanded] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const searchRef = useRef<HTMLDivElement>(null);
-  const megaMenuRef = useRef<HTMLDivElement>(null);
+  const unitConvertersRef = useRef<HTMLDivElement>(null);
+  const engCalculatorsRef = useRef<HTMLDivElement>(null);
 
-  // Close search/mega-menu when clicking outside
+  // Close search and dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setSearchFocused(false);
+        if (!searchQuery) {
+          setSearchExpanded(false);
+        }
       }
-      if (megaMenuRef.current && !megaMenuRef.current.contains(event.target as Node)) {
-        setMegaMenuOpen(false);
+      if (unitConvertersRef.current && !unitConvertersRef.current.contains(event.target as Node)) {
+        setUnitConvertersOpen(false);
+      }
+      if (engCalculatorsRef.current && !engCalculatorsRef.current.contains(event.target as Node)) {
+        setEngCalculatorsOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -506,98 +533,235 @@ export default function Header({
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 ml-auto" id="desktop-nav" aria-label="Main navigation">
-            {/* Mega Menu Toggle (Categories) */}
-            <div ref={megaMenuRef} className="relative">
+          <nav className="hidden lg:flex items-center gap-5 ml-auto" id="desktop-nav" aria-label="Main navigation">
+            
+            {/* Home Link */}
+            <button
+              type="button"
+              onClick={() => onNavigate("home")}
+              className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
+            >
+              Home
+            </button>
+
+            {/* Dropdown 1: Unit Converters (Exact SI / NIST Standards) */}
+            <div ref={unitConvertersRef} className="relative">
               <button
                 type="button"
-                onClick={() => setMegaMenuOpen(!megaMenuOpen)}
-                aria-expanded={megaMenuOpen}
+                onClick={() => {
+                  setUnitConvertersOpen(!unitConvertersOpen);
+                  setEngCalculatorsOpen(false);
+                }}
+                aria-expanded={unitConvertersOpen}
                 aria-haspopup="true"
-                className="flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2"
+                className="flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2"
               >
-                Categories
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${megaMenuOpen ? "rotate-180" : ""}`} />
+                Unit Converters
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${unitConvertersOpen ? "rotate-180" : ""}`} />
               </button>
 
-              {megaMenuOpen && (
-                <div className="absolute top-full -left-[120px] mt-2 w-[390px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-4 shadow-xl shadow-slate-900/10 dark:shadow-black/40 grid grid-cols-2 gap-2 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-                  {categoriesData.map(cat => {
-                    const Icon = categoryIconMap[cat.id] || Ruler;
-                    const style = getCategoryStyle(cat.id);
-                    return (
-                      <div
-                        key={cat.id}
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => {
-                          onNavigate(cat.id);
-                          setMegaMenuOpen(false);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            onNavigate(cat.id);
-                            setMegaMenuOpen(false);
-                          }
-                        }}
-                        className={`flex items-center gap-3 p-2.5 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-                          currentCategory === cat.id ? `${style.bg} ${style.text}` : "text-slate-700 dark:text-slate-300"
-                        }`}
-                      >
-                        <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${style.bg} ${style.text}`}>
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-sm font-semibold">{cat.name}</span>
-                          <span className="text-xs text-slate-400 line-clamp-1">{cat.units.length} units available</span>
-                        </div>
+              {unitConvertersOpen && (
+                <div className="absolute top-full -left-[140px] mt-2 w-[720px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-5 shadow-2xl shadow-slate-900/15 dark:shadow-black/50 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100 dark:border-slate-800 px-1">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400">
+                        <Ruler className="h-4 w-4" />
                       </div>
-                    );
-                  })}
+                      <div>
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
+                          Unit Converters
+                        </h3>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                          {categoriesData.length} Physical Quantity Categories (Exact SI, NIST & ISO Standards)
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-xs font-mono font-semibold px-2 py-1 rounded-md bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400">
+                      Exact Math
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-1.5 max-h-[440px] overflow-y-auto pr-1">
+                    {categoriesData.map(cat => {
+                      const Icon = categoryIconMap[cat.id] || Ruler;
+                      const style = getCategoryStyle(cat.id);
+                      return (
+                        <div
+                          key={cat.id}
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => {
+                            onNavigate(cat.id);
+                            setUnitConvertersOpen(false);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              onNavigate(cat.id);
+                              setUnitConvertersOpen(false);
+                            }
+                          }}
+                          className={`flex items-center gap-2.5 p-2 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900/80 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                            currentCategory === cat.id ? `${style.bg} ${style.text}` : "text-slate-700 dark:text-slate-300"
+                          }`}
+                        >
+                          <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${style.bg} ${style.text}`}>
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div className="flex flex-col min-w-0">
+                            <span className="text-xs font-bold truncate">{cat.name}</span>
+                            <span className="text-[10px] text-slate-400 truncate">{cat.units.length} units</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
 
+            {/* Dropdown 2: Engineering Calculators (Multi-variable Engineering Models) */}
+            <div ref={engCalculatorsRef} className="relative">
+              <button
+                type="button"
+                onClick={() => {
+                  setEngCalculatorsOpen(!engCalculatorsOpen);
+                  setUnitConvertersOpen(false);
+                }}
+                aria-expanded={engCalculatorsOpen}
+                aria-haspopup="true"
+                className="flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg px-2"
+              >
+                Engineering Calculators
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${engCalculatorsOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {engCalculatorsOpen && (
+                <div className="absolute top-full -left-[100px] mt-2 w-[580px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-5 shadow-2xl shadow-slate-900/15 dark:shadow-black/50 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100 dark:border-slate-800 px-1">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400">
+                        <Calculator className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
+                          Engineering Calculators
+                        </h3>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                          {engineeringCalculatorsData.length} Disciplines (Multi-Variable Formulas & Physical Models)
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-xs font-mono font-semibold px-2 py-1 rounded-md bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400">
+                      Multi-Variable
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 max-h-[420px] overflow-y-auto pr-1">
+                    {engineeringCalculatorsData.map(disc => {
+                      const Icon = calcIconMap[disc.iconName] || Calculator;
+                      return (
+                        <div
+                          key={disc.id}
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => {
+                            onNavigate("engineering-calculators", undefined, undefined, disc.id);
+                            setEngCalculatorsOpen(false);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              onNavigate("engineering-calculators", undefined, undefined, disc.id);
+                              setEngCalculatorsOpen(false);
+                            }
+                          }}
+                          className="flex items-start gap-3 p-2.5 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900/80 border border-transparent hover:border-slate-200 dark:hover:border-slate-800 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+                        >
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-900 text-amber-600 dark:text-amber-400">
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div className="flex flex-col min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-bold text-slate-900 dark:text-slate-100 truncate">
+                                {disc.name}
+                              </span>
+                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900 text-slate-500">
+                                {disc.badge}
+                              </span>
+                            </div>
+                            <span className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
+                              {disc.description}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* About Link */}
             <button 
               type="button"
               onClick={() => onNavigate("home", undefined, undefined, "about")}
-              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
+              className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
             >
               About
             </button>
 
+            {/* Contact Link */}
             <button 
               type="button"
               onClick={() => onNavigate("home", undefined, undefined, "contact")}
-              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
+              className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
             >
               Contact
             </button>
 
-            <button 
-              type="button"
-              onClick={() => onNavigate("home", undefined, undefined, "privacy")}
-              className="text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 py-1"
-            >
-              Privacy
-            </button>
-
             {/* Desktop Search Bar */}
-            <div ref={searchRef} className="relative w-[220px]" id="desktop-search">
-              <div className="relative">
-                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                <input
-                  type="text"
-                  placeholder="Search 500+ converters..."
+            <div ref={searchRef} className="relative flex items-center justify-end" id="desktop-search">
+              {!searchExpanded && !searchQuery ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchExpanded(true);
+                    setSearchFocused(true);
+                  }}
                   aria-label="Search unit converters"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setSearchFocused(true)}
-                  onKeyDown={handleSearchKeyDown}
-                  className="w-full h-10 pl-10 pr-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
-                />
-              </div>
+                  title="Search converters"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-800 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                >
+                  <Search className="h-4 w-4" />
+                </button>
+              ) : (
+                <div className="relative w-[230px] animate-in fade-in zoom-in-95 duration-150">
+                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="text"
+                    autoFocus
+                    placeholder="Search 500+ converters..."
+                    aria-label="Search unit converters"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setSearchFocused(true)}
+                    onKeyDown={handleSearchKeyDown}
+                    className="w-full h-9 pl-9 pr-8 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSearchExpanded(false);
+                      setSearchFocused(false);
+                    }}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5 rounded-md"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              )}
 
               {/* Live Search Results */}
               {searchFocused && searchResults.length > 0 && (
@@ -710,7 +874,7 @@ export default function Header({
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
-              placeholder="Search all units..."
+              placeholder="Search all units & calculators..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full h-10 pl-9 pr-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20"
@@ -736,34 +900,103 @@ export default function Header({
             )}
           </div>
 
-          {/* Categories List */}
-          <div className="mb-6">
-            <h3 className="font-display text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">
-              Categories
-            </h3>
-            <div className="grid grid-cols-2 gap-2">
-              {categoriesData.map(cat => {
-                const Icon = categoryIconMap[cat.id] || Ruler;
-                const style = getCategoryStyle(cat.id);
-                return (
-                  <div
-                    key={cat.id}
-                    onClick={() => {
-                      onNavigate(cat.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-2 p-2 rounded-xl border text-sm font-semibold cursor-pointer transition-all ${
-                      currentCategory === cat.id 
-                        ? `${style.bg} border-blue-500 ${style.text}` 
-                        : `border-slate-100 dark:border-slate-900 text-slate-700 dark:text-slate-300 hover:${style.bg} hover:${style.text}`
-                    }`}
-                  >
-                    <Icon className={`h-4 w-4 ${style.text}`} />
-                    <span className="truncate">{cat.name}</span>
-                  </div>
-                );
-              })}
-            </div>
+          {/* Home Option */}
+          <button
+            onClick={() => {
+              onNavigate("home");
+              setMobileMenuOpen(false);
+            }}
+            className="w-full flex items-center gap-2 p-3 mb-4 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white font-bold text-sm"
+          >
+            Home Page
+          </button>
+
+          {/* Unit Converters Mobile Section */}
+          <div className="mb-6 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <button
+              onClick={() => setMobileUnitConvertersOpen(!mobileUnitConvertersOpen)}
+              className="w-full flex items-center justify-between text-left mb-2"
+            >
+              <div>
+                <h3 className="font-display text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                  <Ruler className="h-4 w-4" /> Unit Converters (32)
+                </h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  Exact Mathematical Conversions
+                </p>
+              </div>
+              <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform ${mobileUnitConvertersOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {mobileUnitConvertersOpen && (
+              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                {categoriesData.map(cat => {
+                  const Icon = categoryIconMap[cat.id] || Ruler;
+                  const style = getCategoryStyle(cat.id);
+                  return (
+                    <div
+                      key={cat.id}
+                      onClick={() => {
+                        onNavigate(cat.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`flex items-center gap-2 p-2 rounded-xl border text-xs font-semibold cursor-pointer transition-all ${
+                        currentCategory === cat.id 
+                          ? `${style.bg} border-blue-500 ${style.text}` 
+                          : `border-slate-100 dark:border-slate-900 text-slate-700 dark:text-slate-300 hover:${style.bg}`
+                      }`}
+                    >
+                      <Icon className={`h-4 w-4 shrink-0 ${style.text}`} />
+                      <span className="truncate">{cat.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          {/* Engineering Calculators Mobile Section */}
+          <div className="mb-6 border border-slate-200 dark:border-slate-800 rounded-2xl p-4">
+            <button
+              onClick={() => setMobileEngCalculatorsOpen(!mobileEngCalculatorsOpen)}
+              className="w-full flex items-center justify-between text-left mb-2"
+            >
+              <div>
+                <h3 className="font-display text-sm font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-2">
+                  <Calculator className="h-4 w-4" /> Engineering Calculators (11)
+                </h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  Multi-Variable Physical Models
+                </p>
+              </div>
+              <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform ${mobileEngCalculatorsOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {mobileEngCalculatorsOpen && (
+              <div className="grid grid-cols-1 gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                {engineeringCalculatorsData.map(disc => {
+                  const Icon = calcIconMap[disc.iconName] || Calculator;
+                  return (
+                    <div
+                      key={disc.id}
+                      onClick={() => {
+                        onNavigate("engineering-calculators", undefined, undefined, disc.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-900 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-amber-50 dark:hover:bg-amber-950/30 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Icon className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                        <span>{disc.name}</span>
+                      </div>
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">
+                        {disc.badge}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Quick Links */}

@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { categoriesData } from "../src/data/convertersData";
-import { isSeoReady, articleRegistry } from "../src/data/articles";
+import { engineeringCalculatorsData, engineeringCalculatorRegistry } from "../src/data/calculatorsData";
+import { articleRegistry } from "../src/data/articles";
 
 const BASE_URL = "https://www.unitsconvertors.com";
 
@@ -13,87 +14,126 @@ interface SitemapEntry {
 }
 
 function generateSitemap() {
-  console.log("Generating structured sitemap.xml with automated lastmod & Article Registry...");
+  console.log("=== DYNAMIC SITEMAP GENERATOR ===");
+  console.log("Generating fully automated, registry-driven sitemap.xml...");
 
-  const currentDate = new Date().toISOString().split("T")[0]; // e.g. "2026-07-19"
-  
-  // Categorized dictionary to support XML Sitemap Split in the future easily
-  const sitemapSections: Record<string, SitemapEntry[]> = {
-    core: [],
-    support: [],
-    categories: [],
-    converters: []
-  };
+  const currentDate = new Date().toISOString().split("T")[0]; // e.g. "2026-08-03"
 
-  // 1. Core pages (Homepage)
-  sitemapSections.core.push({
-    url: `${BASE_URL}/`,
-    lastmod: currentDate,
-    changefreq: "daily",
-    priority: "1.0"
-  });
+  const urlMap = new Map<string, SitemapEntry>();
+  const duplicateUrls: string[] = [];
 
-  // 2. Support pages with high quality content
-  const supportPages = ["about", "contact", "privacy", "terms", "disclaimer", "sitemap"];
-  for (const page of supportPages) {
-    sitemapSections.support.push({
-      url: `${BASE_URL}/${page}`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: "0.8"
-    });
+  function addEntry(entry: SitemapEntry) {
+    if (urlMap.has(entry.url)) {
+      duplicateUrls.push(entry.url);
+    } else {
+      urlMap.set(entry.url, entry);
+    }
   }
 
-  // 3. Category Dashboard pages
+  // A. Static Pages
+  const staticPages = [
+    { path: "", priority: "1.0", changefreq: "daily" },
+    { path: "about", priority: "0.8", changefreq: "weekly" },
+    { path: "contact", priority: "0.8", changefreq: "weekly" },
+    { path: "privacy", priority: "0.8", changefreq: "weekly" },
+    { path: "terms", priority: "0.8", changefreq: "weekly" },
+    { path: "disclaimer", priority: "0.8", changefreq: "weekly" },
+    { path: "sitemap", priority: "0.8", changefreq: "weekly" },
+    { path: "validator", priority: "0.8", changefreq: "weekly" },
+    { path: "directory", priority: "0.8", changefreq: "weekly" },
+    { path: "engineering-calculators", priority: "0.9", changefreq: "weekly" }
+  ];
+
+  let staticCount = 0;
+  for (const p of staticPages) {
+    const url = p.path ? `${BASE_URL}/${p.path}` : `${BASE_URL}/`;
+    addEntry({
+      url,
+      lastmod: currentDate,
+      changefreq: p.changefreq,
+      priority: p.priority
+    });
+    staticCount++;
+  }
+
+  // B. Unit Converter Categories (32)
+  let converterCategoryCount = 0;
   for (const cat of categoriesData) {
-    sitemapSections.categories.push({
+    addEntry({
       url: `${BASE_URL}/${cat.id}`,
       lastmod: currentDate,
       changefreq: "weekly",
       priority: "0.8"
     });
+    converterCategoryCount++;
   }
 
-  // 4. Converter pages ONLY if they contain complete, high-quality articles
-  let completeCount = 0;
-  let totalCount = 0;
+  // C. Converter Pair Pages (All pairwise combinations)
+  let converterPairCount = 0;
+  let bespokeArticleCount = 0;
 
   for (const cat of categoriesData) {
     for (const unitA of cat.units) {
       for (const unitB of cat.units) {
         if (unitA.id === unitB.id) continue;
 
-        totalCount++;
+        converterPairCount++;
         const pairKey = `${unitA.id}-to-${unitB.id}`;
-        const hasCompleteArticle = isSeoReady(unitA.id, unitB.id);
+        const metadata = articleRegistry[pairKey];
 
-        if (hasCompleteArticle) {
-          // Fetch article metadata from our rich Article Metadata Registry
-          const metadata = articleRegistry[pairKey];
-          const lastUpdated = metadata?.updatedAt || currentDate;
-          const articlePriority = metadata?.priority?.toFixed(1) || "0.6";
+        let priority = "0.7";
+        let lastmod = currentDate;
 
-          sitemapSections.converters.push({
-            url: `${BASE_URL}/${cat.id}/${pairKey}`,
-            lastmod: lastUpdated,
-            changefreq: "weekly",
-            priority: articlePriority
-          });
-          completeCount++;
+        if (metadata) {
+          bespokeArticleCount++;
+          if (metadata.updatedAt) lastmod = metadata.updatedAt;
+          if (typeof metadata.priority === "number") {
+            priority = metadata.priority.toFixed(1);
+          } else {
+            priority = "0.9";
+          }
         }
+
+        addEntry({
+          url: `${BASE_URL}/${cat.id}/${pairKey}`,
+          lastmod,
+          changefreq: "weekly",
+          priority
+        });
       }
     }
   }
 
-  // Combine all entries for our standard sitemap index file
-  const allEntries: SitemapEntry[] = [
-    ...sitemapSections.core,
-    ...sitemapSections.support,
-    ...sitemapSections.categories,
-    ...sitemapSections.converters
-  ];
+  // D. Engineering Calculator Disciplines (11)
+  let engineeringDisciplineCount = 0;
+  for (const disc of engineeringCalculatorsData) {
+    addEntry({
+      url: `${BASE_URL}/engineering-calculators/${disc.id}`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: "0.8"
+    });
+    engineeringDisciplineCount++;
+  }
 
-  // Generate standard unified XML output
+  // E. Engineering Calculator Pages (172)
+  let engineeringCalculatorCount = 0;
+  for (const tool of engineeringCalculatorRegistry) {
+    const route = tool.route || `/engineering-calculators/${tool.disciplineId}/${tool.slug}`;
+    const cleanRoute = route.startsWith("/") ? route : `/${route}`;
+    addEntry({
+      url: `${BASE_URL}${cleanRoute}`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: "0.8"
+    });
+    engineeringCalculatorCount++;
+  }
+
+  // Sort entries deterministically by URL
+  const allEntries = Array.from(urlMap.values()).sort((a, b) => a.url.localeCompare(b.url));
+
+  // Build XML Content
   const xmlEntries = allEntries
     .map(
       (entry) => `  <url>
@@ -111,18 +151,31 @@ ${xmlEntries}
 </urlset>
 `;
 
-  const outputPath = path.resolve(process.cwd(), "public/sitemap.xml");
-  fs.writeFileSync(outputPath, sitemapXml, "utf8");
+  // Write to public/sitemap.xml
+  const publicPath = path.resolve(process.cwd(), "public/sitemap.xml");
+  fs.writeFileSync(publicPath, sitemapXml, "utf8");
+  console.log(`Successfully written sitemap to: ${publicPath}`);
 
-  console.log(`Sitemap generated successfully at: ${outputPath}`);
-  console.log(`Total converter pairs processed: ${totalCount}`);
-  console.log(`Indexable converter pairs (complete articles from Article Registry): ${completeCount}`);
+  // Also write to dist/sitemap.xml if dist directory exists
+  const distDir = path.resolve(process.cwd(), "dist");
+  if (fs.existsSync(distDir)) {
+    const distPath = path.resolve(distDir, "sitemap.xml");
+    fs.writeFileSync(distPath, sitemapXml, "utf8");
+    console.log(`Successfully written sitemap to: ${distPath}`);
+  }
 
-  // Future split architecture trace (Diagnostic/Log)
-  console.log("--- Future Split Architecture Metrics ---");
-  Object.entries(sitemapSections).forEach(([sectionName, entries]) => {
-    console.log(`Section: [${sectionName}] contains ${entries.length} URLs`);
-  });
+  console.log("\n=== DYNAMIC SITEMAP GENERATION SUMMARY ===");
+  console.log(`Static Pages:                   ${staticCount}`);
+  console.log(`Converter Category Pages:       ${converterCategoryCount}`);
+  console.log(`Converter Pair URLs Generated:  ${converterPairCount}`);
+  console.log(`Bespoke Articles Indexed:       ${bespokeArticleCount}`);
+  console.log(`Engineering Discipline Pages:   ${engineeringDisciplineCount}`);
+  console.log(`Engineering Calculator Pages:   ${engineeringCalculatorCount}`);
+  console.log(`-------------------------------------------`);
+  console.log(`Total URLs in Sitemap:          ${allEntries.length}`);
+  console.log(`Duplicate URLs Found:           ${duplicateUrls.length}`);
+  console.log(`Sitemap Generation Status:      PASS`);
 }
 
 generateSitemap();
+

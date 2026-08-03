@@ -235,6 +235,36 @@ import { millimoleToKilomole } from "./millimoleToKilomole";
 import { micromoleToMole } from "./micromoleToMole";
 import { micromoleToMillimole } from "./micromoleToMillimole";
 
+import { luxToFootCandle } from "./luxToFootCandle";
+import { luxToCandela } from "./luxToCandela";
+import { luxToLumen } from "./luxToLumen";
+import { luxToCandelaLuxInverse } from "./luxToCandelaLuxInverse";
+import { luxToNit } from "./luxToNit";
+import { luxToCandelaPerM2 } from "./luxToCandelaPerM2";
+import { luxToLambert } from "./luxToLambert";
+import { luxToFootLambert } from "./luxToFootLambert";
+import { luxToStilb } from "./luxToStilb";
+import { luxToPhot } from "./luxToPhot";
+import { luxToWattLumenEfficacy } from "./luxToWattLumenEfficacy";
+import { luxToLuxWattM2 } from "./luxToLuxWattM2";
+import { luxToIlluminanceConverter } from "./luxToIlluminanceConverter";
+import { luxToLuminanceConverter } from "./luxToLuminanceConverter";
+
+import { decibelToBel } from "./decibelToBel";
+import { decibelToDecibelSpl } from "./decibelToDecibelSpl";
+import { decibelToPascalSound } from "./decibelToPascalSound";
+import { decibelToSoundPressure } from "./decibelToSoundPressure";
+import { decibelToSoundIntensity } from "./decibelToSoundIntensity";
+import { decibelToWattM2 } from "./decibelToWattM2";
+import { decibelToPhon } from "./decibelToPhon";
+import { decibelToSone } from "./decibelToSone";
+import { decibelToSoundPowerLevel } from "./decibelToSoundPowerLevel";
+import { decibelToSoundIntensityLevel } from "./decibelToSoundIntensityLevel";
+import { decibelToFrequency } from "./decibelToFrequency";
+import { decibelToWavelengthSound } from "./decibelToWavelengthSound";
+import { decibelToOctaveRatio } from "./decibelToOctaveRatio";
+import { decibelToSemitoneRatio } from "./decibelToSemitoneRatio";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -470,7 +500,37 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "millimole-to-nanomole": millimoleToNanomole,
   "millimole-to-kilomole": millimoleToKilomole,
   "micromole-to-mole": micromoleToMole,
-  "micromole-to-millimole": micromoleToMillimole
+  "micromole-to-millimole": micromoleToMillimole,
+
+  "lux-to-foot-candle": luxToFootCandle,
+  "lux-to-candela": luxToCandela,
+  "lux-to-lumen": luxToLumen,
+  "lux-to-candela-lux-inverse": luxToCandelaLuxInverse,
+  "lux-to-nit": luxToNit,
+  "lux-to-candela-per-m2": luxToCandelaPerM2,
+  "lux-to-lambert": luxToLambert,
+  "lux-to-foot-lambert": luxToFootLambert,
+  "lux-to-stilb": luxToStilb,
+  "lux-to-phot": luxToPhot,
+  "lux-to-watt-lumen-efficacy": luxToWattLumenEfficacy,
+  "lux-to-lux-watt-m2": luxToLuxWattM2,
+  "lux-to-illuminance-converter": luxToIlluminanceConverter,
+  "lux-to-luminance-converter": luxToLuminanceConverter,
+
+  "decibel-to-bel": decibelToBel,
+  "decibel-to-decibel-spl": decibelToDecibelSpl,
+  "decibel-to-pascal-sound": decibelToPascalSound,
+  "decibel-to-sound-pressure": decibelToSoundPressure,
+  "decibel-to-sound-intensity": decibelToSoundIntensity,
+  "decibel-to-watt-m2-sound": decibelToWattM2,
+  "decibel-to-phon": decibelToPhon,
+  "decibel-to-sone": decibelToSone,
+  "decibel-to-sound-power-level": decibelToSoundPowerLevel,
+  "decibel-to-sound-intensity-level": decibelToSoundIntensityLevel,
+  "decibel-to-frequency-sound": decibelToFrequency,
+  "decibel-to-wavelength-sound": decibelToWavelengthSound,
+  "decibel-to-octave-ratio": decibelToOctaveRatio,
+  "decibel-to-semitone-ratio": decibelToSemitoneRatio
 };
 
 export interface ArticleMetadata {
@@ -721,7 +781,37 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "millimole-to-nanomole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
   "millimole-to-kilomole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
   "micromole-to-mole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
-  "micromole-to-millimole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 }
+  "micromole-to-millimole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+
+  "lux-to-foot-candle": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-candela": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-lumen": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-candela-lux-inverse": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-nit": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-candela-per-m2": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-lambert": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-foot-lambert": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-stilb": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-phot": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-watt-lumen-efficacy": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-lux-watt-m2": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-illuminance-converter": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+  "lux-to-luminance-converter": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
+
+  "decibel-to-bel": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-decibel-spl": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-pascal-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-sound-pressure": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-sound-intensity": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-watt-m2-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-phon": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-sone": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-sound-power-level": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-sound-intensity-level": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-frequency-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-wavelength-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-octave-ratio": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-semitone-ratio": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

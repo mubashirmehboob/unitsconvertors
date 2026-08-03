@@ -4,6 +4,7 @@ import { Category, Unit } from "../types";
 import { generateSEOContent, performConversion, getStringHash } from "../utils/conversionEngine";
 import { customLengthArticles, isSeoReady } from "../data/articles";
 import { categoriesData } from "../data/convertersData";
+import { injectPageSchemas } from "../utils/schemaEngine";
 
 // --- REUSABLE SUB-COMPONENTS FOR TOPICAL SEO & INTERNAL LINKING ---
 
@@ -645,18 +646,13 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       }
     };
 
-    // Create and append scripts
-    const scriptId = "dynamic-seo-schemas";
-    let scriptTag = document.getElementById(scriptId) as HTMLScriptElement;
-    if (!scriptTag) {
-      scriptTag = document.createElement("script");
-      scriptTag.id = scriptId;
-      scriptTag.type = "application/ld+json";
-      document.head.appendChild(scriptTag);
-    }
-
-    // Bundle them in a single array
-    scriptTag.text = JSON.stringify([breadcrumbSchema, faqSchema, webPageSchema]);
+    // Inject central dynamic Schema.org JSON-LD structured data
+    injectPageSchemas({
+      page: "converter",
+      category: category.id,
+      fromUnit: fromUnit.id,
+      toUnit: toUnit.id
+    });
 
     // Update document title and metadata
     document.title = pageTitle;
@@ -726,9 +722,9 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       document.head.appendChild(newRobots);
     }
 
-    // Cleanup on unmount
+    // Cleanup on unmount if needed
     return () => {
-      const tag = document.getElementById(scriptId);
+      const tag = document.getElementById("global-schema-jsonld");
       if (tag) tag.remove();
     };
   }, [category, fromUnit, toUnit, article]);
@@ -990,6 +986,8 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                     <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.toVal}</td>
                     <td className="p-4 text-xs text-slate-400 font-mono hidden sm:table-cell">{row.extra}</td>
                     {row.extra2 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra2}</td>}
+                    {row.extra3 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra3}</td>}
+                    {row.extra4 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra4}</td>}
                   </tr>
                 ))}
               </tbody>

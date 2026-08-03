@@ -1,29 +1,48 @@
 import React from "react";
+import { categoriesData } from "../data/convertersData";
+import { engineeringCalculatorsData } from "../data/calculatorsData";
 
 export default function StatsSection() {
+  const totalUnitCategories = categoriesData.length;
+  const totalEngineeringDisciplines = engineeringCalculatorsData.length;
+  const totalCategories = totalUnitCategories + totalEngineeringDisciplines;
+
+  // Calculate total unit conversion pair permutations
+  const totalUnitPairs = categoriesData.reduce((acc, cat) => {
+    const len = cat.units.length;
+    return acc + (len * (len - 1));
+  }, 0);
+
+  // Calculate total engineering tools
+  const totalEngTools = engineeringCalculatorsData.reduce((acc, disc) => {
+    return acc + disc.tools.length;
+  }, 0);
+
+  const totalToolsCount = totalUnitPairs + totalEngTools;
+
   const stats = [
     {
-      metric: "24+",
-      label: "Core Categories",
-      desc: "From length & mass to engineering & radioactivity",
+      metric: `${totalCategories}`,
+      label: "Categories & Disciplines",
+      desc: `${totalUnitCategories} Unit Converters + ${totalEngineeringDisciplines} Engineering Disciplines`,
       gradient: "from-blue-600 to-cyan-500"
     },
     {
-      metric: "516+",
-      label: "Unit Converters",
-      desc: "Pre-rendered high-performance calculation matrices",
+      metric: `${totalToolsCount.toLocaleString()}+`,
+      label: "Converters & Calculators",
+      desc: "Exact SI/NIST unit pairs & multi-variable engineering models",
       gradient: "from-cyan-500 to-emerald-500"
     },
     {
       metric: "100%",
-      label: "Free Forever",
+      label: "Free & Open Access",
       desc: "No paywalls, subscription models, or email gating",
       gradient: "from-emerald-500 to-blue-600"
     },
     {
       metric: "Instant",
-      label: "Browser Computing",
-      desc: "Zero server lag, running locally on your device",
+      label: "Client-Side Computing",
+      desc: "Zero server latency, running 100% locally in your browser",
       gradient: "from-blue-600 to-indigo-500"
     }
   ];

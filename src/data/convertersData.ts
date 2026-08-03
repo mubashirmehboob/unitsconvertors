@@ -439,24 +439,6 @@ export const categoriesData: Category[] = [
     description: "Convert physical and astronomical light, illuminance, luminance, and energy properties.",
     baseUnitId: "lux",
     customFormula: (value: number, from: string, to: string) => {
-      if (from === "wavelength-nm" && to === "frequency-light-thz") {
-        return value === 0 ? 0 : 299792.458 / value;
-      }
-      if (from === "frequency-light-thz" && to === "wavelength-nm") {
-        return value === 0 ? 0 : 299792.458 / value;
-      }
-      if (from === "wavelength-nm" && to === "photon-energy-ev") {
-        return value === 0 ? 0 : 1239.84193 / value;
-      }
-      if (from === "photon-energy-ev" && to === "wavelength-nm") {
-        return value === 0 ? 0 : 1239.84193 / value;
-      }
-      if (from === "frequency-light-thz" && to === "photon-energy-ev") {
-        return value * 0.004135667;
-      }
-      if (from === "photon-energy-ev" && to === "frequency-light-thz") {
-        return value / 0.004135667;
-      }
       if (from === "nanometer" && to === "angstrom") {
         return value * 10;
       }
@@ -468,22 +450,12 @@ export const categoriesData: Category[] = [
         "foot-candle": 10.76391,
         "candela": 1,
         "lumen": 1,
-        "candela-lux-inverse": 1,
         "nit": 1,
         "candela-per-m2": 1,
         "lambert": 3183.09886,
         "foot-lambert": 3.426259,
         "stilb": 10000,
         "phot": 10000,
-        "watt-lumen-efficacy": 683,
-        "lux-watt-m2": 683,
-        "illuminance-converter": 1,
-        "luminance-converter": 1,
-        "luminous-flux-converter": 1,
-        "luminous-efficacy-converter": 1,
-        "radiant-intensity-converter": 1,
-        "irradiance-converter": 1,
-        "lux-lumen-ft2": 10.76391,
         "apostilb": 0.318309886,
         "blondel": 0.318309886,
         "skot": 0.000318309886
@@ -497,29 +469,16 @@ export const categoriesData: Category[] = [
       { id: "foot-candle", name: "Foot-candle", plural: "Foot-candles", symbol: "fc", factor: 10.76391 },
       { id: "candela", name: "Candela", plural: "Candelas", symbol: "cd", factor: 1 },
       { id: "lumen", name: "Lumen", plural: "Lumens", symbol: "lm", factor: 1 },
-      { id: "candela-lux-inverse", name: "Candela ↔ Lux (at 1m)", plural: "Candela-Lux Pairings", symbol: "cd-lx", factor: 1 },
       { id: "nit", name: "Nit", plural: "Nits", symbol: "nt", factor: 1 },
       { id: "candela-per-m2", name: "Candela/m²", plural: "Candelas per Sq Meter", symbol: "cd/m²", factor: 1 },
       { id: "lambert", name: "Lambert", plural: "Lamberts", symbol: "L", factor: 3183.09886 },
       { id: "foot-lambert", name: "Foot-Lambert", plural: "Foot-Lamberts", symbol: "fL", factor: 3.426259 },
       { id: "stilb", name: "Stilb", plural: "Stilbs", symbol: "sb", factor: 10000 },
       { id: "phot", name: "Phot", plural: "Phots", symbol: "ph", factor: 10000 },
-      { id: "watt-lumen-efficacy", name: "Watt ↔ Lumen (efficacy)", plural: "Watts at 555nm", symbol: "W (lm)", factor: 683 },
-      { id: "lux-watt-m2", name: "Lux ↔ Watt/m²", plural: "Lux to Watt/m²", symbol: "lx-W/m²", factor: 683 },
-      { id: "illuminance-converter", name: "Illuminance Converter", plural: "Illuminance Units", symbol: "lx", factor: 1 },
-      { id: "luminance-converter", name: "Luminance Converter", plural: "Luminance Units", symbol: "nt", factor: 1 },
-      { id: "luminous-flux-converter", name: "Luminous Flux Converter", plural: "Luminous Fluxes", symbol: "lm", factor: 1 },
-      { id: "luminous-efficacy-converter", name: "Luminous Efficacy", plural: "Luminous Efficiencies", symbol: "lm/W", factor: 1 },
-      { id: "radiant-intensity-converter", name: "Radiant Intensity", plural: "Radiant Intensities", symbol: "W/sr", factor: 1 },
-      { id: "irradiance-converter", name: "Irradiance Converter", plural: "Irradiances", symbol: "W/m²", factor: 1 },
-      { id: "photon-energy-ev", name: "Photon Energy (eV)", plural: "Photon Energies", symbol: "eV", factor: 1 },
-      { id: "wavelength-nm", name: "Wavelength (nm)", plural: "Wavelengths", symbol: "nm", factor: 1 },
-      { id: "frequency-light-thz", name: "Frequency (Light THz)", plural: "Light Frequencies", symbol: "THz", factor: 1 },
       { id: "nanometer", name: "Nanometer (Light)", plural: "Nanometers", symbol: "nm", factor: 1 },
       { id: "angstrom", name: "Angstrom (Å)", plural: "Angstroms", symbol: "Å", factor: 0.1 },
       { id: "color-temperature-mired", name: "Color Temp (Mired)", plural: "Mired Values", symbol: "Mired", factor: 1 },
       { id: "kelvin-temperature", name: "Kelvin", plural: "Kelvin (Light)", symbol: "K", factor: 1 },
-      { id: "lux-lumen-ft2", name: "Lux ↔ Lumen/ft²", plural: "Lux per Sq Foot", symbol: "lm/ft²", factor: 10.76391 },
       { id: "apostilb", name: "Apostilb", plural: "Apostilbs", symbol: "asb", factor: 0.318309886 },
       { id: "blondel", name: "Blondel", plural: "Blondels", symbol: "blondel", factor: 0.318309886 },
       { id: "skot", name: "Skot", plural: "Skots", symbol: "skot", factor: 0.000318309886 }
@@ -536,63 +495,30 @@ export const categoriesData: Category[] = [
       const pascalToDb = (p: number) => p <= 0 ? -120 : 20 * Math.log10(p / 2e-5);
       const dbToIntensity = (db: number) => 1e-12 * Math.pow(10, db / 10);
       const intensityToDb = (i: number) => i <= 0 ? -120 : 10 * Math.log10(i / 1e-12);
-      const phonToSone = (ph: number) => Math.pow(2, (ph - 40) / 10);
-      const soneToPhon = (s: number) => s <= 0 ? 0 : 40 + 10 * Math.log2(s);
-      const midiToFreq = (midi: number) => 440 * Math.pow(2, (midi - 69) / 12);
-      const freqToMidi = (hz: number) => hz <= 0 ? 0 : 69 + 12 * Math.log2(hz / 440);
 
       const dbUnits = new Set([
-        "decibel", "decibel-spl", "dba-sound", "sound-power-level",
-        "sound-intensity-level", "sound-exposure-level", "db-gain-loss"
+        "decibel", "decibel-spl", "dba-sound"
       ]);
       const pressureUnits = new Set(["pascal-sound", "sound-pressure"]);
       const intensityUnits = new Set(["sound-intensity", "watt-m2-sound"]);
 
-      // 1. Logarithmic, Pressure & Intensity conversions
-      const isLogFrom = dbUnits.has(from) || from === "bel" || from === "neper" || pressureUnits.has(from) || intensityUnits.has(from);
-      const isLogTo = dbUnits.has(to) || to === "bel" || to === "neper" || pressureUnits.has(to) || intensityUnits.has(to);
+      const isLogFrom = dbUnits.has(from) || from === "bel" || pressureUnits.has(from) || intensityUnits.has(from);
+      const isLogTo = dbUnits.has(to) || to === "bel" || pressureUnits.has(to) || intensityUnits.has(to);
 
       if (isLogFrom && isLogTo) {
         let db = value;
         if (from === "bel") db = value * 10;
-        else if (from === "neper") db = value * 8.685889638;
         else if (pressureUnits.has(from)) db = pascalToDb(value);
         else if (intensityUnits.has(from)) db = intensityToDb(value);
 
         if (to === "bel") return db / 10;
-        if (to === "neper") return db / 8.685889638;
         if (pressureUnits.has(to)) return dbToPascal(db);
         if (intensityUnits.has(to)) return dbToIntensity(db);
         return db;
       }
 
-      // 2. Loudness Phon <-> Sone
-      if (from === "phon" && to === "sone") return phonToSone(value);
-      if (from === "sone" && to === "phon") return soneToPhon(value);
-
-      // 3. Acoustics & Frequency domain
-      const freqUnits = new Set(["frequency-sound", "infrasound-frequency-hz", "ultrasonic-frequency-khz", "wavelength-sound", "bpm-tempo", "pitch-midi"]);
-      if (freqUnits.has(from) && freqUnits.has(to)) {
-        let hz = value;
-        if (from === "ultrasonic-frequency-khz") hz = value * 1000;
-        else if (from === "bpm-tempo") hz = value / 60;
-        else if (from === "pitch-midi") hz = midiToFreq(value);
-        else if (from === "wavelength-sound") hz = value === 0 ? 0 : 343 / value;
-
-        if (to === "ultrasonic-frequency-khz") return hz / 1000;
-        if (to === "bpm-tempo") return hz * 60;
-        if (to === "pitch-midi") return freqToMidi(hz);
-        if (to === "wavelength-sound") return hz === 0 ? 0 : 343 / hz;
-        return hz;
-      }
-
       const soundFactors: Record<string, number> = {
-        "decibel": 1, "bel": 10, "decibel-spl": 1, "phon": 1, "sone": 1,
-        "sound-power-level": 1, "sound-intensity-level": 1, "reverberation-time-s": 1,
-        "noise-criteria-nc": 1, "dba-sound": 1, "loudness-level": 1, "speed-of-sound-ms": 1,
-        "doppler-shift-ratio": 1, "acoustic-impedance-pa": 1, "db-gain-loss": 1,
-        "sabine-absorption": 1, "sound-exposure-level": 1, "ultrasonic-frequency-khz": 1000,
-        "infrasound-frequency-hz": 1
+        "decibel": 1, "bel": 10, "decibel-spl": 1, "dba-sound": 1
       };
       const fFrom = soundFactors[from] || 1;
       const fTo = soundFactors[to] || 1;
@@ -606,29 +532,7 @@ export const categoriesData: Category[] = [
       { id: "sound-pressure", name: "Sound Pressure", plural: "Sound Pressures", symbol: "Pa", factor: 1 },
       { id: "sound-intensity", name: "Sound Intensity", plural: "Sound Intensities", symbol: "W/m²", factor: 1 },
       { id: "watt-m2-sound", name: "Watt/m²", plural: "Watts per Sq Meter", symbol: "W/m²", factor: 1 },
-      { id: "phon", name: "Phon", plural: "Phons", symbol: "Phon", factor: 1 },
-      { id: "sone", name: "Sone", plural: "Sones", symbol: "Sone", factor: 1 },
-      { id: "sound-power-level", name: "Sound Power Level", plural: "Sound Power Levels", symbol: "Lw", factor: 1 },
-      { id: "sound-intensity-level", name: "Sound Intensity Level", plural: "Sound Intensity Levels", symbol: "Li", factor: 1 },
-      { id: "frequency-sound", name: "Frequency (Sound)", plural: "Sound Frequencies", symbol: "Hz", factor: 1 },
-      { id: "wavelength-sound", name: "Wavelength (Sound)", plural: "Sound Wavelengths", symbol: "m", factor: 1 },
-      { id: "octave-ratio", name: "Octave Ratio", plural: "Octaves", symbol: "Oct", factor: 1 },
-      { id: "semitone-ratio", name: "Semitone Ratio", plural: "Semitones", symbol: "Semi", factor: 1 },
-      { id: "cent-music", name: "Cent (Music)", plural: "Musical Cents", symbol: "Cent", factor: 1 },
-      { id: "pitch-midi", name: "Pitch (MIDI)", plural: "Pitch Key Indexes", symbol: "MIDI", factor: 1 },
-      { id: "reverberation-time-s", name: "Reverberation Time", plural: "RT60 Times", symbol: "s", factor: 1 },
-      { id: "noise-criteria-nc", name: "Noise Criteria", plural: "Noise Criteria (NC)", symbol: "NC", factor: 1 },
-      { id: "dba-sound", name: "A-Weighted Decibel", plural: "dBA Values", symbol: "dBA", factor: 1 },
-      { id: "loudness-level", name: "Loudness Level", plural: "Loudness Levels", symbol: "LUFS", factor: 1 },
-      { id: "speed-of-sound-ms", name: "Speed of Sound", plural: "Speeds of Sound", symbol: "m/s", factor: 1 },
-      { id: "doppler-shift-ratio", name: "Doppler Shift", plural: "Doppler Shifts", symbol: "Δf/f", factor: 1 },
-      { id: "acoustic-impedance-pa", name: "Acoustic Impedance", plural: "Acoustic Impedances", symbol: "Pa·s/m", factor: 1 },
-      { id: "db-gain-loss", name: "Decibel Gain/Loss", plural: "dB Gain/Loss", symbol: "dB", factor: 1 },
-      { id: "sabine-absorption", name: "Sabine Absorption", plural: "Sabine Units", symbol: "Sab", factor: 1 },
-      { id: "sound-exposure-level", name: "Sound Exposure Level", plural: "Sound Exposures", symbol: "dB", factor: 1 },
-      { id: "ultrasonic-frequency-khz", name: "Ultrasonic Freq", plural: "Ultrasonic Frequencies", symbol: "kHz", factor: 1000 },
-      { id: "infrasound-frequency-hz", name: "Infrasound Freq", plural: "Infrasound Frequencies", symbol: "Hz", factor: 1 },
-      { id: "bpm-tempo", name: "BPM Tempo", plural: "BPMs", symbol: "BPM", factor: 1 }
+      { id: "dba-sound", name: "A-Weighted Decibel", plural: "dBA Values", symbol: "dBA", factor: 1 }
     ]
   },
   {
@@ -656,18 +560,7 @@ export const categoriesData: Category[] = [
       { id: "force-per-length-lb-in", name: "Pound-force per Inch", plural: "Pound-forces per Inch", symbol: "lbf/in", factor: 175.1268 },
       { id: "millinewton", name: "Millinewton", plural: "Millinewtons", symbol: "mN", factor: 0.001 },
       { id: "micronewton", name: "Micronewton", plural: "Micronewtons", symbol: "µN", factor: 0.000001 },
-      { id: "weight-force", name: "Weight Force", plural: "Weight Forces", symbol: "N", factor: 1 },
-      { id: "centrifugal-force", name: "Centrifugal Force", plural: "Centrifugal Forces", symbol: "N", factor: 1 },
-      { id: "gravitational-force", name: "Gravitational Force", plural: "Gravitational Forces", symbol: "N", factor: 1 },
-      { id: "torque-n-m", name: "Torque (N·m)", plural: "Torques", symbol: "N·m", factor: 1 },
-      { id: "torque-lb-ft", name: "Torque (lb·ft)", plural: "Torques (lb·ft)", symbol: "lb·ft", factor: 1.355818 },
-      { id: "impulse-n-s", name: "Impulse (N·s)", plural: "Impulses", symbol: "N·s", factor: 1 },
-      { id: "spring-force", name: "Spring Force", plural: "Spring Forces", symbol: "N", factor: 1 },
-      { id: "frictional-force", name: "Frictional Force", plural: "Frictional Forces", symbol: "N", factor: 1 },
-      { id: "tension-force", name: "Tension Force", plural: "Tension Forces", symbol: "N", factor: 1 },
-      { id: "kg-force-cm2", name: "kgf/cm²", plural: "Kilogram-forces per Sq Centimeter", symbol: "kgf/cm²", factor: 98066.5 },
-      { id: "force-density", name: "Force Density", plural: "Force Densities", symbol: "N/m³", factor: 1 },
-      { id: "elastic-force", name: "Elastic Force", plural: "Elastic Forces", symbol: "N", factor: 1 }
+      { id: "kg-force-cm2", name: "kgf/cm²", plural: "Kilogram-forces per Sq Centimeter", symbol: "kgf/cm²", factor: 98066.5 }
     ]
   },
   {
@@ -690,19 +583,10 @@ export const categoriesData: Category[] = [
       { id: "gallon-per-hour", name: "Gallon/hour", plural: "Gallons per Hour", symbol: "gph", factor: 0.001051503 },
       { id: "cubic-centimeter-per-sec", name: "Cubic centimeter/sec", plural: "Cubic Centimeters per Second", symbol: "cm³/s", factor: 0.001 },
       { id: "milliliter-per-min", name: "Milliliter/min", plural: "Milliliters per Minute", symbol: "mL/min", factor: 0.000016667 },
-      { id: "flow-velocity", name: "Flow Velocity", plural: "Flow Velocities", symbol: "m/s", factor: 1 },
-      { id: "reynolds-number", name: "Reynolds Number", plural: "Reynolds Numbers", symbol: "Re", factor: 1 },
-      { id: "discharge-rate", name: "Discharge Rate", plural: "Discharge Rates", symbol: "m³/s", factor: 1000 },
-      { id: "water-flow-rate", name: "Water Flow Rate", plural: "Water Flow Rates", symbol: "L/s", factor: 1 },
-      { id: "gas-flow-rate", name: "Gas Flow Rate", plural: "Gas Flow Rates", symbol: "L/s", factor: 1 },
       { id: "cfm-unit", name: "CFM", plural: "Cubic Feet per Minute", symbol: "CFM", factor: 0.471947443 },
       { id: "cmh-unit", name: "CMH", plural: "Cubic Meters per Hour", symbol: "CMH", factor: 0.277777778 },
       { id: "acre-feet-per-day", name: "Acre-feet/day", plural: "Acre-feet per Day", symbol: "ac-ft/d", factor: 14.2764 },
       { id: "million-gallons-per-day", name: "Million Gallons/Day", plural: "Million Gallons per Day", symbol: "MGD", factor: 43.8126 },
-      { id: "flow-coefficient", name: "Flow Coefficient", plural: "Flow Coefficients (Cv)", symbol: "Cv", factor: 1 },
-      { id: "pump-flow-rate", name: "Pump Flow Rate", plural: "Pump Flow Rates", symbol: "L/s", factor: 1 },
-      { id: "blood-flow-rate", name: "Blood Flow Rate", plural: "Blood Flow Rates", symbol: "mL/min", factor: 0.000016667 },
-      { id: "air-flow-rate", name: "Air Flow Rate", plural: "Air Flow Rates", symbol: "L/s", factor: 1 },
       { id: "flow-per-unit-area", name: "Flow per Unit Area", plural: "Flow rates per Sq Meter", symbol: "L/s/m²", factor: 1 },
       { id: "mass-flux", name: "Mass Flux", plural: "Mass Fluxes", symbol: "kg/s/m²", factor: 1 },
       { id: "molar-flow-rate", name: "Molar Flow Rate", plural: "Molar Flow Rates", symbol: "mol/s", factor: 1 },
@@ -716,23 +600,12 @@ export const categoriesData: Category[] = [
     description: "Convert trigonometry angles, solid angular areas, slope percents, and quadrant headings.",
     baseUnitId: "degree",
     customFormula: (value: number, from: string, to: string) => {
-      const degToGrade = (deg: number) => Math.tan(deg * Math.PI / 180) * 100;
-      const gradeToDeg = (grade: number) => Math.atan(grade / 100) * 180 / Math.PI;
-
-      if (from === "degree" && to === "percent-grade") return degToGrade(value);
-      if (from === "percent-grade" && to === "degree") return gradeToDeg(value);
-      if (from === "radian" && to === "percent-grade") return degToGrade(value * 57.295779513);
-      if (from === "percent-grade" && to === "radian") return gradeToDeg(value) / 57.295779513;
-
       const angleFactors: Record<string, number> = {
         "degree": 1, "radian": 57.295779513, "gradian": 0.9, "arcminute": 0.016666667,
         "arcsecond": 0.000277778, "revolution": 360, "mil-angle": 0.05625, "turn-angle": 360,
-        "quadrant-angle": 90, "sextant-angle": 60, "radian-per-sec": 57.295779513,
-        "rpm-angle": 6, "degree-per-sec": 1, "compass-point": 11.25,
-        "grad-angle": 0.9, "decimal-degree": 1, "slope-angle-deg": 1, "angle-elevation": 1,
-        "angle-depression": 1, "bearing-angle": 1, "azimuth-angle": 1, "hour-angle": 15,
-        "right-ascension": 15, "angular-diameter": 1, "degree-hour": 15,
-        "circular-mil-angle": 1
+        "quadrant-angle": 90, "sextant-angle": 60, "compass-point": 11.25,
+        "grad-angle": 0.9, "decimal-degree": 1, "hour-angle": 15,
+        "right-ascension": 15, "degree-hour": 15, "circular-mil-angle": 1
       };
       const fFrom = angleFactors[from] || 1;
       const fTo = angleFactors[to] || 1;
@@ -749,22 +622,12 @@ export const categoriesData: Category[] = [
       { id: "turn-angle", name: "Turn", plural: "Turns", symbol: "turn", factor: 360 },
       { id: "quadrant-angle", name: "Quadrant", plural: "Quadrants", symbol: "quad", factor: 90 },
       { id: "sextant-angle", name: "Sextant", plural: "Sextants", symbol: "sext", factor: 60 },
-      { id: "percent-grade", name: "Percent Grade", plural: "Percent Grades", symbol: "%", factor: 1 },
-      { id: "radian-per-sec", name: "Radian/sec", plural: "Radians per Second", symbol: "rad/s", factor: 57.295779513 },
-      { id: "rpm-angle", name: "RPM (Angle)", plural: "Revolutions per Minute", symbol: "rpm", factor: 6 },
-      { id: "degree-per-sec", name: "Degree/sec", plural: "Degrees per Second", symbol: "°/s", factor: 1 },
       { id: "compass-point", name: "Compass Point", plural: "Compass Points", symbol: "pt", factor: 11.25 },
       { id: "grad-angle", name: "Grad", plural: "Grads", symbol: "grad", factor: 0.9 },
       { id: "dms-angle", name: "DMS", plural: "Degrees-Minutes-Seconds", symbol: "DMS", factor: 1 },
       { id: "decimal-degree", name: "Decimal Degree", plural: "Decimal Degrees", symbol: "°", factor: 1 },
-      { id: "slope-angle-deg", name: "Slope Angle", plural: "Slope Angles", symbol: "°", factor: 1 },
-      { id: "angle-elevation", name: "Angle of Elevation", plural: "Angles of Elevation", symbol: "°", factor: 1 },
-      { id: "angle-depression", name: "Angle of Depression", plural: "Angles of Depression", symbol: "°", factor: 1 },
-      { id: "bearing-angle", name: "Bearing", plural: "Bearings", symbol: "°", factor: 1 },
-      { id: "azimuth-angle", name: "Azimuth", plural: "Azimuth angles", symbol: "°", factor: 1 },
       { id: "hour-angle", name: "Hour Angle", plural: "Hour Angles", symbol: "ha", factor: 15 },
       { id: "right-ascension", name: "Right Ascension", plural: "Right Ascensions", symbol: "RA", factor: 15 },
-      { id: "angular-diameter", name: "Angular Diameter", plural: "Angular Diameters", symbol: "°", factor: 1 },
       { id: "degree-hour", name: "Degree ↔ Hour", plural: "Degree-Hour alignments", symbol: "°(h)", factor: 15 },
       { id: "circular-mil-angle", name: "Circular Mil Angle", plural: "Circular Mil Angles", symbol: "mil", factor: 1 }
     ]
@@ -787,74 +650,26 @@ export const categoriesData: Category[] = [
     id: "construction",
     name: "Construction",
     icon: "HardHat",
-    description: "Convert on-site build metrics including brick counts, timber volume, concrete strength, and R-values.",
-    baseUnitId: "kilogram-construction",
+    description: "Convert on-site build metrics including lumber board feet and concrete volumes.",
+    baseUnitId: "cubic-meter-concrete",
     units: [
-      { id: "cement-bag", name: "Cement Bag", plural: "Cement Bags (50kg)", symbol: "bag", factor: 50 },
-      { id: "kilogram-construction", name: "Kilogram", plural: "Kilograms", symbol: "kg", factor: 1 },
-      { id: "concrete-volume-m3", name: "Concrete Volume (m³)", plural: "Cubic Meters of Concrete", symbol: "m³", factor: 1 },
-      { id: "brick-count", name: "Brick Count", plural: "Standard Brick Counts", symbol: "bricks", factor: 1 },
-      { id: "rebar-weight-kg", name: "Rebar Weight (kg)", plural: "Rebar Weights", symbol: "kg", factor: 1 },
-      { id: "rebar-length-m", name: "Rebar Length (m)", plural: "Rebar Lengths", symbol: "m", factor: 1 },
-      { id: "paint-coverage-sqm", name: "Paint Coverage", plural: "Paint Coverages", symbol: "m²", factor: 1 },
-      { id: "tile-coverage-sqm", name: "Tile Coverage", plural: "Tile Coverages", symbol: "m²", factor: 1 },
-      { id: "sand-volume-m3", name: "Sand Volume", plural: "Cubic Meters of Sand", symbol: "m³", factor: 1 },
-      { id: "aggregate-volume-m3", name: "Aggregate Volume", plural: "Cubic Meters of Aggregate", symbol: "m³", factor: 1 },
       { id: "board-foot", name: "Board Feet", plural: "Board Feet Volumes", symbol: "FBM", factor: 0.002359737 },
       { id: "sq-foot-construction", name: "Sq Foot", plural: "Square Feet", symbol: "ft²", factor: 0.092903 },
       { id: "sq-meter-construction", name: "Sq Meter", plural: "Square Meters", symbol: "m²", factor: 1 },
       { id: "cubic-yard-concrete", name: "Cubic Yard", plural: "Cubic Yards", symbol: "yd³", factor: 0.764555 },
-      { id: "cubic-meter-concrete", name: "Cubic Meter", plural: "Cubic Meters", symbol: "m³", factor: 1 },
-      { id: "plywood-sheet", name: "Plywood Sheet", plural: "Plywood Sheets (4x8)", symbol: "sheet", factor: 2.972897 },
-      { id: "timber-volume-m3", name: "Timber Volume", plural: "Timber Volumes", symbol: "m³", factor: 1 },
-      { id: "roofing-square", name: "Roofing Square", plural: "Roofing Squares", symbol: "sq", factor: 9.290304 },
-      { id: "flooring-area-sqft", name: "Flooring Area (sqft)", plural: "Flooring Areas (sqft)", symbol: "ft²", factor: 0.092903 },
-      { id: "wall-area-sqft", name: "Wall Area (sqft)", plural: "Wall Areas (sqft)", symbol: "ft²", factor: 0.092903 },
-      { id: "mortar-mix-ratio", name: "Mortar Mix Ratio", plural: "Mortar Mixes", symbol: "ratio", factor: 1 },
-      { id: "rebar-weight-lb", name: "Rebar Weight (lb)", plural: "Rebar Weights in lbs", symbol: "lb", factor: 0.453592 },
-      { id: "pipe-diameter-inch", name: "Pipe Diameter (in)", plural: "Pipe Diameters in Inches", symbol: "in", factor: 1 },
-      { id: "pipe-schedule", name: "Pipe Schedule", plural: "Pipe Schedules", symbol: "sch", factor: 1 },
-      { id: "slab-thickness-inch", name: "Slab Thickness (in)", plural: "Slab Thicknesses", symbol: "in", factor: 1 },
-      { id: "load-bearing-psf", name: "Load Bearing (psf)", plural: "Load Bearings (psf)", symbol: "psf", factor: 47.88026 },
-      { id: "psi-strength", name: "Strength (PSI)", plural: "Concrete Strength in PSI", symbol: "psi", factor: 6894.757 },
-      { id: "mpa-strength", name: "Strength (MPa)", plural: "Concrete Strength in MPa", symbol: "MPa", factor: 1000000 },
-      { id: "gravel-volume-m3", name: "Gravel Volume", plural: "Cubic Meters of Gravel", symbol: "m³", factor: 1 },
-      { id: "insulation-r-value", name: "Insulation R-Value", plural: "R-Values", symbol: "R-val", factor: 1 }
+      { id: "cubic-meter-concrete", name: "Cubic Meter", plural: "Cubic Meters", symbol: "m³", factor: 1 }
     ]
   },
   {
     id: "data-transfer",
     name: "Data Transfer",
     icon: "Wifi",
-    description: "Convert bandwidth speeds, download/upload file times, 5G parameters, and satellite networks.",
+    description: "Convert bandwidth speeds and network data transfer rates.",
     baseUnitId: "bps",
     customFormula: (value: number, from: string, to: string) => {
-      if (to === "download-time-s" || to === "upload-time-s") {
-        const transferFactors: Record<string, number> = {
-          "bps": 1, "Bps": 8, "kbps": 1000, "Mbps": 1000000, "Gbps": 1000000000,
-          "Tbps": 1000000000000, "KBps": 8000, "MBps": 8000000, "GBps": 8000000000
-        };
-        const currentSpeedBps = value * (transferFactors[from] || 1);
-        return currentSpeedBps <= 0 ? 0 : 8589934592 / currentSpeedBps;
-      }
-      if (from === "download-time-s" || from === "upload-time-s") {
-        const transferFactors: Record<string, number> = {
-          "bps": 1, "Bps": 8, "kbps": 1000, "Mbps": 1000000, "Gbps": 1000000000,
-          "Tbps": 1000000000000, "KBps": 8000, "MBps": 8000000, "GBps": 8000000000
-        };
-        const targetFactor = transferFactors[to] || 1;
-        return value <= 0 ? 0 : (8589934592 / value) / targetFactor;
-      }
-
       const transFactors: Record<string, number> = {
         "bps": 1, "Bps": 8, "kbps": 1000, "Mbps": 1000000, "Gbps": 1000000000,
-        "Tbps": 1000000000000, "KBps": 8000, "MBps": 8000000, "GBps": 8000000000,
-        "bandwidth-hz": 1, "baud-rate": 1, "network-speed-cat5": 100000000,
-        "network-speed-cat6": 10000000000, "usb-1-1-speed": 12000000, "usb-2-0-speed": 480000000,
-        "usb-3-0-speed": 5000000000, "wifi-4-speed": 300000000, "wifi-5-speed": 1300000000,
-        "wifi-6-speed": 9600000000, "fiber-optic-10g": 10000000000, "mobile-4g-speed": 100000000,
-        "mobile-5g-speed": 1000000000, "streaming-4k": 25000000, "streaming-1080p": 5000000,
-        "latency-ms": 1, "packet-size": 8, "sample-rate-hz": 1, "audio-bitrate-mp3": 320000
+        "Tbps": 1000000000000, "KBps": 8000, "MBps": 8000000, "GBps": 8000000000
       };
       const fFrom = transFactors[from] || 1;
       const fTo = transFactors[to] || 1;
@@ -869,28 +684,7 @@ export const categoriesData: Category[] = [
       { id: "Tbps", name: "Tbps", plural: "Terabits per Second", symbol: "Tbps", factor: 1000000000000 },
       { id: "KBps", name: "KB/s", plural: "Kilobytes per Second", symbol: "KB/s", factor: 8000 },
       { id: "MBps", name: "MB/s", plural: "Megabytes per Second", symbol: "MB/s", factor: 8000000 },
-      { id: "GBps", name: "GB/s", plural: "Gigabytes per Second", symbol: "GB/s", factor: 8000000000 },
-      { id: "download-time-s", name: "Download Time (1GB)", plural: "Download times", symbol: "s", factor: 1 },
-      { id: "upload-time-s", name: "Upload Time (1GB)", plural: "Upload times", symbol: "s", factor: 1 },
-      { id: "bandwidth-hz", name: "Bandwidth (Hz)", plural: "Bandwidth frequencies", symbol: "Hz", factor: 1 },
-      { id: "baud-rate", name: "Baud Rate", plural: "Baud rates", symbol: "Bd", factor: 1 },
-      { id: "network-speed-cat5", name: "Cat5 Speed", plural: "Cat5 Speeds", symbol: "100M", factor: 100000000 },
-      { id: "network-speed-cat6", name: "Cat6 Speed", plural: "Cat6 Speeds", symbol: "10G", factor: 10000000000 },
-      { id: "usb-1-1-speed", name: "USB 1.1 Speed", plural: "USB 1.1 speeds", symbol: "12M", factor: 12000000 },
-      { id: "usb-2-0-speed", name: "USB 2.0 Speed", plural: "USB 2.0 speeds", symbol: "480M", factor: 480000000 },
-      { id: "usb-3-0-speed", name: "USB 3.0 Speed", plural: "USB 3.0 speeds", symbol: "5G", factor: 5000000000 },
-      { id: "wifi-4-speed", name: "WiFi 4 Speed", plural: "WiFi 4 speeds", symbol: "300M", factor: 300000000 },
-      { id: "wifi-5-speed", name: "WiFi 5 Speed", plural: "WiFi 5 speeds", symbol: "1.3G", factor: 1300000000 },
-      { id: "wifi-6-speed", name: "WiFi 6 Speed", plural: "WiFi 6 speeds", symbol: "9.6G", factor: 9600000000 },
-      { id: "fiber-optic-10g", name: "Fiber Optic 10G", plural: "Fiber Optic 10G speeds", symbol: "10G", factor: 10000000000 },
-      { id: "mobile-4g-speed", name: "4G Speed", plural: "4G Speeds", symbol: "100M", factor: 100000000 },
-      { id: "mobile-5g-speed", name: "5G Speed", plural: "5G Speeds", symbol: "1G", factor: 1000000000 },
-      { id: "streaming-4k", name: "Streaming 4K", plural: "Streaming 4K bitrates", symbol: "25M", factor: 25000000 },
-      { id: "streaming-1080p", name: "Streaming 1080p", plural: "Streaming 1080p bitrates", symbol: "5M", factor: 5000000 },
-      { id: "latency-ms", name: "Latency (ms)", plural: "Latency values", symbol: "ms", factor: 1 },
-      { id: "packet-size", name: "Packet Size", plural: "Packet sizes", symbol: "Bytes", factor: 8 },
-      { id: "sample-rate-hz", name: "Sample Rate (Hz)", plural: "Sample rates", symbol: "Hz", factor: 1 },
-      { id: "audio-bitrate-mp3", name: "Audio MP3", plural: "MP3 bitrates", symbol: "320k", factor: 320000 }
+      { id: "GBps", name: "GB/s", plural: "Gigabytes per Second", symbol: "GB/s", factor: 8000000000 }
     ]
   },
   {

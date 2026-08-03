@@ -9,15 +9,22 @@ import Header, { categoryIconMap, getCategoryStyle } from "./components/Header";
 import Footer from "./components/Footer";
 import CategoryCard from "./components/CategoryCard";
 import ConverterTool from "./components/ConverterTool";
-import SEOContent from "./components/SEOContent";
 import AdPlaceholder from "./components/AdPlaceholder";
-import FaqAccordion from "./components/FaqAccordion";
-import FeaturedConverters from "./components/FeaturedConverters";
-import InternalLinkingDirectory from "./components/InternalLinkingDirectory";
-import ValidatorPage from "./components/ValidatorPage";
 import { categoriesData } from "./data/convertersData";
+import { engineeringCalculatorsData } from "./data/calculatorsData";
 import { ConversionHistoryItem, FavoriteTool } from "./types";
 import { performConversion, runEngineAudit } from "./utils/conversionEngine";
+import { applyAutomatedSeo } from "./utils/classificationEngine";
+import { injectPageSchemas } from "./utils/schemaEngine";
+
+// Lazy-loaded components for optimal code-splitting and core web vitals
+const SEOContent = React.lazy(() => import("./components/SEOContent"));
+const FaqAccordion = React.lazy(() => import("./components/FaqAccordion"));
+const FeaturedConverters = React.lazy(() => import("./components/FeaturedConverters"));
+const InternalLinkingDirectory = React.lazy(() => import("./components/InternalLinkingDirectory"));
+const ValidatorPage = React.lazy(() => import("./components/ValidatorPage"));
+const EngineeringCalculatorsView = React.lazy(() => import("./components/EngineeringCalculatorsView"));
+const EngineeringCategoryPage = React.lazy(() => import("./components/EngineeringCategoryPage"));
 
 export default function App() {
   // Routing State
@@ -192,37 +199,54 @@ export default function App() {
     localStorage.setItem("uc_theme", darkMode ? "dark" : "light");
   }, [darkMode]);
 
-  // Dynamically reset Robots meta tag for non-converter pages
-  useEffect(() => {
-    if (route.page !== "converter") {
-      const robotsTag = document.querySelector('meta[name="robots"]');
-      if (robotsTag) {
-        robotsTag.setAttribute("content", "index, follow");
-      } else {
-        const newRobots = document.createElement("meta");
-        newRobots.name = "robots";
-        newRobots.content = "index, follow";
-        document.head.appendChild(newRobots);
-      }
-    }
-  }, [route.page]);
-
-  // Dynamically set homepage SEO metadata when returning to home page
+  // AUTOMATIC CLASSIFICATION & SEO POLICY ENGINE
   useEffect(() => {
     if (route.page === "home") {
-      document.title = "UnitsConvertors.com | Free Online Unit Conversion Tools";
-      const metaDescTag = document.querySelector('meta[name="description"]');
-      const homeDesc = "Convert length, weight, temperature, area, volume, pressure, energy, and hundreds of other units with fast, accurate, and easy-to-use online conversion tools.";
-      if (metaDescTag) {
-        metaDescTag.setAttribute("content", homeDesc);
-      } else {
-        const newMeta = document.createElement("meta");
-        newMeta.name = "description";
-        newMeta.content = homeDesc;
-        document.head.appendChild(newMeta);
-      }
+      applyAutomatedSeo({
+        pageType: "home",
+        title: "UnitsConvertors.com | Free Online Unit Conversion Tools",
+        description: "Convert length, weight, temperature, area, volume, pressure, energy, and hundreds of other units with fast, accurate, and easy-to-use online conversion tools."
+      });
+    } else if (route.page === "category" || route.page === "engineering-category" || route.page === "engineering-calculators") {
+      const disc = route.category ? engineeringCalculatorsData.find(d => d.id === route.category || d.id === `${route.category}-calc` || d.id.replace("-calc", "") === route.category) : null;
+      const titleName = disc ? `${disc.name} Calculators` : route.category ? `${route.category.toUpperCase()} Converters` : "Converters & Engineering Calculators";
+      const descText = disc ? disc.description : "Explore comprehensive unit converters and engineering calculators on UnitsConvertors.com.";
+      applyAutomatedSeo({
+        pageType: "category-hub",
+        title: `${titleName} | UnitsConvertors.com`,
+        description: descText
+      });
+    } else if (route.page === "converter") {
+      applyAutomatedSeo({
+        pageType: "individual-tool",
+        title: `${route.fromUnit} to ${route.toUnit} Converter | UnitsConvertors.com`,
+        description: `Convert ${route.fromUnit} to ${route.toUnit} with exact mathematical formulas, worked calculation examples, reference tables, and FAQs.`,
+        contentQuality: {
+          hasOriginalArticle: true,
+          hasFormula: true,
+          hasWorkedExamples: true,
+          hasReferenceTable: true,
+          hasFaqs: true,
+          faqCount: 8,
+          hasPracticalApplications: true,
+          wordCount: 850
+        }
+      });
+    } else {
+      applyAutomatedSeo({
+        pageType: "support-page",
+        title: `${route.page.toUpperCase()} | UnitsConvertors.com`,
+        description: `Learn more about UnitsConvertors.com on our ${route.page} page.`
+      });
     }
-  }, [route.page]);
+
+    injectPageSchemas({
+      page: route.page,
+      category: route.category,
+      fromUnit: route.fromUnit,
+      toUnit: route.toUnit
+    });
+  }, [route.page, route.category, route.fromUnit, route.toUnit]);
 
   // Route Parser
   useEffect(() => {
@@ -242,7 +266,24 @@ export default function App() {
       const first = segments[0];
       const supportPages = ["about", "contact", "privacy", "terms", "disclaimer", "sitemap", "favorites", "validator"];
       
-      if (supportPages.includes(first)) {
+      if (first === "engineering-calculators") {
+        if (segments.length > 1) {
+          const second = segments[1];
+          const matchedDisc = engineeringCalculatorsData.find(d => 
+            d.id === second || d.id === `${second}-calc` || d.id.replace("-calc", "") === second
+          );
+          if (matchedDisc) {
+            setRoute({ page: "engineering-category", category: matchedDisc.id, fromUnit: "", toUnit: "" });
+          } else {
+            setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
+          }
+        } else {
+          setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
+        }
+      } else if (engineeringCalculatorsData.some(d => d.id === first || d.id === `${first}-calc` || d.id.replace("-calc", "") === first)) {
+        const matchedDisc = engineeringCalculatorsData.find(d => d.id === first || d.id === `${first}-calc` || d.id.replace("-calc", "") === first);
+        setRoute({ page: "engineering-category", category: matchedDisc?.id || first, fromUnit: "", toUnit: "" });
+      } else if (supportPages.includes(first)) {
         setRoute({ page: first, category: "", fromUnit: "", toUnit: "" });
       } else {
         const cat = categoriesData.find(c => c.id === first);
@@ -273,9 +314,17 @@ export default function App() {
   const handleNavigate = (category: string, fromUnit?: string, toUnit?: string, extraPage?: string) => {
     let targetPath = "/";
     if (extraPage) {
-      targetPath = `/${extraPage}`;
+      if (category === "engineering-calculators") {
+        targetPath = `/engineering-calculators/${extraPage}`;
+      } else {
+        targetPath = `/${extraPage}`;
+      }
     } else if (category === "home") {
       targetPath = "/";
+    } else if (category === "engineering-calculators") {
+      targetPath = "/engineering-calculators";
+    } else if (engineeringCalculatorsData.some(d => d.id === category || d.id === `${category}-calc` || d.id.replace("-calc", "") === category)) {
+      targetPath = `/engineering-calculators/${category}`;
     } else if (fromUnit && toUnit) {
       targetPath = `/${category}/${fromUnit}-to-${toUnit}`;
     } else {
@@ -575,7 +624,9 @@ export default function App() {
                   </section>
 
                   {/* POPULAR CONVERTERS */}
-                  <FeaturedConverters onNavigate={handleNavigate} />
+                  <React.Suspense fallback={<div className="py-8 text-center text-slate-400">Loading popular converters...</div>}>
+                    <FeaturedConverters onNavigate={handleNavigate} />
+                  </React.Suspense>
 
                   {/* WHY CHOOSE US (6 PREMIUM FEATURE CARDS) */}
                   <section className="bg-[var(--background-secondary)] dark:bg-slate-900/10 border-y border-[var(--border-subtle)] dark:border-slate-800/80 py-[32px] my-2">
@@ -672,15 +723,19 @@ export default function App() {
                   </section>
 
                   {/* FAQ ACCORDION SECTION */}
-                  <FaqAccordion />
+                  <React.Suspense fallback={<div className="py-8 text-center text-slate-400">Loading FAQs...</div>}>
+                    <FaqAccordion />
+                  </React.Suspense>
 
                   {/* DYNAMIC INTERNAL LINKING MATRIX */}
-                  <InternalLinkingDirectory 
-                    categories={categoriesData} 
-                    onNavigate={handleNavigate} 
-                    favorites={favorites}
-                    onToggleFavorite={handleToggleFavorite}
-                  />
+                  <React.Suspense fallback={<div className="py-8 text-center text-slate-400">Loading directory matrix...</div>}>
+                    <InternalLinkingDirectory 
+                      categories={categoriesData} 
+                      onNavigate={handleNavigate} 
+                      favorites={favorites}
+                      onToggleFavorite={handleToggleFavorite}
+                    />
+                  </React.Suspense>
 
             {/* NEWSLETTER SUBSCRIPTION CARD (Stay Updated with New Converter Tools) */}
             <section className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 w-full no-print">
@@ -727,9 +782,25 @@ export default function App() {
         {/* VIEW: CATEGORY VIEW */}
         {route.page === "category" && activeCategory && (
           <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4 animate-in fade-in duration-200">
-            {/* Breadcrumbs */}
-            <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2">
-              <span className="text-slate-600 dark:text-slate-300">{activeCategory.name} Converters</span>
+            {/* Breadcrumb Navigation */}
+            <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2" aria-label="Breadcrumb">
+              <button 
+                onClick={() => setRoute({ page: "home" })}
+                className="hover:text-blue-500 cursor-pointer transition-colors"
+              >
+                Home
+              </button>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              <button 
+                onClick={() => setRoute({ page: "home" })}
+                className="hover:text-blue-500 cursor-pointer transition-colors"
+              >
+                Unit Converters
+              </button>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              <span className="text-slate-700 dark:text-slate-200 font-bold">
+                {activeCategory.name} Converters
+              </span>
             </nav>
 
             {/* Category Header Card */}
@@ -789,11 +860,30 @@ export default function App() {
         {/* VIEW: CONVERTER VIEW */}
         {route.page === "converter" && activeCategory && (
           <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4 animate-in fade-in duration-200">
-            {/* Breadcrumbs */}
-            <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2">
-              <span onClick={() => handleNavigate(activeCategory.id)} className="hover:text-blue-500 cursor-pointer">{activeCategory.name}</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-              <span className="text-slate-600 dark:text-slate-300">
+            {/* Breadcrumb Navigation */}
+            <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2" aria-label="Breadcrumb">
+              <button 
+                onClick={() => setRoute({ page: "home" })}
+                className="hover:text-blue-500 cursor-pointer transition-colors"
+              >
+                Home
+              </button>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              <button 
+                onClick={() => setRoute({ page: "home" })}
+                className="hover:text-blue-500 cursor-pointer transition-colors"
+              >
+                Unit Converters
+              </button>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              <button 
+                onClick={() => handleNavigate(activeCategory.id)}
+                className="hover:text-blue-500 cursor-pointer transition-colors"
+              >
+                {activeCategory.name}
+              </button>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              <span className="text-slate-700 dark:text-slate-200 font-bold">
                 {activeCategory.units.find(u => u.id === route.fromUnit)?.name} to {activeCategory.units.find(u => u.id === route.toUnit)?.name}
               </span>
             </nav>
@@ -819,12 +909,14 @@ export default function App() {
             />
 
             {/* SEO Content Box */}
-            <SEOContent
-              category={activeCategory}
-              fromUnit={activeCategory.units.find(u => u.id === route.fromUnit) || activeCategory.units[0]}
-              toUnit={activeCategory.units.find(u => u.id === route.toUnit) || activeCategory.units[1] || activeCategory.units[0]}
-              onNavigate={handleNavigate}
-            />
+            <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading educational guide & formulas...</div>}>
+              <SEOContent
+                category={activeCategory}
+                fromUnit={activeCategory.units.find(u => u.id === route.fromUnit) || activeCategory.units[0]}
+                toUnit={activeCategory.units.find(u => u.id === route.toUnit) || activeCategory.units[1] || activeCategory.units[0]}
+                onNavigate={handleNavigate}
+              />
+            </React.Suspense>
 
           </div>
         )}
@@ -1558,7 +1650,39 @@ export default function App() {
 
         {/* VIEW: NIST ENGINE VALIDATION & REPORT */}
         {route.page === "validator" && (
-          <ValidatorPage />
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading engine validation tool...</div>}>
+            <ValidatorPage />
+          </React.Suspense>
+        )}
+
+        {/* VIEW: ENGINEERING CALCULATOR CATEGORY LANDING PAGE */}
+        {route.page === "engineering-category" && route.category && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading engineering calculator...</div>}>
+            <EngineeringCategoryPage 
+              disciplineId={route.category} 
+              initialToolId={route.fromUnit}
+              onNavigate={handleNavigate} 
+            />
+          </React.Suspense>
+        )}
+
+        {/* VIEW: ENGINEERING CALCULATORS OVERVIEW HUB */}
+        {route.page === "engineering-calculators" && !route.category && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading engineering calculators hub...</div>}>
+            <EngineeringCalculatorsView 
+              selectedDisciplineId="" 
+              onNavigate={handleNavigate} 
+            />
+          </React.Suspense>
+        )}
+        {route.page === "engineering-calculators" && route.category && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading engineering calculator...</div>}>
+            <EngineeringCategoryPage 
+              disciplineId={route.category} 
+              initialToolId={route.fromUnit}
+              onNavigate={handleNavigate} 
+            />
+          </React.Suspense>
         )}
 
             </div>

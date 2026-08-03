@@ -18,7 +18,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
   onHomeClick,
   className = "",
-  injectSchema = true,
+  injectSchema = false,
 }) => {
   // Generate JSON-LD BreadcrumbList Schema
   const schemaObj = injectSchema

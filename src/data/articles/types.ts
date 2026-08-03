@@ -46,7 +46,7 @@ export interface CustomArticleData {
   table: {
     title: string;
     headers: string[];
-    rows: { fromVal: string; toVal: string; extra: string; extra2?: string }[];
+    rows: { fromVal: string; toVal: string; extra: string; extra2?: string; extra3?: string; extra4?: string }[];
   };
   applications: {
     title: string;
