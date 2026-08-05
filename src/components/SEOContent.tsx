@@ -5,6 +5,7 @@ import { generateSEOContent, performConversion, getStringHash } from "../utils/c
 import { customLengthArticles, isSeoReady } from "../data/articles";
 import { categoriesData } from "../data/convertersData";
 import { injectPageSchemas } from "../utils/schemaEngine";
+import MathFormula from "./MathFormula";
 
 // --- REUSABLE SUB-COMPONENTS FOR TOPICAL SEO & INTERNAL LINKING ---
 
@@ -867,9 +868,9 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             </div>
             <div className="flex-shrink-0 w-[300px] max-w-full p-[15px] rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex flex-col items-center justify-center text-center">
               <span className="text-[10px] font-black tracking-wider uppercase opacity-85">Conversion Standard</span>
-              <span className="text-lg md:text-xl font-mono font-black select-all mt-1.5">
-                {customArticle.quickAnswer.formulaDisplay}
-              </span>
+              <div className="text-lg md:text-xl font-mono font-black select-all mt-1.5 text-white">
+                <MathFormula formula={customArticle.quickAnswer.formulaDisplay} asInline={true} className="text-white dark:text-white" />
+              </div>
               <span className="text-xs opacity-90 mt-2 leading-relaxed -mx-[7px]">{customArticle.quickAnswer.subtext}</span>
             </div>
           </section>
@@ -883,9 +884,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             {customArticle.formula.text}
           </p>
-          <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800 font-mono text-center text-slate-800 dark:text-slate-100 font-bold border border-slate-200 dark:border-slate-700">
-            {customArticle.formula.math}
-          </div>
+          <MathFormula formula={customArticle.formula.math} displayMode={true} />
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             {customArticle.formula.subtext}
           </p>
@@ -2784,7 +2783,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             </p>
           </div>
           <div className="flex-shrink-0 w-full md:w-auto p-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-sm md:text-base font-mono font-black select-all">
-            {article.formulaSection.formula}
+            <MathFormula formula={article.formulaSection.formula} asInline={true} className="text-white dark:text-white" />
           </div>
         </section>
       )

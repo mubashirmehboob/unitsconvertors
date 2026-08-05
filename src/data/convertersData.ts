@@ -405,7 +405,7 @@ export const categoriesData: Category[] = [
     ]
   },
   {
-    id: "electrical",
+    id: "voltage",
     name: "Voltage",
     icon: "Zap",
     description: "Convert electromotive force and electrical potential differences including volts, kilovolts, millivolts, and microvolts.",
@@ -439,17 +439,9 @@ export const categoriesData: Category[] = [
     description: "Convert physical and astronomical light, illuminance, luminance, and energy properties.",
     baseUnitId: "lux",
     customFormula: (value: number, from: string, to: string) => {
-      if (from === "nanometer" && to === "angstrom") {
-        return value * 10;
-      }
-      if (from === "angstrom" && to === "nanometer") {
-        return value * 0.1;
-      }
       const factors: Record<string, number> = {
         "lux": 1,
         "foot-candle": 10.76391,
-        "candela": 1,
-        "lumen": 1,
         "nit": 1,
         "candela-per-m2": 1,
         "lambert": 3183.09886,
@@ -467,18 +459,12 @@ export const categoriesData: Category[] = [
     units: [
       { id: "lux", name: "Lux (lx)", plural: "Lux", symbol: "lx", factor: 1 },
       { id: "foot-candle", name: "Foot-candle", plural: "Foot-candles", symbol: "fc", factor: 10.76391 },
-      { id: "candela", name: "Candela", plural: "Candelas", symbol: "cd", factor: 1 },
-      { id: "lumen", name: "Lumen", plural: "Lumens", symbol: "lm", factor: 1 },
       { id: "nit", name: "Nit", plural: "Nits", symbol: "nt", factor: 1 },
       { id: "candela-per-m2", name: "Candela/m²", plural: "Candelas per Sq Meter", symbol: "cd/m²", factor: 1 },
       { id: "lambert", name: "Lambert", plural: "Lamberts", symbol: "L", factor: 3183.09886 },
       { id: "foot-lambert", name: "Foot-Lambert", plural: "Foot-Lamberts", symbol: "fL", factor: 3.426259 },
       { id: "stilb", name: "Stilb", plural: "Stilbs", symbol: "sb", factor: 10000 },
       { id: "phot", name: "Phot", plural: "Phots", symbol: "ph", factor: 10000 },
-      { id: "nanometer", name: "Nanometer (Light)", plural: "Nanometers", symbol: "nm", factor: 1 },
-      { id: "angstrom", name: "Angstrom (Å)", plural: "Angstroms", symbol: "Å", factor: 0.1 },
-      { id: "color-temperature-mired", name: "Color Temp (Mired)", plural: "Mired Values", symbol: "Mired", factor: 1 },
-      { id: "kelvin-temperature", name: "Kelvin", plural: "Kelvin (Light)", symbol: "K", factor: 1 },
       { id: "apostilb", name: "Apostilb", plural: "Apostilbs", symbol: "asb", factor: 0.318309886 },
       { id: "blondel", name: "Blondel", plural: "Blondels", symbol: "blondel", factor: 0.318309886 },
       { id: "skot", name: "Skot", plural: "Skots", symbol: "skot", factor: 0.000318309886 }
@@ -497,7 +483,7 @@ export const categoriesData: Category[] = [
       const intensityToDb = (i: number) => i <= 0 ? -120 : 10 * Math.log10(i / 1e-12);
 
       const dbUnits = new Set([
-        "decibel", "decibel-spl", "dba-sound"
+        "decibel", "decibel-spl"
       ]);
       const pressureUnits = new Set(["pascal-sound", "sound-pressure"]);
       const intensityUnits = new Set(["sound-intensity", "watt-m2-sound"]);
@@ -518,7 +504,7 @@ export const categoriesData: Category[] = [
       }
 
       const soundFactors: Record<string, number> = {
-        "decibel": 1, "bel": 10, "decibel-spl": 1, "dba-sound": 1
+        "decibel": 1, "bel": 10, "decibel-spl": 1
       };
       const fFrom = soundFactors[from] || 1;
       const fTo = soundFactors[to] || 1;
@@ -531,8 +517,7 @@ export const categoriesData: Category[] = [
       { id: "pascal-sound", name: "Pascal (Sound)", plural: "Pascals (Sound)", symbol: "Pa", factor: 1 },
       { id: "sound-pressure", name: "Sound Pressure", plural: "Sound Pressures", symbol: "Pa", factor: 1 },
       { id: "sound-intensity", name: "Sound Intensity", plural: "Sound Intensities", symbol: "W/m²", factor: 1 },
-      { id: "watt-m2-sound", name: "Watt/m²", plural: "Watts per Sq Meter", symbol: "W/m²", factor: 1 },
-      { id: "dba-sound", name: "A-Weighted Decibel", plural: "dBA Values", symbol: "dBA", factor: 1 }
+      { id: "watt-m2-sound", name: "Watt/m²", plural: "Watts per Sq Meter", symbol: "W/m²", factor: 1 }
     ]
   },
   {
@@ -546,7 +531,6 @@ export const categoriesData: Category[] = [
       { id: "dyne", name: "Dyne", plural: "Dynes", symbol: "dyn", factor: 1e-5 },
       { id: "pound-force", name: "Pound-force", plural: "Pound-forces", symbol: "lbf", factor: 4.448221615 },
       { id: "kilogram-force", name: "Kilogram-force", plural: "Kilogram-forces", symbol: "kgf", factor: 9.80665 },
-      { id: "kip", name: "Kip", plural: "Kips", symbol: "kip", factor: 4448.221615 },
       { id: "poundal", name: "Poundal", plural: "Poundals", symbol: "pdl", factor: 0.138254954 },
       { id: "kilonewton", name: "Kilonewton", plural: "Kilonewtons", symbol: "kN", factor: 1000 },
       { id: "meganewton", name: "Meganewton", plural: "Meganewtons", symbol: "MN", factor: 1000000 },
@@ -556,11 +540,8 @@ export const categoriesData: Category[] = [
       { id: "ton-force-metric", name: "Ton-force Metric", plural: "Ton-forces (Metric)", symbol: "tonf (m)", factor: 9806.65 },
       { id: "sthene", name: "Sthene", plural: "Sthenes", symbol: "sn", factor: 1000 },
       { id: "kip-force", name: "Kip-force", plural: "Kip-forces", symbol: "kipf", factor: 4448.221615 },
-      { id: "force-per-length-n-m", name: "Newton per Meter", plural: "Newtons per Meter", symbol: "N/m", factor: 1 },
-      { id: "force-per-length-lb-in", name: "Pound-force per Inch", plural: "Pound-forces per Inch", symbol: "lbf/in", factor: 175.1268 },
       { id: "millinewton", name: "Millinewton", plural: "Millinewtons", symbol: "mN", factor: 0.001 },
-      { id: "micronewton", name: "Micronewton", plural: "Micronewtons", symbol: "µN", factor: 0.000001 },
-      { id: "kg-force-cm2", name: "kgf/cm²", plural: "Kilogram-forces per Sq Centimeter", symbol: "kgf/cm²", factor: 98066.5 }
+      { id: "micronewton", name: "Micronewton", plural: "Micronewtons", symbol: "µN", factor: 0.000001 }
     ]
   },
   {
@@ -577,8 +558,6 @@ export const categoriesData: Category[] = [
       { id: "barrel-per-day", name: "Barrel/day", plural: "Barrels per Day", symbol: "bbl/d", factor: 0.00184013 },
       { id: "cubic-meter-per-sec", name: "Cubic meter/sec", plural: "Cubic Meters per Second", symbol: "m³/s", factor: 1000 },
       { id: "cubic-feet-per-sec", name: "Cubic feet/sec", plural: "Cubic Feet per Second", symbol: "cfs", factor: 28.316846 },
-      { id: "mass-flow-rate", name: "Mass Flow Rate", plural: "Mass Flow Rates", symbol: "kg/s", factor: 1 },
-      { id: "volumetric-flow-rate", name: "Volumetric Flow Rate", plural: "Volumetric Flow Rates", symbol: "L/s", factor: 1 },
       { id: "liter-per-min", name: "Liter/min", plural: "Liters per Minute", symbol: "L/min", factor: 0.016666667 },
       { id: "gallon-per-hour", name: "Gallon/hour", plural: "Gallons per Hour", symbol: "gph", factor: 0.001051503 },
       { id: "cubic-centimeter-per-sec", name: "Cubic centimeter/sec", plural: "Cubic Centimeters per Second", symbol: "cm³/s", factor: 0.001 },

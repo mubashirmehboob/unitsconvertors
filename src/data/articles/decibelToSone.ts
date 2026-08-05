@@ -163,9 +163,7 @@ export const decibelToSone: CustomArticleData = {
   ],
   relatedList: [
     { label: "Decibel to Bel", from: "decibel", to: "bel" },
-    { label: "Decibel to Decibel SPL", from: "decibel", to: "decibel-spl" },
-    { label: "Decibel to Phon", from: "decibel", to: "phon" },
-    { label: "Decibel to Sound Pressure", from: "decibel", to: "sound-pressure" }
+    { label: "Decibel to Phon", from: "decibel", to: "phon" }
   ],
   references: [
     "ISO 532-1:2017 Acoustics — Methods for calculating loudness — Part 1: Zwicker method.",

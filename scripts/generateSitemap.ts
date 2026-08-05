@@ -3,6 +3,7 @@ import path from "path";
 import { categoriesData } from "../src/data/convertersData";
 import { engineeringCalculatorsData, engineeringCalculatorRegistry } from "../src/data/calculatorsData";
 import { articleRegistry } from "../src/data/articles";
+import { ENGINEERING_INDEXABLE } from "../src/utils/classificationEngine";
 
 const BASE_URL = "https://www.unitsconvertors.com";
 
@@ -15,6 +16,7 @@ interface SitemapEntry {
 
 function generateSitemap() {
   console.log("=== DYNAMIC SITEMAP GENERATOR ===");
+  console.log(`ENGINEERING_INDEXABLE feature flag: ${ENGINEERING_INDEXABLE}`);
   console.log("Generating fully automated, registry-driven sitemap.xml...");
 
   const currentDate = new Date().toISOString().split("T")[0]; // e.g. "2026-08-03"
@@ -41,7 +43,7 @@ function generateSitemap() {
     { path: "sitemap", priority: "0.8", changefreq: "weekly" },
     { path: "validator", priority: "0.8", changefreq: "weekly" },
     { path: "directory", priority: "0.8", changefreq: "weekly" },
-    { path: "engineering-calculators", priority: "0.9", changefreq: "weekly" }
+    ...(ENGINEERING_INDEXABLE ? [{ path: "engineering-calculators", priority: "0.9", changefreq: "weekly" }] : [])
   ];
 
   let staticCount = 0;
@@ -77,8 +79,9 @@ function generateSitemap() {
       for (const unitB of cat.units) {
         if (unitA.id === unitB.id) continue;
 
-        converterPairCount++;
         const pairKey = `${unitA.id}-to-${unitB.id}`;
+
+        converterPairCount++;
         const metadata = articleRegistry[pairKey];
 
         let priority = "0.7";
@@ -106,28 +109,32 @@ function generateSitemap() {
 
   // D. Engineering Calculator Disciplines (11)
   let engineeringDisciplineCount = 0;
-  for (const disc of engineeringCalculatorsData) {
-    addEntry({
-      url: `${BASE_URL}/engineering-calculators/${disc.id}`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: "0.8"
-    });
-    engineeringDisciplineCount++;
+  if (ENGINEERING_INDEXABLE) {
+    for (const disc of engineeringCalculatorsData) {
+      addEntry({
+        url: `${BASE_URL}/engineering-calculators/${disc.id}`,
+        lastmod: currentDate,
+        changefreq: "weekly",
+        priority: "0.8"
+      });
+      engineeringDisciplineCount++;
+    }
   }
 
-  // E. Engineering Calculator Pages (172)
+  // E. Engineering Calculator Pages (182)
   let engineeringCalculatorCount = 0;
-  for (const tool of engineeringCalculatorRegistry) {
-    const route = tool.route || `/engineering-calculators/${tool.disciplineId}/${tool.slug}`;
-    const cleanRoute = route.startsWith("/") ? route : `/${route}`;
-    addEntry({
-      url: `${BASE_URL}${cleanRoute}`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: "0.8"
-    });
-    engineeringCalculatorCount++;
+  if (ENGINEERING_INDEXABLE) {
+    for (const tool of engineeringCalculatorRegistry) {
+      const route = tool.route || `/engineering-calculators/${tool.disciplineId}/${tool.slug}`;
+      const cleanRoute = route.startsWith("/") ? route : `/${route}`;
+      addEntry({
+        url: `${BASE_URL}${cleanRoute}`,
+        lastmod: currentDate,
+        changefreq: "weekly",
+        priority: "0.8"
+      });
+      engineeringCalculatorCount++;
+    }
   }
 
   // Sort entries deterministically by URL

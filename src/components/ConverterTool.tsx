@@ -4,6 +4,8 @@ import {
 } from "lucide-react";
 import { Category, Unit, ConversionHistoryItem } from "../types";
 import { performConversion, formatUnitValue } from "../utils/conversionEngine";
+import { isIdentityUnitConversion } from "../utils/identityDetection";
+import IdentityConversionNotice from "./IdentityConversionNotice";
 import AdPlaceholder from "./AdPlaceholder";
 
 // Safe, sandboxed scientific calculator evaluator
@@ -974,6 +976,11 @@ export default function ConverterTool({
         )}
 
       </div>
+
+      {/* Identity (1:1) Reference Conversion Notice */}
+      {isIdentityUnitConversion(fromUnit, toUnit, category) && (
+        <IdentityConversionNotice />
+      )}
 
       {/* Embedded Ad Banner to maximize AdSense suitability */}
       <AdPlaceholder slotId="converter-slot" className="no-print" />

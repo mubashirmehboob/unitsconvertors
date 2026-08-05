@@ -27,7 +27,7 @@ export const categoryIconMap: Record<string, React.ComponentType<any>> = {
   "cooking": ChefHat,
   "data-storage": Database,
   "engineering": Layers, // Density
-  "electrical": Zap, // Voltage
+  "voltage": Zap, // Voltage
   "scientific": Atom, // Amount of Substance
   "light": Sun,
   "sound": Volume2,
@@ -199,7 +199,7 @@ export const categoryStyleMap: Record<string, CategoryStyle> = {
     badgeBg: "bg-fuchsia-100 dark:bg-fuchsia-950/50 text-fuchsia-600 dark:text-fuchsia-400",
     gradient: "from-fuchsia-600/10 to-purple-500/10"
   },
-  "electrical": {
+  "voltage": {
     bg: "bg-yellow-50 dark:bg-yellow-950/30",
     text: "text-yellow-600 dark:text-yellow-400",
     border: "border-yellow-100 dark:border-yellow-900/30",

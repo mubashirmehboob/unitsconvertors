@@ -158,10 +158,7 @@ export const decibelToBel: CustomArticleData = {
     }
   ],
   relatedList: [
-    { label: "Decibel to Decibel SPL", from: "decibel", to: "decibel-spl" },
-    { label: "Decibel to Pascal (Sound)", from: "decibel", to: "pascal-sound" },
-    { label: "Decibel to Sound Intensity", from: "decibel", to: "sound-intensity" },
-    { label: "Decibel to Sound Power Level", from: "decibel", to: "sound-power-level" }
+    { label: "Bel to Decibel", from: "bel", to: "decibel" }
   ],
   references: [
     "ISO 80000-8:2020 Quantities and units — Part 8: Acoustics, International Organization for Standardization.",

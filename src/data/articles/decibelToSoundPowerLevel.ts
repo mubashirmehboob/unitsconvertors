@@ -160,9 +160,7 @@ export const decibelToSoundPowerLevel: CustomArticleData = {
   ],
   relatedList: [
     { label: "Decibel to Bel", from: "decibel", to: "bel" },
-    { label: "Decibel to Decibel SPL", from: "decibel", to: "decibel-spl" },
-    { label: "Decibel to Sound Intensity Level", from: "decibel", to: "sound-intensity-level" },
-    { label: "Decibel to Watt/m²", from: "decibel", to: "watt-m2-sound" }
+    { label: "Decibel to Sound Intensity Level", from: "decibel", to: "sound-intensity-level" }
   ],
   references: [
     "ISO 3744:2010 Acoustics — Determination of sound power levels and sound energy levels of noise sources using sound pressure.",

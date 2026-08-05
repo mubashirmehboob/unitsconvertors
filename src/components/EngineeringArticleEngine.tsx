@@ -5,6 +5,7 @@ import {
   Calculator, Info, FileText, Scale, Lightbulb, Compass, Award
 } from "lucide-react";
 import { EngineeringArticleData } from "../data/engineeringArticlesEngine";
+import MathFormula from "./MathFormula";
 
 interface EngineeringArticleEngineProps {
   article: EngineeringArticleData;
@@ -102,7 +103,7 @@ export default function EngineeringArticleEngine({
         </div>
 
         <div className="p-5 rounded-2xl bg-slate-950 text-amber-400 font-mono font-bold text-center text-sm sm:text-base border border-slate-800 shadow-inner">
-          {article.governingEquation.formula}
+          <MathFormula formula={article.governingEquation.formula} displayMode={true} />
         </div>
 
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -442,7 +443,7 @@ export default function EngineeringArticleEngine({
                     {t.name}
                   </span>
                   <span className="text-[10px] font-mono text-slate-400 truncate">
-                    {t.formula}
+                    <MathFormula formula={t.formula} asInline={true} />
                   </span>
                 </button>
               ))}

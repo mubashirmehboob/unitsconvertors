@@ -156,8 +156,8 @@ export const luxToIlluminanceConverter: CustomArticleData = {
   ],
   relatedList: [
     { label: "Lux to Foot-candle", from: "lux", to: "foot-candle" },
-    { label: "Lux to Candela", from: "lux", to: "candela" },
-    { label: "Lux to Lumen", from: "lux", to: "lumen" },
+    { label: "Lux to Nit", from: "lux", to: "nit" },
+    { label: "Lux to Lambert", from: "lux", to: "lambert" },
     { label: "Lux to Luminance Converter", from: "lux", to: "luminance-converter" }
   ],
   references: [

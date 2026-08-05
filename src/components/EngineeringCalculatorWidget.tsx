@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Copy, Check, ShieldCheck, ExternalLink, Calculator, ArrowRight, RefreshCw } from "lucide-react";
 import { EngineeringTool } from "../data/calculatorsData";
+import { isIdentityEngineeringTool } from "../utils/identityDetection";
+import IdentityConversionNotice from "./IdentityConversionNotice";
+import MathFormula from "./MathFormula";
 
 interface EngineeringCalculatorWidgetProps {
   tool: EngineeringTool;
@@ -272,7 +275,7 @@ export default function EngineeringCalculatorWidget({
               <div className="pt-3 border-t border-slate-800/80 text-xs text-slate-400 font-mono flex items-center justify-between gap-2 flex-wrap">
                 <span>Governing Equation:</span>
                 <span className="text-cyan-400 font-bold font-mono text-sm px-2.5 py-1 rounded bg-slate-950 border border-slate-800">
-                  {tool.formula}
+                  <MathFormula formula={tool.formula} asInline={true} className="text-cyan-400 dark:text-cyan-400" />
                 </span>
               </div>
             </div>
@@ -289,6 +292,9 @@ export default function EngineeringCalculatorWidget({
           </div>
         </div>
       </div>
+
+      {/* Identity (1:1) Reference Conversion Notice */}
+      {isIdentityEngineeringTool(tool) && <IdentityConversionNotice />}
     </div>
   );
 }

@@ -236,8 +236,6 @@ import { micromoleToMole } from "./micromoleToMole";
 import { micromoleToMillimole } from "./micromoleToMillimole";
 
 import { luxToFootCandle } from "./luxToFootCandle";
-import { luxToCandela } from "./luxToCandela";
-import { luxToLumen } from "./luxToLumen";
 import { luxToCandelaLuxInverse } from "./luxToCandelaLuxInverse";
 import { luxToNit } from "./luxToNit";
 import { luxToCandelaPerM2 } from "./luxToCandelaPerM2";
@@ -249,6 +247,7 @@ import { luxToWattLumenEfficacy } from "./luxToWattLumenEfficacy";
 import { luxToLuxWattM2 } from "./luxToLuxWattM2";
 import { luxToIlluminanceConverter } from "./luxToIlluminanceConverter";
 import { luxToLuminanceConverter } from "./luxToLuminanceConverter";
+import { luxToApostilb } from "./luxToApostilb";
 
 import { decibelToBel } from "./decibelToBel";
 import { decibelToDecibelSpl } from "./decibelToDecibelSpl";
@@ -264,6 +263,40 @@ import { decibelToFrequency } from "./decibelToFrequency";
 import { decibelToWavelengthSound } from "./decibelToWavelengthSound";
 import { decibelToOctaveRatio } from "./decibelToOctaveRatio";
 import { decibelToSemitoneRatio } from "./decibelToSemitoneRatio";
+
+import { belToDecibel } from "./belToDecibel";
+import { belToDecibelSpl } from "./belToDecibelSpl";
+import { belToPascalSound } from "./belToPascalSound";
+import { belToSoundPressure } from "./belToSoundPressure";
+import { belToSoundIntensity } from "./belToSoundIntensity";
+import { belToWattM2Sound } from "./belToWattM2Sound";
+
+import { newtonToDyne } from "./newtonToDyne";
+import { newtonToPoundForce } from "./newtonToPoundForce";
+import { newtonToKilogramForce } from "./newtonToKilogramForce";
+import { newtonToPoundal } from "./newtonToPoundal";
+import { newtonToKilonewton } from "./newtonToKilonewton";
+import { newtonToMeganewton } from "./newtonToMeganewton";
+import { newtonToOunceForce } from "./newtonToOunceForce";
+import { newtonToGramForce } from "./newtonToGramForce";
+import { newtonToTonForceUs } from "./newtonToTonForceUs";
+import { newtonToTonForceMetric } from "./newtonToTonForceMetric";
+import { newtonToSthene } from "./newtonToSthene";
+import { newtonToKipForce } from "./newtonToKipForce";
+import { newtonToMillinewton } from "./newtonToMillinewton";
+
+import { literPerSecToGallonPerMin } from "./literPerSecToGallonPerMin";
+import { literPerSecToCubicMeterPerHour } from "./literPerSecToCubicMeterPerHour";
+import { literPerSecToCubicFeetPerMin } from "./literPerSecToCubicFeetPerMin";
+import { literPerSecToBarrelPerDay } from "./literPerSecToBarrelPerDay";
+import { literPerSecToCubicMeterPerSec } from "./literPerSecToCubicMeterPerSec";
+import { literPerSecToCubicFeetPerSec } from "./literPerSecToCubicFeetPerSec";
+import { literPerSecToLiterPerMin } from "./literPerSecToLiterPerMin";
+import { literPerSecToGallonPerHour } from "./literPerSecToGallonPerHour";
+import { literPerSecToCubicCentimeterPerSec } from "./literPerSecToCubicCentimeterPerSec";
+import { literPerSecToMilliliterPerMin } from "./literPerSecToMilliliterPerMin";
+import { literPerSecToCfmUnit } from "./literPerSecToCfmUnit";
+import { literPerSecToCmhUnit } from "./literPerSecToCmhUnit";
 
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
@@ -503,8 +536,6 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "micromole-to-millimole": micromoleToMillimole,
 
   "lux-to-foot-candle": luxToFootCandle,
-  "lux-to-candela": luxToCandela,
-  "lux-to-lumen": luxToLumen,
   "lux-to-candela-lux-inverse": luxToCandelaLuxInverse,
   "lux-to-nit": luxToNit,
   "lux-to-candela-per-m2": luxToCandelaPerM2,
@@ -516,6 +547,7 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "lux-to-lux-watt-m2": luxToLuxWattM2,
   "lux-to-illuminance-converter": luxToIlluminanceConverter,
   "lux-to-luminance-converter": luxToLuminanceConverter,
+  "lux-to-apostilb": luxToApostilb,
 
   "decibel-to-bel": decibelToBel,
   "decibel-to-decibel-spl": decibelToDecibelSpl,
@@ -530,7 +562,41 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "decibel-to-frequency-sound": decibelToFrequency,
   "decibel-to-wavelength-sound": decibelToWavelengthSound,
   "decibel-to-octave-ratio": decibelToOctaveRatio,
-  "decibel-to-semitone-ratio": decibelToSemitoneRatio
+  "decibel-to-semitone-ratio": decibelToSemitoneRatio,
+
+  "bel-to-decibel": belToDecibel,
+  "bel-to-decibel-spl": belToDecibelSpl,
+  "bel-to-pascal-sound": belToPascalSound,
+  "bel-to-sound-pressure": belToSoundPressure,
+  "bel-to-sound-intensity": belToSoundIntensity,
+  "bel-to-watt-m2-sound": belToWattM2Sound,
+
+  "newton-to-dyne": newtonToDyne,
+  "newton-to-pound-force": newtonToPoundForce,
+  "newton-to-kilogram-force": newtonToKilogramForce,
+  "newton-to-poundal": newtonToPoundal,
+  "newton-to-kilonewton": newtonToKilonewton,
+  "newton-to-meganewton": newtonToMeganewton,
+  "newton-to-ounce-force": newtonToOunceForce,
+  "newton-to-gram-force": newtonToGramForce,
+  "newton-to-ton-force-us": newtonToTonForceUs,
+  "newton-to-ton-force-metric": newtonToTonForceMetric,
+  "newton-to-sthene": newtonToSthene,
+  "newton-to-kip-force": newtonToKipForce,
+  "newton-to-millinewton": newtonToMillinewton,
+
+  "liter-per-sec-to-gallon-per-min": literPerSecToGallonPerMin,
+  "liter-per-sec-to-cubic-meter-per-hour": literPerSecToCubicMeterPerHour,
+  "liter-per-sec-to-cubic-feet-per-min": literPerSecToCubicFeetPerMin,
+  "liter-per-sec-to-barrel-per-day": literPerSecToBarrelPerDay,
+  "liter-per-sec-to-cubic-meter-per-sec": literPerSecToCubicMeterPerSec,
+  "liter-per-sec-to-cubic-feet-per-sec": literPerSecToCubicFeetPerSec,
+  "liter-per-sec-to-liter-per-min": literPerSecToLiterPerMin,
+  "liter-per-sec-to-gallon-per-hour": literPerSecToGallonPerHour,
+  "liter-per-sec-to-cubic-centimeter-per-sec": literPerSecToCubicCentimeterPerSec,
+  "liter-per-sec-to-milliliter-per-min": literPerSecToMilliliterPerMin,
+  "liter-per-sec-to-cfm-unit": literPerSecToCfmUnit,
+  "liter-per-sec-to-cmh-unit": literPerSecToCmhUnit
 };
 
 export interface ArticleMetadata {
@@ -784,8 +850,6 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "micromole-to-millimole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
 
   "lux-to-foot-candle": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
-  "lux-to-candela": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
-  "lux-to-lumen": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
   "lux-to-candela-lux-inverse": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
   "lux-to-nit": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
   "lux-to-candela-per-m2": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
@@ -798,12 +862,12 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "lux-to-illuminance-converter": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
   "lux-to-luminance-converter": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
 
-  "decibel-to-bel": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
-  "decibel-to-decibel-spl": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
-  "decibel-to-pascal-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
-  "decibel-to-sound-pressure": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
-  "decibel-to-sound-intensity": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
-  "decibel-to-watt-m2-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+  "decibel-to-bel": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-05", priority: 0.9 },
+  "decibel-to-decibel-spl": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "decibel-to-pascal-sound": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "decibel-to-sound-pressure": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "decibel-to-sound-intensity": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "decibel-to-watt-m2-sound": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
   "decibel-to-phon": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
   "decibel-to-sone": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
   "decibel-to-sound-power-level": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
@@ -811,7 +875,43 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "decibel-to-frequency-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
   "decibel-to-wavelength-sound": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
   "decibel-to-octave-ratio": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
-  "decibel-to-semitone-ratio": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 }
+  "decibel-to-semitone-ratio": { seoReady: true, publishedAt: "2026-08-03", updatedAt: "2026-08-03", priority: 0.9 },
+
+  "bel-to-decibel": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-05", priority: 0.9 },
+  "bel-to-decibel-spl": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "bel-to-pascal-sound": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "bel-to-sound-pressure": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "bel-to-sound-intensity": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "bel-to-watt-m2-sound": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+
+  "newton-to-dyne": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-pound-force": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-kilogram-force": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-poundal": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-kilonewton": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-meganewton": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-ounce-force": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-gram-force": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-ton-force-us": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-ton-force-metric": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-sthene": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-kip-force": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-millinewton": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+
+  "lux-to-apostilb": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+
+  "liter-per-sec-to-gallon-per-min": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-cubic-meter-per-hour": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-cubic-feet-per-min": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-barrel-per-day": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-cubic-meter-per-sec": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-cubic-feet-per-sec": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-liter-per-min": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-gallon-per-hour": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-cubic-centimeter-per-sec": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-milliliter-per-min": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-cfm-unit": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-cmh-unit": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

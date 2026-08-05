@@ -157,7 +157,7 @@ export const luxToWattLumenEfficacy: CustomArticleData = {
   ],
   relatedList: [
     { label: "Lux to Lux ↔ Watt/m²", from: "lux", to: "lux-watt-m2" },
-    { label: "Lux to Lumen", from: "lux", to: "lumen" },
+    { label: "Lux to Nit", from: "lux", to: "nit" },
     { label: "Lux to Foot-candle", from: "lux", to: "foot-candle" },
     { label: "Lux to Illuminance Converter", from: "lux", to: "illuminance-converter" }
   ],

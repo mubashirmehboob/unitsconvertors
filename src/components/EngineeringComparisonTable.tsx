@@ -1,5 +1,6 @@
 import React from "react";
 import { Scale, CheckCircle2, AlertCircle } from "lucide-react";
+import MathFormula from "./MathFormula";
 
 interface ComparisonRow {
   parameter: string;
@@ -215,14 +216,14 @@ export default function EngineeringComparisonTable({ disciplineId }: Engineering
             <tr className="bg-slate-100 dark:bg-slate-950/80 text-slate-900 dark:text-slate-100 font-display font-bold border-b border-slate-200 dark:border-slate-800">
               <th className="p-3.5 sm:p-4 min-w-[140px]">Parameter / Metric</th>
               <th className="p-3.5 sm:p-4 min-w-[200px] text-amber-700 dark:text-amber-400 bg-amber-50/50 dark:bg-amber-950/30">
-                {data.headerA}
+                <MathFormula formula={data.headerA} asInline={true} />
               </th>
               <th className="p-3.5 sm:p-4 min-w-[200px] text-blue-700 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-950/30">
-                {data.headerB}
+                <MathFormula formula={data.headerB} asInline={true} />
               </th>
               {data.headerC && (
                 <th className="p-3.5 sm:p-4 min-w-[200px] text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/30">
-                  {data.headerC}
+                  <MathFormula formula={data.headerC} asInline={true} />
                 </th>
               )}
             </tr>
@@ -231,17 +232,17 @@ export default function EngineeringComparisonTable({ disciplineId }: Engineering
             {data.rows.map((row, idx) => (
               <tr key={idx} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors">
                 <td className="p-3.5 sm:p-4 font-bold text-slate-800 dark:text-slate-200 bg-slate-50/50 dark:bg-slate-950/30">
-                  {row.parameter}
+                  <MathFormula formula={row.parameter} asInline={true} />
                 </td>
                 <td className="p-3.5 sm:p-4 text-slate-700 dark:text-slate-300 leading-normal">
-                  {row.itemA}
+                  <MathFormula formula={row.itemA} asInline={true} />
                 </td>
                 <td className="p-3.5 sm:p-4 text-slate-700 dark:text-slate-300 leading-normal">
-                  {row.itemB}
+                  <MathFormula formula={row.itemB} asInline={true} />
                 </td>
                 {data.headerC && (
                   <td className="p-3.5 sm:p-4 text-slate-700 dark:text-slate-300 leading-normal">
-                    {row.itemC || "—"}
+                    {row.itemC ? <MathFormula formula={row.itemC} asInline={true} /> : "—"}
                   </td>
                 )}
               </tr>
@@ -258,7 +259,7 @@ export default function EngineeringComparisonTable({ disciplineId }: Engineering
             Key Engineering Takeaway:
           </span>
           <p className="leading-relaxed">
-            {data.engineeringInsight}
+            <MathFormula formula={data.engineeringInsight} asInline={true} />
           </p>
         </div>
       </div>

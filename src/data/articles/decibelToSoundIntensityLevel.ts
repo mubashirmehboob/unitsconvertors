@@ -161,9 +161,7 @@ export const decibelToSoundIntensityLevel: CustomArticleData = {
   ],
   relatedList: [
     { label: "Decibel to Bel", from: "decibel", to: "bel" },
-    { label: "Decibel to Decibel SPL", from: "decibel", to: "decibel-spl" },
-    { label: "Decibel to Sound Power Level", from: "decibel", to: "sound-power-level" },
-    { label: "Decibel to Watt/m²", from: "decibel", to: "watt-m2-sound" }
+    { label: "Decibel to Sound Power Level", from: "decibel", to: "sound-power-level" }
   ],
   references: [
     "ISO 9614-2:1996 Acoustics — Determination of sound power levels of noise sources using sound intensity — Part 2: Measurement by scanning.",

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, 
   Waves, Cpu, Grid, Compass, Calculator, Info, Check, ArrowRight, Sparkles, BookOpen, ChevronRight, Search, X, ShieldCheck
 } from "lucide-react";
 import { engineeringCalculatorsData, EngineeringCalculatorDiscipline, EngineeringTool } from "../data/calculatorsData";
+import { applyAutomatedSeo } from "../utils/classificationEngine";
 import EngineeringCalculatorWidget from "./EngineeringCalculatorWidget";
+import MathFormula from "./MathFormula";
 
 const iconMap: Record<string, React.ComponentType<any>> = {
   Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, Waves, Cpu, Grid, Compass
@@ -22,6 +24,26 @@ export default function EngineeringCalculatorsView({
   const [activeTab, setActiveTab] = useState<string>(selectedDisciplineId || "all");
   const [activeTool, setActiveTool] = useState<EngineeringTool | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  useEffect(() => {
+    if (activeTool) {
+      applyAutomatedSeo({
+        pageType: "engineering-calculator",
+        isEngineering: true,
+        title: `${activeTool.name} | Engineering Calculators`,
+        description: activeTool.description,
+        canonicalUrl: "https://unitsconvertors.com/engineering-calculators"
+      });
+    } else {
+      applyAutomatedSeo({
+        pageType: "engineering-hub",
+        isEngineering: true,
+        title: "Engineering Calculators Hub | UnitsConvertors.com",
+        description: "Explore comprehensive engineering calculators across electrical, mechanical, civil, physics, and more on UnitsConvertors.com.",
+        canonicalUrl: "https://unitsconvertors.com/engineering-calculators"
+      });
+    }
+  }, [activeTool]);
 
   // Total tools count
   const totalToolsCount = engineeringCalculatorsData.reduce((acc, d) => acc + d.tools.length, 0);
@@ -239,7 +261,7 @@ export default function EngineeringCalculatorsView({
                             {tool.name}
                           </span>
                           <span className="text-[10px] text-slate-400 font-mono font-normal">
-                            Equation: {tool.formula}
+                            Equation: <MathFormula formula={tool.formula} asInline={true} />
                           </span>
                         </div>
                         <span className="text-[11px] font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 shrink-0 group-hover:translate-x-1 transition-transform">

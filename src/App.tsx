@@ -80,15 +80,30 @@ export default function App() {
     
     const matches: any[] = [];
     
-    // 1. Match category names
+    // 1. Match category names (Unit Converters)
     categoriesData.forEach(cat => {
       if (cat.name.toLowerCase().includes(query)) {
         matches.push({
           type: "category",
           id: cat.id,
-          name: cat.name,
+          name: `${cat.name} Converters`,
           description: cat.description,
           badge: "Category"
+        });
+      }
+    });
+
+    // Match Engineering Calculator Disciplines (e.g. Electrical Engineering, Mechanical Engineering, Civil Engineering)
+    engineeringCalculatorsData.forEach(disc => {
+      const discNameLower = disc.name.toLowerCase();
+      const discFull = `${disc.name} engineering`.toLowerCase();
+      if (discNameLower.includes(query) || discFull.includes(query) || query.includes(discNameLower)) {
+        matches.push({
+          type: "engineering-discipline",
+          id: disc.id,
+          name: `${disc.name} Engineering Calculators`,
+          description: disc.description,
+          badge: "Engineering"
         });
       }
     });
@@ -207,13 +222,41 @@ export default function App() {
         title: "UnitsConvertors.com | Free Online Unit Conversion Tools",
         description: "Convert length, weight, temperature, area, volume, pressure, energy, and hundreds of other units with fast, accurate, and easy-to-use online conversion tools."
       });
-    } else if (route.page === "category" || route.page === "engineering-category" || route.page === "engineering-calculators") {
-      const disc = route.category ? engineeringCalculatorsData.find(d => d.id === route.category || d.id === `${route.category}-calc` || d.id.replace("-calc", "") === route.category) : null;
-      const titleName = disc ? `${disc.name} Calculators` : route.category ? `${route.category.toUpperCase()} Converters` : "Converters & Engineering Calculators";
-      const descText = disc ? disc.description : "Explore comprehensive unit converters and engineering calculators on UnitsConvertors.com.";
+    } else if (route.page === "engineering-calculators") {
+      if (!route.category) {
+        applyAutomatedSeo({
+          pageType: "engineering-hub",
+          isEngineering: true,
+          title: "Engineering Calculators Hub | UnitsConvertors.com",
+          description: "Explore comprehensive engineering calculators across electrical, mechanical, civil, physics, and more on UnitsConvertors.com."
+        });
+      } else {
+        const disc = engineeringCalculatorsData.find(d => d.id === route.category || d.id === `${route.category}-calc` || d.id.replace("-calc", "") === route.category);
+        const titleName = disc ? `${disc.name} Calculators` : "Engineering Calculators";
+        const descText = disc ? disc.description : "Explore comprehensive engineering calculators on UnitsConvertors.com.";
+        applyAutomatedSeo({
+          pageType: "engineering-category",
+          isEngineering: true,
+          title: `${titleName} | UnitsConvertors.com`,
+          description: descText
+        });
+      }
+    } else if (route.page === "engineering-category") {
+      const disc = engineeringCalculatorsData.find(d => d.id === route.category || d.id === `${route.category}-calc` || d.id.replace("-calc", "") === route.category);
+      const titleName = disc ? `${disc.name} Calculators` : "Engineering Calculators";
+      const descText = disc ? disc.description : "Explore comprehensive engineering calculators on UnitsConvertors.com.";
+      applyAutomatedSeo({
+        pageType: "engineering-category",
+        isEngineering: true,
+        title: `${titleName} | UnitsConvertors.com`,
+        description: descText
+      });
+    } else if (route.page === "category") {
+      const descText = route.category ? `Explore all available ${route.category} converters on UnitsConvertors.com.` : "Explore comprehensive unit converters on UnitsConvertors.com.";
       applyAutomatedSeo({
         pageType: "category-hub",
-        title: `${titleName} | UnitsConvertors.com`,
+        isEngineering: false,
+        title: `${route.category ? route.category.toUpperCase() : "Converters"} | UnitsConvertors.com`,
         description: descText
       });
     } else if (route.page === "converter") {
@@ -542,6 +585,8 @@ export default function App() {
                                 onMouseDown={() => {
                                   if (item.type === "category") {
                                     handleNavigate(item.id);
+                                  } else if (item.type === "engineering-discipline") {
+                                    handleNavigate("engineering-calculators", undefined, undefined, item.id);
                                   } else {
                                     handleNavigate(item.categoryId, item.fromUnitId, item.toUnitId);
                                   }

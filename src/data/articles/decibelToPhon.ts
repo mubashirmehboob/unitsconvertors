@@ -160,9 +160,7 @@ export const decibelToPhon: CustomArticleData = {
   ],
   relatedList: [
     { label: "Decibel to Bel", from: "decibel", to: "bel" },
-    { label: "Decibel to Decibel SPL", from: "decibel", to: "decibel-spl" },
-    { label: "Decibel to Sone", from: "decibel", to: "sone" },
-    { label: "Decibel to Sound Pressure", from: "decibel", to: "sound-pressure" }
+    { label: "Decibel to Sone", from: "decibel", to: "sone" }
   ],
   references: [
     "ISO 226:2003 Acoustics — Normal equal-loudness-level contours.",

@@ -10,6 +10,7 @@ import { applyAutomatedSeo } from "../utils/classificationEngine";
 import { generateEngineeringArticle } from "../data/engineeringArticlesEngine";
 import { injectPageSchemas } from "../utils/schemaEngine";
 import EngineeringCalculatorWidget from "./EngineeringCalculatorWidget";
+import MathFormula from "./MathFormula";
 
 const EngineeringComparisonTable = React.lazy(() => import("./EngineeringComparisonTable"));
 const EngineeringArticleEngine = React.lazy(() => import("./EngineeringArticleEngine"));
@@ -65,7 +66,8 @@ export default function EngineeringCategoryPage({
   useEffect(() => {
     if (activeTool) {
       applyAutomatedSeo({
-        pageType: "individual-tool",
+        pageType: "engineering-calculator",
+        isEngineering: true,
         title: `${activeTool.name} | ${discipline.name} Engineering Calculators`,
         description: `${activeTool.description} Free online engineering solver with multi-variable formula (${activeTool.formula}), physical boundary assumptions, and real-time SI calculation.`,
         canonicalUrl: `https://unitsconvertors.com/engineering-calculators/${discipline.id}/${activeTool.id}`
@@ -77,7 +79,8 @@ export default function EngineeringCategoryPage({
       });
     } else {
       applyAutomatedSeo({
-        pageType: "category-hub",
+        pageType: "engineering-category",
+        isEngineering: true,
         title: `${discipline.name} Calculators | UnitsConvertors.com`,
         description: `Explore all available ${discipline.name.toLowerCase()} calculators on UnitsConvertors.com. Multi-variable physical equations, SI unit standards, and explicit assumptions for engineering design.`,
         canonicalUrl: `https://unitsconvertors.com/engineering-calculators/${discipline.id}`
@@ -239,7 +242,7 @@ export default function EngineeringCategoryPage({
 
                   <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs">
                     <span className="font-mono text-[11px] text-slate-400 truncate max-w-[140px]">
-                      {tool.formula}
+                      <MathFormula formula={tool.formula} asInline={true} />
                     </span>
                     <span className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0">
                       Open Calculator <ArrowRight className="h-3.5 w-3.5" />
@@ -459,7 +462,7 @@ export default function EngineeringCategoryPage({
 
               <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs">
                 <span className="font-mono text-[11px] text-slate-400 truncate max-w-[140px]">
-                  {tool.formula}
+                  <MathFormula formula={tool.formula} asInline={true} />
                 </span>
                 <span className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0">
                   Open Calculator <ArrowRight className="h-3.5 w-3.5" />

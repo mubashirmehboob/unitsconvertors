@@ -159,8 +159,8 @@ export const luxToFootCandle: CustomArticleData = {
   ],
   relatedList: [
     { label: "Lux to Phot", from: "lux", to: "phot" },
-    { label: "Lux to Candela", from: "lux", to: "candela" },
-    { label: "Lux to Lumen", from: "lux", to: "lumen" },
+    { label: "Lux to Nit", from: "lux", to: "nit" },
+    { label: "Lux to Lambert", from: "lux", to: "lambert" },
     { label: "Lux to Illuminance Converter", from: "lux", to: "illuminance-converter" }
   ],
   references: [

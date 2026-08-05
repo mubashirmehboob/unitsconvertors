@@ -44,550 +44,798 @@ export interface EngineeringCalculatorDiscipline {
 export const engineeringCalculatorRegistry: EngineeringTool[] = [
   // --- ELECTRICAL ENGINEERING ---
   {
-    id: "ohms-law",
-    slug: "ohms-law",
+    id: "ohms-law-calculator",
+    slug: "ohms-law-calculator",
     title: "Ohm's Law Calculator",
     name: "Ohm's Law Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate voltage, current, or power from circuit resistance.",
+    description: "Calculate circuit voltage (V) from electric current (I) and resistance (R) using Ohm's Law.",
     formula: "V = I × R",
     outputUnit: "Volts (V)",
-    assumptions: ["Steady-state DC circuit", "Constant temperature", "Linear conductor"],
+    assumptions: ["Steady-state DC circuit", "Constant resistance", "Linear conductor"],
     inputs: [
       { name: "current", label: "Current (I)", unit: "Amperes (A)", defaultValue: 2 },
       { name: "resistance", label: "Resistance (R)", unit: "Ohms (Ω)", defaultValue: 10 }
     ],
     calculate: (inputs) => (inputs.current || 0) * (inputs.resistance || 0),
-    route: "/engineering-calculators/electrical-calc/ohms-law",
+    route: "/engineering-calculators/electrical-calc/ohms-law-calculator",
     seo: {
       title: "Ohm's Law Calculator | Electrical Engineering",
-      description: "Calculate voltage, current, resistance, and power with exact SI equations.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/ohms-law",
-      keywords: ["ohms law", "voltage", "current", "resistance", "v=ir", "electrical calculator"]
+      description: "Calculate circuit voltage, current, resistance, and power with exact SI equations.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/ohms-law-calculator",
+      keywords: ["ohms law calculator", "voltage", "current", "resistance", "v=ir", "electrical calculator"]
     },
-    searchKeywords: ["ohms law", "voltage", "current", "resistance", "v=ir", "circuit", "electrical", "amps", "volts", "ohms"]
+    searchKeywords: ["ohms law calculator", "voltage", "current", "resistance", "v=ir", "circuit", "electrical", "amps", "volts", "ohms"]
   },
   {
-    id: "voltage-divider",
-    slug: "voltage-divider",
+    id: "electrical-power-calculator",
+    slug: "electrical-power-calculator",
+    title: "Electrical Power Calculator",
+    name: "Electrical Power Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate electrical power in Watts from voltage, current, and power factor.",
+    formula: "P = V × I × PF",
+    outputUnit: "Watts (W)",
+    assumptions: ["Sinusoidal AC or steady DC", "Constant power factor"],
+    inputs: [
+      { name: "voltage", label: "Voltage (V)", unit: "Volts (V)", defaultValue: 120 },
+      { name: "current", label: "Current (I)", unit: "Amperes (A)", defaultValue: 5 },
+      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 1 }
+    ],
+    calculate: (inputs) => (inputs.voltage || 0) * (inputs.current || 0) * (inputs.pf ?? 1),
+    route: "/engineering-calculators/electrical-calc/electrical-power-calculator",
+    seo: {
+      title: "Electrical Power Calculator | Electrical Engineering",
+      description: "Calculate electrical power output in Watts from circuit voltage, current, and power factor.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/electrical-power-calculator",
+      keywords: ["electrical power calculator", "power in watts", "v i pf", "electric power", "watts calculator"]
+    },
+    searchKeywords: ["electrical power calculator", "power watts", "volts amps pf", "electric power", "watts calculator"]
+  },
+  {
+    id: "electrical-energy-consumption-calculator",
+    slug: "electrical-energy-consumption-calculator",
+    title: "Electrical Energy Consumption Calculator",
+    name: "Electrical Energy Consumption Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate electrical energy consumption in kilowatt-hours (kWh) over time.",
+    formula: "E (kWh) = (Power (W) × Hours/Day × Days) / 1000",
+    outputUnit: "Kilowatt-hours (kWh)",
+    assumptions: ["Constant load power over operating hours", "Continuous usage duration"],
+    inputs: [
+      { name: "powerWatts", label: "Power Rating", unit: "Watts (W)", defaultValue: 1500 },
+      { name: "hoursPerDay", label: "Usage per Day", unit: "Hours (h)", defaultValue: 8 },
+      { name: "days", label: "Duration", unit: "Days", defaultValue: 30 }
+    ],
+    calculate: (inputs) => ((inputs.powerWatts || 0) * (inputs.hoursPerDay || 0) * (inputs.days || 0)) / 1000,
+    route: "/engineering-calculators/electrical-calc/electrical-energy-consumption-calculator",
+    seo: {
+      title: "Electrical Energy Consumption Calculator | Electrical Engineering",
+      description: "Calculate appliance and equipment energy consumption in kWh over daily, monthly, or yearly periods.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/electrical-energy-consumption-calculator",
+      keywords: ["electrical energy consumption calculator", "kwh calculator", "energy usage", "power consumption", "electricity cost"]
+    },
+    searchKeywords: ["electrical energy consumption calculator", "kwh calculator", "energy usage", "power consumption", "kilowatt hours"]
+  },
+  {
+    id: "voltage-divider-calculator",
+    slug: "voltage-divider-calculator",
     title: "Voltage Divider Calculator",
     name: "Voltage Divider Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate output voltage across resistor divider under unloaded assumptions.",
+    description: "Calculate output voltage across resistor R2 in an unloaded voltage divider circuit.",
     formula: "Vout = Vin × [R2 / (R1 + R2)]",
     outputUnit: "Volts (V)",
-    assumptions: ["High impedance load (negligible current drop)", "Linear resistors"],
+    assumptions: ["Unloaded circuit (infinite load impedance)", "Linear resistor values"],
     inputs: [
       { name: "vin", label: "Input Voltage (Vin)", unit: "Volts (V)", defaultValue: 12 },
       { name: "r1", label: "Resistor R1", unit: "Ohms (Ω)", defaultValue: 1000 },
       { name: "r2", label: "Resistor R2", unit: "Ohms (Ω)", defaultValue: 2000 }
     ],
     calculate: (inputs) => {
-      const rSum = (inputs.r1 || 0) + (inputs.r2 || 0);
-      if (rSum === 0) return 0;
-      return (inputs.vin || 0) * ((inputs.r2 || 0) / rSum);
+      const denom = (inputs.r1 || 0) + (inputs.r2 || 0);
+      return denom > 0 ? (inputs.vin || 0) * ((inputs.r2 || 0) / denom) : 0;
     },
-    route: "/engineering-calculators/electrical-calc/voltage-divider",
+    route: "/engineering-calculators/electrical-calc/voltage-divider-calculator",
     seo: {
       title: "Voltage Divider Calculator | Electrical Engineering",
       description: "Calculate output voltage from resistor dividers with linear circuit assumptions.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/voltage-divider",
-      keywords: ["voltage divider", "vout", "resistor ratio", "r1 r2", "electrical"]
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/voltage-divider-calculator",
+      keywords: ["voltage divider calculator", "vout calculator", "resistor ratio", "r1 r2 divider", "electrical"]
     },
-    searchKeywords: ["voltage divider", "vout", "resistor divider", "r1", "r2", "unloaded"]
+    searchKeywords: ["voltage divider calculator", "vout calculator", "resistor ratio", "r1 r2", "voltage attenuation"]
   },
   {
-    id: "power-calc",
-    slug: "power-calc",
-    title: "Electric Power Calculator",
-    name: "Electric Power Calculator",
+    id: "current-divider-calculator",
+    slug: "current-divider-calculator",
+    title: "Current Divider Calculator",
+    name: "Current Divider Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Single-phase electric power calculation from voltage and current.",
+    description: "Calculate branch current through resistor R1 in a parallel two-resistor network.",
+    formula: "I1 = Itotal × [R2 / (R1 + R2)]",
+    outputUnit: "Amperes (A)",
+    assumptions: ["Parallel dual resistor branch", "Ideal constant current source"],
+    inputs: [
+      { name: "itotal", label: "Total Supply Current", unit: "Amperes (A)", defaultValue: 10 },
+      { name: "r1", label: "Branch Resistor R1", unit: "Ohms (Ω)", defaultValue: 50 },
+      { name: "r2", label: "Branch Resistor R2", unit: "Ohms (Ω)", defaultValue: 100 }
+    ],
+    calculate: (inputs) => {
+      const denom = (inputs.r1 || 0) + (inputs.r2 || 0);
+      return denom > 0 ? (inputs.itotal || 0) * ((inputs.r2 || 0) / denom) : 0;
+    },
+    route: "/engineering-calculators/electrical-calc/current-divider-calculator",
+    seo: {
+      title: "Current Divider Calculator | Electrical Engineering",
+      description: "Calculate branch current division across parallel resistors with exact current divider rule.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/current-divider-calculator",
+      keywords: ["current divider calculator", "branch current", "parallel current division", "i1 i2 calculator", "electrical"]
+    },
+    searchKeywords: ["current divider calculator", "branch current", "parallel current division", "i1 i2", "current rule"]
+  },
+  {
+    id: "series-resistor-calculator",
+    slug: "series-resistor-calculator",
+    title: "Series Resistor Calculator",
+    name: "Series Resistor Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate total equivalent resistance for resistors connected in series.",
+    formula: "Rtotal = R1 + R2 + R3",
+    outputUnit: "Ohms (Ω)",
+    assumptions: ["Series end-to-end connection", "Linear Ohmic resistance"],
+    inputs: [
+      { name: "r1", label: "Resistor R1", unit: "Ohms (Ω)", defaultValue: 100 },
+      { name: "r2", label: "Resistor R2", unit: "Ohms (Ω)", defaultValue: 220 },
+      { name: "r3", label: "Resistor R3", unit: "Ohms (Ω)", defaultValue: 470 }
+    ],
+    calculate: (inputs) => (inputs.r1 || 0) + (inputs.r2 || 0) + (inputs.r3 || 0),
+    route: "/engineering-calculators/electrical-calc/series-resistor-calculator",
+    seo: {
+      title: "Series Resistor Calculator | Electrical Engineering",
+      description: "Calculate cumulative total equivalent resistance for resistors in series.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/series-resistor-calculator",
+      keywords: ["series resistor calculator", "total series resistance", "r1 r2 r3 series", "resistors in series", "electrical"]
+    },
+    searchKeywords: ["series resistor calculator", "total series resistance", "resistors in series", "r total series", "electrical"]
+  },
+  {
+    id: "parallel-resistor-calculator",
+    slug: "parallel-resistor-calculator",
+    title: "Parallel Resistor Calculator",
+    name: "Parallel Resistor Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate total equivalent resistance for parallel-connected resistors.",
+    formula: "1 / Rtotal = 1/R1 + 1/R2 + 1/R3",
+    outputUnit: "Ohms (Ω)",
+    assumptions: ["Parallel terminal connection", "Non-zero resistor values"],
+    inputs: [
+      { name: "r1", label: "Resistor R1", unit: "Ohms (Ω)", defaultValue: 100 },
+      { name: "r2", label: "Resistor R2", unit: "Ohms (Ω)", defaultValue: 200 },
+      { name: "r3", label: "Resistor R3", unit: "Ohms (Ω)", defaultValue: 400 }
+    ],
+    calculate: (inputs) => {
+      const inv = (1 / Math.max(inputs.r1 || 1, 0.0001)) + (1 / Math.max(inputs.r2 || 1, 0.0001)) + (1 / Math.max(inputs.r3 || 1, 0.0001));
+      return inv > 0 ? 1 / inv : 0;
+    },
+    route: "/engineering-calculators/electrical-calc/parallel-resistor-calculator",
+    seo: {
+      title: "Parallel Resistor Calculator | Electrical Engineering",
+      description: "Calculate equivalent parallel resistance for 2 or 3 resistors using reciprocal summation.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/parallel-resistor-calculator",
+      keywords: ["parallel resistor calculator", "equivalent parallel resistance", "resistors in parallel", "1/r total", "electrical"]
+    },
+    searchKeywords: ["parallel resistor calculator", "equivalent parallel resistance", "resistors in parallel", "r total parallel", "electrical"]
+  },
+  {
+    id: "equivalent-resistance-calculator",
+    slug: "equivalent-resistance-calculator",
+    title: "Equivalent Resistance Calculator",
+    name: "Equivalent Resistance Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate total equivalent resistance for series-parallel combined resistor networks.",
+    formula: "Req = R_series + (R_p1 × R_p2) / (R_p1 + R_p2)",
+    outputUnit: "Ohms (Ω)",
+    assumptions: ["Series resistor in line with 2 parallel branch resistors", "Linear elements"],
+    inputs: [
+      { name: "rSeries", label: "Series Resistor (R_series)", unit: "Ohms (Ω)", defaultValue: 50 },
+      { name: "rParallel1", label: "Parallel Resistor R1", unit: "Ohms (Ω)", defaultValue: 100 },
+      { name: "rParallel2", label: "Parallel Resistor R2", unit: "Ohms (Ω)", defaultValue: 100 }
+    ],
+    calculate: (inputs) => {
+      const pSum = (inputs.rParallel1 || 0) + (inputs.rParallel2 || 0);
+      const pEq = pSum > 0 ? ((inputs.rParallel1 || 0) * (inputs.rParallel2 || 0)) / pSum : 0;
+      return (inputs.rSeries || 0) + pEq;
+    },
+    route: "/engineering-calculators/electrical-calc/equivalent-resistance-calculator",
+    seo: {
+      title: "Equivalent Resistance Calculator | Electrical Engineering",
+      description: "Calculate overall equivalent resistance of combination series-parallel electrical networks.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/equivalent-resistance-calculator",
+      keywords: ["equivalent resistance calculator", "req calculator", "series parallel resistance", "network resistance", "electrical"]
+    },
+    searchKeywords: ["equivalent resistance calculator", "req calculator", "series parallel resistance", "network resistance", "circuit req"]
+  },
+  {
+    id: "resistivity-calculator",
+    slug: "resistivity-calculator",
+    title: "Resistivity Calculator",
+    name: "Resistivity Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate material electrical resistivity (ρ) from resistance, cross-sectional area, and length.",
+    formula: "ρ = (R × A) / L",
+    outputUnit: "Ohm-meters (Ω·m)",
+    assumptions: ["Uniform cross-sectional conductor", "Homogeneous material composition"],
+    inputs: [
+      { name: "resistance", label: "Measured Resistance (R)", unit: "Ohms (Ω)", defaultValue: 0.5 },
+      { name: "area", label: "Cross-Sectional Area (A)", unit: "Square Meters (m²)", defaultValue: 0.00000314 },
+      { name: "length", label: "Conductor Length (L)", unit: "Meters (m)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => (inputs.length || 0) > 0 ? ((inputs.resistance || 0) * (inputs.area || 0)) / inputs.length : 0,
+    route: "/engineering-calculators/electrical-calc/resistivity-calculator",
+    seo: {
+      title: "Resistivity Calculator | Electrical Engineering",
+      description: "Calculate material electrical resistivity in Ohm-meters (Ω·m) from physical sample dimensions.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/resistivity-calculator",
+      keywords: ["resistivity calculator", "electrical resistivity", "rho calculator", "r a / l", "ohm meters"]
+    },
+    searchKeywords: ["resistivity calculator", "electrical resistivity", "rho calculator", "material resistivity", "ohm meters"]
+  },
+  {
+    id: "resistance-calculator-rho-l-a",
+    slug: "resistance-calculator-rho-l-a",
+    title: "Resistance Calculator (R = ρL/A)",
+    name: "Resistance Calculator (R = ρL/A)",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate electrical resistance of a conductor from material resistivity, length, and area.",
+    formula: "R = (ρ × L) / A",
+    outputUnit: "Ohms (Ω)",
+    assumptions: ["Uniform conductor dimensions", "Reference temperature (20°C)"],
+    inputs: [
+      { name: "resistivity", label: "Resistivity (ρ)", unit: "Ohm-meters (Ω·m)", defaultValue: 0.0000000168 },
+      { name: "length", label: "Conductor Length (L)", unit: "Meters (m)", defaultValue: 100 },
+      { name: "area", label: "Cross-Sectional Area (A)", unit: "Square Meters (m²)", defaultValue: 0.0000025 }
+    ],
+    calculate: (inputs) => (inputs.area || 0) > 0 ? ((inputs.resistivity || 0) * (inputs.length || 0)) / inputs.area : 0,
+    route: "/engineering-calculators/electrical-calc/resistance-calculator-rho-l-a",
+    seo: {
+      title: "Resistance Calculator (R = ρL/A) | Electrical Engineering",
+      description: "Calculate conductor resistance in Ohms using resistivity, length, and cross-sectional area.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/resistance-calculator-rho-l-a",
+      keywords: ["resistance calculator r=rho l/a", "conductor resistance", "resistivity length area", "r=rho l a", "electrical"]
+    },
+    searchKeywords: ["resistance calculator", "r=rho l/a", "conductor resistance", "material resistivity length area", "electrical"]
+  },
+  {
+    id: "voltage-drop-calculator",
+    slug: "voltage-drop-calculator",
+    title: "Voltage Drop Calculator",
+    name: "Voltage Drop Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate line voltage drop in single-phase two-wire conductor runs.",
+    formula: "Vdrop = (2 × L × I × ρ) / A",
+    outputUnit: "Volts (V)",
+    assumptions: ["Two-wire single-phase circuit (return path included)", "Copper conductor default resistivity"],
+    inputs: [
+      { name: "length", label: "One-Way Conductor Length", unit: "Meters (m)", defaultValue: 50 },
+      { name: "current", label: "Load Current (I)", unit: "Amperes (A)", defaultValue: 15 },
+      { name: "resistivity", label: "Resistivity (ρ)", unit: "Ohm-meters (Ω·m)", defaultValue: 0.0000000168 },
+      { name: "area", label: "Conductor Area (A)", unit: "Square Meters (m²)", defaultValue: 0.0000025 }
+    ],
+    calculate: (inputs) => (inputs.area || 0) > 0 ? (2 * (inputs.length || 0) * (inputs.current || 0) * (inputs.resistivity || 0.0000000168)) / inputs.area : 0,
+    route: "/engineering-calculators/electrical-calc/voltage-drop-calculator",
+    seo: {
+      title: "Voltage Drop Calculator | Electrical Engineering",
+      description: "Calculate voltage loss along conductor wire runs based on current, length, and cross-sectional area.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/voltage-drop-calculator",
+      keywords: ["voltage drop calculator", "line loss volts", "wire voltage drop", "cable voltage drop", "electrical"]
+    },
+    searchKeywords: ["voltage drop calculator", "line loss volts", "wire voltage drop", "cable drop", "electrical"]
+  },
+  {
+    id: "wire-resistance-calculator",
+    slug: "wire-resistance-calculator",
+    title: "Wire Resistance Calculator",
+    name: "Wire Resistance Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate resistance of solid round wire based on length, diameter, and material resistivity.",
+    formula: "R = (ρ × L) / (π × (d/2000)²)",
+    outputUnit: "Ohms (Ω)",
+    assumptions: ["Solid round cylindrical conductor", "Uniform wire diameter"],
+    inputs: [
+      { name: "length", label: "Wire Length", unit: "Meters (m)", defaultValue: 25 },
+      { name: "diameterMm", label: "Wire Diameter", unit: "Millimeters (mm)", defaultValue: 1.63 },
+      { name: "resistivity", label: "Resistivity (ρ)", unit: "Ohm-meters (Ω·m)", defaultValue: 0.0000000168 }
+    ],
+    calculate: (inputs) => {
+      const rM = (inputs.diameterMm || 0) / 2000;
+      const area = Math.PI * rM * rM;
+      return area > 0 ? ((inputs.resistivity || 0.0000000168) * (inputs.length || 0)) / area : 0;
+    },
+    route: "/engineering-calculators/electrical-calc/wire-resistance-calculator",
+    seo: {
+      title: "Wire Resistance Calculator | Electrical Engineering",
+      description: "Calculate electrical resistance of solid cylindrical wire runs from length and gauge diameter.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/wire-resistance-calculator",
+      keywords: ["wire resistance calculator", "round wire resistance", "wire diameter resistance", "cable resistance", "electrical"]
+    },
+    searchKeywords: ["wire resistance calculator", "round wire resistance", "wire diameter resistance", "cable resistance", "electrical"]
+  },
+  {
+    id: "joule-heating-calculator",
+    slug: "joule-heating-calculator",
+    title: "Joule Heating Calculator",
+    name: "Joule Heating Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate thermal heat energy produced by current flow through an electrical resistance.",
+    formula: "Q = I² × R × t",
+    outputUnit: "Joules (J)",
+    assumptions: ["100% conversion of electric energy to thermal heat", "Constant current"],
+    inputs: [
+      { name: "current", label: "Current (I)", unit: "Amperes (A)", defaultValue: 5 },
+      { name: "resistance", label: "Resistance (R)", unit: "Ohms (Ω)", defaultValue: 10 },
+      { name: "timeSeconds", label: "Time (t)", unit: "Seconds (s)", defaultValue: 60 }
+    ],
+    calculate: (inputs) => Math.pow(inputs.current || 0, 2) * (inputs.resistance || 0) * (inputs.timeSeconds || 0),
+    route: "/engineering-calculators/electrical-calc/joule-heating-calculator",
+    seo: {
+      title: "Joule Heating Calculator | Electrical Engineering",
+      description: "Calculate Joule heating energy loss (I²Rt) in Joules from current, resistance, and duration.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/joule-heating-calculator",
+      keywords: ["joule heating calculator", "i2rt calculator", "heat dissipation electric", "ohmic heating", "electrical"]
+    },
+    searchKeywords: ["joule heating calculator", "i2rt calculator", "heat dissipation electric", "ohmic heating", "joules heat"]
+  },
+  {
+    id: "dc-circuit-current-calculator",
+    slug: "dc-circuit-current-calculator",
+    title: "DC Circuit Current Calculator",
+    name: "DC Circuit Current Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate total current flowing in a direct-current (DC) circuit from voltage and resistance.",
+    formula: "I = V / R",
+    outputUnit: "Amperes (A)",
+    assumptions: ["Linear Ohmic load", "Pure DC voltage source"],
+    inputs: [
+      { name: "voltage", label: "DC Voltage (V)", unit: "Volts (V)", defaultValue: 24 },
+      { name: "resistance", label: "Total Resistance (R)", unit: "Ohms (Ω)", defaultValue: 12 }
+    ],
+    calculate: (inputs) => (inputs.resistance || 0) > 0 ? (inputs.voltage || 0) / inputs.resistance : 0,
+    route: "/engineering-calculators/electrical-calc/dc-circuit-current-calculator",
+    seo: {
+      title: "DC Circuit Current Calculator | Electrical Engineering",
+      description: "Calculate direct-current (DC) amperage from circuit supply voltage and resistance.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/dc-circuit-current-calculator",
+      keywords: ["dc circuit current calculator", "dc amps calculator", "i=v/r", "direct current", "electrical"]
+    },
+    searchKeywords: ["dc circuit current calculator", "dc amps calculator", "i=v/r", "direct current", "circuit current"]
+  },
+  {
+    id: "dc-circuit-voltage-calculator",
+    slug: "dc-circuit-voltage-calculator",
+    title: "DC Circuit Voltage Calculator",
+    name: "DC Circuit Voltage Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate DC circuit voltage drop required to drive a known current through a resistance.",
+    formula: "V = I × R",
+    outputUnit: "Volts (V)",
+    assumptions: ["Constant DC current", "Fixed resistance value"],
+    inputs: [
+      { name: "current", label: "DC Current (I)", unit: "Amperes (A)", defaultValue: 3 },
+      { name: "resistance", label: "Circuit Resistance (R)", unit: "Ohms (Ω)", defaultValue: 8 }
+    ],
+    calculate: (inputs) => (inputs.current || 0) * (inputs.resistance || 0),
+    route: "/engineering-calculators/electrical-calc/dc-circuit-voltage-calculator",
+    seo: {
+      title: "DC Circuit Voltage Calculator | Electrical Engineering",
+      description: "Calculate direct-current (DC) voltage from circuit current and load resistance.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/dc-circuit-voltage-calculator",
+      keywords: ["dc circuit voltage calculator", "dc volts calculator", "v=i*r dc", "direct current voltage", "electrical"]
+    },
+    searchKeywords: ["dc circuit voltage calculator", "dc volts calculator", "v=i*r dc", "direct current voltage", "electrical"]
+  },
+  {
+    id: "dc-circuit-power-calculator",
+    slug: "dc-circuit-power-calculator",
+    title: "DC Circuit Power Calculator",
+    name: "DC Circuit Power Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate power dissipated in a DC circuit from supply voltage and load current.",
+    formula: "P = V × I",
+    outputUnit: "Watts (W)",
+    assumptions: ["Steady DC supply", "Zero reactive phase shift"],
+    inputs: [
+      { name: "voltage", label: "DC Voltage (V)", unit: "Volts (V)", defaultValue: 48 },
+      { name: "current", label: "DC Current (I)", unit: "Amperes (A)", defaultValue: 2.5 }
+    ],
+    calculate: (inputs) => (inputs.voltage || 0) * (inputs.current || 0),
+    route: "/engineering-calculators/electrical-calc/dc-circuit-power-calculator",
+    seo: {
+      title: "DC Circuit Power Calculator | Electrical Engineering",
+      description: "Calculate DC power dissipation in Watts from DC voltage and amperage.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/dc-circuit-power-calculator",
+      keywords: ["dc circuit power calculator", "dc watts calculator", "p=v*i dc", "dc power dissipation", "electrical"]
+    },
+    searchKeywords: ["dc circuit power calculator", "dc watts calculator", "p=v*i dc", "dc power dissipation", "electrical"]
+  },
+  {
+    id: "single-phase-power-calculator",
+    slug: "single-phase-power-calculator",
+    title: "Single Phase Power Calculator",
+    name: "Single Phase Power Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate real active power in a single-phase AC circuit given voltage, current, and power factor.",
     formula: "P = V × I × PF",
     outputUnit: "Watts (W)",
-    assumptions: ["Pure sinusoidal waveform", "Constant power factor"],
+    assumptions: ["Sinusoidal AC waveform", "RMS voltage and current values"],
     inputs: [
-      { name: "voltage", label: "Voltage (V)", unit: "Volts (V)", defaultValue: 120 },
-      { name: "current", label: "Current (I)", unit: "Amperes (A)", defaultValue: 5 },
-      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.95 }
+      { name: "voltage", label: "RMS Voltage (V)", unit: "Volts (V)", defaultValue: 230 },
+      { name: "current", label: "RMS Current (I)", unit: "Amperes (A)", defaultValue: 10 },
+      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.9 }
     ],
-    calculate: (inputs) => (inputs.voltage || 0) * (inputs.current || 0) * (inputs.pf || 1),
-    route: "/engineering-calculators/electrical-calc/power-calc",
+    calculate: (inputs) => (inputs.voltage || 0) * (inputs.current || 0) * (inputs.pf ?? 0.9),
+    route: "/engineering-calculators/electrical-calc/single-phase-power-calculator",
     seo: {
-      title: "Electric Power Calculator | Electrical Engineering",
-      description: "Determine AC/DC electrical power output considering power factor.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/power-calc",
-      keywords: ["electric power", "watts", "power factor", "voltage current power"]
+      title: "Single Phase Power Calculator | Electrical Engineering",
+      description: "Calculate single-phase AC active power in Watts with power factor adjustment.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/single-phase-power-calculator",
+      keywords: ["single phase power calculator", "1 phase ac power", "single phase watts", "v i pf power", "electrical"]
     },
-    searchKeywords: ["power", "watts", "kw", "va", "power factor", "electrical"]
+    searchKeywords: ["single phase power calculator", "1 phase ac power", "single phase watts", "v i pf power", "ac power"]
   },
   {
-    id: "battery-runtime",
-    slug: "battery-runtime",
-    title: "Battery Runtime Calculator",
-    name: "Battery Runtime Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Estimate battery operating duration based on Peukert capacity loss factor.",
-    formula: "Hours = (Ah / Current) × Discharge Efficiency",
-    outputUnit: "Hours (h)",
-    assumptions: ["Standard 20-hour discharge rating", "Ambient temperature 25°C"],
-    inputs: [
-      { name: "capacity", label: "Battery Capacity", unit: "Amp-hours (Ah)", defaultValue: 100 },
-      { name: "loadCurrent", label: "Load Current", unit: "Amperes (A)", defaultValue: 10 },
-      { name: "efficiency", label: "Efficiency Factor", unit: "Ratio (0-1)", defaultValue: 0.85 }
-    ],
-    calculate: (inputs) => {
-      if (!inputs.loadCurrent) return 0;
-      return ((inputs.capacity || 0) / inputs.loadCurrent) * (inputs.efficiency || 0.85);
-    },
-    route: "/engineering-calculators/electrical-calc/battery-runtime",
-    seo: {
-      title: "Battery Runtime Calculator | Electrical Engineering",
-      description: "Estimate battery operational hours from Ah capacity and load discharge current.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/battery-runtime",
-      keywords: ["battery runtime", "amp hours", "peukert law", "discharge time"]
-    },
-    searchKeywords: ["battery", "runtime", "ah", "discharge", "backup power", "hours"]
-  },
-  {
-    id: "wire-gauge-drop",
-    slug: "wire-gauge-drop",
-    title: "Voltage Drop & Wire Size Calculator",
-    name: "Voltage Drop & Wire Size Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate wire voltage drop across conductor length and cross-sectional area.",
-    formula: "Vdrop = (2 × K × I × L) / CM",
-    outputUnit: "Volts (V)",
-    assumptions: ["Copper conductor (K = 12.9)", "Continuous load current"],
-    inputs: [
-      { name: "current", label: "Current Load", unit: "Amperes (A)", defaultValue: 20 },
-      { name: "length", label: "One-Way Distance", unit: "Feet (ft)", defaultValue: 100 },
-      { name: "cm", label: "Circular Mils (CM)", unit: "CM", defaultValue: 6530 }
-    ],
-    calculate: (inputs) => {
-      if (!inputs.cm) return 0;
-      return (2 * 12.9 * (inputs.current || 0) * (inputs.length || 0)) / inputs.cm;
-    },
-    route: "/engineering-calculators/electrical-calc/wire-gauge-drop",
-    seo: {
-      title: "Voltage Drop & Wire Size Calculator | Electrical Engineering",
-      description: "Determine conductor voltage loss for copper and aluminum electrical wiring.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/wire-gauge-drop",
-      keywords: ["voltage drop", "wire size", "awg", "circular mils", "electrical wiring"]
-    },
-    searchKeywords: ["wire size", "voltage drop", "awg", "copper conductor", "feeder drop"]
-  },
-  {
-    id: "single-phase-current",
-    slug: "single-phase-current",
-    title: "Single Phase Current Calculator",
-    name: "Single Phase Current Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate AC single-phase current load in Amperes from active power, voltage, and power factor.",
-    formula: "I = P / (V × PF)",
-    outputUnit: "Amperes (A)",
-    assumptions: ["Sinusoidal AC voltage waveform", "Constant load power factor PF"],
-    inputs: [
-      { name: "power", label: "Active Power (P)", unit: "Watts (W)", defaultValue: 2400 },
-      { name: "voltage", label: "Voltage (V)", unit: "Volts (V)", defaultValue: 230 },
-      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.95 }
-    ],
-    calculate: (inputs) => (inputs.voltage && inputs.pf ? (inputs.power || 0) / (inputs.voltage * inputs.pf) : 0),
-    route: "/engineering-calculators/electrical-calc/single-phase-current",
-    seo: {
-      title: "Single Phase Current Calculator | Electrical Engineering",
-      description: "Calculate AC single-phase electric current in Amperes from active power, voltage, and power factor.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/single-phase-current",
-      keywords: ["single phase current", "ac current calculator", "amps from watts", "power factor current", "electrical"]
-    },
-    searchKeywords: ["single phase current", "ac current calculator", "amps from watts", "power factor current", "electrical"]
-  },
-  {
-    id: "three-phase-power",
-    slug: "three-phase-power",
+    id: "three-phase-power-calculator",
+    slug: "three-phase-power-calculator",
     title: "Three Phase Power Calculator",
     name: "Three Phase Power Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate total 3-phase real electrical power in Kilowatts (kW) from line voltage, current, and power factor.",
-    formula: "P = √3 × V_LL × I × PF / 1000",
-    outputUnit: "Kilowatts (kW)",
-    assumptions: ["Balanced 3-phase load", "Line-to-line RMS voltage input"],
+    description: "Calculate total active real power in a balanced 3-phase AC system.",
+    formula: "P = √3 × V_LL × I_line × PF",
+    outputUnit: "Watts (W)",
+    assumptions: ["Balanced 3-phase load", "Line-to-line RMS voltage"],
     inputs: [
-      { name: "voltage", label: "Line-to-Line Voltage (V_LL)", unit: "Volts (V)", defaultValue: 400 },
-      { name: "current", label: "Line Current (I)", unit: "Amperes (A)", defaultValue: 50 },
+      { name: "lineVoltage", label: "Line-to-Line Voltage (V_LL)", unit: "Volts (V)", defaultValue: 400 },
+      { name: "lineCurrent", label: "Line Current (I_line)", unit: "Amperes (A)", defaultValue: 20 },
       { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.85 }
     ],
-    calculate: (inputs) => (Math.sqrt(3) * (inputs.voltage || 0) * (inputs.current || 0) * (inputs.pf || 0.85)) / 1000,
-    route: "/engineering-calculators/electrical-calc/three-phase-power",
+    calculate: (inputs) => Math.sqrt(3) * (inputs.lineVoltage || 0) * (inputs.lineCurrent || 0) * (inputs.pf ?? 0.85),
+    route: "/engineering-calculators/electrical-calc/three-phase-power-calculator",
     seo: {
       title: "Three Phase Power Calculator | Electrical Engineering",
-      description: "Calculate total 3-phase active power in kW from line-to-line voltage, current, and power factor.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/three-phase-power",
-      keywords: ["three phase power", "3 phase kw", "line voltage power", "balanced 3 phase power", "electrical"]
+      description: "Calculate balanced 3-phase AC active power in Watts from line voltage, line current, and power factor.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/three-phase-power-calculator",
+      keywords: ["three phase power calculator", "3 phase power watts", "sqrt(3) v i pf", "3 phase ac power", "electrical"]
     },
-    searchKeywords: ["three phase power", "3 phase kw", "line voltage power", "balanced 3 phase power", "electrical"]
+    searchKeywords: ["three phase power calculator", "3 phase power watts", "sqrt(3) v i pf", "3 phase ac power", "electrical"]
   },
   {
-    id: "three-phase-current",
-    slug: "three-phase-current",
-    title: "Three Phase Current Calculator",
-    name: "Three Phase Current Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate line current in Amperes for balanced three-phase AC loads.",
-    formula: "I = (P_kW × 1000) / (√3 × V_LL × PF)",
-    outputUnit: "Amperes (A)",
-    assumptions: ["Balanced 3-phase system", "Line-to-line RMS voltage"],
-    inputs: [
-      { name: "powerKw", label: "Active Power (P)", unit: "Kilowatts (kW)", defaultValue: 30 },
-      { name: "voltage", label: "Line-to-Line Voltage (V_LL)", unit: "Volts (V)", defaultValue: 415 },
-      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.85 }
-    ],
-    calculate: (inputs) => (inputs.voltage && inputs.pf ? ((inputs.powerKw || 0) * 1000) / (Math.sqrt(3) * inputs.voltage * inputs.pf) : 0),
-    route: "/engineering-calculators/electrical-calc/three-phase-current",
-    seo: {
-      title: "Three Phase Current Calculator | Electrical Engineering",
-      description: "Calculate 3-phase AC line current in Amperes from active power kW rating and voltage.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/three-phase-current",
-      keywords: ["three phase current", "3 phase amps", "line current calculator", "3 phase current load", "electrical"]
-    },
-    searchKeywords: ["three phase current", "3 phase amps", "line current calculator", "3 phase current load", "electrical"]
-  },
-  {
-    id: "apparent-power-va",
-    slug: "apparent-power-va",
-    title: "Apparent Power (VA) Calculator",
-    name: "Apparent Power (VA) Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate apparent power (S) in kVA from active power and power factor.",
-    formula: "S = P_kW / PF",
-    outputUnit: "kVA",
-    assumptions: ["AC circuit in steady state", "Known load power factor"],
-    inputs: [
-      { name: "powerKw", label: "Active Power (P)", unit: "Kilowatts (kW)", defaultValue: 40 },
-      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.8 }
-    ],
-    calculate: (inputs) => (inputs.pf ? (inputs.powerKw || 0) / inputs.pf : 0),
-    route: "/engineering-calculators/electrical-calc/apparent-power-va",
-    seo: {
-      title: "Apparent Power (VA) Calculator | Electrical Engineering",
-      description: "Calculate apparent electrical power S in kVA from active power kW and power factor.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/apparent-power-va",
-      keywords: ["apparent power", "kva calculator", "kw to kva", "power factor va", "electrical"]
-    },
-    searchKeywords: ["apparent power", "kva calculator", "kw to kva", "power factor va", "electrical"]
-  },
-  {
-    id: "reactive-power-calc",
-    slug: "reactive-power-calc",
-    title: "Reactive Power Calculator",
-    name: "Reactive Power Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate reactive power (Q) in kVAR from active power and power factor angle.",
-    formula: "Q = P_kW × tan(arccos(PF))",
-    outputUnit: "kVAR",
-    assumptions: ["Pure sinusoidal AC voltage and current", "Lagging or leading power factor"],
-    inputs: [
-      { name: "powerKw", label: "Active Power (P)", unit: "Kilowatts (kW)", defaultValue: 50 },
-      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.8 }
-    ],
-    calculate: (inputs) => {
-      const pf = Math.min(Math.max(inputs.pf || 0.8, 0.01), 1);
-      const angle = Math.acos(pf);
-      return (inputs.powerKw || 0) * Math.tan(angle);
-    },
-    route: "/engineering-calculators/electrical-calc/reactive-power-calc",
-    seo: {
-      title: "Reactive Power Calculator | Electrical Engineering",
-      description: "Calculate reactive electrical power Q in kVAR from active power and power factor.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/reactive-power-calc",
-      keywords: ["reactive power", "kvar calculator", "reactive power kvar", "power factor kvar", "electrical"]
-    },
-    searchKeywords: ["reactive power", "kvar calculator", "reactive power kvar", "power factor kvar", "electrical"]
-  },
-  {
-    id: "power-factor-calc",
-    slug: "power-factor-calc",
+    id: "power-factor-calculator",
+    slug: "power-factor-calculator",
     title: "Power Factor Calculator",
     name: "Power Factor Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate electrical power factor (PF) ratio from active power (kW) and apparent power (kVA).",
-    formula: "PF = Active Power (kW) / Apparent Power (kVA)",
+    description: "Calculate AC power factor ratio from active real power (W) and apparent power (VA).",
+    formula: "PF = Real Power (W) / Apparent Power (VA)",
     outputUnit: "Ratio (0-1)",
-    assumptions: ["Steady state AC load conditions", "Non-zero apparent power"],
+    assumptions: ["Sinusoidal AC load", "Apparent power greater than zero"],
     inputs: [
-      { name: "activePower", label: "Active Power (P)", unit: "Kilowatts (kW)", defaultValue: 75 },
-      { name: "apparentPower", label: "Apparent Power (S)", unit: "kVA", defaultValue: 90 }
+      { name: "realPower", label: "Real Power (P)", unit: "Watts (W)", defaultValue: 8500 },
+      { name: "apparentPower", label: "Apparent Power (S)", unit: "Volt-Amperes (VA)", defaultValue: 10000 }
     ],
-    calculate: (inputs) => (inputs.apparentPower ? (inputs.activePower || 0) / inputs.apparentPower : 0),
-    route: "/engineering-calculators/electrical-calc/power-factor-calc",
+    calculate: (inputs) => (inputs.apparentPower || 0) > 0 ? (inputs.realPower || 0) / inputs.apparentPower : 0,
+    route: "/engineering-calculators/electrical-calc/power-factor-calculator",
     seo: {
       title: "Power Factor Calculator | Electrical Engineering",
-      description: "Calculate power factor ratio from active power in kW and apparent power in kVA.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/power-factor-calc",
-      keywords: ["power factor calculator", "kw kva power factor", "cos phi calculator", "electrical power factor", "electrical"]
+      description: "Calculate AC power factor ratio (cos θ) from real active power and apparent power.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/power-factor-calculator",
+      keywords: ["power factor calculator", "pf ratio calculator", "w to va ratio", "cos theta calculator", "electrical"]
     },
-    searchKeywords: ["power factor calculator", "kw kva power factor", "cos phi calculator", "electrical power factor", "electrical"]
+    searchKeywords: ["power factor calculator", "pf ratio calculator", "w to va ratio", "cos theta", "power factor"]
   },
   {
-    id: "energy-consumption-kwh",
-    slug: "energy-consumption-kwh",
-    title: "Energy Consumption Calculator (kWh)",
-    name: "Energy Consumption Calculator (kWh)",
+    id: "apparent-power-calculator",
+    slug: "apparent-power-calculator",
+    title: "Apparent Power Calculator",
+    name: "Apparent Power Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate total electrical energy consumed in Kilowatt-hours (kWh) over operating duration.",
-    formula: "Energy = (Power in Watts × Hours) / 1000",
-    outputUnit: "kWh",
-    assumptions: ["Constant load power demand during operating time interval"],
+    description: "Calculate apparent electrical power (S) in Volt-Amperes (VA) from RMS voltage and current.",
+    formula: "S = V × I",
+    outputUnit: "Volt-Amperes (VA)",
+    assumptions: ["Total AC vector magnitude", "RMS values"],
     inputs: [
-      { name: "powerWatts", label: "Load Power", unit: "Watts (W)", defaultValue: 1500 },
-      { name: "hours", label: "Operating Time", unit: "Hours (h)", defaultValue: 24 }
+      { name: "voltage", label: "RMS Voltage (V)", unit: "Volts (V)", defaultValue: 120 },
+      { name: "current", label: "RMS Current (I)", unit: "Amperes (A)", defaultValue: 15 }
     ],
-    calculate: (inputs) => ((inputs.powerWatts || 0) * (inputs.hours || 0)) / 1000,
-    route: "/engineering-calculators/electrical-calc/energy-consumption-kwh",
+    calculate: (inputs) => (inputs.voltage || 0) * (inputs.current || 0),
+    route: "/engineering-calculators/electrical-calc/apparent-power-calculator",
     seo: {
-      title: "Energy Consumption Calculator (kWh) | Electrical Engineering",
-      description: "Calculate electrical energy consumption in Kilowatt-hours (kWh) from wattage and usage hours.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/energy-consumption-kwh",
-      keywords: ["energy consumption calculator", "kwh calculator", "watts to kwh", "electricity usage", "electrical"]
+      title: "Apparent Power Calculator | Electrical Engineering",
+      description: "Calculate total apparent AC power (S) in VA or kVA from RMS voltage and current.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/apparent-power-calculator",
+      keywords: ["apparent power calculator", "va calculator", "s = v * i", "volt amperes", "electrical"]
     },
-    searchKeywords: ["energy consumption calculator", "kwh calculator", "watts to kwh", "electricity usage", "electrical"]
+    searchKeywords: ["apparent power calculator", "va calculator", "s = v * i", "volt amperes", "kva calculator"]
   },
   {
-    id: "transformer-turns-ratio",
-    slug: "transformer-turns-ratio",
-    title: "Transformer Turns Ratio Calculator",
-    name: "Transformer Turns Ratio Calculator",
+    id: "reactive-power-calculator",
+    slug: "reactive-power-calculator",
+    title: "Reactive Power Calculator",
+    name: "Reactive Power Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate transformer winding turns ratio (Np/Ns) from primary and secondary voltages.",
-    formula: "Ratio = V_primary / V_secondary",
-    outputUnit: "Ratio (:1)",
-    assumptions: ["Ideal single-phase transformer core", "Zero copper or flux leakage losses"],
+    description: "Calculate AC reactive power (Q) in VAR from RMS voltage, current, and power factor.",
+    formula: "Q = V × I × √(1 - PF²)",
+    outputUnit: "Volt-Amperes Reactive (VAR)",
+    assumptions: ["Sinusoidal AC circuit", "Lagging or leading power factor"],
     inputs: [
-      { name: "vPrimary", label: "Primary Voltage (Vp)", unit: "Volts (V)", defaultValue: 480 },
-      { name: "vSecondary", label: "Secondary Voltage (Vs)", unit: "Volts (V)", defaultValue: 120 }
+      { name: "voltage", label: "RMS Voltage (V)", unit: "Volts (V)", defaultValue: 230 },
+      { name: "current", label: "RMS Current (I)", unit: "Amperes (A)", defaultValue: 10 },
+      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.8 }
     ],
-    calculate: (inputs) => (inputs.vSecondary ? (inputs.vPrimary || 0) / inputs.vSecondary : 0),
-    route: "/engineering-calculators/electrical-calc/transformer-turns-ratio",
-    seo: {
-      title: "Transformer Turns Ratio Calculator | Electrical Engineering",
-      description: "Calculate transformer turns ratio Np/Ns from primary and secondary RMS voltage ratings.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/transformer-turns-ratio",
-      keywords: ["transformer turns ratio", "np ns ratio", "primary secondary voltage ratio", "transformer formula", "electrical"]
+    calculate: (inputs) => {
+      const pf = Math.min(Math.max(inputs.pf ?? 0.8, 0), 1);
+      const sinTheta = Math.sqrt(1 - pf * pf);
+      return (inputs.voltage || 0) * (inputs.current || 0) * sinTheta;
     },
-    searchKeywords: ["transformer turns ratio", "np ns ratio", "primary secondary voltage ratio", "transformer formula", "electrical"]
+    route: "/engineering-calculators/electrical-calc/reactive-power-calculator",
+    seo: {
+      title: "Reactive Power Calculator | Electrical Engineering",
+      description: "Calculate reactive power (Q) in VAR or kVAR for AC inductive/capacitive circuits.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/reactive-power-calculator",
+      keywords: ["reactive power calculator", "var calculator", "q = v i sin theta", "kvar calculator", "electrical"]
+    },
+    searchKeywords: ["reactive power calculator", "var calculator", "q = v i sin theta", "kvar calculator", "reactive power"]
   },
   {
-    id: "transformer-secondary-voltage",
-    slug: "transformer-secondary-voltage",
-    title: "Transformer Secondary Voltage Calculator",
-    name: "Transformer Secondary Voltage Calculator",
+    id: "real-power-calculator",
+    slug: "real-power-calculator",
+    title: "Real Power Calculator",
+    name: "Real Power Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate transformer secondary voltage output from primary voltage and winding turns ratio.",
-    formula: "Vs = Vp × (Ns / Np)",
+    description: "Calculate real active power (P) in Watts from apparent power (VA) and power factor.",
+    formula: "P = S × PF",
+    outputUnit: "Watts (W)",
+    assumptions: ["Active power performing mechanical or thermal work", "Linear AC load"],
+    inputs: [
+      { name: "apparentPower", label: "Apparent Power (S)", unit: "Volt-Amperes (VA)", defaultValue: 5000 },
+      { name: "pf", label: "Power Factor (PF)", unit: "Ratio (0-1)", defaultValue: 0.9 }
+    ],
+    calculate: (inputs) => (inputs.apparentPower || 0) * (inputs.pf ?? 0.9),
+    route: "/engineering-calculators/electrical-calc/real-power-calculator",
+    seo: {
+      title: "Real Power Calculator | Electrical Engineering",
+      description: "Calculate real active AC power in Watts from apparent VA rating and power factor.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/real-power-calculator",
+      keywords: ["real power calculator", "active power watts", "p = s * pf", "va to watts", "electrical"]
+    },
+    searchKeywords: ["real power calculator", "active power watts", "p = s * pf", "va to watts", "real power"]
+  },
+  {
+    id: "rms-voltage-calculator",
+    slug: "rms-voltage-calculator",
+    title: "RMS Voltage Calculator",
+    name: "RMS Voltage Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate root-mean-square (RMS) voltage from peak sinusoidal voltage.",
+    formula: "V_rms = V_peak / √2",
     outputUnit: "Volts (V)",
-    assumptions: ["Ideal magnetic core coupling", "Negligible voltage drop under load"],
+    assumptions: ["Pure sinusoidal AC voltage waveform", "Zero DC offset"],
     inputs: [
-      { name: "vPrimary", label: "Primary Voltage (Vp)", unit: "Volts (V)", defaultValue: 230 },
-      { name: "nPrimary", label: "Primary Turns (Np)", unit: "Turns", defaultValue: 1000 },
-      { name: "nSecondary", label: "Secondary Turns (Ns)", unit: "Turns", defaultValue: 100 }
+      { name: "peakVoltage", label: "Peak Voltage (V_peak)", unit: "Volts (V)", defaultValue: 170 }
     ],
-    calculate: (inputs) => (inputs.nPrimary ? (inputs.vPrimary || 0) * ((inputs.nSecondary || 0) / inputs.nPrimary) : 0),
-    route: "/engineering-calculators/electrical-calc/transformer-secondary-voltage",
+    calculate: (inputs) => (inputs.peakVoltage || 0) / Math.SQRT2,
+    route: "/engineering-calculators/electrical-calc/rms-voltage-calculator",
     seo: {
-      title: "Transformer Secondary Voltage Calculator | Electrical Engineering",
-      description: "Calculate transformer secondary output voltage from primary voltage and winding turn counts.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/transformer-secondary-voltage",
-      keywords: ["transformer secondary voltage", "secondary voltage calculator", "transformer step down", "transformer step up", "electrical"]
+      title: "RMS Voltage Calculator | Electrical Engineering",
+      description: "Calculate RMS voltage from sinusoidal peak AC voltage.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/rms-voltage-calculator",
+      keywords: ["rms voltage calculator", "v_rms calculator", "v_peak to v_rms", "sine wave rms", "electrical"]
     },
-    searchKeywords: ["transformer secondary voltage", "secondary voltage calculator", "transformer step down", "transformer step up", "electrical"]
+    searchKeywords: ["rms voltage calculator", "v_rms calculator", "v_peak to v_rms", "sine wave rms", "electrical"]
   },
   {
-    id: "short-circuit-current",
-    slug: "short-circuit-current",
-    title: "Short Circuit Current Calculator",
-    name: "Short Circuit Current Calculator",
+    id: "rms-current-calculator",
+    slug: "rms-current-calculator",
+    title: "RMS Current Calculator",
+    name: "RMS Current Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate prospective secondary short circuit fault current (Isc) at transformer terminals.",
-    formula: "Isc = I_full_load / (%Z / 100)",
-    outputUnit: "Kiloamperes (kA)",
-    assumptions: ["Infinite primary utility bus capacity", "3-phase symmetrical bolted fault"],
-    inputs: [
-      { name: "kva", label: "Transformer Rating", unit: "kVA", defaultValue: 1000 },
-      { name: "vLine", label: "Secondary Line Voltage", unit: "Volts (V)", defaultValue: 400 },
-      { name: "impedance", label: "Percent Impedance (%Z)", unit: "Percent (%)", defaultValue: 5 }
-    ],
-    calculate: (inputs) => {
-      if (!inputs.vLine || !inputs.impedance) return 0;
-      const iFullLoad = ((inputs.kva || 0) * 1000) / (Math.sqrt(3) * inputs.vLine);
-      return (iFullLoad / (inputs.impedance / 100)) / 1000;
-    },
-    route: "/engineering-calculators/electrical-calc/short-circuit-current",
-    seo: {
-      title: "Short Circuit Current Calculator | Electrical Engineering",
-      description: "Calculate prospective secondary short-circuit fault current in kA using transformer impedance.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/short-circuit-current",
-      keywords: ["short circuit current", "fault current calculator", "transformer short circuit", "isc ka", "electrical"]
-    },
-    searchKeywords: ["short circuit current", "fault current calculator", "transformer short circuit", "isc ka", "electrical"]
-  },
-  {
-    id: "cable-size-calc",
-    slug: "cable-size-calc",
-    title: "Cable Size Calculator",
-    name: "Cable Size Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate required minimum conductor area in mm² based on current rating and allowable voltage drop percentage.",
-    formula: "A_mm² = (2 × ρ × I × L) / (V_supply × %Drop_max / 100)",
-    outputUnit: "mm²",
-    assumptions: ["Single-phase copper conductor resistivity ρ = 0.0175 Ω·mm²/m", "Unity power factor"],
-    inputs: [
-      { name: "current", label: "Load Current (I)", unit: "Amperes (A)", defaultValue: 32 },
-      { name: "length", label: "Cable Distance (L)", unit: "Meters (m)", defaultValue: 40 },
-      { name: "voltage", label: "Supply Voltage (V)", unit: "Volts (V)", defaultValue: 230 },
-      { name: "dropPercent", label: "Max Allowable Drop", unit: "Percent (%)", defaultValue: 3 }
-    ],
-    calculate: (inputs) => {
-      const vMaxDrop = (inputs.voltage || 230) * ((inputs.dropPercent || 3) / 100);
-      return vMaxDrop > 0 ? (2 * 0.0175 * (inputs.current || 0) * (inputs.length || 0)) / vMaxDrop : 0;
-    },
-    route: "/engineering-calculators/electrical-calc/cable-size-calc",
-    seo: {
-      title: "Cable Size Calculator | Electrical Engineering",
-      description: "Calculate minimum conductor cross-sectional area in mm² for safe voltage drop limits.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/cable-size-calc",
-      keywords: ["cable size calculator", "cable mm2", "conductor sizing", "voltage drop cable size", "electrical"]
-    },
-    searchKeywords: ["cable size calculator", "cable mm2", "conductor sizing", "voltage drop cable size", "electrical"]
-  },
-  {
-    id: "electrical-load-calc",
-    slug: "electrical-load-calc",
-    title: "Electrical Load Calculator",
-    name: "Electrical Load Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate total diversified electrical demand load taking demand factors into consideration.",
-    formula: "Demand Load (kW) = Total Connected Load × Demand Factor",
-    outputUnit: "Kilowatts (kW)",
-    assumptions: ["Non-coincident peak load profile", "Applied system diversity factor"],
-    inputs: [
-      { name: "connectedLoad", label: "Total Connected Load", unit: "Kilowatts (kW)", defaultValue: 120 },
-      { name: "demandFactor", label: "Demand Factor", unit: "Ratio (0-1)", defaultValue: 0.75 }
-    ],
-    calculate: (inputs) => (inputs.connectedLoad || 0) * (inputs.demandFactor || 0.75),
-    route: "/engineering-calculators/electrical-calc/electrical-load-calc",
-    seo: {
-      title: "Electrical Load Calculator | Electrical Engineering",
-      description: "Calculate total diversified electrical demand load in kW using demand factor multipliers.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/electrical-load-calc",
-      keywords: ["electrical load calculator", "demand load kw", "connected load demand factor", "building electrical load", "electrical"]
-    },
-    searchKeywords: ["electrical load calculator", "demand load kw", "connected load demand factor", "building electrical load", "electrical"]
-  },
-  {
-    id: "motor-full-load-current",
-    slug: "motor-full-load-current",
-    title: "Motor Full Load Current Calculator",
-    name: "Motor Full Load Current Calculator",
-    discipline: "Electrical",
-    disciplineId: "electrical-calc",
-    description: "Calculate full load current (FLC) for 3-phase AC induction motors.",
-    formula: "FLC = (P_kW × 1000) / (√3 × V_LL × PF × η)",
+    description: "Calculate root-mean-square (RMS) current from peak AC current.",
+    formula: "I_rms = I_peak / √2",
     outputUnit: "Amperes (A)",
-    assumptions: ["Balanced 3-phase induction motor", "Known nameplate efficiency η and power factor PF"],
+    assumptions: ["Sinusoidal AC current waveform", "Zero harmonic distortion"],
     inputs: [
-      { name: "powerKw", label: "Motor Shaft Power", unit: "Kilowatts (kW)", defaultValue: 15 },
-      { name: "voltage", label: "Line Voltage", unit: "Volts (V)", defaultValue: 400 },
-      { name: "pf", label: "Power Factor", unit: "Ratio (0-1)", defaultValue: 0.85 },
-      { name: "efficiency", label: "Motor Efficiency (η)", unit: "Ratio (0-1)", defaultValue: 0.90 }
+      { name: "peakCurrent", label: "Peak Current (I_peak)", unit: "Amperes (A)", defaultValue: 14.14 }
     ],
-    calculate: (inputs) => {
-      const denom = Math.sqrt(3) * (inputs.voltage || 400) * (inputs.pf || 0.85) * (inputs.efficiency || 0.9);
-      return denom > 0 ? ((inputs.powerKw || 0) * 1000) / denom : 0;
-    },
-    route: "/engineering-calculators/electrical-calc/motor-full-load-current",
+    calculate: (inputs) => (inputs.peakCurrent || 0) / Math.SQRT2,
+    route: "/engineering-calculators/electrical-calc/rms-current-calculator",
     seo: {
-      title: "Motor Full Load Current Calculator | Electrical Engineering",
-      description: "Calculate 3-phase AC motor full load current (FLC) in Amperes from kW rating.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/motor-full-load-current",
-      keywords: ["motor full load current", "motor flc calculator", "3 phase motor amps", "motor current kw", "electrical"]
+      title: "RMS Current Calculator | Electrical Engineering",
+      description: "Calculate RMS current in Amperes from sinusoidal peak AC current.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/rms-current-calculator",
+      keywords: ["rms current calculator", "i_rms calculator", "i_peak to i_rms", "ac rms current", "electrical"]
     },
-    searchKeywords: ["motor full load current", "motor flc calculator", "3 phase motor amps", "motor current kw", "electrical"]
+    searchKeywords: ["rms current calculator", "i_rms calculator", "i_peak to i_rms", "ac rms current", "electrical"]
   },
   {
-    id: "generator-sizing-calc",
-    slug: "generator-sizing-calc",
-    title: "Generator Sizing Calculator",
-    name: "Generator Sizing Calculator",
+    id: "peak-voltage-calculator",
+    slug: "peak-voltage-calculator",
+    title: "Peak Voltage Calculator",
+    name: "Peak Voltage Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate recommended standby generator rating in kVA for motor starting and connected electrical loads.",
-    formula: "Gen kVA = [(Running kW + Starting kW) / PF] × Safety Margin",
-    outputUnit: "kVA",
-    assumptions: ["Direct-on-line (DOL) motor starting surge factor included", "20% safety margin factor"],
+    description: "Calculate peak sinusoidal voltage from RMS voltage value.",
+    formula: "V_peak = V_rms × √2",
+    outputUnit: "Volts (V)",
+    assumptions: ["Pure AC sine wave", "Zero DC bias"],
     inputs: [
-      { name: "runningKw", label: "Continuous Running Load", unit: "Kilowatts (kW)", defaultValue: 50 },
-      { name: "startingKw", label: "Largest Motor Inrush", unit: "Kilowatts (kW)", defaultValue: 25 },
-      { name: "pf", label: "Generator Power Factor", unit: "Ratio (0-1)", defaultValue: 0.8 },
-      { name: "safetyMargin", label: "Safety Margin", unit: "Multiplier", defaultValue: 1.2 }
+      { name: "rmsVoltage", label: "RMS Voltage (V_rms)", unit: "Volts (V)", defaultValue: 120 }
     ],
-    calculate: (inputs) => (inputs.pf ? (((inputs.runningKw || 0) + (inputs.startingKw || 0)) / inputs.pf) * (inputs.safetyMargin || 1.2) : 0),
-    route: "/engineering-calculators/electrical-calc/generator-sizing-calc",
+    calculate: (inputs) => (inputs.rmsVoltage || 0) * Math.SQRT2,
+    route: "/engineering-calculators/electrical-calc/peak-voltage-calculator",
     seo: {
-      title: "Generator Sizing Calculator | Electrical Engineering",
-      description: "Calculate required standby generator rating in kVA for connected and motor starting surge loads.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/generator-sizing-calc",
-      keywords: ["generator sizing calculator", "generator kva calculator", "standby generator size", "genset sizing", "electrical"]
+      title: "Peak Voltage Calculator | Electrical Engineering",
+      description: "Calculate peak sinusoidal voltage (V_peak) from effective RMS voltage.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/peak-voltage-calculator",
+      keywords: ["peak voltage calculator", "v_peak calculator", "rms to peak voltage", "v_rms to v_peak", "electrical"]
     },
-    searchKeywords: ["generator sizing calculator", "generator kva calculator", "standby generator size", "genset sizing", "electrical"]
+    searchKeywords: ["peak voltage calculator", "v_peak calculator", "rms to peak voltage", "v_rms to v_peak", "electrical"]
   },
   {
-    id: "capacitor-bank-pfc",
-    slug: "capacitor-bank-pfc",
-    title: "Capacitor Bank Calculator (Power Factor Correction)",
-    name: "Capacitor Bank Calculator (Power Factor Correction)",
+    id: "peak-current-calculator",
+    slug: "peak-current-calculator",
+    title: "Peak Current Calculator",
+    name: "Peak Current Calculator",
     discipline: "Electrical",
     disciplineId: "electrical-calc",
-    description: "Calculate required reactive power rating in kVAR for power factor correction capacitor banks.",
-    formula: "Q_cap (kVAR) = P_kW × [tan(arccos(PF1)) - tan(arccos(PF2))]",
-    outputUnit: "kVAR",
-    assumptions: ["Constant active load power (P)", "Sinusoidal power factor correction"],
+    description: "Calculate peak AC current magnitude from RMS current value.",
+    formula: "I_peak = I_rms × √2",
+    outputUnit: "Amperes (A)",
+    assumptions: ["Un-distorted AC sinusoidal wave"],
     inputs: [
-      { name: "powerKw", label: "Active Power Load", unit: "Kilowatts (kW)", defaultValue: 100 },
-      { name: "pfOriginal", label: "Initial Power Factor (PF1)", unit: "Ratio (0-1)", defaultValue: 0.75 },
-      { name: "pfTarget", label: "Target Power Factor (PF2)", unit: "Ratio (0-1)", defaultValue: 0.95 }
+      { name: "rmsCurrent", label: "RMS Current (I_rms)", unit: "Amperes (A)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => (inputs.rmsCurrent || 0) * Math.SQRT2,
+    route: "/engineering-calculators/electrical-calc/peak-current-calculator",
+    seo: {
+      title: "Peak Current Calculator | Electrical Engineering",
+      description: "Calculate peak AC current (I_peak) in Amperes from effective RMS current.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/peak-current-calculator",
+      keywords: ["peak current calculator", "i_peak calculator", "rms to peak current", "i_rms to i_peak", "electrical"]
+    },
+    searchKeywords: ["peak current calculator", "i_peak calculator", "rms to peak current", "i_rms to i_peak", "electrical"]
+  },
+  {
+    id: "battery-life-calculator",
+    slug: "battery-life-calculator",
+    title: "Battery Life Calculator",
+    name: "Battery Life Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate battery estimated operating runtime in hours under continuous load current.",
+    formula: "Runtime (h) = (Capacity (Ah) / Load Current (A)) × Safety Derating",
+    outputUnit: "Hours (h)",
+    assumptions: ["Constant discharge current", "Safety derating factor applied for real-world losses"],
+    inputs: [
+      { name: "capacityAh", label: "Battery Capacity", unit: "Ampere-hours (Ah)", defaultValue: 100 },
+      { name: "currentA", label: "Load Current", unit: "Amperes (A)", defaultValue: 5 },
+      { name: "derating", label: "Safety Derating", unit: "Ratio (0-1)", defaultValue: 0.85 }
+    ],
+    calculate: (inputs) => (inputs.currentA || 0) > 0 ? ((inputs.capacityAh || 0) / inputs.currentA) * (inputs.derating ?? 0.85) : 0,
+    route: "/engineering-calculators/electrical-calc/battery-life-calculator",
+    seo: {
+      title: "Battery Life Calculator | Electrical Engineering",
+      description: "Calculate battery runtime hours based on Ah capacity, load current, and safety derating.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/battery-life-calculator",
+      keywords: ["battery life calculator", "battery runtime hours", "ah to runtime", "battery discharge time", "electrical"]
+    },
+    searchKeywords: ["battery life calculator", "battery runtime hours", "ah to runtime", "battery discharge time", "electrical"]
+  },
+  {
+    id: "battery-capacity-calculator",
+    slug: "battery-capacity-calculator",
+    title: "Battery Capacity Calculator",
+    name: "Battery Capacity Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate required battery storage capacity in Ampere-hours (Ah) for a target power load and runtime.",
+    formula: "Capacity (Ah) = (Load Power (W) × Desired Hours) / (System Voltage (V) × Inverter Efficiency)",
+    outputUnit: "Ampere-hours (Ah)",
+    assumptions: ["Continuous constant load power", "Inverter/conversion efficiency accounted"],
+    inputs: [
+      { name: "loadPowerWatts", label: "Load Power", unit: "Watts (W)", defaultValue: 300 },
+      { name: "runtimeHours", label: "Desired Backup Time", unit: "Hours (h)", defaultValue: 10 },
+      { name: "batteryVoltage", label: "System Voltage", unit: "Volts (V)", defaultValue: 12 },
+      { name: "efficiency", label: "System Efficiency", unit: "Ratio (0-1)", defaultValue: 0.85 }
     ],
     calculate: (inputs) => {
-      const pf1 = Math.min(Math.max(inputs.pfOriginal || 0.75, 0.1), 0.99);
-      const pf2 = Math.min(Math.max(inputs.pfTarget || 0.95, 0.1), 1.0);
-      const tan1 = Math.tan(Math.acos(pf1));
-      const tan2 = Math.tan(Math.acos(pf2));
-      return (inputs.powerKw || 0) * (tan1 - tan2);
+      const denom = (inputs.batteryVoltage || 0) * (inputs.efficiency ?? 0.85);
+      return denom > 0 ? ((inputs.loadPowerWatts || 0) * (inputs.runtimeHours || 0)) / denom : 0;
     },
-    route: "/engineering-calculators/electrical-calc/capacitor-bank-pfc",
+    route: "/engineering-calculators/electrical-calc/battery-capacity-calculator",
     seo: {
-      title: "Capacitor Bank Calculator (Power Factor Correction) | Electrical Engineering",
-      description: "Calculate required capacitor bank kVAR rating for power factor correction.",
-      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/capacitor-bank-pfc",
-      keywords: ["capacitor bank calculator", "power factor correction kvar", "pfc capacitor size", "kvar calculator", "electrical"]
+      title: "Battery Capacity Calculator | Electrical Engineering",
+      description: "Calculate required battery capacity in Ah for solar, UPS, or off-grid backup power systems.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/battery-capacity-calculator",
+      keywords: ["battery capacity calculator", "ah capacity sizing", "ups battery size", "solar battery ah", "electrical"]
     },
-    searchKeywords: ["capacitor bank calculator", "power factor correction kvar", "pfc capacitor size", "kvar calculator", "electrical"]
+    searchKeywords: ["battery capacity calculator", "ah capacity sizing", "ups battery size", "solar battery ah", "electrical"]
+  },
+  {
+    id: "led-series-resistor-calculator",
+    slug: "led-series-resistor-calculator",
+    title: "LED Series Resistor Calculator",
+    name: "LED Series Resistor Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate current-limiting series resistor value for single LED driving circuits.",
+    formula: "R = (V_source - V_led) / (I_led / 1000)",
+    outputUnit: "Ohms (Ω)",
+    assumptions: ["Constant DC supply voltage greater than LED forward voltage drop"],
+    inputs: [
+      { name: "sourceVoltage", label: "Source Voltage (V_source)", unit: "Volts (V)", defaultValue: 9 },
+      { name: "ledForwardVoltage", label: "LED Forward Voltage (V_led)", unit: "Volts (V)", defaultValue: 2.1 },
+      { name: "ledCurrentMa", label: "Target LED Current", unit: "Milliamperes (mA)", defaultValue: 20 }
+    ],
+    calculate: (inputs) => {
+      const iAmp = (inputs.ledCurrentMa || 0) / 1000;
+      const vDiff = (inputs.sourceVoltage || 0) - (inputs.ledForwardVoltage || 0);
+      return iAmp > 0 && vDiff > 0 ? vDiff / iAmp : 0;
+    },
+    route: "/engineering-calculators/electrical-calc/led-series-resistor-calculator",
+    seo: {
+      title: "LED Series Resistor Calculator | Electrical Engineering",
+      description: "Calculate exact current-limiting series resistor resistance in Ohms for driving LEDs.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/led-series-resistor-calculator",
+      keywords: ["led series resistor calculator", "led resistor size", "led dropping resistor", "led ohm calculator", "electrical"]
+    },
+    searchKeywords: ["led series resistor calculator", "led resistor size", "led dropping resistor", "led ohm calculator", "electrical"]
+  },
+  {
+    id: "fuse-size-calculator",
+    slug: "fuse-size-calculator",
+    title: "Fuse Size Calculator",
+    name: "Fuse Size Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate recommended circuit breaker / fuse ampere rating per NEC 125% continuous load guidelines.",
+    formula: "Fuse Rating (A) = Operating Current (A) × Safety Factor",
+    outputUnit: "Amperes (A)",
+    assumptions: ["Standard NEC 125% factor for continuous electrical loads", "Safety margin"],
+    inputs: [
+      { name: "operatingCurrent", label: "Full Continuous Current", unit: "Amperes (A)", defaultValue: 16 },
+      { name: "safetyFactor", label: "Safety Factor", unit: "Multiplier", defaultValue: 1.25 }
+    ],
+    calculate: (inputs) => (inputs.operatingCurrent || 0) * (inputs.safetyFactor ?? 1.25),
+    route: "/engineering-calculators/electrical-calc/fuse-size-calculator",
+    seo: {
+      title: "Fuse Size Calculator | Electrical Engineering",
+      description: "Calculate recommended fuse or circuit breaker ampere rating using continuous load safety factors.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/fuse-size-calculator",
+      keywords: ["fuse size calculator", "breaker size calculator", "nec 125 percent rule", "fuse rating amp", "electrical"]
+    },
+    searchKeywords: ["fuse size calculator", "breaker size calculator", "nec 125 percent rule", "fuse rating amp", "electrical"]
   },
 
   // --- MECHANICAL ENGINEERING ---

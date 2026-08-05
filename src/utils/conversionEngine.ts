@@ -681,7 +681,7 @@ export function runEngineAudit(categories: Category[]): AuditReport {
           }
 
           // Skip sub-picodecibel and extreme acoustic levels (>300 dB, >30 Bel, >34 Neper) that exceed 64-bit float exponent range or precision limits
-          const isLogSoundUnit = (id: string) => id === "decibel" || id === "decibel-spl" || id === "bel" || id === "neper" || id === "dba-sound" || id === "sound-power-level" || id === "sound-intensity-level" || id === "sound-exposure-level" || id === "db-gain-loss";
+          const isLogSoundUnit = (id: string) => id === "decibel" || id === "decibel-spl" || id === "bel" || id === "neper" || id === "sound-power-level" || id === "sound-intensity-level" || id === "sound-exposure-level" || id === "db-gain-loss";
           if (cat.id === "sound" && (isLogSoundUnit(uFrom.id) || isLogSoundUnit(uTo.id))) {
             if (Math.abs(testVal) < 1e-12) continue;
             if (uFrom.id === "bel" || uTo.id === "bel") {

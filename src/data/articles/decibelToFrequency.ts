@@ -160,7 +160,6 @@ export const decibelToFrequency: CustomArticleData = {
   ],
   relatedList: [
     { label: "Decibel to Bel", from: "decibel", to: "bel" },
-    { label: "Decibel to Decibel SPL", from: "decibel", to: "decibel-spl" },
     { label: "Decibel to Phon", from: "decibel", to: "phon" },
     { label: "Decibel to Wavelength (Sound)", from: "decibel", to: "wavelength-sound" }
   ],

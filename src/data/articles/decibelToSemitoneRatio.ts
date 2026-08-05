@@ -162,7 +162,6 @@ export const decibelToSemitoneRatio: CustomArticleData = {
   ],
   relatedList: [
     { label: "Decibel to Bel", from: "decibel", to: "bel" },
-    { label: "Decibel to Decibel SPL", from: "decibel", to: "decibel-spl" },
     { label: "Decibel to Frequency (Sound)", from: "decibel", to: "frequency-sound" },
     { label: "Decibel to Octave Ratio", from: "decibel", to: "octave-ratio" }
   ],
