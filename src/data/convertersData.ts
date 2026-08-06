@@ -582,9 +582,7 @@ export const categoriesData: Category[] = [
       const angleFactors: Record<string, number> = {
         "degree": 1, "radian": 57.295779513, "gradian": 0.9, "arcminute": 0.016666667,
         "arcsecond": 0.000277778, "revolution": 360, "mil-angle": 0.05625, "turn-angle": 360,
-        "quadrant-angle": 90, "sextant-angle": 60, "compass-point": 11.25,
-        "grad-angle": 0.9, "decimal-degree": 1, "hour-angle": 15,
-        "right-ascension": 15, "degree-hour": 15, "circular-mil-angle": 1
+        "quadrant-angle": 90, "sextant-angle": 60, "grad-angle": 0.9, "circular-mil-angle": 1
       };
       const fFrom = angleFactors[from] || 1;
       const fTo = angleFactors[to] || 1;
@@ -601,13 +599,7 @@ export const categoriesData: Category[] = [
       { id: "turn-angle", name: "Turn", plural: "Turns", symbol: "turn", factor: 360 },
       { id: "quadrant-angle", name: "Quadrant", plural: "Quadrants", symbol: "quad", factor: 90 },
       { id: "sextant-angle", name: "Sextant", plural: "Sextants", symbol: "sext", factor: 60 },
-      { id: "compass-point", name: "Compass Point", plural: "Compass Points", symbol: "pt", factor: 11.25 },
       { id: "grad-angle", name: "Grad", plural: "Grads", symbol: "grad", factor: 0.9 },
-      { id: "dms-angle", name: "DMS", plural: "Degrees-Minutes-Seconds", symbol: "DMS", factor: 1 },
-      { id: "decimal-degree", name: "Decimal Degree", plural: "Decimal Degrees", symbol: "°", factor: 1 },
-      { id: "hour-angle", name: "Hour Angle", plural: "Hour Angles", symbol: "ha", factor: 15 },
-      { id: "right-ascension", name: "Right Ascension", plural: "Right Ascensions", symbol: "RA", factor: 15 },
-      { id: "degree-hour", name: "Degree ↔ Hour", plural: "Degree-Hour alignments", symbol: "°(h)", factor: 15 },
       { id: "circular-mil-angle", name: "Circular Mil Angle", plural: "Circular Mil Angles", symbol: "mil", factor: 1 }
     ]
   },

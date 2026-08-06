@@ -4,7 +4,7 @@ import {
   Zap, Activity, Droplet, ChefHat, Database, Cpu, Lightbulb, Atom,
   Search, Moon, Sun, Menu, X, Heart, Info, Mail, ChevronDown, Sparkles,
   Volume2, Hammer, Waves, Compass, HardHat, Wifi, Shield, Orbit,
-  RotateCw, Battery, Radio, TrendingUp, Layers, Calculator
+  RotateCw, Battery, Radio, TrendingUp, Layers, Calculator, MapPin, Navigation, Globe
 } from "lucide-react";
 import Logo from "./Logo";
 import { categoriesData } from "../data/convertersData";
@@ -59,7 +59,10 @@ export const calcIconMap: Record<string, React.ComponentType<any>> = {
   "Waves": Waves,
   "Cpu": Cpu,
   "Grid": Grid,
-  "Compass": Compass
+  "Compass": Compass,
+  "MapPin": MapPin,
+  "Navigation": Navigation,
+  "Globe": Globe
 };
 
 export interface CategoryStyle {

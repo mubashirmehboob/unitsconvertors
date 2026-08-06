@@ -27,7 +27,7 @@ export type PageClassificationType = "unit-converter" | "engineering-calculator"
  *   - Engineering pages follow standard evaluation rules ('index, follow')
  *   - Engineering pages are included in sitemap.xml
  */
-export const ENGINEERING_INDEXABLE = false;
+export const ENGINEERING_INDEXABLE = true;
 
 export interface ClassificationResult {
   type: PageClassificationType;

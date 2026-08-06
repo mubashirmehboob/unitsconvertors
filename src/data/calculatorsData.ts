@@ -5151,6 +5151,465 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
       keywords: ["mttr calculator", "mean time to repair", "maintenance downtime mttr", "general engineering"]
     },
     searchKeywords: ["mttr calculator", "mean time to repair", "maintenance downtime mttr", "general engineering"]
+  },
+
+  // --- RESTORED PHOTOMETRIC & OPTICAL CALCULATORS ---
+  {
+    id: "lux-to-candela-calc",
+    slug: "lux-to-candela-calc",
+    title: "Lux to Candela Calculator",
+    name: "Lux to Candela Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate luminous intensity in Candelas (cd) from illuminance in Lux (lx) and distance in meters based on the Inverse Square Law.",
+    formula: "I = E × d²",
+    outputUnit: "Candelas (cd)",
+    assumptions: ["Point light source model", "Isotropic radiation distribution", "Non-absorbing medium"],
+    inputs: [
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 500 },
+      { name: "distance", label: "Distance (d)", unit: "Meters (m)", defaultValue: 2 }
+    ],
+    calculate: (inputs) => (inputs.illuminance || 0) * Math.pow(inputs.distance || 0, 2),
+    route: "/engineering-calculators/electrical-calc/lux-to-candela-calc",
+    seo: {
+      title: "Lux to Candela Calculator | Photometric Engineering",
+      description: "Calculate luminous intensity in Candelas (cd) from illuminance in Lux (lx) and distance using inverse square photometrics.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/lux-to-candela-calc",
+      keywords: ["lux to candela calculator", "illuminance to luminous intensity", "lux candela distance formula", "photometric engineering"]
+    },
+    searchKeywords: ["lux to candela", "lux to candela calculator", "illuminance candela", "candela lux distance", "photometry"]
+  },
+  {
+    id: "lux-to-lumen-calc",
+    slug: "lux-to-lumen-calc",
+    title: "Lux to Lumen Calculator",
+    name: "Lux to Lumen Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate total luminous flux in Lumens (lm) from surface illuminance in Lux (lx) and illuminated area in square meters.",
+    formula: "Φ = E × A",
+    outputUnit: "Lumens (lm)",
+    assumptions: ["Uniform illuminance distribution", "Planar or target surface geometry"],
+    inputs: [
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 300 },
+      { name: "area", label: "Illuminated Area (A)", unit: "Square Meters (m²)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => (inputs.illuminance || 0) * (inputs.area || 0),
+    route: "/engineering-calculators/electrical-calc/lux-to-lumen-calc",
+    seo: {
+      title: "Lux to Lumen Calculator | Electrical & Lighting Engineering",
+      description: "Calculate total luminous flux in Lumens (lm) from illuminance in Lux (lx) and target area in square meters.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/lux-to-lumen-calc",
+      keywords: ["lux to lumen calculator", "lux to lumens", "illuminance to luminous flux", "lux area formula"]
+    },
+    searchKeywords: ["lux to lumen", "lux to lumen calculator", "lux to lumens", "illuminance area lumens", "lighting design"]
+  },
+  {
+    id: "lux-to-nit-calc",
+    slug: "lux-to-nit-calc",
+    title: "Lux to Nit (cd/m²) Calculator",
+    name: "Lux to Nit (cd/m²) Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate surface luminance in Nits (cd/m²) from incident illuminance in Lux (lx) and diffuse surface reflectance factor.",
+    formula: "L = (E × R) / π",
+    outputUnit: "Nits (cd/m²)",
+    assumptions: ["Ideal Lambertian diffuse reflector", "Uniform spectral reflectance"],
+    inputs: [
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 400 },
+      { name: "reflectance", label: "Reflectance Factor (R)", unit: "Ratio (0 to 1)", defaultValue: 0.8 }
+    ],
+    calculate: (inputs) => ((inputs.illuminance || 0) * (inputs.reflectance ?? 0.8)) / Math.PI,
+    route: "/engineering-calculators/electrical-calc/lux-to-nit-calc",
+    seo: {
+      title: "Lux to Nit Calculator | Photometric Engineering",
+      description: "Calculate surface luminance in Nits (cd/m²) from illuminance in Lux (lx) and surface reflectance ratio.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/lux-to-nit-calc",
+      keywords: ["lux to nit calculator", "lux to cd/m2", "illuminance to luminance", "surface reflectance nits"]
+    },
+    searchKeywords: ["lux to nit", "lux to nit calculator", "lux cd/m2", "nits calculator", "display luminance"]
+  },
+  {
+    id: "lux-to-lambert-calc",
+    slug: "lux-to-lambert-calc",
+    title: "Lux to Lambert Calculator",
+    name: "Lux to Lambert Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate CGS surface luminance in Lamberts (L) from illuminance in Lux (lx) and diffuse surface reflectance.",
+    formula: "L = (E × R) / 10,000",
+    outputUnit: "Lamberts (L)",
+    assumptions: ["Ideal Lambertian reflector", "Specular components negligible"],
+    inputs: [
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 500 },
+      { name: "reflectance", label: "Reflectance Factor (R)", unit: "Ratio (0 to 1)", defaultValue: 0.85 }
+    ],
+    calculate: (inputs) => ((inputs.illuminance || 0) * (inputs.reflectance ?? 0.85)) / 10000,
+    route: "/engineering-calculators/electrical-calc/lux-to-lambert-calc",
+    seo: {
+      title: "Lux to Lambert Calculator | Electrical & Optics Engineering",
+      description: "Calculate surface luminance in CGS Lamberts (L) from incident illuminance in Lux (lx) and diffuse surface reflectance.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/lux-to-lambert-calc",
+      keywords: ["lux to lambert calculator", "lux to lamberts", "cgs luminance calculator", "photometric conversion"]
+    },
+    searchKeywords: ["lux to lambert", "lux to lambert calculator", "cgs luminance", "lambert lux formula"]
+  },
+  {
+    id: "lux-to-foot-lambert-calc",
+    slug: "lux-to-foot-lambert-calc",
+    title: "Lux to Foot-Lambert Calculator",
+    name: "Lux to Foot-Lambert Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate surface luminance in Foot-Lamberts (fL) from illuminance in Lux (lx) and surface reflectance ratio.",
+    formula: "fL = E × R × 0.092903",
+    outputUnit: "Foot-Lamberts (fL)",
+    assumptions: ["Lambertian surface scattering", "Standard photopic visual response"],
+    inputs: [
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 500 },
+      { name: "reflectance", label: "Reflectance Factor (R)", unit: "Ratio (0 to 1)", defaultValue: 0.8 }
+    ],
+    calculate: (inputs) => (inputs.illuminance || 0) * (inputs.reflectance ?? 0.8) * 0.09290304,
+    route: "/engineering-calculators/electrical-calc/lux-to-foot-lambert-calc",
+    seo: {
+      title: "Lux to Foot-Lambert Calculator | Architectural Lighting",
+      description: "Calculate surface luminance in Foot-Lamberts (fL) from Lux (lx) and diffuse reflectance factor.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/lux-to-foot-lambert-calc",
+      keywords: ["lux to foot lambert calculator", "lux to fl", "architectural luminance", "foot lambert calculator"]
+    },
+    searchKeywords: ["lux to foot lambert", "lux to foot-lambert calculator", "foot lamberts", "fl calculator"]
+  },
+  {
+    id: "lux-to-stilb-calc",
+    slug: "lux-to-stilb-calc",
+    title: "Lux to Stilb Calculator",
+    name: "Lux to Stilb Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate high-intensity surface luminance in CGS Stilbs (sb = cd/cm²) from illuminance in Lux (lx) and reflectance factor.",
+    formula: "sb = (E × R) / (10,000 × π)",
+    outputUnit: "Stilbs (sb)",
+    assumptions: ["Lambertian emission geometry", "Constant photopic efficacy"],
+    inputs: [
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 10000 },
+      { name: "reflectance", label: "Reflectance Factor (R)", unit: "Ratio (0 to 1)", defaultValue: 0.9 }
+    ],
+    calculate: (inputs) => ((inputs.illuminance || 0) * (inputs.reflectance ?? 0.9)) / (10000 * Math.PI),
+    route: "/engineering-calculators/electrical-calc/lux-to-stilb-calc",
+    seo: {
+      title: "Lux to Stilb Calculator | High-Intensity Photometrics",
+      description: "Calculate surface luminance in Stilbs (sb) from illuminance in Lux (lx) and surface reflectance factor.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/lux-to-stilb-calc",
+      keywords: ["lux to stilb calculator", "lux to sb", "cd/cm2 calculator", "high luminance photometry"]
+    },
+    searchKeywords: ["lux to stilb", "lux to stilb calculator", "stilbs", "cd/cm2"]
+  },
+  {
+    id: "lux-to-apostilb-calc",
+    slug: "lux-to-apostilb-calc",
+    title: "Lux to Apostilb Calculator",
+    name: "Lux to Apostilb Calculator",
+    discipline: "Electrical",
+    disciplineId: "electrical-calc",
+    description: "Calculate MKS surface luminance in Apostilbs (asb) from illuminance in Lux (lx) and surface reflectance ratio.",
+    formula: "asb = E × R",
+    outputUnit: "Apostilbs (asb)",
+    assumptions: ["Perfect Lambertian surface dispersion", "1 lux = 1 apostilb at R=1"],
+    inputs: [
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 250 },
+      { name: "reflectance", label: "Reflectance Factor (R)", unit: "Ratio (0 to 1)", defaultValue: 0.8 }
+    ],
+    calculate: (inputs) => (inputs.illuminance || 0) * (inputs.reflectance ?? 0.8),
+    route: "/engineering-calculators/electrical-calc/lux-to-apostilb-calc",
+    seo: {
+      title: "Lux to Apostilb Calculator | Electrical Engineering",
+      description: "Calculate surface luminance in Apostilbs (asb) directly from illuminance in Lux (lx) and reflectance ratio.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/electrical-calc/lux-to-apostilb-calc",
+      keywords: ["lux to apostilb calculator", "lux to asb", "apostilb luminance", "mks luminance"]
+    },
+    searchKeywords: ["lux to apostilb", "lux to apostilb calculator", "apostilbs", "asb calculator"]
+  },
+  {
+    id: "lux-to-color-temp-mired-calc",
+    slug: "lux-to-color-temp-mired-calc",
+    title: "Lux to Color Temperature (Mired) Calculator",
+    name: "Lux to Color Temperature (Mired) Calculator",
+    discipline: "Optics & Light",
+    disciplineId: "optics-light-calc",
+    description: "Calculate micro reciprocal degree (Mired) color temperature values from Correlated Color Temperature in Kelvin under ambient illuminance.",
+    formula: "Mired = 1,000,000 / T_k",
+    outputUnit: "Mireds (M)",
+    assumptions: ["Blackbody spectrum or Planckian locus", "Photopic illuminance level"],
+    inputs: [
+      { name: "temperature", label: "Color Temperature (T)", unit: "Kelvin (K)", defaultValue: 6500 },
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 500 }
+    ],
+    calculate: (inputs) => (inputs.temperature || 6500) > 0 ? 1000000 / (inputs.temperature || 6500) : 0,
+    route: "/engineering-calculators/optics-light-calc/lux-to-color-temp-mired-calc",
+    seo: {
+      title: "Lux to Color Temperature (Mired) Calculator | Optical Engineering",
+      description: "Calculate Mired color shift values from Kelvin color temperature in a photopic lux illuminance environment.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/optics-light-calc/lux-to-color-temp-mired-calc",
+      keywords: ["lux to color temperature mired calculator", "mired calculator", "kelvin to mired", "optical color temperature"]
+    },
+    searchKeywords: ["lux to mired", "color temperature mired calculator", "mired value", "kelvin to mired"]
+  },
+  {
+    id: "lux-to-kelvin-color-temp-calc",
+    slug: "lux-to-kelvin-color-temp-calc",
+    title: "Lux to Kelvin (Color Temperature) Calculator",
+    name: "Lux to Kelvin (Color Temperature) Calculator",
+    discipline: "Optics & Light",
+    disciplineId: "optics-light-calc",
+    description: "Calculate Correlated Color Temperature in Kelvin (K) from Mired values evaluated in photopic lux environments.",
+    formula: "T = 1,000,000 / Mired",
+    outputUnit: "Kelvin (K)",
+    assumptions: ["Planckian radiator model", "Visible spectrum illuminance"],
+    inputs: [
+      { name: "mired", label: "Mired Value (M)", unit: "Mireds (M)", defaultValue: 153.85 },
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 500 }
+    ],
+    calculate: (inputs) => (inputs.mired || 153.85) > 0 ? 1000000 / (inputs.mired || 153.85) : 0,
+    route: "/engineering-calculators/optics-light-calc/lux-to-kelvin-color-temp-calc",
+    seo: {
+      title: "Lux to Kelvin Color Temperature Calculator | Optical Engineering",
+      description: "Calculate Correlated Color Temperature in Kelvin from Mired color values under ambient lux lighting.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/optics-light-calc/lux-to-kelvin-color-temp-calc",
+      keywords: ["lux to kelvin calculator", "mired to kelvin", "color temperature kelvin", "photometric optics"]
+    },
+    searchKeywords: ["lux to kelvin", "mired to kelvin calculator", "color temperature kelvin", "cct calculator"]
+  },
+  {
+    id: "lux-to-nanometer-calc",
+    slug: "lux-to-nanometer-calc",
+    title: "Lux to Nanometer Calculator",
+    name: "Lux to Nanometer Calculator",
+    discipline: "Optics & Light",
+    disciplineId: "optics-light-calc",
+    description: "Calculate peak spectral emission wavelength in nanometers (nm) using Wien's Displacement Law for blackbody illuminants.",
+    formula: "λ_peak = 2,897,771.9 / T_k",
+    outputUnit: "Nanometers (nm)",
+    assumptions: ["Planckian blackbody radiator", "Continuous thermal spectrum"],
+    inputs: [
+      { name: "temperature", label: "Color Temperature (T)", unit: "Kelvin (K)", defaultValue: 5500 },
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 1000 }
+    ],
+    calculate: (inputs) => (inputs.temperature || 5500) > 0 ? 2897771.9 / (inputs.temperature || 5500) : 0,
+    route: "/engineering-calculators/optics-light-calc/lux-to-nanometer-calc",
+    seo: {
+      title: "Lux to Nanometer Calculator | Optical Engineering",
+      description: "Calculate peak spectral emission wavelength in nanometers (nm) from blackbody color temperature under photopic lux levels.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/optics-light-calc/lux-to-nanometer-calc",
+      keywords: ["lux to nanometer calculator", "wiens law calculator", "peak wavelength nm", "blackbody spectrum"]
+    },
+    searchKeywords: ["lux to nanometer", "lux to nanometer calculator", "wiens law", "peak wavelength nm"]
+  },
+  {
+    id: "lux-to-angstrom-calc",
+    slug: "lux-to-angstrom-calc",
+    title: "Lux to Angstrom Calculator",
+    name: "Lux to Angstrom Calculator",
+    discipline: "Optics & Light",
+    disciplineId: "optics-light-calc",
+    description: "Calculate peak spectral wavelength in Ångströms (Å) from source color temperature using Wien's displacement constant.",
+    formula: "λ_Å = 28,977,719 / T_k",
+    outputUnit: "Ångströms (Å)",
+    assumptions: ["Planckian radiation spectrum", "1 nm = 10 Ångströms"],
+    inputs: [
+      { name: "temperature", label: "Color Temperature (T)", unit: "Kelvin (K)", defaultValue: 5500 },
+      { name: "illuminance", label: "Illuminance (E)", unit: "Lux (lx)", defaultValue: 1000 }
+    ],
+    calculate: (inputs) => (inputs.temperature || 5500) > 0 ? 28977719 / (inputs.temperature || 5500) : 0,
+    route: "/engineering-calculators/optics-light-calc/lux-to-angstrom-calc",
+    seo: {
+      title: "Lux to Angstrom Calculator | Optical & Spectroscopic Engineering",
+      description: "Calculate peak emission wavelength in Ångströms (Å) from thermal color temperature under ambient lux illuminance.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/optics-light-calc/lux-to-angstrom-calc",
+      keywords: ["lux to angstrom calculator", "angstrom wavelength", "spectroscopic angstrom calculator", "wiens law angstrom"]
+    },
+    searchKeywords: ["lux to angstrom", "lux to angstrom calculator", "angstrom wavelength", "blackbody angstrom"]
+  },
+
+  // --- RESTORED SURVEYING & GIS CALCULATORS ---
+  {
+    id: "degree-to-dms-calc",
+    slug: "degree-to-dms-calc",
+    title: "Degree ↔ DMS Calculator",
+    name: "Degree ↔ DMS Calculator",
+    discipline: "Surveying & GIS",
+    disciplineId: "surveying-gis-calc",
+    description: "Convert decimal degrees into Degrees, Minutes, and Seconds (DMS) angle notation and total arcsecond GIS values.",
+    formula: "D = ⌊DD⌋, M = ⌊(DD-D)×60⌋, S = ((DD-D)×60 - M)×60",
+    outputUnit: "Total Arcseconds (\")",
+    assumptions: ["Sexagesimal angular subdivision", "Euclidean or geodetic arc representation"],
+    inputs: [
+      { name: "decimalDegree", label: "Decimal Degrees (DD)", unit: "Arc Degrees (°)", defaultValue: 45.8725 }
+    ],
+    calculate: (inputs) => (inputs.decimalDegree || 0) * 3600,
+    route: "/engineering-calculators/surveying-gis-calc/degree-to-dms-calc",
+    seo: {
+      title: "Degree to DMS Calculator | Surveying & GIS Engineering",
+      description: "Convert decimal degrees into Degrees, Minutes, Seconds (DMS) and total arcseconds for GIS coordinate mapping.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/surveying-gis-calc/degree-to-dms-calc",
+      keywords: ["degree to dms calculator", "decimal degree to dms", "degrees minutes seconds calculator", "gis surveying calculator"]
+    },
+    searchKeywords: ["degree to dms", "degree to dms calculator", "degrees minutes seconds", "dms calculator", "surveying"]
+  },
+  {
+    id: "degree-to-decimal-degree-calc",
+    slug: "degree-to-decimal-degree-calc",
+    title: "Degree ↔ Decimal Degree Calculator",
+    name: "Degree ↔ Decimal Degree Calculator",
+    discipline: "Surveying & GIS",
+    disciplineId: "surveying-gis-calc",
+    description: "Convert sexagesimal degree, minute, and second component angles into exact normalized decimal degrees.",
+    formula: "DD = D + (M / 60) + (S / 3600)",
+    outputUnit: "Decimal Degrees (°)",
+    assumptions: ["60 minutes per degree", "60 seconds per minute"],
+    inputs: [
+      { name: "degrees", label: "Degrees (D)", unit: "Arc Degrees (°)", defaultValue: 45 },
+      { name: "minutes", label: "Minutes (M)", unit: "Arcminutes (')", defaultValue: 52 },
+      { name: "seconds", label: "Seconds (S)", unit: "Arcseconds (\")", defaultValue: 21 }
+    ],
+    calculate: (inputs) => (inputs.degrees || 0) + ((inputs.minutes || 0) / 60) + ((inputs.seconds || 0) / 3600),
+    route: "/engineering-calculators/surveying-gis-calc/degree-to-decimal-degree-calc",
+    seo: {
+      title: "Degree to Decimal Degree Calculator | Surveying & GIS",
+      description: "Convert degrees, minutes, and seconds into exact decimal degrees for GPS and geodetic surveying.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/surveying-gis-calc/degree-to-decimal-degree-calc",
+      keywords: ["degree to decimal degree calculator", "dms to decimal degree", "gps coordinate converter", "surveying degree calculator"]
+    },
+    searchKeywords: ["degree to decimal degree", "degree to decimal degree calculator", "dms to decimal degrees", "gps coordinates"]
+  },
+  {
+    id: "decimal-degree-to-dms-calc",
+    slug: "decimal-degree-to-dms-calc",
+    title: "Decimal Degree ↔ DMS Calculator",
+    name: "Decimal Degree ↔ DMS Calculator",
+    discipline: "Surveying & GIS",
+    disciplineId: "surveying-gis-calc",
+    description: "Convert DMS coordinate inputs into precise Decimal Degrees required for GIS, AutoCAD, and surveying software.",
+    formula: "DD = D + (M / 60) + (S / 3600)",
+    outputUnit: "Decimal Degrees (°)",
+    assumptions: ["Positive angles 0° to 360°", "Standard geodetic datum"],
+    inputs: [
+      { name: "degrees", label: "Degrees (D)", unit: "Arc Degrees (°)", defaultValue: 122 },
+      { name: "minutes", label: "Minutes (M)", unit: "Arcminutes (')", defaultValue: 25 },
+      { name: "seconds", label: "Seconds (S)", unit: "Arcseconds (\")", defaultValue: 36 }
+    ],
+    calculate: (inputs) => (inputs.degrees || 0) + ((inputs.minutes || 0) / 60) + ((inputs.seconds || 0) / 3600),
+    route: "/engineering-calculators/surveying-gis-calc/decimal-degree-to-dms-calc",
+    seo: {
+      title: "Decimal Degree to DMS Calculator | GIS & Surveying",
+      description: "Transform degrees, minutes, and seconds into normalized decimal degrees for GIS mapping and boundary surveying.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/surveying-gis-calc/decimal-degree-to-dms-calc",
+      keywords: ["decimal degree to dms calculator", "dms to dd converter", "gis coordinate calculator", "cad surveying tool"]
+    },
+    searchKeywords: ["decimal degree to dms", "decimal degree to dms calculator", "dms to dd", "gis coordinate tool"]
+  },
+
+  // --- RESTORED NAVIGATION & MARINE CALCULATORS ---
+  {
+    id: "degree-to-compass-point-calc",
+    slug: "degree-to-compass-point-calc",
+    title: "Degree ↔ Compass Point Calculator",
+    name: "Degree ↔ Compass Point Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Convert bearing angle in degrees into the standard 32-point compass index and nautical direction notation.",
+    formula: "Point Index = (Bearing mod 360) / 11.25",
+    outputUnit: "Compass Points (pt)",
+    assumptions: ["32-point traditional mariners compass", "1 compass point = 11.25°"],
+    inputs: [
+      { name: "bearing", label: "Bearing Angle (B)", unit: "Arc Degrees (°)", defaultValue: 225 }
+    ],
+    calculate: (inputs) => ((inputs.bearing || 0) % 360) / 11.25,
+    route: "/engineering-calculators/navigation-marine-calc/degree-to-compass-point-calc",
+    seo: {
+      title: "Degree to Compass Point Calculator | Navigation & Marine Engineering",
+      description: "Convert navigation bearing degrees into standard 32-point mariner compass points.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/degree-to-compass-point-calc",
+      keywords: ["degree to compass point calculator", "bearing to compass point", "32 point compass calculator", "nautical navigation"]
+    },
+    searchKeywords: ["degree to compass point", "degree to compass point calculator", "bearing compass point", "nautical compass"]
+  },
+
+  // --- RESTORED ASTRONOMY CALCULATORS ---
+  {
+    id: "degree-to-right-ascension-calc",
+    slug: "degree-to-right-ascension-calc",
+    title: "Degree ↔ Right Ascension Calculator",
+    name: "Degree ↔ Right Ascension Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Convert equatorial celestial longitude in arc degrees into Right Ascension (RA) in sidereal hours.",
+    formula: "RA (hours) = Degrees / 15",
+    outputUnit: "Right Ascension Hours (ʰ)",
+    assumptions: ["360° celestial sphere = 24 hours RA", "1 hour RA = 15°"],
+    inputs: [
+      { name: "degrees", label: "Arc Degrees (D)", unit: "Degrees (°)", defaultValue: 180 }
+    ],
+    calculate: (inputs) => (inputs.degrees || 0) / 15,
+    route: "/engineering-calculators/astronomy-calc/degree-to-right-ascension-calc",
+    seo: {
+      title: "Degree to Right Ascension Calculator | Astronomy & Astrophysics",
+      description: "Convert arc degrees to Right Ascension hours for telescope pointing and celestial mechanics.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/degree-to-right-ascension-calc",
+      keywords: ["degree to right ascension calculator", "degrees to ra hours", "celestial coordinate converter", "astronomy calculator"]
+    },
+    searchKeywords: ["degree to right ascension", "degree to right ascension calculator", "degrees to ra", "celestial coordinates"]
+  },
+  {
+    id: "degree-to-hour-angle-calc",
+    slug: "degree-to-hour-angle-calc",
+    title: "Degree ↔ Hour Angle Calculator",
+    name: "Degree ↔ Hour Angle Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Convert local hour angle in arc degrees into equatorial Hour Angle (HA) in hours.",
+    formula: "HA (hours) = Degrees / 15",
+    outputUnit: "Hour Angle Hours (ʰ)",
+    assumptions: ["Earth rotation rate 15°/hour", "Meridian hour angle convention"],
+    inputs: [
+      { name: "degrees", label: "Hour Angle Degrees (D)", unit: "Degrees (°)", defaultValue: 90 }
+    ],
+    calculate: (inputs) => (inputs.degrees || 0) / 15,
+    route: "/engineering-calculators/astronomy-calc/degree-to-hour-angle-calc",
+    seo: {
+      title: "Degree to Hour Angle Calculator | Astronomy & Astrophysics",
+      description: "Convert local hour angle arc degrees into sidereal hours for equatorial mount tracking.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/degree-to-hour-angle-calc",
+      keywords: ["degree to hour angle calculator", "degrees to ha hours", "equatorial hour angle", "telescope tracking calculator"]
+    },
+    searchKeywords: ["degree to hour angle", "degree to hour angle calculator", "degrees to ha", "hour angle astronomy"]
+  },
+  {
+    id: "right-ascension-to-hour-angle-calc",
+    slug: "right-ascension-to-hour-angle-calc",
+    title: "Right Ascension ↔ Hour Angle Calculator",
+    name: "Right Ascension ↔ Hour Angle Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate Local Hour Angle (LHA) in hours from Local Sidereal Time (LST) and target Right Ascension (RA).",
+    formula: "LHA = (LST - RA) mod 24",
+    outputUnit: "Hour Angle Hours (ʰ)",
+    assumptions: ["Local Sidereal Time in hours", "Equatorial celestial coordinate system"],
+    inputs: [
+      { name: "lst", label: "Local Sidereal Time (LST)", unit: "Hours (ʰ)", defaultValue: 14 },
+      { name: "ra", label: "Right Ascension (RA)", unit: "Hours (ʰ)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => {
+      const lha = ((inputs.lst || 0) - (inputs.ra || 0)) % 24;
+      return lha < 0 ? lha + 24 : lha;
+    },
+    route: "/engineering-calculators/astronomy-calc/right-ascension-to-hour-angle-calc",
+    seo: {
+      title: "Right Ascension to Hour Angle Calculator | Astronomy",
+      description: "Calculate Local Hour Angle (LHA) from Local Sidereal Time (LST) and Right Ascension (RA) for astronomical observation.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/right-ascension-to-hour-angle-calc",
+      keywords: ["right ascension to hour angle calculator", "ra to ha converter", "lha = lst - ra", "astronomical observation calculator"]
+    },
+    searchKeywords: ["right ascension to hour angle", "right ascension to hour angle calculator", "ra to ha", "local hour angle"]
   }
 ];
 
@@ -5183,7 +5642,7 @@ const disciplineDefinitions = [
   {
     id: "optics-light-calc",
     name: "Optics & Light",
-    description: "Photometric and radiometric optics models for lux to lumens, beam coverage angles, reflectance, and illuminance.",
+    description: "Photometric and radiometric optics models for lux to lumens, beam coverage angles, reflectance, color temperature, and illuminance.",
     iconName: "Sun"
   },
   {
@@ -5221,6 +5680,24 @@ const disciplineDefinitions = [
     name: "General Engineering",
     description: "Cross-disciplinary engineering calculators for structural safety factors, linear thermal expansion, and cost estimation.",
     iconName: "Compass"
+  },
+  {
+    id: "surveying-gis-calc",
+    name: "Surveying & GIS",
+    description: "Geodetic and surveying tools for coordinate system transformations, degree minutes seconds (DMS), and decimal degree conversions.",
+    iconName: "MapPin"
+  },
+  {
+    id: "navigation-marine-calc",
+    name: "Navigation & Marine",
+    description: "Nautical and aeronautical navigation tools for compass point headings, bearing conversions, and course orientation.",
+    iconName: "Navigation"
+  },
+  {
+    id: "astronomy-calc",
+    name: "Astronomy & Astrophysics",
+    description: "Celestial coordinate system tools for converting between arc degrees, right ascension (RA), and hour angles (HA).",
+    iconName: "Globe"
   }
 ];
 

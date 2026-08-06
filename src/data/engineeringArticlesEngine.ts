@@ -130,6 +130,21 @@ const disciplineStandardsMap: Record<string, Array<{ organization: string; code:
     { organization: "ISO", code: "ISO 9001 / ISO 14224", title: "Petroleum, petrochemical and natural gas industries — Collection and exchange of reliability data" },
     { organization: "IEEE", code: "IEEE Std 493", title: "IEEE Recommended Practice for the Design of Reliable Industrial Systems (Gold Book)" },
     { organization: "MIL-HDBK", code: "MIL-HDBK-217F", title: "Reliability Prediction of Electronic Equipment and MTBF Benchmarks" }
+  ],
+  "surveying-gis-calc": [
+    { organization: "ISO", code: "ISO 19111:2019", title: "Geographic information — Referencing by coordinates & Datum Transformations" },
+    { organization: "FGDC", code: "FGDC-STD-007", title: "Geospatial Positioning Accuracy Standards & Coordinate Systems" },
+    { organization: "NOAA/NGS", code: "NGS Manual 1.5", title: "National Geodetic Survey Coordinate Reference Systems & GPS Heights" }
+  ],
+  "navigation-marine-calc": [
+    { organization: "IMO", code: "IMO SOLAS Ch. V", title: "Safety of Navigation & Compass Heading Calibration Requirements" },
+    { organization: "IHO", code: "IHO S-52 / S-57", title: "Specifications for Chart Content and Display Aspects of ECDIS" },
+    { organization: "USCG", code: "USCG Nav Rules", title: "Navigational Rules and Nautical Bearing Determination Standards" }
+  ],
+  "astronomy-calc": [
+    { organization: "IAU", code: "IAU 2006 Standards", title: "International Astronomical Union Resolutions on Equatorial Coordinate Systems" },
+    { organization: "USNO", code: "Astronomical Almanac", title: "United States Naval Observatory Celestial Coordinate Reference Standards" },
+    { organization: "IERS", code: "IERS Tech Note 36", title: "International Earth Rotation and Reference Systems Service Coordinates" }
   ]
 };
 
@@ -152,6 +167,8 @@ function getRelatedConverterCategories(disciplineId: string) {
     catIds.push("speed", "acceleration", "force", "work", "power", "energy");
   } else if (lower.includes("chemistry")) {
     catIds.push("concentration", "mass", "volume", "molar-mass");
+  } else if (lower.includes("surveying") || lower.includes("gis") || lower.includes("navigation") || lower.includes("astronomy")) {
+    catIds.push("angle", "length");
   } else {
     catIds.push("pressure", "energy", "power", "length", "temperature");
   }
@@ -221,7 +238,10 @@ export function generateEngineeringArticle(
     "chemistry-calc": ["Chemical Process Plant Operations", "Pharmaceutical Solute Formulation", "Analytical Chemistry Quality Control", "Environmental Water Treatment", "Petrochemical Refining"],
     "fluid-mechanics-calc": ["Hydraulic Power Units & Actuators", "Municipal Water Supply Networks", "Oil & Gas Pipeline Distribution", "Aerodynamic & Hydrodynamic Design", "Process Chemical Piping"],
     "mathematics-calc": ["Quality Control & Statistical Sampling", "Combinatorial Algorithm Optimization", "Risk Analysis & Monte Carlo Simulation", "Industrial Reliability Engineering"],
-    "general-engineering-calc": ["Plant Maintenance & Operations", "Asset Integrity & MTBF Management", "Industrial Production Lines", "Capital Equipment Procurement"]
+    "general-engineering-calc": ["Plant Maintenance & Operations", "Asset Integrity & MTBF Management", "Industrial Production Lines", "Capital Equipment Procurement"],
+    "surveying-gis-calc": ["Land Surveying & Cadastral Mapping", "Civil Engineering & Geodesy", "GIS Spatial Analytics", "UAV & Satellite Photogrammetry", "Construction Boundary Mapping"],
+    "navigation-marine-calc": ["Commercial Maritime Shipping", "Aeronautical Flight Navigation", "Naval Tactical Operations", "Offshore Hydrographic Surveying", "GPS & Compass Calibration"],
+    "astronomy-calc": ["Observational Astronomy & Astrophysics", "Satellite Orbit Determination", "Telescope Control Engineering", "Space Operations & Navigation", "Celestial Mechanics Research"]
   };
 
   const activeIndustries = industryListMap[normalizedDiscId] || [

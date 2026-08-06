@@ -1,4 +1,18 @@
 import { CustomArticleData } from "./types";
+import { degreeToRadian } from "./degreeToRadian";
+import { degreeToGradian } from "./degreeToGradian";
+import { degreeToArcminute } from "./degreeToArcminute";
+import { degreeToArcsecond } from "./degreeToArcsecond";
+import { degreeToRevolution } from "./degreeToRevolution";
+import { degreeToMilAngle } from "./degreeToMilAngle";
+import { degreeToTurnAngle } from "./degreeToTurnAngle";
+import { degreeToQuadrantAngle } from "./degreeToQuadrantAngle";
+import { degreeToSextantAngle } from "./degreeToSextantAngle";
+import { degreeToGradAngle } from "./degreeToGradAngle";
+import { degreeToCircularMilAngle } from "./degreeToCircularMilAngle";
+import { radianToDegree } from "./radianToDegree";
+import { radianToGradian } from "./radianToGradian";
+import { radianToArcminute } from "./radianToArcminute";
 import { meterToMile } from "./meterToMile";
 import { meterToYard } from "./meterToYard";
 import { meterToFoot } from "./meterToFoot";
@@ -596,7 +610,22 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "liter-per-sec-to-cubic-centimeter-per-sec": literPerSecToCubicCentimeterPerSec,
   "liter-per-sec-to-milliliter-per-min": literPerSecToMilliliterPerMin,
   "liter-per-sec-to-cfm-unit": literPerSecToCfmUnit,
-  "liter-per-sec-to-cmh-unit": literPerSecToCmhUnit
+  "liter-per-sec-to-cmh-unit": literPerSecToCmhUnit,
+
+  "degree-to-radian": degreeToRadian,
+  "degree-to-gradian": degreeToGradian,
+  "degree-to-arcminute": degreeToArcminute,
+  "degree-to-arcsecond": degreeToArcsecond,
+  "degree-to-revolution": degreeToRevolution,
+  "degree-to-mil-angle": degreeToMilAngle,
+  "degree-to-turn-angle": degreeToTurnAngle,
+  "degree-to-quadrant-angle": degreeToQuadrantAngle,
+  "degree-to-sextant-angle": degreeToSextantAngle,
+  "degree-to-grad-angle": degreeToGradAngle,
+  "degree-to-circular-mil-angle": degreeToCircularMilAngle,
+  "radian-to-degree": radianToDegree,
+  "radian-to-gradian": radianToGradian,
+  "radian-to-arcminute": radianToArcminute
 };
 
 export interface ArticleMetadata {
@@ -911,7 +940,22 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "liter-per-sec-to-cubic-centimeter-per-sec": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
   "liter-per-sec-to-milliliter-per-min": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
   "liter-per-sec-to-cfm-unit": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
-  "liter-per-sec-to-cmh-unit": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 }
+  "liter-per-sec-to-cmh-unit": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+
+  "degree-to-radian": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-gradian": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-arcminute": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-arcsecond": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-revolution": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-mil-angle": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-turn-angle": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-quadrant-angle": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-sextant-angle": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-grad-angle": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "degree-to-circular-mil-angle": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "radian-to-degree": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "radian-to-gradian": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "radian-to-arcminute": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

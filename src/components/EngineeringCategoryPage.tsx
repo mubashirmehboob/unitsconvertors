@@ -3,7 +3,7 @@ import {
   Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, 
   Waves, Cpu, Grid, Compass, Calculator, Search, ArrowRight, 
   BookOpen, ChevronRight, Layers, ArrowLeft, Sparkles, X, ShieldCheck,
-  CheckCircle2, Scale, ExternalLink
+  CheckCircle2, Scale, ExternalLink, MapPin, Navigation, Globe
 } from "lucide-react";
 import { engineeringCalculatorsData, EngineeringTool } from "../data/calculatorsData";
 import { applyAutomatedSeo } from "../utils/classificationEngine";
@@ -16,7 +16,7 @@ const EngineeringComparisonTable = React.lazy(() => import("./EngineeringCompari
 const EngineeringArticleEngine = React.lazy(() => import("./EngineeringArticleEngine"));
 
 const iconMap: Record<string, React.ComponentType<any>> = {
-  Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, Waves, Cpu, Grid, Compass
+  Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, Waves, Cpu, Grid, Compass, MapPin, Navigation, Globe
 };
 
 interface EngineeringCategoryPageProps {

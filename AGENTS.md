@@ -1218,6 +1218,51 @@ This architecture permanently enforces:
 ### 25.7 Permanent Enforcement
 If there is any uncertainty, AI must classify the page as an **Engineering Calculator** rather than a Unit Converter until proven to be an exact mathematical conversion defined by recognized international standards. This overrides any previous behavior that mixes converters and calculators within the same category hierarchy.
 
+---
+
+## Chapter 26 — Reclassify Invalid "Converters" Protocol
+
+### 26.1 Workflow Overview
+Whenever a "converter" is identified as not being a true unit converter (e.g., display formats, coordinate transformations, notation conversions, multi-input formulas, physical models, or contextual calculations):
+
+* **DO NOT** permanently discard or delete the feature outright without evaluation.
+* Instead, follow the **Reclassification Protocol**:
+
+### 26.2 STEP 1 — Analysis & Classification
+Determine whether the requested item is:
+* **Option A:** A true unit converter (1 input, 1 output, exact mathematical scaling, no assumptions or physical parameters).
+* **Option B:** A calculation, transformation, coordinate conversion, notation conversion, or engineering/scientific tool.
+
+### 26.3 STEP 2 — Removal from Unit Converters Registry
+If the item is **NOT** a true unit converter:
+1. Remove it completely from the Unit Converters category and unit lists.
+2. Remove its converter article, SEO metadata, JSON-LD schema, FAQs, and internal links.
+3. Remove its converter registry entry, search index entry, and sitemap entry.
+
+### 26.4 STEP 3 — Reclassification into Engineering Calculators
+Convert the item into an **Engineering Calculator** placed within the most appropriate engineering discipline:
+* **Electrical Engineering:** Voltage, power, circuit, impedance, signal calculations.
+* **Mechanical Engineering:** Gear, torque, stress, tolerance, kinematics calculations.
+* **Civil Engineering:** Structural, concrete, surveying, soil mechanics.
+* **Physics / Astronomy:** Motion, energy, coordinate transformations, right ascension, angular celestial positions.
+* **Optical / Photometry:** Beam angle, illumination, luminance, optical power.
+* **Fluid / Thermal / HVAC:** Flow rate, pressure drop, heat transfer.
+
+### 26.5 STEP 4 — Engineering Calculator Architecture Generation
+Generate the calculator under the Engineering Calculator architecture including:
+* Multi-input calculator controls (if required)
+* Scientific formulas & engineering article
+* Engineering SEO, JSON-LD schema, and unique FAQs
+* Validation logic, engineering registry update, search index update, and sitemap update.
+
+### 26.6 Definition of a True Unit Converter
+A Unit Converter **MUST ALWAYS** be:
+* One numeric input
+* One numeric output
+* Exact mathematical conversion factor
+* No assumptions, external variables, physical models, or contextual parameters.
+
+
 
 
 

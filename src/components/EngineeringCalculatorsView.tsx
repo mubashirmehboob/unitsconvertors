@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { 
   Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, 
-  Waves, Cpu, Grid, Compass, Calculator, Info, Check, ArrowRight, Sparkles, BookOpen, ChevronRight, Search, X, ShieldCheck
+  Waves, Cpu, Grid, Compass, Calculator, Info, Check, ArrowRight, Sparkles, BookOpen, ChevronRight, Search, X, ShieldCheck, MapPin, Navigation, Globe
 } from "lucide-react";
 import { engineeringCalculatorsData, EngineeringCalculatorDiscipline, EngineeringTool } from "../data/calculatorsData";
 import { applyAutomatedSeo } from "../utils/classificationEngine";
@@ -9,7 +9,7 @@ import EngineeringCalculatorWidget from "./EngineeringCalculatorWidget";
 import MathFormula from "./MathFormula";
 
 const iconMap: Record<string, React.ComponentType<any>> = {
-  Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, Waves, Cpu, Grid, Compass
+  Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, Waves, Cpu, Grid, Compass, MapPin, Navigation, Globe
 };
 
 interface EngineeringCalculatorsViewProps {
