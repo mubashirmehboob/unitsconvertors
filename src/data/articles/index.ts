@@ -312,6 +312,27 @@ import { literPerSecToMilliliterPerMin } from "./literPerSecToMilliliterPerMin";
 import { literPerSecToCfmUnit } from "./literPerSecToCfmUnit";
 import { literPerSecToCmhUnit } from "./literPerSecToCmhUnit";
 
+import { ampereToMilliampere } from "./ampereToMilliampere";
+import { ampereToMicroampere } from "./ampereToMicroampere";
+import { ampereToKiloampere } from "./ampereToKiloampere";
+import { ampereToAbampere } from "./ampereToAbampere";
+import { milliampereToAmpere } from "./milliampereToAmpere";
+import { milliampereToMicroampere } from "./milliampereToMicroampere";
+import { milliampereToKiloampere } from "./milliampereToKiloampere";
+import { milliampereToAbampere } from "./milliampereToAbampere";
+import { microampereToAmpere } from "./microampereToAmpere";
+import { microampereToMilliampere } from "./microampereToMilliampere";
+import { microampereToKiloampere } from "./microampereToKiloampere";
+import { microampereToAbampere } from "./microampereToAbampere";
+import { kiloampereToAmpere } from "./kiloampereToAmpere";
+import { kiloampereToMilliampere } from "./kiloampereToMilliampere";
+import { kiloampereToMicroampere } from "./kiloampereToMicroampere";
+import { kiloampereToAbampere } from "./kiloampereToAbampere";
+import { abampereToAmpere } from "./abampereToAmpere";
+import { abampereToMilliampere } from "./abampereToMilliampere";
+import { abampereToMicroampere } from "./abampereToMicroampere";
+import { abampereToKiloampere } from "./abampereToKiloampere";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -625,7 +646,28 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "degree-to-circular-mil-angle": degreeToCircularMilAngle,
   "radian-to-degree": radianToDegree,
   "radian-to-gradian": radianToGradian,
-  "radian-to-arcminute": radianToArcminute
+  "radian-to-arcminute": radianToArcminute,
+
+  "ampere-to-milliampere": ampereToMilliampere,
+  "ampere-to-microampere": ampereToMicroampere,
+  "ampere-to-kiloampere": ampereToKiloampere,
+  "ampere-to-abampere": ampereToAbampere,
+  "milliampere-to-ampere": milliampereToAmpere,
+  "milliampere-to-microampere": milliampereToMicroampere,
+  "milliampere-to-kiloampere": milliampereToKiloampere,
+  "milliampere-to-abampere": milliampereToAbampere,
+  "microampere-to-ampere": microampereToAmpere,
+  "microampere-to-milliampere": microampereToMilliampere,
+  "microampere-to-kiloampere": microampereToKiloampere,
+  "microampere-to-abampere": microampereToAbampere,
+  "kiloampere-to-ampere": kiloampereToAmpere,
+  "kiloampere-to-milliampere": kiloampereToMilliampere,
+  "kiloampere-to-microampere": kiloampereToMicroampere,
+  "kiloampere-to-abampere": kiloampereToAbampere,
+  "abampere-to-ampere": abampereToAmpere,
+  "abampere-to-milliampere": abampereToMilliampere,
+  "abampere-to-microampere": abampereToMicroampere,
+  "abampere-to-kiloampere": abampereToKiloampere
 };
 
 export interface ArticleMetadata {
@@ -955,7 +997,28 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "degree-to-circular-mil-angle": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
   "radian-to-degree": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
   "radian-to-gradian": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
-  "radian-to-arcminute": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 }
+  "radian-to-arcminute": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+
+  "ampere-to-milliampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "ampere-to-microampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "ampere-to-kiloampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "ampere-to-abampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "milliampere-to-ampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "milliampere-to-microampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "milliampere-to-kiloampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "milliampere-to-abampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "microampere-to-ampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "microampere-to-milliampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "microampere-to-kiloampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "microampere-to-abampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "kiloampere-to-ampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "kiloampere-to-milliampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "kiloampere-to-microampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "kiloampere-to-abampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "abampere-to-ampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "abampere-to-milliampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "abampere-to-microampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+  "abampere-to-kiloampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

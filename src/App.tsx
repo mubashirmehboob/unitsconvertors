@@ -939,7 +939,7 @@ export default function App() {
                 {activeCategory.units.find(u => u.id === route.fromUnit)?.name} to {activeCategory.units.find(u => u.id === route.toUnit)?.name} Converter
               </h1>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Calculate live {activeCategory.units.find(u => u.id === route.fromUnit)?.plural} into {activeCategory.units.find(u => u.id === route.toUnit)?.plural} offline instantly.
+                Convert {activeCategory.units.find(u => u.id === route.fromUnit)?.plural} to {activeCategory.units.find(u => u.id === route.toUnit)?.plural} instantly with our high-precision offline converter.
               </p>
             </div>
 
