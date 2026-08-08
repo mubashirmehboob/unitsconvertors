@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { 
-  ChevronRight, ArrowRight, TrendingUp, Compass, Clock, Sparkles, 
+  ChevronRight, ArrowRight, TrendingUp, Compass, Clock, 
   Star, Award, Activity, Flame, Link2, Layers, Search, Eye, Ruler,
   Heart
 } from "lucide-react";
@@ -298,7 +298,7 @@ export default function InternalLinkingDirectory({
                         </span>
                         <div className="flex items-center gap-1">
                           <span className="flex items-center gap-0.5 text-[8px] font-black text-emerald-500 uppercase">
-                            <Sparkles className="h-2.5 w-2.5 animate-bounce" /> Sync
+                            <Activity className="h-2.5 w-2.5 animate-pulse" /> Sync
                           </span>
                           {onToggleFavorite && (
                             <button

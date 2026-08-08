@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { 
   Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, 
-  Waves, Cpu, Grid, Compass, Calculator, Info, Check, ArrowRight, Sparkles, BookOpen, ChevronRight, Search, X, ShieldCheck, MapPin, Navigation, Globe
+  Waves, Cpu, Grid, Compass, Calculator, Info, Check, ArrowRight, BookOpen, ChevronRight, Search, X, ShieldCheck, MapPin, Navigation, Globe
 } from "lucide-react";
-import { engineeringCalculatorsData, EngineeringCalculatorDiscipline, EngineeringTool } from "../data/calculatorsData";
+import { engineeringCalculatorsData, EngineeringCalculatorDiscipline, EngineeringTool, getCategorySlugForDiscipline } from "../data/calculatorsData";
 import { applyAutomatedSeo } from "../utils/classificationEngine";
 import EngineeringCalculatorWidget from "./EngineeringCalculatorWidget";
 import MathFormula from "./MathFormula";
@@ -14,7 +14,7 @@ const iconMap: Record<string, React.ComponentType<any>> = {
 
 interface EngineeringCalculatorsViewProps {
   selectedDisciplineId?: string;
-  onNavigate: (category: string, fromUnit?: string, toUnit?: string, extraPage?: string) => void;
+  onNavigate: (category: string, fromUnit?: string, toUnit?: string, extraPage?: string, toolSlug?: string) => void;
 }
 
 export default function EngineeringCalculatorsView({
@@ -32,7 +32,7 @@ export default function EngineeringCalculatorsView({
         isEngineering: true,
         title: `${activeTool.name} | Engineering Calculators`,
         description: activeTool.description,
-        canonicalUrl: "https://unitsconvertors.com/engineering-calculators"
+        canonicalUrl: "https://unitsconvertors.com/calculators"
       });
     } else {
       applyAutomatedSeo({
@@ -40,7 +40,7 @@ export default function EngineeringCalculatorsView({
         isEngineering: true,
         title: "Engineering Calculators Hub | UnitsConvertors.com",
         description: "Explore comprehensive engineering calculators across electrical, mechanical, civil, physics, and more on UnitsConvertors.com.",
-        canonicalUrl: "https://unitsconvertors.com/engineering-calculators"
+        canonicalUrl: "https://unitsconvertors.com/calculators"
       });
     }
   }, [activeTool]);
@@ -55,7 +55,8 @@ export default function EngineeringCalculatorsView({
 
   const handleSelectTool = (tool: EngineeringTool, disciplineId?: string) => {
     if (disciplineId) {
-      onNavigate(disciplineId, tool.id);
+      const catSlug = getCategorySlugForDiscipline(disciplineId);
+      onNavigate("calculators", undefined, undefined, catSlug, tool.slug || tool.id);
     } else {
       setActiveTool(tool);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -208,6 +209,8 @@ export default function EngineeringCalculatorsView({
             return null;
           }
 
+          const catSlug = getCategorySlugForDiscipline(discipline.id);
+
           return (
             <div
               key={discipline.id}
@@ -221,7 +224,7 @@ export default function EngineeringCalculatorsView({
                     </div>
                     <div>
                       <h3 
-                        onClick={() => onNavigate(discipline.id)}
+                        onClick={() => onNavigate("calculators", undefined, undefined, catSlug)}
                         className="text-lg font-bold text-slate-900 dark:text-white hover:text-amber-600 transition-colors cursor-pointer"
                       >
                         {discipline.name} Calculators
@@ -242,7 +245,7 @@ export default function EngineeringCalculatorsView({
                   <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
                     <span>Available Multi-Variable Solvers:</span>
                     <button
-                      onClick={() => onNavigate(discipline.id)}
+                      onClick={() => onNavigate("calculators", undefined, undefined, catSlug)}
                       className="text-amber-600 dark:text-amber-400 hover:underline cursor-pointer lowercase"
                     >
                       view all studio →
@@ -253,7 +256,7 @@ export default function EngineeringCalculatorsView({
                     {matchingTools.slice(0, 5).map(tool => (
                       <div
                         key={tool.id}
-                        onClick={() => onNavigate(discipline.id, tool.id)}
+                        onClick={() => onNavigate("calculators", undefined, undefined, catSlug, tool.slug || tool.id)}
                         className="flex items-center justify-between p-3 rounded-xl border border-slate-100 dark:border-slate-900 bg-slate-50/50 dark:bg-slate-900/50 hover:border-amber-400 dark:hover:border-amber-600 hover:bg-amber-50/30 dark:hover:bg-amber-950/20 text-xs font-semibold cursor-pointer transition-all group"
                       >
                         <div className="flex flex-col gap-0.5">
@@ -275,7 +278,7 @@ export default function EngineeringCalculatorsView({
 
               {/* Discipline CTA */}
               <button
-                onClick={() => onNavigate(discipline.id)}
+                onClick={() => onNavigate("calculators", undefined, undefined, catSlug)}
                 className="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 text-xs font-bold text-slate-700 dark:text-slate-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 Explore All {discipline.tools.length} {discipline.name} Solvers

@@ -1,5 +1,5 @@
 import { categoriesData } from "../data/convertersData";
-import { engineeringCalculatorsData } from "../data/calculatorsData";
+import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "../data/calculatorsData";
 import { generateEngineeringArticle } from "../data/engineeringArticlesEngine";
 import { generateSEOContent } from "./conversionEngine";
 import { HOME_FAQS } from "../components/FaqAccordion";
@@ -100,6 +100,74 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
           "@type": "Answer",
           "text": f.answer
         }
+      }))
+    });
+    return schemas;
+  }
+
+  // 1b. UNIT CONVERTERS HUB PAGE
+  if (page === "converters") {
+    const canonicalUrl = `${DOMAIN}/converters`;
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Unit Converters | Free Online Unit Conversion Tools",
+      "description": "Explore free online unit converters for length, mass, area, volume, temperature, pressure, energy, power, light, electricity, data, and more. Convert units instantly with precision.",
+      "url": canonicalUrl,
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN
+      }
+    });
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Unit Converters | Free Online Unit Conversion Tools",
+      "description": "Explore free online unit converters for length, mass, area, volume, temperature, pressure, energy, power, light, electricity, data, and more. Convert units instantly with precision.",
+      "url": canonicalUrl,
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN
+      }
+    });
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${DOMAIN}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Unit Converters",
+          "item": canonicalUrl
+        }
+      ]
+    });
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "32 Physical Quantity Categories",
+      "description": "Directory of 32 unit converter categories on UnitsConvertors.com",
+      "numberOfItems": categoriesData.length,
+      "itemListElement": categoriesData.map((cat, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": cat.name,
+        "url": `${DOMAIN}/${cat.id}`
       }))
     });
     return schemas;
@@ -306,7 +374,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
 
   // 4. ENGINEERING CALCULATORS MAIN HUB PAGE
   if (page === "engineering-calculators" && !category) {
-    const canonicalUrl = `${DOMAIN}/engineering-calculators`;
+    const canonicalUrl = `${DOMAIN}/calculators`;
     schemas.push({
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -392,11 +460,12 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
   // 5. ENGINEERING DISCIPLINE PAGE or TOOL PAGE
   if (page === "engineering-category" || page === "engineering-calculators") {
     const disc = category 
-      ? engineeringCalculatorsData.find(d => d.id === category || d.id === `${category}-calc` || d.id.replace("-calc", "") === category)
+      ? engineeringCalculatorsData.find(d => d.id === category || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(category) || d.id === `${category}-calc` || d.id.replace("-calc", "") === category)
       : null;
 
     if (disc) {
-      const discUrl = `${DOMAIN}/engineering-calculators/${disc.id}`;
+      const catSlug = getCategorySlugForDiscipline(disc.id);
+      const discUrl = `${DOMAIN}/calculators/${catSlug}`;
 
       // Check if there is an active tool
       let activeTool = null;
@@ -407,7 +476,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
       if (activeTool) {
         // --- ENGINEERING CALCULATOR TOOL PAGE ---
         const articleData = generateEngineeringArticle(activeTool, disc, engineeringCalculatorsData);
-        const toolUrl = `${DOMAIN}/engineering-calculators/${disc.id}/${activeTool.id}`;
+        const toolUrl = `${DOMAIN}/calculators/${catSlug}/${activeTool.slug || activeTool.id}`;
 
         // Calculator / WebApplication Schema (Step 1 requirement)
         schemas.push({
@@ -501,7 +570,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
               "@type": "ListItem",
               "position": 2,
               "name": "Engineering Calculators",
-              "item": `${DOMAIN}/engineering-calculators`
+              "item": `${DOMAIN}/calculators`
             },
             {
               "@type": "ListItem",
@@ -584,7 +653,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
               "@type": "ListItem",
               "position": 2,
               "name": "Engineering Calculators",
-              "item": `${DOMAIN}/engineering-calculators`
+              "item": `${DOMAIN}/calculators`
             },
             {
               "@type": "ListItem",

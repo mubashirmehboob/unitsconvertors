@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { 
   Zap, RotateCw, HardHat, Atom, Sun, Thermometer, Droplet, 
   Waves, Cpu, Grid, Compass, Calculator, Search, ArrowRight, 
-  BookOpen, ChevronRight, Layers, ArrowLeft, Sparkles, X, ShieldCheck,
+  BookOpen, ChevronRight, Layers, ArrowLeft, X, ShieldCheck,
   CheckCircle2, Scale, ExternalLink, MapPin, Navigation, Globe
 } from "lucide-react";
-import { engineeringCalculatorsData, EngineeringTool } from "../data/calculatorsData";
+import { engineeringCalculatorsData, EngineeringTool, getCategorySlugForDiscipline } from "../data/calculatorsData";
 import { applyAutomatedSeo } from "../utils/classificationEngine";
 import { generateEngineeringArticle } from "../data/engineeringArticlesEngine";
 import { injectPageSchemas } from "../utils/schemaEngine";
@@ -64,13 +64,14 @@ export default function EngineeringCategoryPage({
 
   // Apply SEO metadata & dynamic Schema.org JSON-LD
   useEffect(() => {
+    const catSlug = getCategorySlugForDiscipline(discipline.id);
     if (activeTool) {
       applyAutomatedSeo({
         pageType: "engineering-calculator",
         isEngineering: true,
         title: `${activeTool.name} | ${discipline.name} Engineering Calculators`,
         description: `${activeTool.description} Free online engineering solver with multi-variable formula (${activeTool.formula}), physical boundary assumptions, and real-time SI calculation.`,
-        canonicalUrl: `https://unitsconvertors.com/engineering-calculators/${discipline.id}/${activeTool.id}`
+        canonicalUrl: `https://unitsconvertors.com/calculators/${catSlug}/${activeTool.slug || activeTool.id}`
       });
       injectPageSchemas({
         page: "engineering-category",
@@ -83,7 +84,7 @@ export default function EngineeringCategoryPage({
         isEngineering: true,
         title: `${discipline.name} Calculators | UnitsConvertors.com`,
         description: `Explore all available ${discipline.name.toLowerCase()} calculators on UnitsConvertors.com. Multi-variable physical equations, SI unit standards, and explicit assumptions for engineering design.`,
-        canonicalUrl: `https://unitsconvertors.com/engineering-calculators/${discipline.id}`
+        canonicalUrl: `https://unitsconvertors.com/calculators/${catSlug}`
       });
       injectPageSchemas({
         page: "engineering-category",
@@ -145,7 +146,7 @@ export default function EngineeringCategoryPage({
           </button>
           <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
           <button 
-            onClick={() => onNavigate("engineering-calculators")}
+            onClick={() => onNavigate("calculators")}
             className="hover:text-amber-500 cursor-pointer transition-colors"
           >
             Engineering Calculators
@@ -203,7 +204,7 @@ export default function EngineeringCategoryPage({
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-amber-500" />
+                <Compass className="h-5 w-5 text-amber-500" />
                 Related {disciplineTitle}
               </h3>
               <button
@@ -273,7 +274,7 @@ export default function EngineeringCategoryPage({
               Explore {disciplineTitle}
             </button>
             <button
-              onClick={() => onNavigate("engineering-calculators")}
+              onClick={() => onNavigate("calculators")}
               className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all border border-slate-700 cursor-pointer"
             >
               Browse All Disciplines
@@ -290,10 +291,11 @@ export default function EngineeringCategoryPage({
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {otherDisciplines.map(otherDisc => {
               const OtherIcon = iconMap[otherDisc.iconName] || Calculator;
+              const catSlug = getCategorySlugForDiscipline(otherDisc.id);
               return (
                 <div
                   key={otherDisc.id}
-                  onClick={() => onNavigate("engineering-calculators", undefined, undefined, otherDisc.id)}
+                  onClick={() => onNavigate("calculators", undefined, undefined, catSlug)}
                   className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md cursor-pointer transition-all flex flex-col gap-2.5 group"
                 >
                   <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
@@ -332,7 +334,7 @@ export default function EngineeringCategoryPage({
         </button>
         <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
         <button 
-          onClick={() => onNavigate("engineering-calculators")}
+          onClick={() => onNavigate("calculators")}
           className="hover:text-amber-500 cursor-pointer transition-colors"
         >
           Engineering Calculators
@@ -345,8 +347,6 @@ export default function EngineeringCategoryPage({
 
       {/* Hero Section */}
       <div className="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
-        <div className="absolute -top-12 -right-12 h-48 w-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-        
         <div className="flex items-start sm:items-center gap-4 relative z-10">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800/60 shadow-inner">
             <Icon className="h-8 w-8" />
@@ -529,10 +529,11 @@ export default function EngineeringCategoryPage({
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
           {otherDisciplines.map(otherDisc => {
             const OtherIcon = iconMap[otherDisc.iconName] || Calculator;
+            const catSlug = getCategorySlugForDiscipline(otherDisc.id);
             return (
               <div
                 key={otherDisc.id}
-                onClick={() => onNavigate("engineering-calculators", undefined, undefined, otherDisc.id)}
+                onClick={() => onNavigate("calculators", undefined, undefined, catSlug)}
                 className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md cursor-pointer transition-all flex flex-col gap-2.5 group"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">

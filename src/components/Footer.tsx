@@ -154,14 +154,19 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li>
+                <a href="/calculators" onClick={(e) => { e.preventDefault(); onNavigate("calculators"); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
+                  Engineering Calculators
+                </a>
+              </li>
+              <li>
                 <button type="button" onClick={() => onNavigate("home")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   Categories Directory
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate("home", undefined, undefined, "sitemap")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
-                  All 500+ Converters
-                </button>
+                <a href="/converters" onClick={(e) => { e.preventDefault(); onNavigate("converters"); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
+                  All Converters
+                </a>
               </li>
               <li>
                 <button type="button" onClick={() => onNavigate("home", undefined, undefined, "favorites")} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">

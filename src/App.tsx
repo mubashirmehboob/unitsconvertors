@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { 
   Ruler, HelpCircle, ChevronRight, Check, History, Heart, 
-  Trash2, Sparkles, Moon, Star, Award, Shield, CheckCircle, ArrowRight,
+  Trash2, Moon, Star, Award, Shield, CheckCircle, ArrowRight,
   TrendingUp, Compass, Mail, Phone, MapPin, List, Eye, ArrowUpDown, ChevronDown,
   Zap, Lock, Info, Search, Layers
 } from "lucide-react";
@@ -11,7 +11,7 @@ import CategoryCard from "./components/CategoryCard";
 import ConverterTool from "./components/ConverterTool";
 import AdPlaceholder from "./components/AdPlaceholder";
 import { categoriesData } from "./data/convertersData";
-import { engineeringCalculatorsData } from "./data/calculatorsData";
+import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "./data/calculatorsData";
 import { ConversionHistoryItem, FavoriteTool } from "./types";
 import { performConversion, runEngineAudit } from "./utils/conversionEngine";
 import { applyAutomatedSeo } from "./utils/classificationEngine";
@@ -25,6 +25,7 @@ const InternalLinkingDirectory = React.lazy(() => import("./components/InternalL
 const ValidatorPage = React.lazy(() => import("./components/ValidatorPage"));
 const EngineeringCalculatorsView = React.lazy(() => import("./components/EngineeringCalculatorsView"));
 const EngineeringCategoryPage = React.lazy(() => import("./components/EngineeringCategoryPage"));
+const UnitConvertersHub = React.lazy(() => import("./components/UnitConvertersHub"));
 
 export default function App() {
   // Routing State
@@ -228,28 +229,42 @@ export default function App() {
           pageType: "engineering-hub",
           isEngineering: true,
           title: "Engineering Calculators Hub | UnitsConvertors.com",
-          description: "Explore comprehensive engineering calculators across electrical, mechanical, civil, physics, and more on UnitsConvertors.com."
+          description: "Explore comprehensive engineering calculators across electrical, mechanical, civil, physics, and more on UnitsConvertors.com.",
+          canonicalUrl: "https://unitsconvertors.com/calculators"
         });
       } else {
-        const disc = engineeringCalculatorsData.find(d => d.id === route.category || d.id === `${route.category}-calc` || d.id.replace("-calc", "") === route.category);
+        const disc = engineeringCalculatorsData.find(d => d.id === route.category || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(route.category));
+        const catSlug = disc ? getCategorySlugForDiscipline(disc.id) : "calculators";
         const titleName = disc ? `${disc.name} Calculators` : "Engineering Calculators";
         const descText = disc ? disc.description : "Explore comprehensive engineering calculators on UnitsConvertors.com.";
         applyAutomatedSeo({
           pageType: "engineering-category",
           isEngineering: true,
           title: `${titleName} | UnitsConvertors.com`,
-          description: descText
+          description: descText,
+          canonicalUrl: `https://unitsconvertors.com/calculators/${catSlug}`
         });
       }
     } else if (route.page === "engineering-category") {
-      const disc = engineeringCalculatorsData.find(d => d.id === route.category || d.id === `${route.category}-calc` || d.id.replace("-calc", "") === route.category);
-      const titleName = disc ? `${disc.name} Calculators` : "Engineering Calculators";
-      const descText = disc ? disc.description : "Explore comprehensive engineering calculators on UnitsConvertors.com.";
+      const disc = engineeringCalculatorsData.find(d => d.id === route.category || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(route.category));
+      const catSlug = disc ? getCategorySlugForDiscipline(disc.id) : "calculators";
+      const matchedTool = disc && route.fromUnit ? disc.tools.find(t => t.id === route.fromUnit || t.slug === route.fromUnit) : null;
+      const titleName = matchedTool ? `${matchedTool.name} | ${disc?.name}` : (disc ? `${disc.name} Calculators` : "Engineering Calculators");
+      const descText = matchedTool ? matchedTool.description : (disc ? disc.description : "Explore comprehensive engineering calculators on UnitsConvertors.com.");
+      const canonical = matchedTool ? `https://unitsconvertors.com/calculators/${catSlug}/${matchedTool.slug}` : `https://unitsconvertors.com/calculators/${catSlug}`;
       applyAutomatedSeo({
         pageType: "engineering-category",
         isEngineering: true,
         title: `${titleName} | UnitsConvertors.com`,
-        description: descText
+        description: descText,
+        canonicalUrl: canonical
+      });
+    } else if (route.page === "converters") {
+      applyAutomatedSeo({
+        pageType: "converters-hub",
+        title: "Unit Converters | Free Online Unit Conversion Tools",
+        description: "Explore free online unit converters for length, mass, area, volume, temperature, pressure, energy, power, light, electricity, data, and more. Convert units instantly with precision.",
+        canonicalUrl: "https://unitsconvertors.com/converters"
       });
     } else if (route.page === "category") {
       const descText = route.category ? `Explore all available ${route.category} converters on UnitsConvertors.com.` : "Explore comprehensive unit converters on UnitsConvertors.com.";
@@ -307,25 +322,59 @@ export default function App() {
       }
 
       const first = segments[0];
-      const supportPages = ["about", "contact", "privacy", "terms", "disclaimer", "sitemap", "favorites", "validator"];
+      const supportPages = ["about", "contact", "privacy", "privacy-policy", "terms", "disclaimer", "sitemap", "favorites", "validator", "converters"];
       
-      if (first === "engineering-calculators") {
-        if (segments.length > 1) {
+      if (first === "calculators" || first === "engineering-calculators") {
+        if (segments.length === 1) {
+          setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
+        } else if (segments.length === 2) {
           const second = segments[1];
+          const catSlug = getCategorySlugForDiscipline(second);
           const matchedDisc = engineeringCalculatorsData.find(d => 
-            d.id === second || d.id === `${second}-calc` || d.id.replace("-calc", "") === second
+            d.id === second || getCategorySlugForDiscipline(d.id) === catSlug || d.id.replace("-calc", "") === second.replace("-calc", "")
           );
           if (matchedDisc) {
             setRoute({ page: "engineering-category", category: matchedDisc.id, fromUnit: "", toUnit: "" });
           } else {
             setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
           }
+        } else if (segments.length >= 3) {
+          const second = segments[1];
+          const third = segments[2];
+          const catSlug = getCategorySlugForDiscipline(second);
+          const matchedDisc = engineeringCalculatorsData.find(d => 
+            d.id === second || getCategorySlugForDiscipline(d.id) === catSlug || d.id.replace("-calc", "") === second.replace("-calc", "")
+          );
+          if (matchedDisc) {
+            const matchedTool = matchedDisc.tools.find(t => t.slug === third || t.id === third);
+            setRoute({ 
+              page: "engineering-category", 
+              category: matchedDisc.id, 
+              fromUnit: matchedTool ? matchedTool.id : third, 
+              toUnit: "" 
+            });
+          } else {
+            setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
+          }
+        }
+      } else if (engineeringCalculatorsData.some(d => d.id === first || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(first))) {
+        const matchedDisc = engineeringCalculatorsData.find(d => d.id === first || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(first));
+        if (matchedDisc) {
+          if (segments.length > 1) {
+            const second = segments[1];
+            const matchedTool = matchedDisc.tools.find(t => t.slug === second || t.id === second);
+            setRoute({
+              page: "engineering-category",
+              category: matchedDisc.id,
+              fromUnit: matchedTool ? matchedTool.id : second,
+              toUnit: ""
+            });
+          } else {
+            setRoute({ page: "engineering-category", category: matchedDisc.id, fromUnit: "", toUnit: "" });
+          }
         } else {
           setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
         }
-      } else if (engineeringCalculatorsData.some(d => d.id === first || d.id === `${first}-calc` || d.id.replace("-calc", "") === first)) {
-        const matchedDisc = engineeringCalculatorsData.find(d => d.id === first || d.id === `${first}-calc` || d.id.replace("-calc", "") === first);
-        setRoute({ page: "engineering-category", category: matchedDisc?.id || first, fromUnit: "", toUnit: "" });
       } else if (supportPages.includes(first)) {
         setRoute({ page: first, category: "", fromUnit: "", toUnit: "" });
       } else {
@@ -354,24 +403,55 @@ export default function App() {
     return () => window.removeEventListener("popstate", parsePath);
   }, []);
 
-  const handleNavigate = (category: string, fromUnit?: string, toUnit?: string, extraPage?: string) => {
+  const handleNavigate = (category: string, fromUnit?: string, toUnit?: string, extraPage?: string, toolSlug?: string) => {
     let targetPath = "/";
     if (extraPage) {
-      if (category === "engineering-calculators") {
-        targetPath = `/engineering-calculators/${extraPage}`;
+      if (category === "calculators" || category === "engineering-calculators") {
+        const catSlug = getCategorySlugForDiscipline(extraPage);
+        targetPath = toolSlug ? `/calculators/${catSlug}/${toolSlug}` : `/calculators/${catSlug}`;
       } else {
         targetPath = `/${extraPage}`;
       }
     } else if (category === "home") {
       targetPath = "/";
-    } else if (category === "engineering-calculators") {
-      targetPath = "/engineering-calculators";
-    } else if (engineeringCalculatorsData.some(d => d.id === category || d.id === `${category}-calc` || d.id.replace("-calc", "") === category)) {
-      targetPath = `/engineering-calculators/${category}`;
-    } else if (fromUnit && toUnit) {
-      targetPath = `/${category}/${fromUnit}-to-${toUnit}`;
+    } else if (category === "calculators" || category === "engineering-calculators") {
+      if (fromUnit && toUnit) {
+        const catSlug = getCategorySlugForDiscipline(fromUnit);
+        targetPath = `/calculators/${catSlug}/${toUnit}`;
+      } else if (fromUnit) {
+        const catSlug = getCategorySlugForDiscipline(fromUnit);
+        targetPath = `/calculators/${catSlug}`;
+      } else {
+        targetPath = "/calculators";
+      }
+    } else if (category === "engineering-category") {
+      if (fromUnit && toUnit) {
+        const catSlug = getCategorySlugForDiscipline(fromUnit);
+        targetPath = `/calculators/${catSlug}/${toUnit}`;
+      } else if (fromUnit) {
+        const catSlug = getCategorySlugForDiscipline(fromUnit);
+        targetPath = `/calculators/${catSlug}`;
+      } else {
+        targetPath = "/calculators";
+      }
     } else {
-      targetPath = `/${category}`;
+      const matchedDisc = engineeringCalculatorsData.find(d => 
+        d.id === category || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(category)
+      );
+      if (matchedDisc) {
+        const catSlug = getCategorySlugForDiscipline(matchedDisc.id);
+        if (fromUnit) {
+          const matchedTool = matchedDisc.tools.find(t => t.id === fromUnit || t.slug === fromUnit);
+          const toolSlug = matchedTool ? matchedTool.slug : fromUnit;
+          targetPath = `/calculators/${catSlug}/${toolSlug}`;
+        } else {
+          targetPath = `/calculators/${catSlug}`;
+        }
+      } else if (fromUnit && toUnit) {
+        targetPath = `/${category}/${fromUnit}-to-${toUnit}`;
+      } else {
+        targetPath = `/${category}`;
+      }
     }
 
     if (window.location.pathname !== targetPath) {
@@ -443,7 +523,7 @@ export default function App() {
                 <span className="text-[10px] font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase">ADVERTISEMENT</span>
                 <div className="flex flex-col items-center gap-2.5">
                   <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-500 flex items-center justify-center border border-blue-100 dark:border-blue-900/30">
-                    <Sparkles className="h-4 w-4 animate-pulse text-blue-500 dark:text-cyan-400" />
+                    <Zap className="h-4 w-4 animate-pulse text-blue-500 dark:text-cyan-400" />
                   </div>
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-300">160 × 600</span>
                   <span className="text-[10px] text-slate-400">Wide Skyscraper</span>
@@ -467,10 +547,7 @@ export default function App() {
                       backgroundSize: '24px 24px' 
                     }}
                   >
-                    {/* Floating ambient subtle glow orbs */}
-                    <div className="absolute top-12 left-10 h-96 w-96 rounded-full bg-blue-500/[0.08] dark:bg-blue-500/[0.12] blur-3xl pointer-events-none" />
-                    <div className="absolute bottom-12 right-10 h-96 w-96 rounded-full bg-cyan-500/[0.08] dark:bg-cyan-500/[0.12] blur-3xl pointer-events-none" />
-                     <div className="w-full max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 relative z-10 text-center items-center">
+                      <div className="w-full max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 relative z-10 text-center items-center">
                       
                       {/* Live Converter Tool Component */}
                       <div className="w-full mt-2">
@@ -983,7 +1060,7 @@ export default function App() {
                 We believe that online conversion tools should be easy to use, accessible from any device, and completely free. That's why every converter on our website is designed with a clean interface, instant calculations, and trusted conversion formulas. There are no complicated steps, unnecessary downloads, or sign-ups required—just enter your value, choose the units, and get your result instantly.
               </p>
               <p>
-                Our platform covers a wide range of conversion categories, including length, weight, temperature, area, volume, time, speed, pressure, energy, power, data storage, engineering, construction, cooking, electricity, and many more. As we continue to grow, new converters and categories will be added regularly to help meet the needs of students, professionals, businesses, and everyday users around the world.
+                Our platform covers a wide range of conversion categories, including length, weight, temperature, area, volume, time, speed, pressure, energy, power, data storage, density, construction, cooking, electricity, and many more. As we continue to grow, new converters and categories will be added regularly to help meet the needs of students, professionals, businesses, and everyday users around the world.
               </p>
               <p>
                 At Units Convertors, accuracy is one of our highest priorities. Every conversion is based on well-established measurement standards and mathematical formulas to ensure dependable results. While we work hard to keep our information accurate and up to date, we always encourage users to verify critical calculations for professional, scientific, or legal purposes.
@@ -1130,7 +1207,7 @@ export default function App() {
         )}
 
         {/* VIEW: PRIVACY POLICY */}
-        {route.page === "privacy" && (
+        {(route.page === "privacy" || route.page === "privacy-policy") && (
           <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6 animate-in fade-in duration-200">
             <h1 className="font-display text-xl sm:text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
               Privacy Policy
@@ -1693,6 +1770,13 @@ export default function App() {
           </div>
         )}
 
+        {/* VIEW: UNIT CONVERTERS HUB */}
+        {route.page === "converters" && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading unit converters hub...</div>}>
+            <UnitConvertersHub onNavigate={handleNavigate} />
+          </React.Suspense>
+        )}
+
         {/* VIEW: NIST ENGINE VALIDATION & REPORT */}
         {route.page === "validator" && (
           <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading engine validation tool...</div>}>
@@ -1738,7 +1822,7 @@ export default function App() {
                 <span className="text-[10px] font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase">ADVERTISEMENT</span>
                 <div className="flex flex-col items-center gap-2.5">
                   <div className="h-10 w-10 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 text-cyan-500 flex items-center justify-center border border-cyan-100 dark:border-cyan-900/30">
-                    <Sparkles className="h-4 w-4 animate-pulse text-cyan-500 dark:text-cyan-400" />
+                    <Zap className="h-4 w-4 animate-pulse text-cyan-500 dark:text-cyan-400" />
                   </div>
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-300">160 × 600</span>
                   <span className="text-[10px] text-slate-400">Wide Skyscraper</span>

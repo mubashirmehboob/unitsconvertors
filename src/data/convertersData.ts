@@ -390,7 +390,7 @@ export const categoriesData: Category[] = [
     ]
   },
   {
-    id: "engineering",
+    id: "density",
     name: "Density",
     icon: "Layers",
     description: "Convert density measurements including kilograms per cubic meter, grams per cubic centimeter, and pounds per cubic foot.",
@@ -419,7 +419,7 @@ export const categoriesData: Category[] = [
     ]
   },
   {
-    id: "scientific",
+    id: "amount-of-substance",
     name: "Amount of Substance",
     icon: "Atom",
     description: "Convert amount of chemical substance quantities including moles, millimoles, micromoles, and kilomoles.",

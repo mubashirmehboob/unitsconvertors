@@ -43,6 +43,7 @@ function generateSitemap() {
     { path: "sitemap", priority: "0.8", changefreq: "weekly" },
     { path: "validator", priority: "0.8", changefreq: "weekly" },
     { path: "directory", priority: "0.8", changefreq: "weekly" },
+    { path: "converters", priority: "0.9", changefreq: "daily" },
     ...(ENGINEERING_INDEXABLE ? [{ path: "engineering-calculators", priority: "0.9", changefreq: "weekly" }] : [])
   ];
 

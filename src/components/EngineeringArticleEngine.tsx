@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { 
   BookOpen, CheckCircle2, AlertTriangle, ShieldCheck, HelpCircle, 
-  Sparkles, Layers, ArrowRight, ExternalLink, ChevronDown, ChevronUp,
+  Zap, Layers, ArrowRight, ExternalLink, ChevronDown, ChevronUp,
   Calculator, Info, FileText, Scale, Lightbulb, Compass, Award
 } from "lucide-react";
 import { EngineeringArticleData } from "../data/engineeringArticlesEngine";
@@ -83,7 +83,7 @@ export default function EngineeringArticleEngine({
       {/* 2. Quick Answer Summary Box */}
       <section className="p-6 rounded-3xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/60 dark:border-amber-800/60 space-y-3">
         <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider text-amber-800 dark:text-amber-300">
-          <Sparkles className="h-4 w-4 text-amber-500" />
+          <Zap className="h-4 w-4 text-amber-500" />
           Quick Answer & Key Summary
         </div>
         <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
@@ -325,7 +325,7 @@ export default function EngineeringArticleEngine({
         {/* Best Practices */}
         <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
           <h2 className="font-display text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-amber-500" />
+            <ShieldCheck className="h-5 w-5 text-amber-500" />
             11. Engineering Best Practices & Guidelines
           </h2>
 

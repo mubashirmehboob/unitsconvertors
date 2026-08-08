@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { 
-  ArrowLeftRight, RotateCcw, Copy, Check, Sliders, Share2, Printer, Heart, Sparkles, AlertCircle, ChevronDown, Zap, Calculator
+  ArrowLeftRight, RotateCcw, Copy, Check, Sliders, Share2, Printer, Heart, AlertCircle, ChevronDown, Zap, Calculator
 } from "lucide-react";
 import { Category, Unit, ConversionHistoryItem } from "../types";
 import { performConversion, formatUnitValue } from "../utils/conversionEngine";
@@ -312,10 +312,6 @@ export default function ConverterTool({
         id="printable-converter-area"
         className="relative overflow-hidden rounded-3xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-5 sm:py-5 sm:px-6 shadow-xl shadow-slate-200/50 dark:shadow-black/20 transition-all duration-300"
       >
-        {/* Glow Effects */}
-        <div className="absolute top-0 right-0 h-40 w-40 bg-gradient-to-br from-blue-600/5 to-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 h-40 w-40 bg-gradient-to-tr from-emerald-500/5 to-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
-
         {/* Action Tray */}
         <div className="flex items-center justify-between mb-4 no-print">
           <div className="hidden sm:inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-50/80 to-cyan-50/80 dark:from-blue-950/35 dark:to-cyan-950/35 text-blue-700 dark:text-cyan-400 text-[10px] sm:text-[11px] font-black tracking-widest uppercase border border-blue-200/40 dark:border-cyan-500/25 shadow-sm transition-all">

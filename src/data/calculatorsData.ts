@@ -19,6 +19,7 @@ export interface EngineeringTool {
   name: string;
   discipline: string;
   disciplineId: string;
+  categorySlug?: string;
   description: string;
   formula: string;
   outputUnit: string;
@@ -28,6 +29,27 @@ export interface EngineeringTool {
   route: string;
   seo: RegistrySeoMetadata;
   searchKeywords: string[];
+}
+
+export function getCategorySlugForDiscipline(disciplineIdOrName: string): string {
+  const norm = (disciplineIdOrName || "").toLowerCase().trim();
+  if (norm.includes("electrical")) return "electrical-calculators";
+  if (norm.includes("mechanical")) return "mechanical-calculators";
+  if (norm.includes("civil")) return "civil-calculators";
+  if (norm.includes("physics")) return "physics-calculators";
+  if (norm.includes("optics") || norm.includes("light")) return "optics-light-calculators";
+  if (norm.includes("thermodynamics")) return "thermodynamics-calculators";
+  if (norm.includes("chemistry")) return "chemistry-calculators";
+  if (norm.includes("fluid")) return "fluid-mechanics-calculators";
+  if (norm.includes("electronics")) return "electronics-calculators";
+  if (norm.includes("mathematics") || norm.includes("math")) return "mathematics-calculators";
+  if (norm.includes("general")) return "general-engineering-calculators";
+  if (norm.includes("surveying") || norm.includes("gis")) return "surveying-gis-calculators";
+  if (norm.includes("navigation") || norm.includes("marine")) return "navigation-marine-calculators";
+  if (norm.includes("astronomy") || norm.includes("astrophysics")) return "astronomy-astrophysics-calculators";
+  
+  if (norm.endsWith("-calculators")) return norm;
+  return `${norm.replace("-calc", "")}-calculators`;
 }
 
 export interface EngineeringCalculatorDiscipline {
@@ -5613,88 +5635,100 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   }
 ];
 
+// Normalize every tool in the master registry with categorySlug, canonical route, and canonical URL
+engineeringCalculatorRegistry.forEach(tool => {
+  const catSlug = getCategorySlugForDiscipline(tool.disciplineId || tool.discipline);
+  tool.categorySlug = catSlug;
+  tool.disciplineId = catSlug;
+  tool.route = `/calculators/${catSlug}/${tool.slug}`;
+  tool.seo = {
+    ...tool.seo,
+    canonicalUrl: `https://unitsconvertors.com/calculators/${catSlug}/${tool.slug}`
+  };
+});
+
 // Definition of engineering discipline categories
 const disciplineDefinitions = [
   {
-    id: "electrical-calc",
+    id: "electrical-calculators",
     name: "Electrical",
     description: "Multi-variable electrical engineering solvers requiring Ohm's law, voltage dividers, AC/DC power, and battery runtime models.",
     iconName: "Zap"
   },
   {
-    id: "mechanical-calc",
+    id: "mechanical-calculators",
     name: "Mechanical",
     description: "Mechanical engineering tools for gear ratio dynamics, shaft torque stresses, belt lengths, and bearing life ratings.",
     iconName: "RotateCw"
   },
   {
-    id: "civil-calc",
+    id: "civil-calculators",
     name: "Civil",
     description: "Structural and civil construction estimators for concrete volume, rebar mass, asphalt paving tonnage, and foundation loads.",
     iconName: "HardHat"
   },
   {
-    id: "physics-calc",
+    id: "physics-calculators",
     name: "Physics",
     description: "Classical and modern physics solvers for trajectory motion, Newton forces, impulse momentum, and energy conservation.",
     iconName: "Atom"
   },
   {
-    id: "optics-light-calc",
+    id: "optics-light-calculators",
     name: "Optics & Light",
     description: "Photometric and radiometric optics models for lux to lumens, beam coverage angles, reflectance, color temperature, and illuminance.",
     iconName: "Sun"
   },
   {
-    id: "thermodynamics-calc",
+    id: "thermodynamics-calculators",
     name: "Thermodynamics",
     description: "Thermal engineering solvers for heat transfer rate, Carnot engine cycle efficiencies, and steam property tables.",
     iconName: "Thermometer"
   },
   {
-    id: "chemistry-calc",
+    id: "chemistry-calculators",
     name: "Chemistry",
     description: "Stoichiometric chemical solvers for molar concentration, C1V1 solution dilutions, pH levels, and molecular weights.",
     iconName: "Droplet"
   },
   {
-    id: "fluid-mechanics-calc",
+    id: "fluid-mechanics-calculators",
     name: "Fluid Mechanics",
     description: "Hydraulic and fluid dynamic models for Darcy pressure drop friction, Reynolds flow regime, and Bernoulli pressure head.",
     iconName: "Waves"
   },
   {
-    id: "electronics-calc",
+    id: "electronics-calculators",
     name: "Electronics",
     description: "Circuit analysis tools for resistor color band codes, RC time constants, PCB trace current width, and op-amp gains.",
     iconName: "Cpu"
   },
   {
-    id: "mathematics-calc",
+    id: "mathematics-calculators",
     name: "Mathematics",
     description: "Pure and applied mathematical solvers for matrix linear algebra, quadratic equations, vector dot products, and roots.",
     iconName: "Grid"
   },
   {
-    id: "general-engineering-calc",
+    id: "general-engineering-calculators",
     name: "General Engineering",
     description: "Cross-disciplinary engineering calculators for structural safety factors, linear thermal expansion, and cost estimation.",
     iconName: "Compass"
   },
   {
-    id: "surveying-gis-calc",
+    id: "surveying-gis-calculators",
     name: "Surveying & GIS",
     description: "Geodetic and surveying tools for coordinate system transformations, degree minutes seconds (DMS), and decimal degree conversions.",
     iconName: "MapPin"
   },
   {
-    id: "navigation-marine-calc",
+    id: "navigation-marine-calculators",
     name: "Navigation & Marine",
     description: "Nautical and aeronautical navigation tools for compass point headings, bearing conversions, and course orientation.",
     iconName: "Navigation"
   },
   {
-    id: "astronomy-calc",
+    id: "astronomy-astrophysics-calculators",
     name: "Astronomy & Astrophysics",
     description: "Celestial coordinate system tools for converting between arc degrees, right ascension (RA), and hour angles (HA).",
     iconName: "Globe"
@@ -5709,11 +5743,9 @@ export const engineeringCalculatorsData: EngineeringCalculatorDiscipline[] = dis
     description: def.description,
     iconName: def.iconName,
     get tools() {
+      const targetSlug = getCategorySlugForDiscipline(def.id);
       return engineeringCalculatorRegistry.filter(
-        t => t.disciplineId === def.id || 
-             t.discipline === def.name || 
-             t.disciplineId === `${def.id}-calc` || 
-             t.disciplineId.replace("-calc", "") === def.id.replace("-calc", "")
+        t => getCategorySlugForDiscipline(t.disciplineId || t.discipline) === targetSlug
       );
     },
     get calculators() {
@@ -5728,10 +5760,9 @@ export const engineeringCalculatorsData: EngineeringCalculatorDiscipline[] = dis
 
 // Helper Registry Query Functions
 export function getCalculatorsByDiscipline(disciplineIdOrName: string): EngineeringTool[] {
-  const norm = disciplineIdOrName.toLowerCase().replace("-calc", "");
+  const targetSlug = getCategorySlugForDiscipline(disciplineIdOrName);
   return engineeringCalculatorRegistry.filter(
-    t => t.disciplineId.toLowerCase().replace("-calc", "") === norm ||
-         t.discipline.toLowerCase().replace("-calc", "") === norm
+    t => getCategorySlugForDiscipline(t.disciplineId || t.discipline) === targetSlug
   );
 }
 
