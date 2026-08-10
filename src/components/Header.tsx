@@ -10,6 +10,7 @@ import Logo from "./Logo";
 import { categoriesData } from "../data/convertersData";
 import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "../data/calculatorsData";
 import { Category, Unit } from "../types";
+import { isValidPair } from "../utils/conversionEngine";
 
 // Icon mapper for categories
 export const categoryIconMap: Record<string, React.ComponentType<any>> = {
@@ -465,7 +466,7 @@ export default function Header({
       // Find units that match the query
       cat.units.forEach(unitA => {
         cat.units.forEach(unitB => {
-          if (unitA.id === unitB.id) return;
+          if (unitA.id === unitB.id || !isValidPair(cat.id, unitA.id, unitB.id)) return;
 
           const title = `${unitA.name} to ${unitB.name}`;
           const titlePlural = `${unitA.plural} to ${unitB.plural}`;

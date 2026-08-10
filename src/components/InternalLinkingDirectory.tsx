@@ -149,7 +149,7 @@ export default function InternalLinkingDirectory({
                 return (
                   <a
                     key={idx}
-                    href={`#/${item.cat}/${item.from}-to-${item.to}`}
+                    href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
                     className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
@@ -204,7 +204,7 @@ export default function InternalLinkingDirectory({
                 return (
                   <a
                     key={cat.id}
-                    href={`#/${cat.id}`}
+                    href={`/converters/${cat.id}`}
                     onClick={(e) => handleLinkClick(e, cat.id)}
                     className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-sm hover:-translate-y-0.5 transition-all flex flex-col items-center justify-center text-center gap-2 group"
                   >
@@ -233,7 +233,7 @@ export default function InternalLinkingDirectory({
                 return (
                   <a
                     key={idx}
-                    href={`#/${item.cat}/${item.from}-to-${item.to}`}
+                    href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
                     className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-sky-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
@@ -287,7 +287,7 @@ export default function InternalLinkingDirectory({
                 return (
                   <a
                     key={idx}
-                    href={`#/${item.cat}/${item.from}-to-${item.to}`}
+                    href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
                     className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
@@ -343,7 +343,7 @@ export default function InternalLinkingDirectory({
                 return (
                   <a
                     key={idx}
-                    href={`#/${item.cat}/${item.from}-to-${item.to}`}
+                    href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
                     className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
@@ -397,7 +397,7 @@ export default function InternalLinkingDirectory({
                 return (
                   <a
                     key={idx}
-                    href={`#/${item.cat}/${item.from}-to-${item.to}`}
+                    href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
                     className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-orange-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
@@ -483,7 +483,7 @@ export default function InternalLinkingDirectory({
                     {parsedFavorites.map((item, idx) => (
                       <a
                         key={idx}
-                        href={`#/${item.cat}/${item.from}-to-${item.to}`}
+                        href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                         onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
                         className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-rose-500 hover:shadow-md transition-all flex flex-col justify-between"
                       >

@@ -72,7 +72,7 @@ export function generateWebApplicationSchema(categoryName: string, fromUnit: Uni
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: `${fromUnit.name} to ${toUnit.name} Converter`,
-    url: `https://unitsconvertors.com/${categoryName.toLowerCase()}/${fromUnit.id}-to-${toUnit.id}`,
+    url: `https://unitsconvertors.com/converters/${categoryName.toLowerCase()}/${fromUnit.id}-to-${toUnit.id}`,
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     offers: {

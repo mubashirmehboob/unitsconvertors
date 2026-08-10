@@ -33,6 +33,7 @@ export interface EngineeringTool {
 
 export function getCategorySlugForDiscipline(disciplineIdOrName: string): string {
   const norm = (disciplineIdOrName || "").toLowerCase().trim();
+  if (norm.includes("astronomy") || norm.includes("astrophysics")) return "astronomy-astrophysics-calculators";
   if (norm.includes("electrical")) return "electrical-calculators";
   if (norm.includes("mechanical")) return "mechanical-calculators";
   if (norm.includes("civil")) return "civil-calculators";
@@ -46,7 +47,6 @@ export function getCategorySlugForDiscipline(disciplineIdOrName: string): string
   if (norm.includes("general")) return "general-engineering-calculators";
   if (norm.includes("surveying") || norm.includes("gis")) return "surveying-gis-calculators";
   if (norm.includes("navigation") || norm.includes("marine")) return "navigation-marine-calculators";
-  if (norm.includes("astronomy") || norm.includes("astrophysics")) return "astronomy-astrophysics-calculators";
   
   if (norm.endsWith("-calculators")) return norm;
   return `${norm.replace("-calc", "")}-calculators`;
@@ -2135,6 +2135,366 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
     searchKeywords: ["soil bearing pressure calculator", "foundation soil contact pressure", "footing pressure kpa", "subgrade load", "civil"]
   },
 
+  // --- CIVIL ENGINEERING / CONSTRUCTION DIMENSIONAL CALCULATORS ---
+  {
+    id: "board-foot-to-sq-foot",
+    slug: "board-foot-to-sq-foot",
+    title: "Board Feet to Sq Foot Coverage Calculator",
+    name: "Board Feet to Sq Foot Coverage Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate square footage coverage area from lumber volume in board feet based on board thickness.",
+    formula: "Coverage Area (ft²) = (Board Feet × 12) / Thickness (in)",
+    outputUnit: "Square Feet (ft²)",
+    assumptions: ["Standard nominal lumber thickness", "Zero cutting waste loss"],
+    inputs: [
+      { name: "boardFeet", label: "Lumber Volume (BF)", unit: "Board Feet (FBM)", defaultValue: 100 },
+      { name: "thickness", label: "Board Thickness", unit: "Inches (in)", defaultValue: 1 }
+    ],
+    calculate: (inputs) => {
+      const bf = inputs.boardFeet || 0;
+      const thick = inputs.thickness || 1;
+      return thick > 0 ? (bf * 12) / thick : 0;
+    },
+    route: "/engineering-calculators/civil-calc/board-foot-to-sq-foot",
+    seo: {
+      title: "Board Feet to Sq Foot Coverage Calculator | Civil & Construction",
+      description: "Calculate surface area coverage in square feet from lumber volume in board feet and thickness.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/board-foot-to-sq-foot",
+      keywords: ["board feet to square feet", "lumber coverage calculator", "board feet area conversion", "timber thickness sq ft"]
+    },
+    searchKeywords: ["board feet to sq ft", "fbm to sq ft", "lumber coverage", "board feet area"]
+  },
+  {
+    id: "board-foot-to-sq-meter",
+    slug: "board-foot-to-sq-meter",
+    title: "Board Feet to Sq Meter Coverage Calculator",
+    name: "Board Feet to Sq Meter Coverage Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate square meter surface coverage area from board feet volume given board thickness in millimeters.",
+    formula: "Coverage Area (m²) = (Board Feet × 0.002359737) / (Thickness (mm) / 1000)",
+    outputUnit: "Square Meters (m²)",
+    assumptions: ["Uniform board thickness", "Solid lumber volume without voids"],
+    inputs: [
+      { name: "boardFeet", label: "Lumber Volume (BF)", unit: "Board Feet (FBM)", defaultValue: 100 },
+      { name: "thicknessMM", label: "Board Thickness", unit: "Millimeters (mm)", defaultValue: 25.4 }
+    ],
+    calculate: (inputs) => {
+      const bf = inputs.boardFeet || 0;
+      const thickMM = inputs.thicknessMM || 25.4;
+      return thickMM > 0 ? (bf * 0.002359737) / (thickMM / 1000) : 0;
+    },
+    route: "/engineering-calculators/civil-calc/board-foot-to-sq-meter",
+    seo: {
+      title: "Board Feet to Sq Meter Coverage Calculator | Civil & Construction",
+      description: "Calculate square meter surface coverage from board feet lumber volume and thickness in mm.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/board-foot-to-sq-meter",
+      keywords: ["board feet to square meters", "fbm to sq m", "lumber area calculator", "timber volume to sq meter"]
+    },
+    searchKeywords: ["board feet to sq meter", "fbm to m2", "lumber coverage m2", "board feet m2"]
+  },
+  {
+    id: "sq-foot-to-board-foot",
+    slug: "sq-foot-to-board-foot",
+    title: "Sq Foot Area to Board Feet Lumber Calculator",
+    name: "Sq Foot Area to Board Feet Lumber Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate required lumber board feet volume from square foot surface area and board thickness in inches.",
+    formula: "Board Feet = Square Feet (ft²) × Thickness (in)",
+    outputUnit: "Board Feet (FBM)",
+    assumptions: ["1 Board Foot = 1 ft² at 1 inch nominal thickness", "Rectangular coverage area"],
+    inputs: [
+      { name: "sqFeet", label: "Surface Area", unit: "Square Feet (ft²)", defaultValue: 100 },
+      { name: "thickness", label: "Board Thickness", unit: "Inches (in)", defaultValue: 1 }
+    ],
+    calculate: (inputs) => {
+      const sqFt = inputs.sqFeet || 0;
+      const thick = inputs.thickness || 1;
+      return sqFt * thick;
+    },
+    route: "/engineering-calculators/civil-calc/sq-foot-to-board-foot",
+    seo: {
+      title: "Sq Foot Area to Board Feet Lumber Calculator | Civil & Construction",
+      description: "Calculate lumber volume in board feet from surface square footage and board thickness.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/sq-foot-to-board-foot",
+      keywords: ["square feet to board feet", "sq ft to fbm calculator", "lumber volume calculation", "timber estimation"]
+    },
+    searchKeywords: ["sq ft to board feet", "square feet to fbm", "lumber board feet calc", "sq ft lumber volume"]
+  },
+  {
+    id: "sq-foot-to-cubic-yard",
+    slug: "sq-foot-to-cubic-yard",
+    title: "Sq Foot to Cubic Yard Concrete Calculator",
+    name: "Sq Foot to Cubic Yard Concrete Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate concrete or material volume in cubic yards from square footage area and pour depth in inches.",
+    formula: "Cubic Yards (yd³) = (Square Feet × Depth (in)) / 324",
+    outputUnit: "Cubic Yards (yd³)",
+    assumptions: ["Uniform slab depth across entire area", "Does not include compaction shrinkage factor"],
+    inputs: [
+      { name: "sqFeet", label: "Surface Area", unit: "Square Feet (ft²)", defaultValue: 100 },
+      { name: "depth", label: "Slab/Pour Depth", unit: "Inches (in)", defaultValue: 4 }
+    ],
+    calculate: (inputs) => {
+      const sqFt = inputs.sqFeet || 0;
+      const depth = inputs.depth || 4;
+      return (sqFt * depth) / 324;
+    },
+    route: "/engineering-calculators/civil-calc/sq-foot-to-cubic-yard",
+    seo: {
+      title: "Sq Foot to Cubic Yard Concrete Calculator | Civil & Construction",
+      description: "Calculate required concrete volume in cubic yards from square footage and pour depth in inches.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/sq-foot-to-cubic-yard",
+      keywords: ["sq ft to cubic yards", "concrete volume calculator", "square feet to yards concrete", "slab volume yd3"]
+    },
+    searchKeywords: ["sq ft to cubic yards", "sq ft to yd3", "concrete cubic yards", "slab yardage calc"]
+  },
+  {
+    id: "sq-foot-to-cubic-meter",
+    slug: "sq-foot-to-cubic-meter",
+    title: "Sq Foot to Cubic Meter Concrete Calculator",
+    name: "Sq Foot to Cubic Meter Concrete Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate material volume in cubic meters from square foot coverage area and slab depth in inches.",
+    formula: "Cubic Meters (m³) = (Square Feet × 0.092903) × (Depth (in) × 0.0254)",
+    outputUnit: "Cubic Meters (m³)",
+    assumptions: ["Level subgrade base", "Constant pour thickness"],
+    inputs: [
+      { name: "sqFeet", label: "Surface Area", unit: "Square Feet (ft²)", defaultValue: 100 },
+      { name: "depth", label: "Slab Depth", unit: "Inches (in)", defaultValue: 4 }
+    ],
+    calculate: (inputs) => {
+      const sqFt = inputs.sqFeet || 0;
+      const depth = inputs.depth || 4;
+      const areaM2 = sqFt * 0.092903;
+      const depthM = depth * 0.0254;
+      return areaM2 * depthM;
+    },
+    route: "/engineering-calculators/civil-calc/sq-foot-to-cubic-meter",
+    seo: {
+      title: "Sq Foot to Cubic Meter Concrete Calculator | Civil & Construction",
+      description: "Calculate concrete volume in cubic meters from square foot surface area and slab thickness in inches.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/sq-foot-to-cubic-meter",
+      keywords: ["sq ft to cubic meters", "concrete volume m3", "square feet to m3", "slab depth volume calc"]
+    },
+    searchKeywords: ["sq ft to m3", "sq ft to cubic meters", "concrete volume m3", "square feet m3"]
+  },
+  {
+    id: "sq-meter-to-board-foot",
+    slug: "sq-meter-to-board-foot",
+    title: "Sq Meter Area to Board Feet Lumber Calculator",
+    name: "Sq Meter Area to Board Feet Lumber Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate lumber board feet volume from square meter area and board thickness in millimeters.",
+    formula: "Board Feet = (Square Meters × (Thickness (mm) / 1000)) / 0.002359737",
+    outputUnit: "Board Feet (FBM)",
+    assumptions: ["Solid wood cross-section", "Direct conversion factor 1 FBM = 0.002359737 m³"],
+    inputs: [
+      { name: "sqMeters", label: "Surface Area", unit: "Square Meters (m²)", defaultValue: 10 },
+      { name: "thicknessMM", label: "Board Thickness", unit: "Millimeters (mm)", defaultValue: 25.4 }
+    ],
+    calculate: (inputs) => {
+      const sqM = inputs.sqMeters || 0;
+      const thickMM = inputs.thicknessMM || 25.4;
+      const volM3 = sqM * (thickMM / 1000);
+      return volM3 / 0.002359737;
+    },
+    route: "/engineering-calculators/civil-calc/sq-meter-to-board-foot",
+    seo: {
+      title: "Sq Meter Area to Board Feet Lumber Calculator | Civil & Construction",
+      description: "Calculate board feet volume from square meter coverage area and board thickness in mm.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/sq-meter-to-board-foot",
+      keywords: ["square meters to board feet", "m2 to fbm calculator", "lumber volume metric", "timber calculation"]
+    },
+    searchKeywords: ["sq meter to board feet", "m2 to fbm", "m2 lumber board feet", "sq m fbm"]
+  },
+  {
+    id: "sq-meter-to-cubic-yard",
+    slug: "sq-meter-to-cubic-yard",
+    title: "Sq Meter to Cubic Yard Concrete Calculator",
+    name: "Sq Meter to Cubic Yard Concrete Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate material volume in cubic yards from square meter coverage area and slab depth in centimeters.",
+    formula: "Cubic Yards (yd³) = (Square Meters × (Depth (cm) / 100)) / 0.764555",
+    outputUnit: "Cubic Yards (yd³)",
+    assumptions: ["Uniform layer thickness", "Uncompacted volume"],
+    inputs: [
+      { name: "sqMeters", label: "Surface Area", unit: "Square Meters (m²)", defaultValue: 10 },
+      { name: "depthCM", label: "Slab Depth", unit: "Centimeters (cm)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => {
+      const sqM = inputs.sqMeters || 0;
+      const depthCM = inputs.depthCM || 10;
+      const volM3 = sqM * (depthCM / 100);
+      return volM3 / 0.764555;
+    },
+    route: "/engineering-calculators/civil-calc/sq-meter-to-cubic-yard",
+    seo: {
+      title: "Sq Meter to Cubic Yard Concrete Calculator | Civil & Construction",
+      description: "Calculate concrete cubic yards from square meter area and depth in centimeters.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/sq-meter-to-cubic-yard",
+      keywords: ["sq meters to cubic yards", "m2 to yd3 concrete", "square meter cubic yard calculator", "slab yardage"]
+    },
+    searchKeywords: ["sq meter to cubic yards", "m2 to yd3", "square meters cubic yard", "m2 yardage concrete"]
+  },
+  {
+    id: "sq-meter-to-cubic-meter",
+    slug: "sq-meter-to-cubic-meter",
+    title: "Sq Meter to Cubic Meter Concrete Calculator",
+    name: "Sq Meter to Cubic Meter Concrete Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate concrete volume in cubic meters from square meter coverage area and slab depth in centimeters.",
+    formula: "Cubic Meters (m³) = Square Meters × (Depth (cm) / 100)",
+    outputUnit: "Cubic Meters (m³)",
+    assumptions: ["Constant cross-sectional thickness", "Standard metric volume calculation"],
+    inputs: [
+      { name: "sqMeters", label: "Surface Area", unit: "Square Meters (m²)", defaultValue: 10 },
+      { name: "depthCM", label: "Slab Depth", unit: "Centimeters (cm)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => {
+      const sqM = inputs.sqMeters || 0;
+      const depthCM = inputs.depthCM || 10;
+      return sqM * (depthCM / 100);
+    },
+    route: "/engineering-calculators/civil-calc/sq-meter-to-cubic-meter",
+    seo: {
+      title: "Sq Meter to Cubic Meter Concrete Calculator | Civil & Construction",
+      description: "Calculate volume in cubic meters from square meter coverage area and slab depth in cm.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/sq-meter-to-cubic-meter",
+      keywords: ["sq meters to cubic meters", "m2 to m3 calculator", "concrete volume m3", "cubic meter area depth"]
+    },
+    searchKeywords: ["sq meter to cubic meter", "m2 to m3", "m2 area depth m3", "concrete m2 to m3"]
+  },
+  {
+    id: "cubic-yard-to-sq-foot",
+    slug: "cubic-yard-to-sq-foot",
+    title: "Cubic Yard Concrete to Sq Foot Coverage Calculator",
+    name: "Cubic Yard Concrete to Sq Foot Coverage Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate surface area coverage in square feet from material volume in cubic yards given slab thickness in inches.",
+    formula: "Coverage Area (ft²) = (Cubic Yards × 324) / Thickness (in)",
+    outputUnit: "Square Feet (ft²)",
+    assumptions: ["1 Cubic Yard = 27 ft³ = 324 ft² at 1 inch depth", "Flat horizontal substrate"],
+    inputs: [
+      { name: "cubicYards", label: "Material Volume", unit: "Cubic Yards (yd³)", defaultValue: 1 },
+      { name: "thickness", label: "Slab/Layer Thickness", unit: "Inches (in)", defaultValue: 4 }
+    ],
+    calculate: (inputs) => {
+      const yards = inputs.cubicYards || 0;
+      const thick = inputs.thickness || 4;
+      return thick > 0 ? (yards * 324) / thick : 0;
+    },
+    route: "/engineering-calculators/civil-calc/cubic-yard-to-sq-foot",
+    seo: {
+      title: "Cubic Yard Concrete to Sq Foot Coverage Calculator | Civil & Construction",
+      description: "Calculate square foot coverage area from concrete volume in cubic yards and layer depth in inches.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/cubic-yard-to-sq-foot",
+      keywords: ["cubic yards to sq ft", "concrete coverage sq ft", "yardage to square feet", "cubic yard slab coverage"]
+    },
+    searchKeywords: ["cubic yard to sq ft", "yd3 to sq ft", "concrete yards coverage", "cubic yards sq ft"]
+  },
+  {
+    id: "cubic-yard-to-sq-meter",
+    slug: "cubic-yard-to-sq-meter",
+    title: "Cubic Yard Concrete to Sq Meter Coverage Calculator",
+    name: "Cubic Yard Concrete to Sq Meter Coverage Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate square meter surface area coverage from cubic yards of material and slab depth in centimeters.",
+    formula: "Coverage Area (m²) = (Cubic Yards × 0.764555) / (Depth (cm) / 100)",
+    outputUnit: "Square Meters (m²)",
+    assumptions: ["Uniform pour depth", "Standard metric conversion factor 1 yd³ = 0.764555 m³"],
+    inputs: [
+      { name: "cubicYards", label: "Material Volume", unit: "Cubic Yards (yd³)", defaultValue: 1 },
+      { name: "depthCM", label: "Slab Depth", unit: "Centimeters (cm)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => {
+      const yards = inputs.cubicYards || 0;
+      const depthCM = inputs.depthCM || 10;
+      const depthM = depthCM / 100;
+      const volM3 = yards * 0.764555;
+      return depthM > 0 ? volM3 / depthM : 0;
+    },
+    route: "/engineering-calculators/civil-calc/cubic-yard-to-sq-meter",
+    seo: {
+      title: "Cubic Yard Concrete to Sq Meter Coverage Calculator | Civil & Construction",
+      description: "Calculate square meter coverage area from material volume in cubic yards and layer depth in cm.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/cubic-yard-to-sq-meter",
+      keywords: ["cubic yards to square meters", "yd3 to m2", "concrete coverage m2", "cubic yard area calculator"]
+    },
+    searchKeywords: ["cubic yard to sq m", "yd3 to m2", "concrete yards m2", "cubic yards m2 coverage"]
+  },
+  {
+    id: "cubic-meter-to-sq-foot",
+    slug: "cubic-meter-to-sq-foot",
+    title: "Cubic Meter Concrete to Sq Foot Coverage Calculator",
+    name: "Cubic Meter Concrete to Sq Foot Coverage Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate square foot coverage area from cubic meters of concrete given slab thickness in inches.",
+    formula: "Coverage Area (ft²) = Cubic Meters / ((Thickness (in) × 0.0254) × 0.092903)",
+    outputUnit: "Square Feet (ft²)",
+    assumptions: ["Uniform layer thickness", "Direct metric to imperial area conversion"],
+    inputs: [
+      { name: "cubicMeters", label: "Material Volume", unit: "Cubic Meters (m³)", defaultValue: 1 },
+      { name: "thickness", label: "Slab Thickness", unit: "Inches (in)", defaultValue: 4 }
+    ],
+    calculate: (inputs) => {
+      const m3 = inputs.cubicMeters || 0;
+      const thickIn = inputs.thickness || 4;
+      const thickM = thickIn * 0.0254;
+      if (thickM <= 0) return 0;
+      const areaM2 = m3 / thickM;
+      return areaM2 / 0.092903;
+    },
+    route: "/engineering-calculators/civil-calc/cubic-meter-to-sq-foot",
+    seo: {
+      title: "Cubic Meter Concrete to Sq Foot Coverage Calculator | Civil & Construction",
+      description: "Calculate square foot coverage area from cubic meters of material and slab depth in inches.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/cubic-meter-to-sq-foot",
+      keywords: ["cubic meters to sq ft", "m3 to sq ft concrete", "cubic meter square foot coverage", "m3 slab coverage"]
+    },
+    searchKeywords: ["cubic meter to sq ft", "m3 to sq ft", "concrete m3 coverage", "m3 sq ft calc"]
+  },
+  {
+    id: "cubic-meter-to-sq-meter",
+    slug: "cubic-meter-to-sq-meter",
+    title: "Cubic Meter Concrete to Sq Meter Coverage Calculator",
+    name: "Cubic Meter Concrete to Sq Meter Coverage Calculator",
+    discipline: "Civil",
+    disciplineId: "civil-calc",
+    description: "Calculate square meter coverage area from material volume in cubic meters given pour depth in centimeters.",
+    formula: "Coverage Area (m²) = Cubic Meters / (Depth (cm) / 100)",
+    outputUnit: "Square Meters (m²)",
+    assumptions: ["Uniform pour depth", "Level surface coverage"],
+    inputs: [
+      { name: "cubicMeters", label: "Material Volume", unit: "Cubic Meters (m³)", defaultValue: 1 },
+      { name: "depthCM", label: "Slab Depth", unit: "Centimeters (cm)", defaultValue: 10 }
+    ],
+    calculate: (inputs) => {
+      const m3 = inputs.cubicMeters || 0;
+      const depthCM = inputs.depthCM || 10;
+      const depthM = depthCM / 100;
+      return depthM > 0 ? m3 / depthM : 0;
+    },
+    route: "/engineering-calculators/civil-calc/cubic-meter-to-sq-meter",
+    seo: {
+      title: "Cubic Meter Concrete to Sq Meter Coverage Calculator | Civil & Construction",
+      description: "Calculate square meter surface area coverage from cubic meters of material and slab depth in cm.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/civil-calc/cubic-meter-to-sq-meter",
+      keywords: ["cubic meters to square meters", "m3 to m2 concrete", "cubic meter area calculator", "concrete m3 to m2"]
+    },
+    searchKeywords: ["cubic meter to sq m", "m3 to m2", "concrete area m2", "m3 area coverage"]
+  },
+
   // --- PHYSICS ---
   {
     id: "force-calc",
@@ -2456,6 +2816,91 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
       keywords: ["mechanical power", "p=w/t", "power output", "work done rate", "watts power"]
     },
     searchKeywords: ["mechanical power", "p=w/t", "power output", "work done rate", "watts", "physics"]
+  },
+  {
+    id: "work-energy-theorem-calc",
+    slug: "work-energy-theorem-calc",
+    title: "Work-Energy Theorem Calculator",
+    name: "Work-Energy Theorem Calculator",
+    discipline: "Physics",
+    disciplineId: "physics-calc",
+    description: "Calculate net mechanical work done on an object from its mass and initial vs final velocities.",
+    formula: "W = ½ × m × (v_f² - v_i²)",
+    outputUnit: "Joules (J)",
+    assumptions: ["Constant mass m", "Rigid body translation"],
+    inputs: [
+      { name: "m", label: "Object Mass (m)", unit: "kg", defaultValue: 10 },
+      { name: "vi", label: "Initial Velocity (v_i)", unit: "m/s", defaultValue: 2 },
+      { name: "vf", label: "Final Velocity (v_f)", unit: "m/s", defaultValue: 10 }
+    ],
+    calculate: (inputs) => {
+      const m = inputs.m || 0;
+      const vi = inputs.vi || 0;
+      const vf = inputs.vf || 0;
+      return 0.5 * m * (vf * vf - vi * vi);
+    },
+    route: "/engineering-calculators/physics-calc/work-energy-theorem-calc",
+    seo: {
+      title: "Work-Energy Theorem Calculator | Physics Solvers",
+      description: "Calculate net mechanical work done on a mass from change in kinetic energy.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/physics-calc/work-energy-theorem-calc",
+      keywords: ["work energy theorem calculator", "net work kinetic energy", "change in kinetic energy", "physics calculator"]
+    },
+    searchKeywords: ["work energy theorem", "work energy calculator", "work kinetic energy", "w=delta ke"]
+  },
+  {
+    id: "torque-angular-acceleration-calc",
+    slug: "torque-angular-acceleration-calc",
+    title: "Torque & Angular Acceleration Calculator",
+    name: "Torque & Angular Acceleration Calculator",
+    discipline: "Physics",
+    disciplineId: "physics-calc",
+    description: "Calculate rotational torque from rotational moment of inertia and angular acceleration.",
+    formula: "τ = I × α",
+    outputUnit: "Newton-meters (N·m)",
+    assumptions: ["Fixed axis rotation", "Rigid body inertia I"],
+    inputs: [
+      { name: "i", label: "Moment of Inertia (I)", unit: "kg·m²", defaultValue: 2.5 },
+      { name: "alpha", label: "Angular Acceleration (α)", unit: "rad/s²", defaultValue: 4 }
+    ],
+    calculate: (inputs) => (inputs.i || 0) * (inputs.alpha || 0),
+    route: "/engineering-calculators/physics-calc/torque-angular-acceleration-calc",
+    seo: {
+      title: "Torque & Angular Acceleration Calculator | Rotational Physics",
+      description: "Calculate rotational torque in N·m from moment of inertia and angular acceleration alpha.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/physics-calc/torque-angular-acceleration-calc",
+      keywords: ["torque angular acceleration calculator", "rotational dynamics torque", "tau = i alpha", "moment of inertia"]
+    },
+    searchKeywords: ["torque angular acceleration", "torque calculator physics", "tau = i alpha", "rotational torque"]
+  },
+  {
+    id: "sound-wave-intensity-calc",
+    slug: "sound-wave-intensity-calc",
+    title: "Sound Wave Intensity Calculator",
+    name: "Sound Wave Intensity Calculator",
+    discipline: "Physics",
+    disciplineId: "physics-calc",
+    description: "Calculate acoustic acoustic wave intensity at a radial distance from an isotropic sound source.",
+    formula: "I = P / (4π × r²)",
+    outputUnit: "W/m²",
+    assumptions: ["Isotropic point source in free field", "Inverse-square law acoustic spread"],
+    inputs: [
+      { name: "p", label: "Acoustic Power (P)", unit: "Watts (W)", defaultValue: 50 },
+      { name: "r", label: "Distance (r)", unit: "Meters (m)", defaultValue: 5 }
+    ],
+    calculate: (inputs) => {
+      const P = inputs.p || 0;
+      const r = inputs.r || 1;
+      return P / (4 * Math.PI * r * r);
+    },
+    route: "/engineering-calculators/physics-calc/sound-wave-intensity-calc",
+    seo: {
+      title: "Sound Wave Intensity Calculator | Acoustic Physics",
+      description: "Calculate acoustic wave intensity in Watts per square meter using the inverse-square law.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/physics-calc/sound-wave-intensity-calc",
+      keywords: ["sound wave intensity calculator", "acoustic power distance", "inverse square law sound", "w/m2 sound"]
+    },
+    searchKeywords: ["sound wave intensity", "acoustic intensity calculator", "sound power distance", "inverse square law"]
   },
 
   // --- OPTICS & LIGHT ---
@@ -5174,6 +5619,37 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
     },
     searchKeywords: ["mttr calculator", "mean time to repair", "maintenance downtime mttr", "general engineering"]
   },
+  {
+    id: "overall-equipment-effectiveness-calc",
+    slug: "overall-equipment-effectiveness-calc",
+    title: "Overall Equipment Effectiveness (OEE) Calculator",
+    name: "Overall Equipment Effectiveness (OEE) Calculator",
+    discipline: "General Engineering",
+    disciplineId: "general-engineering-calculators",
+    description: "Calculate manufacturing productivity percentage (OEE) from Availability, Performance rate, and Quality rate.",
+    formula: "OEE (%) = Availability (%) × Performance (%) × Quality (%) / 10000",
+    outputUnit: "Percent (%)",
+    assumptions: ["Standard TPM manufacturing performance metric"],
+    inputs: [
+      { name: "availability", label: "Availability Rate (%)", unit: "%", defaultValue: 90 },
+      { name: "performance", label: "Performance Rate (%)", unit: "%", defaultValue: 95 },
+      { name: "quality", label: "Quality Rate (%)", unit: "%", defaultValue: 98 }
+    ],
+    calculate: (inputs) => {
+      const a = inputs.availability || 0;
+      const p = inputs.performance || 0;
+      const q = inputs.quality || 0;
+      return (a * p * q) / 10000;
+    },
+    route: "/engineering-calculators/general-engineering-calculators/overall-equipment-effectiveness-calc",
+    seo: {
+      title: "Overall Equipment Effectiveness (OEE) Calculator | General Engineering",
+      description: "Calculate manufacturing OEE percentage from availability, speed performance, and quality rates.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/general-engineering-calculators/overall-equipment-effectiveness-calc",
+      keywords: ["oee calculator", "overall equipment effectiveness", "tpm manufacturing oee", "general engineering"]
+    },
+    searchKeywords: ["oee calculator", "overall equipment effectiveness", "manufacturing efficiency", "tpm metric"]
+  },
 
   // --- RESTORED PHOTOMETRIC & OPTICAL CALCULATORS ---
   {
@@ -5632,6 +6108,343 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
       keywords: ["right ascension to hour angle calculator", "ra to ha converter", "lha = lst - ra", "astronomical observation calculator"]
     },
     searchKeywords: ["right ascension to hour angle", "right ascension to hour angle calculator", "ra to ha", "local hour angle"]
+  },
+  {
+    id: "orbital-speed-calc",
+    slug: "orbital-speed-calc",
+    title: "Orbital Speed Calculator",
+    name: "Orbital Speed Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate circular orbital speed of a celestial satellite from central body mass and orbital radius.",
+    formula: "v = √(G × M / r)",
+    outputUnit: "m/s",
+    assumptions: ["Circular orbit", "G = 6.67430 × 10⁻¹¹ m³/kg·s²"],
+    inputs: [
+      { name: "m", label: "Central Body Mass (M)", unit: "kg", defaultValue: 5.972e24 },
+      { name: "r", label: "Orbital Radius (r)", unit: "meters", defaultValue: 6771000 }
+    ],
+    calculate: (inputs) => {
+      const G = 6.67430e-11;
+      const M = inputs.m || 0;
+      const r = inputs.r || 1;
+      return Math.sqrt((G * M) / r);
+    },
+    route: "/engineering-calculators/astronomy-calc/orbital-speed-calc",
+    seo: {
+      title: "Orbital Speed Calculator | Astronomy & Astrophysics",
+      description: "Calculate orbital velocity for satellites, planets, and moons based on gravity and orbital radius.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/orbital-speed-calc",
+      keywords: ["orbital speed calculator", "orbital velocity equation", "kepler orbital speed", "astrophysics calculator"]
+    },
+    searchKeywords: ["orbital speed", "orbital speed calculator", "satellite velocity", "orbital speed equation"]
+  },
+  {
+    id: "orbital-period-calc",
+    slug: "orbital-period-calc",
+    title: "Orbital Period Calculator (Kepler's 3rd Law)",
+    name: "Orbital Period Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate the orbital time period of a celestial body using Kepler's Third Law.",
+    formula: "T = 2π × √(a³ / (G × M))",
+    outputUnit: "Seconds (s)",
+    assumptions: ["Keplerian two-body problem", "Semi-major axis in meters"],
+    inputs: [
+      { name: "a", label: "Semi-Major Axis (a)", unit: "meters", defaultValue: 1.496e11 },
+      { name: "m", label: "Central Mass (M)", unit: "kg", defaultValue: 1.989e30 }
+    ],
+    calculate: (inputs) => {
+      const G = 6.67430e-11;
+      const a = inputs.a || 0;
+      const M = inputs.m || 1;
+      return 2 * Math.PI * Math.sqrt(Math.pow(a, 3) / (G * M));
+    },
+    route: "/engineering-calculators/astronomy-calc/orbital-period-calc",
+    seo: {
+      title: "Orbital Period Calculator | Kepler's Third Law",
+      description: "Calculate planet or satellite orbital period from semi-major axis distance and central mass.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/orbital-period-calc",
+      keywords: ["orbital period calculator", "kepler third law calculator", "planet orbit time", "astrophysics calculator"]
+    },
+    searchKeywords: ["orbital period", "orbital period calculator", "kepler 3rd law", "orbit time"]
+  },
+  {
+    id: "schwarzschild-radius-calc",
+    slug: "schwarzschild-radius-calc",
+    title: "Schwarzschild Black Hole Radius Calculator",
+    name: "Schwarzschild Radius Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate the event horizon radius of a non-rotating gravitational mass black hole.",
+    formula: "rₛ = (2 × G × M) / c²",
+    outputUnit: "Meters (m)",
+    assumptions: ["Non-rotating Schwarzschild metric", "Speed of light c = 299,792,458 m/s"],
+    inputs: [
+      { name: "m", label: "Mass (M)", unit: "kg", defaultValue: 1.989e30 }
+    ],
+    calculate: (inputs) => {
+      const G = 6.67430e-11;
+      const c = 299792458;
+      const M = inputs.m || 0;
+      return (2 * G * M) / (c * c);
+    },
+    route: "/engineering-calculators/astronomy-calc/schwarzschild-radius-calc",
+    seo: {
+      title: "Schwarzschild Radius Calculator | Black Hole Physics",
+      description: "Calculate black hole Schwarzschild event horizon radius from gravitational mass.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/schwarzschild-radius-calc",
+      keywords: ["schwarzschild radius calculator", "black hole radius formula", "event horizon calculator", "astrophysics"]
+    },
+    searchKeywords: ["schwarzschild radius", "schwarzschild radius calculator", "black hole event horizon", "gravitational radius"]
+  },
+  {
+    id: "stellar-luminosity-calc",
+    slug: "stellar-luminosity-calc",
+    title: "Stellar Luminosity Calculator",
+    name: "Stellar Luminosity Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate absolute radiant energy output of a star using surface area and effective temperature.",
+    formula: "L = 4π × R² × σ × T⁴",
+    outputUnit: "Watts (W)",
+    assumptions: ["Spherical blackbody emitter", "Stefan-Boltzmann σ = 5.670374 × 10⁻⁸ W/m²K⁴"],
+    inputs: [
+      { name: "r", label: "Stellar Radius (R)", unit: "meters", defaultValue: 6.9634e8 },
+      { name: "t", label: "Surface Temperature (T)", unit: "Kelvin (K)", defaultValue: 5778 }
+    ],
+    calculate: (inputs) => {
+      const sigma = 5.670374e-8;
+      const R = inputs.r || 0;
+      const T = inputs.t || 0;
+      return 4 * Math.PI * R * R * sigma * Math.pow(T, 4);
+    },
+    route: "/engineering-calculators/astronomy-calc/stellar-luminosity-calc",
+    seo: {
+      title: "Stellar Luminosity Calculator | Stefan-Boltzmann Law",
+      description: "Calculate radiant power output of stars in Watts based on radius and surface temperature.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/stellar-luminosity-calc",
+      keywords: ["stellar luminosity calculator", "star power output", "stefan boltzmann stellar", "astronomy calculator"]
+    },
+    searchKeywords: ["stellar luminosity", "stellar luminosity calculator", "star luminosity", "stefan boltzmann star"]
+  },
+  {
+    id: "hubble-law-velocity-calc",
+    slug: "hubble-law-velocity-calc",
+    title: "Hubble's Law Recession Velocity Calculator",
+    name: "Hubble's Law Velocity Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate galactic cosmic expansion recession velocity from proper distance.",
+    formula: "v = H₀ × d",
+    outputUnit: "km/s",
+    assumptions: ["Hubble constant H₀ ≈ 70 km/s/Mpc", "Homogeneous cosmological expansion"],
+    inputs: [
+      { name: "d", label: "Proper Distance (d)", unit: "Megaparsecs (Mpc)", defaultValue: 100 },
+      { name: "h0", label: "Hubble Constant (H₀)", unit: "km/s/Mpc", defaultValue: 70 }
+    ],
+    calculate: (inputs) => (inputs.d || 0) * (inputs.h0 || 70),
+    route: "/engineering-calculators/astronomy-calc/hubble-law-velocity-calc",
+    seo: {
+      title: "Hubble's Law Velocity Calculator | Cosmology",
+      description: "Calculate galaxy recession velocity due to Universe expansion using Hubble's Constant.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/hubble-law-velocity-calc",
+      keywords: ["hubble law calculator", "cosmic expansion velocity", "recession speed galaxy", "cosmology calculator"]
+    },
+    searchKeywords: ["hubble law", "hubble law calculator", "galaxy recession velocity", "hubble constant velocity"]
+  },
+  {
+    id: "stellar-parallax-distance-calc",
+    slug: "stellar-parallax-distance-calc",
+    title: "Stellar Parallax Distance Calculator",
+    name: "Stellar Parallax Distance Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate distance to a nearby star in parsecs from its measured annual trigonometric parallax angle.",
+    formula: "d = 1 / p",
+    outputUnit: "Parsecs (pc)",
+    assumptions: ["Triangulation baseline = 1 Astronomical Unit (1 AU)", "Small angle approximation"],
+    inputs: [
+      { name: "p", label: "Parallax Angle (p)", unit: "Arcseconds (\")", defaultValue: 0.768 }
+    ],
+    calculate: (inputs) => (inputs.p && inputs.p > 0 ? 1 / inputs.p : 0),
+    route: "/engineering-calculators/astronomy-calc/stellar-parallax-distance-calc",
+    seo: {
+      title: "Stellar Parallax Distance Calculator | Trigonometric Parallax",
+      description: "Convert astronomical parallax arcseconds to stellar distance in parsecs and light years.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/stellar-parallax-distance-calc",
+      keywords: ["stellar parallax calculator", "parallax to parsecs", "star distance formula", "trigonometric parallax"]
+    },
+    searchKeywords: ["stellar parallax", "stellar parallax calculator", "parallax distance", "parsecs calculator"]
+  },
+  {
+    id: "escape-velocity-calc",
+    slug: "escape-velocity-calc",
+    title: "Celestial Body Escape Velocity Calculator",
+    name: "Escape Velocity Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate minimum velocity required to break free from gravitational field of a planetary body.",
+    formula: "vₑ = √(2 × G × M / r)",
+    outputUnit: "m/s",
+    assumptions: ["Ballistic unpropelled escape", "Spherically symmetric mass"],
+    inputs: [
+      { name: "m", label: "Body Mass (M)", unit: "kg", defaultValue: 5.972e24 },
+      { name: "r", label: "Body Radius (r)", unit: "meters", defaultValue: 6371000 }
+    ],
+    calculate: (inputs) => {
+      const G = 6.67430e-11;
+      const M = inputs.m || 0;
+      const r = inputs.r || 1;
+      return Math.sqrt((2 * G * M) / r);
+    },
+    route: "/engineering-calculators/astronomy-calc/escape-velocity-calc",
+    seo: {
+      title: "Escape Velocity Calculator | Celestial Mechanics",
+      description: "Calculate gravitational escape speed for Earth, Moon, Mars, Sun, or custom celestial bodies.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/escape-velocity-calc",
+      keywords: ["escape velocity calculator", "gravitational escape speed", "earth escape velocity", "celestial mechanics"]
+    },
+    searchKeywords: ["escape velocity", "escape velocity calculator", "gravitational escape speed", "earth escape velocity"]
+  },
+  {
+    id: "doppler-redshift-calc",
+    slug: "doppler-redshift-calc",
+    title: "Astronomical Redshift Calculator",
+    name: "Astronomical Redshift Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate non-relativistic radial velocity of a celestial light source from spectral line redshift z.",
+    formula: "v = z × c",
+    outputUnit: "km/s",
+    assumptions: ["Non-relativistic Doppler approximation (z << 1)", "Speed of light c = 299,792 km/s"],
+    inputs: [
+      { name: "z", label: "Redshift Parameter (z)", unit: "Dimensionless", defaultValue: 0.05 }
+    ],
+    calculate: (inputs) => (inputs.z || 0) * 299792,
+    route: "/engineering-calculators/astronomy-calc/doppler-redshift-calc",
+    seo: {
+      title: "Astronomical Redshift Calculator | Spectral Shift",
+      description: "Calculate line-of-sight radial speed of celestial bodies from spectral line redshift z.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/doppler-redshift-calc",
+      keywords: ["astronomical redshift calculator", "doppler redshift velocity", "spectral line shift", "radial velocity"]
+    },
+    searchKeywords: ["astronomical redshift", "redshift calculator", "doppler redshift", "spectral shift velocity"]
+  },
+  {
+    id: "absolute-magnitude-calc",
+    slug: "absolute-magnitude-calc",
+    title: "Stellar Absolute Magnitude Calculator",
+    name: "Stellar Absolute Magnitude Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate intrinsic stellar brightness (absolute magnitude M) from apparent magnitude and distance in parsecs.",
+    formula: "M = m - 5 × (log₁₀(d) - 1)",
+    outputUnit: "Absolute Magnitude (M)",
+    assumptions: ["Distance d in parsecs", "Negligible interstellar extinction"],
+    inputs: [
+      { name: "m", label: "Apparent Magnitude (m)", unit: "Magnitude", defaultValue: 0.03 },
+      { name: "d", label: "Distance (d)", unit: "Parsecs (pc)", defaultValue: 7.7 }
+    ],
+    calculate: (inputs) => {
+      const m = inputs.m || 0;
+      const d = inputs.d || 1;
+      return m - 5 * (Math.log10(d) - 1);
+    },
+    route: "/engineering-calculators/astronomy-calc/absolute-magnitude-calc",
+    seo: {
+      title: "Absolute Magnitude Calculator | Stellar Physics",
+      description: "Convert apparent stellar visual magnitude and parsec distance to standard absolute magnitude M.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/absolute-magnitude-calc",
+      keywords: ["absolute magnitude calculator", "stellar visual magnitude", "star intrinsic brightness", "astronomy calculator"]
+    },
+    searchKeywords: ["absolute magnitude", "absolute magnitude calculator", "apparent to absolute magnitude", "stellar brightness"]
+  },
+  {
+    id: "telescope-magnification-calc",
+    slug: "telescope-magnification-calc",
+    title: "Telescope Magnification Calculator",
+    name: "Telescope Magnification Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate angular power magnification of an optical astronomical telescope from objective and eyepiece focal lengths.",
+    formula: "M = f_objective / f_eyepiece",
+    outputUnit: "Magnification (×)",
+    assumptions: ["Visual afocal system", "Focal lengths in identical units (mm)"],
+    inputs: [
+      { name: "fobj", label: "Objective Focal Length (f_obj)", unit: "mm", defaultValue: 1000 },
+      { name: "feye", label: "Eyepiece Focal Length (f_eye)", unit: "mm", defaultValue: 25 }
+    ],
+    calculate: (inputs) => {
+      const fobj = inputs.fobj || 0;
+      const feye = inputs.feye || 1;
+      return fobj / feye;
+    },
+    route: "/engineering-calculators/astronomy-calc/telescope-magnification-calc",
+    seo: {
+      title: "Telescope Magnification Calculator | Optical Astronomy",
+      description: "Calculate telescope power multiplier based on telescope focal length and eyepiece focal length.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/telescope-magnification-calc",
+      keywords: ["telescope magnification calculator", "eyepiece magnification power", "telescope optics", "astronomy tools"]
+    },
+    searchKeywords: ["telescope magnification", "telescope magnification calculator", "telescope power", "eyepiece magnification"]
+  },
+  {
+    id: "telescope-limiting-magnitude-calc",
+    slug: "telescope-limiting-magnitude-calc",
+    title: "Telescope Limiting Magnitude Calculator",
+    name: "Telescope Limiting Magnitude Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Estimate faint limit visual magnitude detectable through an optical telescope given objective aperture diameter.",
+    formula: "m_limit = 2.7 + 5 × log₁₀(D_mm)",
+    outputUnit: "Limiting Magnitude (m)",
+    assumptions: ["Clear night dark sky environment", "Human eye dark adapted pupil = 7mm"],
+    inputs: [
+      { name: "dmm", label: "Aperture Diameter (D)", unit: "mm", defaultValue: 200 }
+    ],
+    calculate: (inputs) => {
+      const D = inputs.dmm || 1;
+      return 2.7 + 5 * Math.log10(D);
+    },
+    route: "/engineering-calculators/astronomy-calc/telescope-limiting-magnitude-calc",
+    seo: {
+      title: "Telescope Limiting Magnitude Calculator | Optics",
+      description: "Estimate the faintest star magnitude visible through a telescope aperture in millimeters.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/telescope-limiting-magnitude-calc",
+      keywords: ["telescope limiting magnitude calculator", "faintest star visible", "aperture limiting magnitude", "astronomy"]
+    },
+    searchKeywords: ["telescope limiting magnitude", "limiting magnitude calculator", "faintest star telescope", "aperture magnitude"]
+  },
+  {
+    id: "exoplanet-transit-depth-calc",
+    slug: "exoplanet-transit-depth-calc",
+    title: "Exoplanet Transit Depth Calculator",
+    name: "Exoplanet Transit Depth Calculator",
+    discipline: "Astronomy & Astrophysics",
+    disciplineId: "astronomy-calc",
+    description: "Calculate stellar flux loss percentage during exoplanetary transit across host star disc.",
+    formula: "Depth (%) = (R_planet / R_star)² × 100",
+    outputUnit: "Percent (%)",
+    assumptions: ["Uniform stellar disk illumination", "Opaque circular planetary profile"],
+    inputs: [
+      { name: "rp", label: "Exoplanet Radius (R_p)", unit: "Earth Radii", defaultValue: 11.2 },
+      { name: "rs", label: "Host Star Radius (R_s)", unit: "Solar Radii", defaultValue: 1.0 }
+    ],
+    calculate: (inputs) => {
+      const rpEarthInSolar = (inputs.rp || 0) * 0.009157;
+      const rs = inputs.rs || 1;
+      const ratio = rpEarthInSolar / rs;
+      return ratio * ratio * 100;
+    },
+    route: "/engineering-calculators/astronomy-calc/exoplanet-transit-depth-calc",
+    seo: {
+      title: "Exoplanet Transit Depth Calculator | Stellar Photometry",
+      description: "Calculate host star flux dip percentage during exoplanet transit photometer observations.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/astronomy-calc/exoplanet-transit-depth-calc",
+      keywords: ["exoplanet transit depth calculator", "stellar transit dip", "planet star radius ratio", "astrophysics"]
+    },
+    searchKeywords: ["exoplanet transit depth", "transit depth calculator", "exoplanet photometer dip", "planet transit"]
   }
 ];
 

@@ -333,6 +333,12 @@ import { abampereToMilliampere } from "./abampereToMilliampere";
 import { abampereToMicroampere } from "./abampereToMicroampere";
 import { abampereToKiloampere } from "./abampereToKiloampere";
 
+import { boardFootToCubicYardConcrete } from "./boardFootToCubicYardConcrete";
+import { boardFootToCubicMeterConcrete } from "./boardFootToCubicMeterConcrete";
+import { sqFootConstructionToSqMeterConstruction } from "./sqFootConstructionToSqMeterConstruction";
+import { sqMeterConstructionToSqFootConstruction } from "./sqMeterConstructionToSqFootConstruction";
+import { cubicYardConcreteToBoardFoot } from "./cubicYardConcreteToBoardFoot";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -667,7 +673,13 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "abampere-to-ampere": abampereToAmpere,
   "abampere-to-milliampere": abampereToMilliampere,
   "abampere-to-microampere": abampereToMicroampere,
-  "abampere-to-kiloampere": abampereToKiloampere
+  "abampere-to-kiloampere": abampereToKiloampere,
+
+  "board-foot-to-cubic-yard-concrete": boardFootToCubicYardConcrete,
+  "board-foot-to-cubic-meter-concrete": boardFootToCubicMeterConcrete,
+  "sq-foot-construction-to-sq-meter-construction": sqFootConstructionToSqMeterConstruction,
+  "sq-meter-construction-to-sq-foot-construction": sqMeterConstructionToSqFootConstruction,
+  "cubic-yard-concrete-to-board-foot": cubicYardConcreteToBoardFoot
 };
 
 export interface ArticleMetadata {
@@ -1018,7 +1030,13 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "abampere-to-ampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
   "abampere-to-milliampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
   "abampere-to-microampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
-  "abampere-to-kiloampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 }
+  "abampere-to-kiloampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
+
+  "board-foot-to-cubic-yard-concrete": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
+  "board-foot-to-cubic-meter-concrete": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
+  "sq-foot-construction-to-sq-meter-construction": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
+  "sq-meter-construction-to-sq-foot-construction": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
+  "cubic-yard-concrete-to-board-foot": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

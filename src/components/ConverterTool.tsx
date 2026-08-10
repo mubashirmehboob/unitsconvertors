@@ -248,7 +248,7 @@ export default function ConverterTool({
   // Generate share links
   const favoriteId = `${category.id}/${fromUnitId}-to-${toUnitId}`;
   const isFavorite = favorites.includes(favoriteId);
-  const shareUrl = `${window.location.origin}/${category.id}/${fromUnitId}-to-${toUnitId}`;
+  const shareUrl = `${window.location.origin}/converters/${category.id}/${fromUnitId}-to-${toUnitId}`;
   const shareText = `Convert ${fromUnit.plural} to ${toUnit.plural} effortlessly with this free offline calculator!`;
 
   const handleShare = (platform: "x" | "facebook" | "whatsapp" | "copy") => {

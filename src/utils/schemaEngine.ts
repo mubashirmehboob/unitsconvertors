@@ -167,7 +167,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
         "@type": "ListItem",
         "position": index + 1,
         "name": cat.name,
-        "url": `${DOMAIN}/${cat.id}`
+        "url": `${DOMAIN}/converters/${cat.id}`
       }))
     });
     return schemas;
@@ -177,7 +177,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
   if (page === "category" && category) {
     const catObj = categoriesData.find(c => c.id === category);
     if (catObj) {
-      const canonicalUrl = `${DOMAIN}/${catObj.id}`;
+      const canonicalUrl = `${DOMAIN}/converters/${catObj.id}`;
       schemas.push({
         "@context": "https://schema.org",
         "@type": "CollectionPage",
@@ -223,7 +223,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
             "@type": "ListItem",
             "position": 2,
             "name": "Unit Converters",
-            "item": `${DOMAIN}/`
+            "item": `${DOMAIN}/converters`
           },
           {
             "@type": "ListItem",
@@ -263,7 +263,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
     const toU = catObj?.units.find(u => u.id === toUnit);
 
     if (catObj && fromU && toU) {
-      const canonicalUrl = `${DOMAIN}/${catObj.id}/${fromU.id}-to-${toU.id}`;
+      const canonicalUrl = `${DOMAIN}/converters/${catObj.id}/${fromU.id}-to-${toU.id}`;
       const toolName = `${fromU.name} to ${toU.plural} Converter`;
       const desc = `Free high-precision ${fromU.name} to ${toU.plural} online conversion calculator tool.`;
 
@@ -335,13 +335,13 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
             "@type": "ListItem",
             "position": 2,
             "name": "Unit Converters",
-            "item": `${DOMAIN}/`
+            "item": `${DOMAIN}/converters`
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": catObj.name,
-            "item": `${DOMAIN}/${catObj.id}`
+            "item": `${DOMAIN}/converters/${catObj.id}`
           },
           {
             "@type": "ListItem",

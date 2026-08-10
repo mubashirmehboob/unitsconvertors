@@ -47,6 +47,27 @@ export function formatSuperscript(exponent: number | string): string {
     .join("");
 }
 
+export function isValidPair(catId: string, fromUnitId: string, toUnitId: string): boolean {
+  if (fromUnitId === toUnitId) return false;
+  
+  if (catId === "construction") {
+    const areaUnits = ["sq-foot-construction", "sq-meter-construction", "sq-foot", "sq-meter"];
+    const volumeUnits = ["board-foot", "cubic-yard-concrete", "cubic-meter-concrete", "cubic-yard", "cubic-meter"];
+    
+    const isFromArea = areaUnits.includes(fromUnitId);
+    const isToArea = areaUnits.includes(toUnitId);
+    const isFromVolume = volumeUnits.includes(fromUnitId);
+    const isToVolume = volumeUnits.includes(toUnitId);
+    
+    // Cross-dimensional conversion between Area (L²) and Volume (L³) is invalid
+    if ((isFromArea && isToVolume) || (isFromVolume && isToArea)) {
+      return false;
+    }
+  }
+  
+  return true;
+}
+
 /**
  * Custom manual separator adder to format the integer portion of any decimal string
  * with thousands commas while safely preserving negative signs and exact digits.

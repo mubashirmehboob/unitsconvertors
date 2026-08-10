@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { HelpCircle, ChevronDown, Layers, BookOpen, ArrowRight, ChevronRight, Award, Compass, Link2 } from "lucide-react";
 import { Category, Unit } from "../types";
-import { generateSEOContent, performConversion, getStringHash } from "../utils/conversionEngine";
+import { generateSEOContent, performConversion, getStringHash, isValidPair } from "../utils/conversionEngine";
 import { customLengthArticles, isSeoReady } from "../data/articles";
 import { categoriesData } from "../data/convertersData";
 import { injectPageSchemas } from "../utils/schemaEngine";
@@ -46,7 +46,7 @@ function RelatedConvertersCards({
           return (
             <a
               key={idx}
-              href={`/${category.id}/${item.from}-to-${item.to}`}
+              href={`/converters/${category.id}/${item.from}-to-${item.to}`}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate(category.id, item.from, item.to);
@@ -200,7 +200,7 @@ function RelatedGuidesSection({
         {guides.map((guide, idx) => (
           <a
             key={idx}
-            href={`/${category.id}/${guide.from}-to-${guide.to}`}
+            href={`/converters/${category.id}/${guide.from}-to-${guide.to}`}
             onClick={(e) => {
               e.preventDefault();
               onNavigate(category.id, guide.from, guide.to);
@@ -249,7 +249,7 @@ function ExploreMoreSection({
   onNavigate
 }: ExploreMoreSectionProps) {
   const popularInCat = category.units.flatMap(u1 => 
-    category.units.filter(u2 => u2.id !== u1.id).map(u2 => ({
+    category.units.filter(u2 => u2.id !== u1.id && isValidPair(category.id, u1.id, u2.id)).map(u2 => ({
       from: u1,
       to: u2,
       label: `Convert ${u1.name} to ${u2.name}`
@@ -269,7 +269,7 @@ function ExploreMoreSection({
         </div>
 
         <a
-          href={`/${category.id}`}
+          href={`/converters/${category.id}`}
           onClick={(e) => {
             e.preventDefault();
             onNavigate(category.id);
@@ -289,7 +289,7 @@ function ExploreMoreSection({
           {popularInCat.map((item, idx) => (
             <a
               key={idx}
-              href={`/${category.id}/${item.from.id}-to-${item.to.id}`}
+              href={`/converters/${category.id}/${item.from.id}-to-${item.to.id}`}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate(category.id, item.from.id, item.to.id);
@@ -380,14 +380,20 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
         {
           "@type": "ListItem",
           "position": 2,
-          "name": `${category.name} Converters`,
-          "item": `${window.location.origin}/${category.id}`
+          "name": "Unit Converters",
+          "item": `${window.location.origin}/converters`
         },
         {
           "@type": "ListItem",
           "position": 3,
+          "name": `${category.name} Converters`,
+          "item": `${window.location.origin}/converters/${category.id}`
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "name": customArticle ? customArticle.h1 : (isMeterToKm ? "Meter to Kilometer Converter" : (isMeterToCm ? "Meter to Centimeter Converter" : (isMeterToMm ? "Meter to Millimeter Converter" : (isMeterToUm ? "Meter to Micrometer Converter" : (isMeterToNm ? "Meter to Nanometer Converter" : `${fromUnit.name} to ${toUnit.name}`))))),
-          "item": `${window.location.origin}/${category.id}/${fromUnit.id}-to-${toUnit.id}`
+          "item": `${window.location.origin}/converters/${category.id}/${fromUnit.id}-to-${toUnit.id}`
         }
       ]
     };
@@ -669,7 +675,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
     }
 
     // Canonical URL
-    const canonicalUrl = `${window.location.origin}/${category.id}/${fromUnit.id}-to-${toUnit.id}`;
+    const canonicalUrl = `${window.location.origin}/converters/${category.id}/${fromUnit.id}-to-${toUnit.id}`;
     let canonicalTag = document.querySelector('link[rel="canonical"]');
     if (!canonicalTag) {
       canonicalTag = document.createElement("link");
@@ -752,7 +758,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       candidates = [...customList];
     } else {
       // Priority 1: Reverse converter
-      if (fromUnit.id !== toUnit.id) {
+      if (fromUnit.id !== toUnit.id && isValidPair(category.id, toUnit.id, fromUnit.id)) {
         candidates.push({
           label: `${toUnit.name} to ${fromUnit.name}`,
           from: toUnit.id,
@@ -762,7 +768,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
 
       // Priority 2: Same SOURCE unit
       category.units.forEach(unit => {
-        if (unit.id !== fromUnit.id && unit.id !== toUnit.id) {
+        if (unit.id !== fromUnit.id && unit.id !== toUnit.id && isValidPair(category.id, fromUnit.id, unit.id)) {
           candidates.push({
             label: `${fromUnit.name} to ${unit.name}`,
             from: fromUnit.id,
@@ -773,7 +779,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
 
       // Priority 3: Same TARGET unit
       category.units.forEach(unit => {
-        if (unit.id !== fromUnit.id && unit.id !== toUnit.id) {
+        if (unit.id !== fromUnit.id && unit.id !== toUnit.id && isValidPair(category.id, unit.id, toUnit.id)) {
           candidates.push({
             label: `${unit.name} to ${toUnit.name}`,
             from: unit.id,

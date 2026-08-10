@@ -13,7 +13,7 @@ import AdPlaceholder from "./components/AdPlaceholder";
 import { categoriesData } from "./data/convertersData";
 import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "./data/calculatorsData";
 import { ConversionHistoryItem, FavoriteTool } from "./types";
-import { performConversion, runEngineAudit } from "./utils/conversionEngine";
+import { performConversion, runEngineAudit, isValidPair } from "./utils/conversionEngine";
 import { applyAutomatedSeo } from "./utils/classificationEngine";
 import { injectPageSchemas } from "./utils/schemaEngine";
 
@@ -26,6 +26,33 @@ const ValidatorPage = React.lazy(() => import("./components/ValidatorPage"));
 const EngineeringCalculatorsView = React.lazy(() => import("./components/EngineeringCalculatorsView"));
 const EngineeringCategoryPage = React.lazy(() => import("./components/EngineeringCategoryPage"));
 const UnitConvertersHub = React.lazy(() => import("./components/UnitConvertersHub"));
+
+const constructionCalcRedirects: Record<string, string> = {
+  "board-foot-to-sq-foot": "board-foot-to-sq-foot",
+  "board-foot-to-sq-foot-construction": "board-foot-to-sq-foot",
+  "board-foot-to-sq-meter": "board-foot-to-sq-meter",
+  "board-foot-to-sq-meter-construction": "board-foot-to-sq-meter",
+  "sq-foot-to-board-foot": "sq-foot-to-board-foot",
+  "sq-foot-construction-to-board-foot": "sq-foot-to-board-foot",
+  "sq-foot-to-cubic-yard": "sq-foot-to-cubic-yard",
+  "sq-foot-construction-to-cubic-yard-concrete": "sq-foot-to-cubic-yard",
+  "sq-foot-to-cubic-meter": "sq-foot-to-cubic-meter",
+  "sq-foot-construction-to-cubic-meter-concrete": "sq-foot-to-cubic-meter",
+  "sq-meter-to-board-foot": "sq-meter-to-board-foot",
+  "sq-meter-construction-to-board-foot": "sq-meter-to-board-foot",
+  "sq-meter-to-cubic-yard": "sq-meter-to-cubic-yard",
+  "sq-meter-construction-to-cubic-yard-concrete": "sq-meter-to-cubic-yard",
+  "sq-meter-to-cubic-meter": "sq-meter-to-cubic-meter",
+  "sq-meter-construction-to-cubic-meter-concrete": "sq-meter-to-cubic-meter",
+  "cubic-yard-to-sq-foot": "cubic-yard-to-sq-foot",
+  "cubic-yard-concrete-to-sq-foot-construction": "cubic-yard-to-sq-foot",
+  "cubic-yard-to-sq-meter": "cubic-yard-to-sq-meter",
+  "cubic-yard-concrete-to-sq-meter-construction": "cubic-yard-to-sq-meter",
+  "cubic-meter-to-sq-foot": "cubic-meter-to-sq-foot",
+  "cubic-meter-concrete-to-sq-foot-construction": "cubic-meter-to-sq-foot",
+  "cubic-meter-to-sq-meter": "cubic-meter-to-sq-meter",
+  "cubic-meter-concrete-to-sq-meter-construction": "cubic-meter-to-sq-meter",
+};
 
 export default function App() {
   // Routing State
@@ -153,7 +180,7 @@ export default function App() {
           unit.plural.toLowerCase().includes(query) || 
           unit.symbol.toLowerCase() === query
         ) {
-          const otherUnits = cat.units.filter(u => u.id !== unit.id);
+          const otherUnits = cat.units.filter(u => u.id !== unit.id && isValidPair(cat.id, unit.id, u.id));
           otherUnits.slice(0, 3).forEach(other => {
             matches.push({
               type: "conversion",
@@ -272,13 +299,15 @@ export default function App() {
         pageType: "category-hub",
         isEngineering: false,
         title: `${route.category ? route.category.toUpperCase() : "Converters"} | UnitsConvertors.com`,
-        description: descText
+        description: descText,
+        canonicalUrl: route.category ? `https://unitsconvertors.com/converters/${route.category}` : "https://unitsconvertors.com/converters"
       });
     } else if (route.page === "converter") {
       applyAutomatedSeo({
         pageType: "individual-tool",
         title: `${route.fromUnit} to ${route.toUnit} Converter | UnitsConvertors.com`,
         description: `Convert ${route.fromUnit} to ${route.toUnit} with exact mathematical formulas, worked calculation examples, reference tables, and FAQs.`,
+        canonicalUrl: `https://unitsconvertors.com/converters/${route.category}/${route.fromUnit}-to-${route.toUnit}`,
         contentQuality: {
           hasOriginalArticle: true,
           hasFormula: true,
@@ -375,21 +404,83 @@ export default function App() {
         } else {
           setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
         }
+      } else if (first === "converters") {
+        if (segments.length === 1) {
+          setRoute({ page: "converters", category: "", fromUnit: "", toUnit: "" });
+        } else if (segments.length === 2) {
+          const second = segments[1];
+          const cat = categoriesData.find((c) => c.id === second);
+          if (cat) {
+            setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
+          } else {
+            setRoute({ page: "converters", category: "", fromUnit: "", toUnit: "" });
+          }
+        } else if (segments.length >= 3) {
+          const second = segments[1];
+          const third = segments[2];
+          if (second === "construction" && constructionCalcRedirects[third]) {
+            const targetSlug = constructionCalcRedirects[third];
+            const canonicalPath = `/engineering-calculators/civil-calc/${targetSlug}`;
+            window.history.replaceState(null, "", canonicalPath);
+            setRoute({
+              page: "engineering-category",
+              category: "civil-calc",
+              fromUnit: targetSlug,
+              toUnit: "",
+            });
+          } else {
+            const cat = categoriesData.find((c) => c.id === second);
+            if (cat) {
+              const parts = third.split("-to-");
+              if (parts.length === 2) {
+                setRoute({
+                  page: "converter",
+                  category: cat.id,
+                  fromUnit: parts[0],
+                  toUnit: parts[1],
+                });
+              } else {
+                setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
+              }
+            } else {
+              setRoute({ page: "converters", category: "", fromUnit: "", toUnit: "" });
+            }
+          }
+        }
       } else if (supportPages.includes(first)) {
         setRoute({ page: first, category: "", fromUnit: "", toUnit: "" });
       } else {
         const cat = categoriesData.find(c => c.id === first);
         if (cat) {
+          // Legacy URL structure without /converters prefix: redirect to canonical /converters/ URL
           if (segments.length > 1) {
             const pairSegment = segments[1];
-            const parts = pairSegment.split("-to-");
-            if (parts.length === 2) {
-              setRoute({ page: "converter", category: first, fromUnit: parts[0], toUnit: parts[1] });
+            if (cat.id === "construction" && constructionCalcRedirects[pairSegment]) {
+              const targetSlug = constructionCalcRedirects[pairSegment];
+              const canonicalPath = `/engineering-calculators/civil-calc/${targetSlug}`;
+              window.history.replaceState(null, "", canonicalPath);
+              setRoute({
+                page: "engineering-category",
+                category: "civil-calc",
+                fromUnit: targetSlug,
+                toUnit: "",
+              });
             } else {
-              setRoute({ page: "category", category: first, fromUnit: "", toUnit: "" });
+              const parts = pairSegment.split("-to-");
+              if (parts.length === 2) {
+                const canonicalPath = `/converters/${cat.id}/${parts[0]}-to-${parts[1]}`;
+                window.history.replaceState(null, "", canonicalPath);
+                setRoute({ page: "converter", category: cat.id, fromUnit: parts[0], toUnit: parts[1] });
+              } else {
+                const canonicalPath = `/converters/${cat.id}`;
+                window.history.replaceState(null, "", canonicalPath);
+                setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
+              }
             }
           } else {
-            setRoute({ page: "category", category: first, fromUnit: "", toUnit: "" });
+            const canonicalPath = `/converters/${cat.id}`;
+            window.history.replaceState(null, "", canonicalPath);
+            setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
           }
         } else {
           setRoute({ page: "home", category: "", fromUnit: "", toUnit: "" });
@@ -414,6 +505,8 @@ export default function App() {
       }
     } else if (category === "home") {
       targetPath = "/";
+    } else if (category === "converters") {
+      targetPath = "/converters";
     } else if (category === "calculators" || category === "engineering-calculators") {
       if (fromUnit && toUnit) {
         const catSlug = getCategorySlugForDiscipline(fromUnit);
@@ -448,9 +541,9 @@ export default function App() {
           targetPath = `/calculators/${catSlug}`;
         }
       } else if (fromUnit && toUnit) {
-        targetPath = `/${category}/${fromUnit}-to-${toUnit}`;
+        targetPath = `/converters/${category}/${fromUnit}-to-${toUnit}`;
       } else {
-        targetPath = `/${category}`;
+        targetPath = `/converters/${category}`;
       }
     }
 
@@ -907,17 +1000,17 @@ export default function App() {
             {/* Breadcrumb Navigation */}
             <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2" aria-label="Breadcrumb">
               <button 
-                onClick={() => setRoute({ page: "home" })}
+                onClick={() => handleNavigate("home")}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
                 Home
               </button>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
               <button 
-                onClick={() => setRoute({ page: "home" })}
+                onClick={() => handleNavigate("converters")}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
-                Unit Converters
+                Converters
               </button>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
               <span className="text-slate-700 dark:text-slate-200 font-bold">
@@ -953,12 +1046,14 @@ export default function App() {
             {/* Matrix of all possible units list combinations (strength of internal links!) */}
             <div className="flex flex-col gap-6">
               <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
-                All Available {activeCategory.name} Converters ({activeCategory.units.length * (activeCategory.units.length - 1)} pairs)
+                All Available {activeCategory.name} Converters ({
+                  activeCategory.units.flatMap(a => activeCategory.units.filter(b => a.id !== b.id && isValidPair(activeCategory.id, a.id, b.id))).length
+                } pairs)
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 {activeCategory.units.map(unitA => (
                   activeCategory.units.map(unitB => {
-                    if (unitA.id === unitB.id) return null;
+                    if (unitA.id === unitB.id || !isValidPair(activeCategory.id, unitA.id, unitB.id)) return null;
                     return (
                       <div
                         key={`${unitA.id}-to-${unitB.id}`}
@@ -985,17 +1080,17 @@ export default function App() {
             {/* Breadcrumb Navigation */}
             <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2" aria-label="Breadcrumb">
               <button 
-                onClick={() => setRoute({ page: "home" })}
+                onClick={() => handleNavigate("home")}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
                 Home
               </button>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
               <button 
-                onClick={() => setRoute({ page: "home" })}
+                onClick={() => handleNavigate("converters")}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
-                Unit Converters
+                Converters
               </button>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
               <button 

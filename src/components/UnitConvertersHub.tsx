@@ -190,7 +190,7 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
                 return (
                   <a
                     key={cat.id}
-                    href={`/${cat.id}`}
+                    href={`/converters/${cat.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate(cat.id);
@@ -261,7 +261,7 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
               return (
                 <a
                   key={idx}
-                  href={`/${p.cat}/${p.from}-to-${p.to}`}
+                  href={`/converters/${p.cat}/${p.from}-to-${p.to}`}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate(p.cat, p.from, p.to);

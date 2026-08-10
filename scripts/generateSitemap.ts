@@ -63,7 +63,7 @@ function generateSitemap() {
   let converterCategoryCount = 0;
   for (const cat of categoriesData) {
     addEntry({
-      url: `${BASE_URL}/${cat.id}`,
+      url: `${BASE_URL}/converters/${cat.id}`,
       lastmod: currentDate,
       changefreq: "weekly",
       priority: "0.8"
@@ -99,7 +99,7 @@ function generateSitemap() {
         }
 
         addEntry({
-          url: `${BASE_URL}/${cat.id}/${pairKey}`,
+          url: `${BASE_URL}/converters/${cat.id}/${pairKey}`,
           lastmod,
           changefreq: "weekly",
           priority

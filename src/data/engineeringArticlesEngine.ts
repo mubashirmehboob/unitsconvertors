@@ -1,5 +1,6 @@
 import { EngineeringTool, EngineeringCalculatorDiscipline } from "./calculatorsData";
 import { categoriesData } from "./convertersData";
+import { bespokeArticlesMap } from "./bespokeArticles";
 
 export interface EngineeringArticleFAQ {
   question: string;
@@ -225,6 +226,11 @@ export function generateEngineeringArticle(
 
   // Relevant converter categories
   const relevantUnitCategories = getRelatedConverterCategories(discipline.id);
+
+  // Use bespoke high-quality article if available
+  if (bespokeArticlesMap[tool.id]) {
+    return bespokeArticlesMap[tool.id](canonicalUrl, relatedTools, relevantUnitCategories);
+  }
 
   // Industry applications
   const industryListMap: Record<string, string[]> = {

@@ -114,7 +114,10 @@ export default function EngineeringCalculatorsView({
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Grid className="h-5 w-5 text-amber-500" />
-            Engineering Disciplines (11 Categories)
+            Calculator Categories
+            <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900">
+              {engineeringCalculatorsData.length} Categories
+            </span>
           </h2>
 
           {/* Search All Tools */}
@@ -122,7 +125,7 @@ export default function EngineeringCalculatorsView({
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <input
               type="text"
-              placeholder="Search all 172+ engineering calculators..."
+              placeholder={`Search all ${totalToolsCount} calculators...`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full h-10 pl-10 pr-9 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 shadow-sm"
@@ -287,6 +290,97 @@ export default function EngineeringCalculatorsView({
             </div>
           );
         })}
+      </div>
+
+      {/* Popular Engineering Calculators Section */}
+      <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <Zap className="h-5 w-5 text-amber-500" />
+            Popular Engineering Solvers
+          </h2>
+          <span className="text-xs text-slate-500 font-medium">Most Frequently Used Tools</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            { name: "Ohm's Law Calculator", catSlug: "electrical-calculators", slug: "ohms-law", formula: "V = I × R", discName: "Electrical" },
+            { name: "Beam Deflection", catSlug: "civil-calculators", slug: "beam-deflection-calc", formula: "δ = (F·L³) / (48·E·I)", discName: "Civil" },
+            { name: "Reynolds Number", catSlug: "fluid-mechanics-calculators", slug: "reynolds-number-calc", formula: "Re = (ρ·v·D) / μ", discName: "Fluid Mechanics" },
+            { name: "Voltage Divider", catSlug: "electrical-calculators", slug: "voltage-divider-calc", formula: "V_out = V_in × (R2/(R1+R2))", discName: "Electrical" },
+            { name: "Lens Maker's Equation", catSlug: "optics-light-calculators", slug: "lens-makers-equation-calc", formula: "1/f = (n-1)(1/R1 - 1/R2)", discName: "Optics" },
+            { name: "Quadratic Formula", catSlug: "mathematics-calculators", slug: "quadratic-formula-calc", formula: "x = (-b ± √(b²-4ac))/2a", discName: "Math" },
+            { name: "Ideal Gas Law", catSlug: "thermodynamics-calculators", slug: "ideal-gas-law-calc", formula: "P·V = n·R·T", discName: "Thermodynamics" },
+            { name: "Heat Transfer Rate", catSlug: "thermodynamics-calculators", slug: "heat-transfer-rate-calc", formula: "Q/t = k·A·ΔT / d", discName: "Thermodynamics" }
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              onClick={() => onNavigate("calculators", undefined, undefined, item.catSlug, item.slug)}
+              className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between space-y-3"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 font-mono">
+                    {item.discName}
+                  </span>
+                  <ArrowRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
+                </div>
+                <h3 className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
+                  {item.name}
+                </h3>
+              </div>
+              <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 p-2 rounded-lg border border-slate-100 dark:border-slate-800/80">
+                <MathFormula formula={item.formula} asInline={true} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Frequently Asked Questions Section */}
+      <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <BookOpen className="h-5 w-5 text-amber-500" />
+          Engineering Calculators FAQ
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+              What is the difference between unit converters and engineering calculators?
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Unit converters transform equivalent physical dimensions (such as converting meters to feet). Engineering calculators solve governing multi-variable equations (such as Ohm's Law V = I × R or Beam Deflection δ = (F·L³) / (48·E·I)) combining multiple physical inputs to calculate unknown variables.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+              Are these calculators free for commercial and academic engineering use?
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Yes. All 216+ calculators on UnitsConvertors.com are completely free and accessible online without registration, subscriptions, or hidden limits for students, research scientists, and licensed professional engineers.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+              What standard measurement systems do the calculators support?
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Every calculator accepts standard International System of Units (SI metric) inputs as well as common Imperial/US Customary units where applicable. Inputs automatically validate boundary conditions and physically valid parameter ranges.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+              How are formulas and assumptions verified?
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Each calculator card explicitly lists its underlying governing equation, assumed boundary conditions (e.g. isotropic medium, uniform load distribution, ideal gas state), and SI unit outputs for full transparent mathematical auditing.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Footnote Educational Info */}
