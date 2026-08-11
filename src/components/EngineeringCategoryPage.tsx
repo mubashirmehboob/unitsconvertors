@@ -130,7 +130,7 @@ export default function EngineeringCategoryPage({
   // VIEW 1: DEDICATED CALCULATOR TOOL PAGE
   // =========================================================================
   if (activeTool) {
-    const relatedTools = discipline.tools.filter(t => t.id !== activeTool.id);
+    const allCategoryTools = discipline.tools;
     const articleData = generateEngineeringArticle(activeTool, discipline, engineeringCalculatorsData);
 
     return (
@@ -176,7 +176,7 @@ export default function EngineeringCategoryPage({
 
           <span className="text-xs font-mono text-slate-500 flex items-center gap-1.5">
             <ShieldCheck className="h-4 w-4 text-emerald-500" />
-            SI Metric Equations • Real-Time Engine
+            Verified Physical Equations • Real-Time Engine
           </span>
         </div>
 
@@ -194,14 +194,9 @@ export default function EngineeringCategoryPage({
           <EngineeringArticleEngine article={articleData} onNavigate={onNavigate} />
         </React.Suspense>
 
-        {/* Technically Relevant Engineering Comparison Table */}
-        <React.Suspense fallback={<div className="py-8 text-center text-slate-400">Loading comparison table...</div>}>
-          <EngineeringComparisonTable disciplineId={discipline.id} />
-        </React.Suspense>
-
-        {/* Related Calculators in Same Discipline */}
-        {relatedTools.length > 0 && (
-          <div className="space-y-4">
+        {/* Related Calculators in Same Discipline (Full Master List) */}
+        {allCategoryTools.length > 0 && (
+          <div className="space-y-4" id="related-calculators-master-list">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <Compass className="h-5 w-5 text-amber-500" />
@@ -216,41 +211,54 @@ export default function EngineeringCategoryPage({
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {relatedTools.slice(0, 6).map(tool => (
-                <div
-                  key={tool.id}
-                  onClick={() => handleSelectTool(tool)}
-                  className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-lg cursor-pointer transition-all flex flex-col justify-between gap-4 group h-full"
-                >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40">
-                        {tool.outputUnit}
-                      </span>
-                      <span className="text-[10px] font-mono text-slate-400">
-                        SI Model
-                      </span>
+              {allCategoryTools.map(tool => {
+                const isActive = tool.id === activeTool.id;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => handleSelectTool(tool)}
+                    className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between gap-4 group h-full ${
+                      isActive
+                        ? "border-amber-500 bg-amber-50/40 dark:bg-amber-950/20 ring-2 ring-amber-500/40 shadow-md"
+                        : "border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-lg"
+                    }`}
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-400 border border-amber-200/50 dark:border-amber-900/40">
+                          {tool.outputUnit}
+                        </span>
+                        {isActive ? (
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500 text-white shadow-sm">
+                            Active
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-mono text-slate-400">
+                            SI Model
+                          </span>
+                        )}
+                      </div>
+
+                      <h4 className="font-display font-bold text-slate-900 dark:text-white text-base leading-snug group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                        {tool.name}
+                      </h4>
+
+                      <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                        {tool.description}
+                      </p>
                     </div>
 
-                    <h4 className="font-display font-bold text-slate-900 dark:text-white text-base leading-snug group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                      {tool.name}
-                    </h4>
-
-                    <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                      {tool.description}
-                    </p>
+                    <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs">
+                      <span className="font-mono text-[11px] text-slate-400 truncate max-w-[140px]">
+                        <MathFormula formula={tool.formula} asInline={true} />
+                      </span>
+                      <span className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0">
+                        {isActive ? "Current Calculator" : "Open Calculator"} <ArrowRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
                   </div>
-
-                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs">
-                    <span className="font-mono text-[11px] text-slate-400 truncate max-w-[140px]">
-                      <MathFormula formula={tool.formula} asInline={true} />
-                    </span>
-                    <span className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0">
-                      Open Calculator <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}

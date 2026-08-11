@@ -24,6 +24,7 @@ export interface EngineeringTool {
   formula: string;
   outputUnit: string;
   assumptions: string[];
+  limitations?: string[];
   inputs: EngineeringInput[];
   calculate: (inputs: Record<string, number>) => number;
   route: string;

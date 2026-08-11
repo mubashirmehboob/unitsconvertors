@@ -5,6 +5,7 @@ export interface Unit {
   symbol: string;
   factor: number; // multiplier to go from base unit to this unit (or inverse, we will define base to unit)
   offset?: number; // for temperature or linear equations (e.g. y = mx + c)
+  quantity?: string; // e.g. "volume" or "area" for categories with mixed physical quantities
 }
 
 export interface Category {

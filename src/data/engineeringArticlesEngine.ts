@@ -128,9 +128,9 @@ const disciplineStandardsMap: Record<string, Array<{ organization: string; code:
     { organization: "NIST", code: "NIST DLMF", title: "Digital Library of Mathematical Functions and Special Combinatorial Equations" }
   ],
   "general-engineering-calc": [
-    { organization: "ISO", code: "ISO 9001 / ISO 14224", title: "Petroleum, petrochemical and natural gas industries — Collection and exchange of reliability data" },
-    { organization: "IEEE", code: "IEEE Std 493", title: "IEEE Recommended Practice for the Design of Reliable Industrial Systems (Gold Book)" },
-    { organization: "MIL-HDBK", code: "MIL-HDBK-217F", title: "Reliability Prediction of Electronic Equipment and MTBF Benchmarks" }
+    { organization: "ISO", code: "ISO 80000-1", title: "Quantities and units — Part 1: General SI Standards" },
+    { organization: "NIST", code: "NIST SP 330", title: "The International System of Units (SI) Manual" },
+    { organization: "BIPM", code: "SI Brochure (9th Ed.)", title: "Bureau International des Poids et Mesures - Physical Measurement Reference" }
   ],
   "surveying-gis-calc": [
     { organization: "ISO", code: "ISO 19111:2019", title: "Geographic information — Referencing by coordinates & Datum Transformations" },
@@ -256,10 +256,10 @@ export function generateEngineeringArticle(
 
   // Specific common mistakes
   const commonMistakes: string[] = [
-    `Inconsistent Unit Systems: Combining non-SI units (e.g. inches, psi, Fahrenheit) directly into the SI formula (${tool.formula}) without preliminary unit conversion.`,
-    `Ignoring Physical Boundary Assumptions: Applying this model outside its validated operational domain (e.g., assuming ideal steady-state conditions when transient spikes occur).`,
-    `Omitting Safety Factors: Using raw calculated values (${tool.outputUnit}) directly in structural or electrical bill-of-materials without applying industry-mandated safety margins (e.g. 1.25x to 2.0x).`,
-    `Precision Misinterpretation: Over-relying on unrounded floating-point decimal results when input variable tolerances are only accurate within ±5%.`,
+    `Inconsistent Unit Systems: Combining non-SI units directly into the SI formula (${tool.formula}) without preliminary unit conversion.`,
+    `Ignoring Physical Boundary Assumptions: Applying this model outside its validated operational domain (e.g., assuming ideal steady-state conditions when dynamic fluctuations occur).`,
+    `Omitting Manufacturing Tolerances: Using raw calculated values (${tool.outputUnit}) directly without accounting for material and machining tolerances.`,
+    `Precision Misinterpretation: Over-relying on unrounded floating-point decimal results when input variable tolerances are approximate.`,
     `Misidentifying Variables: Swapping dependent and independent variables during reverse manual calculations or failing to verify unit dimensions before component selection.`
   ];
 
@@ -267,8 +267,8 @@ export function generateEngineeringArticle(
   const bestPractices: string[] = [
     `Always verify input variable dimensions before performing high-consequence calculations.`,
     `Cross-check results against empirical manufacturer datasheets or validated field measurement tools.`,
-    `Document all physical assumptions (e.g., temperature, humidity, material grade) alongside your calculation records.`,
-    `Incorporate standard engineering safety factors recommended by governing bodies (${disciplineStandardsMap[normalizedDiscId]?.[0]?.organization || "ISO"}).`,
+    `Document all physical assumptions alongside your calculation records.`,
+    `Incorporate standard engineering design guidelines recommended by governing bodies (${disciplineStandardsMap[normalizedDiscId]?.[0]?.organization || "ISO"}).`,
     `Use normalized SI base units during intermediate steps to eliminate conversion errors.`
   ];
 
@@ -288,11 +288,11 @@ export function generateEngineeringArticle(
     },
     {
       question: `What physical assumptions are embedded in this calculation model?`,
-      answer: `This calculator assumes: ${tool.assumptions.join("; ")}. In scenarios with non-ideal parameters or turbulent transients, appropriate adjustment factors must be applied.`
+      answer: `This calculator assumes: ${tool.assumptions.join("; ")}.`
     },
     {
       question: `Can I use this calculator for real-world commercial engineering design?`,
-      answer: `Yes. The engine adheres strictly to established SI metric physical equations. However, engineers should always apply required design safety factors (e.g., 1.5x to 2.0x) per applicable code standards.`
+      answer: `Yes. The engine adheres strictly to established physical equations governing ${discipline.name.toLowerCase()}.`
     },
     {
       question: `How do changes in input parameters affect the output ${tool.outputUnit}?`,
@@ -300,7 +300,7 @@ export function generateEngineeringArticle(
     },
     {
       question: `What are the most common errors when using this tool?`,
-      answer: `The most frequent mistake is mixing Imperial and SI units without prior conversion, or neglecting key physical boundaries like steady-state operation and thermal stability.`
+      answer: `The most frequent mistake is mixing non-SI and SI units without prior conversion, or neglecting key physical boundary assumptions.`
     },
     {
       question: `Which international standards govern calculations in ${discipline.name}?`,
@@ -353,7 +353,7 @@ export function generateEngineeringArticle(
     outputExplanation: {
       unit: tool.outputUnit,
       interpretation: `The computed numerical value represents the resulting magnitude of ${tool.name.toLowerCase()} in standard ${tool.outputUnit}.`,
-      designImpact: `In practical engineering design, this output value dictates component ratings, structural margins, thermal dissipation requirements, or flow capacities.`
+      designImpact: `In practical engineering design, this output value dictates component parameters and operational thresholds.`
     },
     stepByStepExample: {
       givenInputs: tool.inputs.map(i => ({
@@ -373,19 +373,19 @@ export function generateEngineeringArticle(
     },
     practicalExample: {
       scenarioTitle: `Practical Engineering Application: ${tool.name} in ${activeIndustries[0]}`,
-      industryContext: `During the design phase of an industrial ${discipline.name.toLowerCase()} system in ${activeIndustries[0]}, engineers must accurately determine ${tool.outputUnit} to specify hardware safety thresholds.`,
+      industryContext: `During the design phase of an industrial ${discipline.name.toLowerCase()} system in ${activeIndustries[0]}, engineers must accurately determine ${tool.outputUnit}.`,
       problemStatement: `An engineering team needs to evaluate ${tool.name.toLowerCase()} for an operational system with parameters: ${tool.inputs.map(i => `${i.label} = ${i.defaultValue} ${i.unit}`).join(", ")}.`,
-      engineeringSolution: `Applying the governing formula (${tool.formula}) yields a result of ${outputFormatted} ${tool.outputUnit}. This confirms the system operates safely within standard physical limits.`
+      engineeringSolution: `Applying the governing formula (${tool.formula}) yields a result of ${outputFormatted} ${tool.outputUnit}.`
     },
-    assumptions: tool.assumptions.length > 0 ? tool.assumptions : [
+    assumptions: tool.assumptions && tool.assumptions.length > 0 ? tool.assumptions : [
       "Ideal steady-state physical operating conditions.",
-      "Homogeneous material properties and uniform ambient temperature.",
-      "Negligible parasitic losses and environmental interference."
+      "Homogeneous material properties and uniform operational environment.",
+      "Negligible parasitic losses unless explicitly included."
     ],
-    limitations: [
-      `Valid primarily within linear or standard laminar operational regimes.`,
-      `Does not account for non-linear saturation, extreme thermal transients, or relativistic speeds unless specified.`,
-      `Requires pre-conversion if input data is collected in non-SI custom units.`
+    limitations: tool.limitations && tool.limitations.length > 0 ? tool.limitations : [
+      `Valid within standard linear physical operating regimes defined by the governing formula.`,
+      `Does not account for non-linear dynamic transients or unmodeled environmental interference.`,
+      `Requires pre-conversion if input data is collected in custom non-SI units.`
     ],
     commonMistakes,
     bestPractices,

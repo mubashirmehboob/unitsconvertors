@@ -1,13 +1,15 @@
 import { EngineeringArticleData } from "./engineeringArticlesEngine";
+import { mechanicalBespokeArticlesMap } from "./mechanicalBespokeArticles";
 
 /**
- * Bespoke production-quality technical articles for Electrical Engineering Calculators.
+ * Bespoke production-quality technical articles for Engineering Calculators.
  * Every article contains mathematically accurate equations, step-by-step worked calculations,
- * industry standards (IEEE, IEC, NIST, NEC/NFPA), physical assumptions, common mistakes,
- * best practices, and 8-10 unique FAQs.
+ * industry standards, physical assumptions, common mistakes,
+ * best practices, and unique FAQs.
  */
 
 export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTools: any[], relevantUnitCategories: any[]) => EngineeringArticleData> = {
+  ...mechanicalBespokeArticlesMap,
 
   // 1. OHM'S LAW CALCULATOR
   "ohms-law-calculator": (canonicalUrl, relatedTools, relevantUnitCategories) => ({

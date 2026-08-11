@@ -127,6 +127,23 @@ export default function ConverterTool({
   const fromUnit = category.units.find(u => u.id === fromUnitId) || category.units[0];
   const toUnit = category.units.find(u => u.id === toUnitId) || category.units[1] || category.units[0];
 
+  // Physical quantity matching (e.g. Volume vs Area in Construction)
+  const currentQuantity = fromUnit?.quantity || toUnit?.quantity;
+  const compatibleUnits = React.useMemo(() => {
+    if (!currentQuantity) return category.units;
+    return category.units.filter(u => !u.quantity || u.quantity === currentQuantity);
+  }, [category.units, currentQuantity]);
+
+  // Ensure toUnit belongs to the same physical quantity as fromUnit
+  useEffect(() => {
+    if (fromUnit?.quantity && toUnit?.quantity && fromUnit.quantity !== toUnit.quantity) {
+      const validTo = category.units.find(u => u.id !== fromUnit.id && u.quantity === fromUnit.quantity);
+      if (validTo) {
+        setToUnitId(validTo.id);
+      }
+    }
+  }, [fromUnit, toUnit, category.units]);
+
   // Perform calculation
   const numericValue = parseFloat(inputValue);
   const result = isNaN(numericValue) ? 0 : performConversion(numericValue, fromUnit, toUnit, category);
@@ -858,7 +875,7 @@ export default function ConverterTool({
                 onChange={(e) => setFromUnitId(e.target.value)}
                 className="w-full h-12 pl-4 pr-10 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all cursor-pointer appearance-none shadow-sm"
               >
-                {category.units.map(unit => (
+                {compatibleUnits.map(unit => (
                   <option key={unit.id} value={unit.id} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
                     {unit.name} ({unit.symbol})
                   </option>
@@ -904,7 +921,7 @@ export default function ConverterTool({
                 onChange={(e) => setToUnitId(e.target.value)}
                 className="w-full h-12 pl-4 pr-10 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all cursor-pointer appearance-none shadow-sm"
               >
-                {category.units.map(unit => (
+                {compatibleUnits.map(unit => (
                   <option key={unit.id} value={unit.id} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
                     {unit.name} ({unit.symbol})
                   </option>

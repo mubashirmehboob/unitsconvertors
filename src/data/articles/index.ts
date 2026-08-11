@@ -333,11 +333,22 @@ import { abampereToMilliampere } from "./abampereToMilliampere";
 import { abampereToMicroampere } from "./abampereToMicroampere";
 import { abampereToKiloampere } from "./abampereToKiloampere";
 
-import { boardFootToCubicYardConcrete } from "./boardFootToCubicYardConcrete";
-import { boardFootToCubicMeterConcrete } from "./boardFootToCubicMeterConcrete";
-import { sqFootConstructionToSqMeterConstruction } from "./sqFootConstructionToSqMeterConstruction";
-import { sqMeterConstructionToSqFootConstruction } from "./sqMeterConstructionToSqFootConstruction";
-import { cubicYardConcreteToBoardFoot } from "./cubicYardConcreteToBoardFoot";
+import { boardFootToCubicFoot } from "./boardFootToCubicFoot";
+import { cubicFootToBoardFoot } from "./cubicFootToBoardFoot";
+import { boardFootToCubicYard } from "./boardFootToCubicYard";
+import { boardFootToCubicMeter } from "./boardFootToCubicMeter";
+import { boardFootToCubicInch } from "./boardFootToCubicInch";
+import { cubicInchToBoardFoot } from "./cubicInchToBoardFoot";
+import { cubicYardToCubicFoot } from "./cubicYardToCubicFoot";
+import { cubicFootToCubicYard } from "./cubicFootToCubicYard";
+import { cubicFootToCubicMeter } from "./cubicFootToCubicMeter";
+import { cubicFootToCubicInch } from "./cubicFootToCubicInch";
+import { cubicYardToBoardFoot } from "./cubicYardToBoardFoot";
+import { cubicYardToCubicMeter } from "./cubicYardToCubicMeter";
+import { cubicYardToCubicInch } from "./cubicYardToCubicInch";
+import { cubicMeterToBoardFoot } from "./cubicMeterToBoardFoot";
+import { cubicMeterToCubicFoot } from "./cubicMeterToCubicFoot";
+import { squareFootToSquareMeter } from "./squareFootToSquareMeter";
 
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
@@ -675,11 +686,22 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "abampere-to-microampere": abampereToMicroampere,
   "abampere-to-kiloampere": abampereToKiloampere,
 
-  "board-foot-to-cubic-yard-concrete": boardFootToCubicYardConcrete,
-  "board-foot-to-cubic-meter-concrete": boardFootToCubicMeterConcrete,
-  "sq-foot-construction-to-sq-meter-construction": sqFootConstructionToSqMeterConstruction,
-  "sq-meter-construction-to-sq-foot-construction": sqMeterConstructionToSqFootConstruction,
-  "cubic-yard-concrete-to-board-foot": cubicYardConcreteToBoardFoot
+  "board-foot-to-cubic-foot": boardFootToCubicFoot,
+  "board-foot-to-cubic-yard": boardFootToCubicYard,
+  "board-foot-to-cubic-meter": boardFootToCubicMeter,
+  "board-foot-to-cubic-inch": boardFootToCubicInch,
+  "cubic-foot-to-board-foot": cubicFootToBoardFoot,
+  "cubic-foot-to-cubic-yard": cubicFootToCubicYard,
+  "cubic-foot-to-cubic-meter": cubicFootToCubicMeter,
+  "cubic-foot-to-cubic-inch": cubicFootToCubicInch,
+  "cubic-yard-to-board-foot": cubicYardToBoardFoot,
+  "cubic-yard-to-cubic-foot": cubicYardToCubicFoot,
+  "cubic-yard-to-cubic-meter": cubicYardToCubicMeter,
+  "cubic-yard-to-cubic-inch": cubicYardToCubicInch,
+  "cubic-meter-to-board-foot": cubicMeterToBoardFoot,
+  "cubic-meter-to-cubic-foot": cubicMeterToCubicFoot,
+  "cubic-inch-to-board-foot": cubicInchToBoardFoot,
+  "square-foot-to-square-meter": squareFootToSquareMeter
 };
 
 export interface ArticleMetadata {
@@ -1032,11 +1054,22 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "abampere-to-microampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
   "abampere-to-kiloampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
 
-  "board-foot-to-cubic-yard-concrete": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
-  "board-foot-to-cubic-meter-concrete": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
-  "sq-foot-construction-to-sq-meter-construction": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
-  "sq-meter-construction-to-sq-foot-construction": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 },
-  "cubic-yard-concrete-to-board-foot": { seoReady: true, publishedAt: "2026-08-09", updatedAt: "2026-08-09", priority: 0.9 }
+  "board-foot-to-cubic-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "board-foot-to-cubic-yard": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "board-foot-to-cubic-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "board-foot-to-cubic-inch": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-foot-to-board-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-foot-to-cubic-yard": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-foot-to-cubic-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-foot-to-cubic-inch": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-yard-to-board-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-yard-to-cubic-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-yard-to-cubic-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-yard-to-cubic-inch": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-meter-to-board-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-meter-to-cubic-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "cubic-inch-to-board-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "square-foot-to-square-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

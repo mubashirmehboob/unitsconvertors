@@ -621,14 +621,20 @@ export const categoriesData: Category[] = [
     id: "construction",
     name: "Construction",
     icon: "HardHat",
-    description: "Convert on-site build metrics including lumber board feet and concrete volumes.",
-    baseUnitId: "cubic-meter-concrete",
+    description: "Convert on-site build metrics including lumber board feet, timber volumes, and construction surface area.",
+    baseUnitId: "cubic-meter",
     units: [
-      { id: "board-foot", name: "Board Feet", plural: "Board Feet Volumes", symbol: "FBM", factor: 0.002359737 },
-      { id: "sq-foot-construction", name: "Sq Foot", plural: "Square Feet", symbol: "ft²", factor: 0.092903 },
-      { id: "sq-meter-construction", name: "Sq Meter", plural: "Square Meters", symbol: "m²", factor: 1 },
-      { id: "cubic-yard-concrete", name: "Cubic Yard", plural: "Cubic Yards", symbol: "yd³", factor: 0.764555 },
-      { id: "cubic-meter-concrete", name: "Cubic Meter", plural: "Cubic Meters", symbol: "m³", factor: 1 }
+      { id: "board-foot", name: "Board Foot", plural: "Board Feet", symbol: "FBM", factor: 0.002359737216, quantity: "volume" },
+      { id: "cubic-foot", name: "Cubic Foot", plural: "Cubic Feet", symbol: "ft³", factor: 0.028316846592, quantity: "volume" },
+      { id: "cubic-yard", name: "Cubic Yard", plural: "Cubic Yards", symbol: "yd³", factor: 0.764554857984, quantity: "volume" },
+      { id: "cubic-meter", name: "Cubic Meter", plural: "Cubic Meters", symbol: "m³", factor: 1, quantity: "volume" },
+      { id: "cubic-inch", name: "Cubic Inch", plural: "Cubic Inches", symbol: "in³", factor: 0.000016387064, quantity: "volume" },
+      { id: "cubic-centimeter", name: "Cubic Centimeter", plural: "Cubic Centimeters", symbol: "cm³", factor: 0.000001, quantity: "volume" },
+      { id: "square-foot", name: "Square Foot", plural: "Square Feet", symbol: "ft²", factor: 0.09290304, quantity: "area" },
+      { id: "square-yard", name: "Square Yard", plural: "Square Yards", symbol: "yd²", factor: 0.83612736, quantity: "area" },
+      { id: "square-meter", name: "Square Meter", plural: "Square Meters", symbol: "m²", factor: 1, quantity: "area" },
+      { id: "square-inch", name: "Square Inch", plural: "Square Inches", symbol: "in²", factor: 0.00064516, quantity: "area" },
+      { id: "square-centimeter", name: "Square Centimeter", plural: "Square Centimeters", symbol: "cm²", factor: 0.0001, quantity: "area" }
     ]
   },
   {

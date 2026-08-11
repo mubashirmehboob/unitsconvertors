@@ -1,4 +1,5 @@
 import { Category, Unit } from "../types";
+import { categoriesData } from "../data/convertersData";
 
 /**
  * Perform unit conversion using base-unit architecture.
@@ -50,19 +51,59 @@ export function formatSuperscript(exponent: number | string): string {
 export function isValidPair(catId: string, fromUnitId: string, toUnitId: string): boolean {
   if (fromUnitId === toUnitId) return false;
   
-  if (catId === "construction") {
-    const areaUnits = ["sq-foot-construction", "sq-meter-construction", "sq-foot", "sq-meter"];
-    const volumeUnits = ["board-foot", "cubic-yard-concrete", "cubic-meter-concrete", "cubic-yard", "cubic-meter"];
-    
-    const isFromArea = areaUnits.includes(fromUnitId);
-    const isToArea = areaUnits.includes(toUnitId);
-    const isFromVolume = volumeUnits.includes(fromUnitId);
-    const isToVolume = volumeUnits.includes(toUnitId);
-    
-    // Cross-dimensional conversion between Area (L²) and Volume (L³) is invalid
-    if ((isFromArea && isToVolume) || (isFromVolume && isToArea)) {
+  const cat = categoriesData.find(c => c.id === catId);
+  if (cat) {
+    const u1 = cat.units.find(u => u.id === fromUnitId);
+    const u2 = cat.units.find(u => u.id === toUnitId);
+    if (u1 && u2 && u1.quantity && u2.quantity && u1.quantity !== u2.quantity) {
       return false;
     }
+  }
+
+  if (catId === "construction") {
+    const allowedConstructionPairs = new Set([
+      "board-foot->cubic-foot",
+      "board-foot->cubic-yard",
+      "board-foot->cubic-meter",
+      "board-foot->cubic-inch",
+      "cubic-foot->board-foot",
+      "cubic-foot->cubic-yard",
+      "cubic-foot->cubic-meter",
+      "cubic-foot->cubic-inch",
+      "cubic-yard->board-foot",
+      "cubic-yard->cubic-foot",
+      "cubic-yard->cubic-meter",
+      "cubic-yard->cubic-inch",
+      "cubic-meter->board-foot",
+      "cubic-meter->cubic-foot",
+      "cubic-meter->cubic-yard",
+      "cubic-meter->cubic-inch",
+      "cubic-inch->board-foot",
+      "cubic-inch->cubic-foot",
+      "cubic-inch->cubic-yard",
+      "cubic-inch->cubic-meter",
+      "square-foot->square-meter",
+      "square-foot->square-yard",
+      "square-foot->square-inch",
+      "square-meter->square-foot",
+      "square-meter->square-yard",
+      "square-meter->square-inch",
+      "square-yard->square-foot",
+      "square-yard->square-meter",
+      "square-yard->square-inch",
+      "square-inch->square-foot",
+      "square-inch->square-meter",
+      "square-inch->square-yard",
+      "cubic-foot->cubic-centimeter",
+      "cubic-centimeter->cubic-foot",
+      "cubic-meter->cubic-centimeter",
+      "cubic-centimeter->cubic-meter",
+      "square-foot->square-centimeter",
+      "square-centimeter->square-foot",
+      "square-meter->square-centimeter",
+      "square-centimeter->square-meter"
+    ]);
+    return allowedConstructionPairs.has(`${fromUnitId}->${toUnitId}`);
   }
   
   return true;

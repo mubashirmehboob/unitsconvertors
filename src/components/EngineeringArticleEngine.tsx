@@ -37,7 +37,7 @@ export default function EngineeringArticleEngine({
               Engineering Technical Guide & Physical Principles
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">
-              Verified SI Physical Equation Guide • Technical Reference
+              Verified Physical Reference & Technical Guide
             </p>
           </div>
         </div>

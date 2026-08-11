@@ -1262,6 +1262,47 @@ A Unit Converter **MUST ALWAYS** be:
 * Exact mathematical conversion factor
 * No assumptions, external variables, physical models, or contextual parameters.
 
+---
+
+## Chapter 27 — Strict Content Registry Control (Permanent Project Rule)
+
+### 27.1 Core Principle
+The AI must NEVER make independent decisions about which converters or calculators should exist on UnitsConvertors.com. The USER inventory is the single source of truth. The AI only implements the exact requested inventory.
+
+### 27.2 Content Inventory & Registry Control Rules
+1. **No Unsolicited Creation or Auto-Expansion:** NEVER automatically create, add, infer, suggest, expand, generate, or register new converters or calculators unless explicitly requested by the user.
+2. **Exact Scope Only:** ONLY create a converter or calculator when it is explicitly provided by the user.
+3. **Strictly Prohibited Actions:**
+   - Do NOT automatically create reverse conversions (e.g., if asked for `Meter → Centimeter`, do NOT add `Centimeter → Meter` unless explicitly requested).
+   - Do NOT create conversion matrices between all units.
+   - Do NOT add missing unit pairs or infer related conversions.
+   - Do NOT add "popular" conversions automatically.
+   - Do NOT add same-unit conversions (e.g., `Square Foot → Square Foot`).
+   - Do NOT treat unit aliases as separate units (e.g., `Sq Foot` = `Square Foot`).
+   - Do NOT convert between different physical quantities (e.g., area vs. volume).
+   - Do NOT automatically add calculators to a converter category or vice versa.
+   - Do NOT generate additional tools because they seem useful or for SEO purposes.
+   - Do NOT expand a list because a category appears incomplete.
+   - Do NOT create additional registry entries from related links or article content.
+4. **Validation Before Registry Insertion:**
+   - Is it explicitly provided by the user?
+   - Does it already exist?
+   - Is it a duplicate or alias duplicate of an existing converter?
+   - Are source and target the same unit?
+   - Are source and target compatible physical quantities?
+   - Is the item a converter or calculator? (Never change its type automatically).
+5. **Registry Change Report Format:**
+   After every registry or content change, report exactly:
+   - **Added**
+   - **Already Existing**
+   - **Rejected Duplicate**
+   - **Rejected Same-Unit**
+   - **Rejected Quantity Mismatch**
+   - **Rejected Invalid/Unsupported**
+6. **Ambiguity Handling:**
+   If the requested inventory is ambiguous, STOP and ask the user instead of making an assumption. Do NOT interpret "all available", "complete", "popular", "related", "recommended", "SEO", or "category" as permission to generate additional converters or calculators.
+
+
 
 
 

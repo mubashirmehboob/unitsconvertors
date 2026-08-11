@@ -61,7 +61,7 @@ export interface CustomArticleData {
     answer: string;
     questionId?: string;
   }[];
-  relatedList: { label: string; from: string; to: string }[];
+  relatedList?: { label: string; from: string; to: string }[];
   relatedArticles?: { title: string; description: string; from: string; to: string }[];
-  references: string[];
+  references?: string[];
 }
