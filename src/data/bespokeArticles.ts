@@ -17,7 +17,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
     metaDescription: "Calculate circuit voltage (V) from electric current (I) and resistance (R) using Ohm's Law. Includes mathematical derivation, worked calculations, and NEC design standards.",
     canonicalUrl,
     introduction: {
-      overview: "Ohm's Law expresses the fundamental proportional relationship governing direct current and linear alternating current electric circuits. Discovered by Georg Simon Ohm in 1827, the law states that the current flowing through a conductor between two points is directly proportional to the voltage across the two points and inversely proportional to the resistance between them.",
+      overview: "Ohm's Law describes the fundamental proportional relationship between voltage, current, and resistance in ohmic electrical circuits. For AC circuits containing inductance or capacitance, impedance (Z) must be used instead of resistance alone.",
       applications: [
         "Determining expected circuit voltage drop across resistive loads.",
         "Sizing current-limiting resistors for sensitive semiconductor devices.",
@@ -31,12 +31,12 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
         "Automotive Electrical Engineering"
       ]
     },
-    quickAnswer: "Ohm's Law states that Voltage (V) equals Current (I) multiplied by Resistance (R), expressed as V = I × R. For a circuit carrying 2 Amperes through a 10 Ohm resistor, the required voltage drop is exactly 20 Volts.",
+    quickAnswer: "Ohm's Law states that Voltage (V) equals Current (I) multiplied by Resistance (R), expressed as V = I × R. For a circuit carrying 2 Amperes through a 10 Ohm resistor, the voltage across the 10 Ω resistor is 20 Volts.",
     governingEquation: {
       formula: "V = I \\times R",
-      explanation: "Voltage (V in Volts) represents the electrical potential difference required to force an electric current (I in Amperes) through a material offering electrical resistance (R in Ohms). Rearranging the equation yields I = V / R and R = V / I.",
+      explanation: "Voltage (V in Volts) represents the electrical potential difference across an ohmic component forced by an electric current (I in Amperes) through an electrical resistance (R in Ohms). Rearranging yields I = V / R and R = V / I.",
       variables: [
-        { symbol: "V", label: "Voltage", unit: "Volts (V)", description: "Electrical potential difference across the load." },
+        { symbol: "V", label: "Voltage", unit: "Volts (V)", description: "Electrical potential difference across the component." },
         { symbol: "I", label: "Electric Current", unit: "Amperes (A)", description: "Rate of electric charge flow through the conductor." },
         { symbol: "R", label: "Resistance", unit: "Ohms (Ω)", description: "Opposition to electric current flow in the material." }
       ]
@@ -59,8 +59,8 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
     ],
     outputExplanation: {
       unit: "Volts (V)",
-      interpretation: "The output represents the total electrical pressure difference required across the circuit terminals to sustain the specified current flow.",
-      designImpact: "Determines power supply voltage requirements, insulation breakdown limits, and safety isolation clearances."
+      interpretation: "The output represents the electrical potential difference across the specific resistor or load component.",
+      designImpact: "Helps determine voltage and current relationships in circuit design and supports component and power-supply calculations. Insulation ratings and safety clearances must be determined separately using applicable electrical standards."
     },
     stepByStepExample: {
       givenInputs: [
@@ -70,7 +70,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
       substitution: "Substitute I = 2 A and R = 10 Ω into the core formula V = I × R:",
       intermediateSteps: [
         "1. Identify the input values: Current I = 2 A, Resistance R = 10 Ω.",
-        "2. Confirm unit compatibility: Amperes (A) and Ohms (Ω) are standard SI base and derived units.",
+        "2. Confirm unit compatibility: Ampere (A) is an SI base unit, while ohm (Ω) is an SI derived unit. Dimensional verification confirms V = A × Ω = A × (V / A) = V.",
         "3. Multiply current by resistance: 2 A × 10 Ω = 20 V."
       ],
       finalResult: "20",
@@ -84,7 +84,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
     },
     assumptions: [
       "The circuit material behaves as a linear Ohmic conductor at constant temperature.",
-      "The electric current operates in steady-state direct current (DC) or in-phase AC.",
+      "For AC applications, the relationship applies to a purely resistive/ohmic load where voltage and current are in phase.",
       "Parasitic inductance and capacitance are negligible."
     ],
     limitations: [
@@ -217,8 +217,9 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
       substitution: "Substitute V = 120 V, I = 5 A, and PF = 1.0 into P = V × I × PF:",
       intermediateSteps: [
         "1. Identify given values: V = 120 V, I = 5 A, PF = 1.0.",
-        "2. Multiply voltage by current: 120 V × 5 A = 600 VA (Apparent Power S).",
-        "3. Multiply apparent power by power factor: 600 VA × 1.0 = 600 Watts."
+        "2. Confirm unit compatibility and dimensional equivalence: 1 Watt = 1 Volt × 1 Ampere = (1 Joule / Coulomb) × (1 Coulomb / second) = 1 Joule / second.",
+        "3. Multiply voltage by current: 120 V × 5 A = 600 VA (Apparent Power S).",
+        "4. Multiply apparent power by power factor: 600 VA × 1.0 = 600 Watts."
       ],
       finalResult: "600",
       unit: "Watts (W)"
@@ -1491,68 +1492,68 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
         "Commercial Building Maintenance"
       ]
     },
-    quickAnswer: "Voltage drop across a single-phase two-wire circuit is calculated using Vdrop = 2 × I × L × R / 1000, where I is load current in Amperes, L is one-way distance in feet, and R is wire resistance in Ohms per 1,000 feet. For a 120V, 15A load across 100 feet of 12 AWG copper wire (R = 1.93 Ω/1k ft), voltage drop is 5.79 Volts (4.83%).",
+    quickAnswer: "Voltage drop across a single-phase two-wire circuit is calculated using Vdrop = (2 × L × I × ρ) / A, where L is one-way distance in meters, I is load current in Amperes, ρ is conductor resistivity in Ohm-meters, and A is cross-sectional area in square meters. For a 15A load across 50 meters of copper conductor (A = 2.5 mm², ρ = 1.68 × 10⁻⁸ Ω·m), total voltage drop is 10.08 Volts.",
     governingEquation: {
-      formula: "V_{\\text{drop}} = 2 \\times I \\times L \\times \\left( \\frac{R_{\\text{wire}}}{1000} \\right)",
-      explanation: "Single-phase two-wire voltage drop (Vdrop in Volts) multiplies load current (I in Amperes) by round-trip conductor length (2 × L in feet) and conductor resistance (Rwire in Ω per 1,000 ft). Percentage drop is %Vdrop = (Vdrop / Vsupply) × 100.",
+      formula: "V_{\\text{drop}} = \\frac{2 \\times L \\times I \\times \\rho}{A}",
+      explanation: "Single-phase two-wire voltage drop (Vdrop in Volts) multiplies round-trip length (2 × L in meters) by load current (I in Amperes) and conductor resistivity (ρ in Ω·m), divided by conductor cross-sectional area (A in m²).",
       variables: [
         { symbol: "Vdrop", label: "Voltage Drop", unit: "Volts (V)", description: "Lost voltage along the length of the conductor run." },
+        { symbol: "L", label: "One-Way Conductor Length", unit: "Meters (m)", description: "One-way physical distance from source panel to load." },
         { symbol: "I", label: "Load Current", unit: "Amperes (A)", description: "Continuous operating load current carried by the circuit." },
-        { symbol: "L", label: "One-Way Distance", unit: "Feet (ft) / Meters (m)", description: "One-way physical distance from source panel to load." },
-        { symbol: "Rwire", label: "Conductor Resistance", unit: "Ohms per 1,000 ft (Ω/1k ft)", description: "AC/DC conductor resistance at operating temperature." }
+        { symbol: "ρ", label: "Resistivity", unit: "Ohm-meters (Ω·m)", description: "Material electrical resistivity (copper = 1.68 × 10⁻⁸ Ω·m at 20°C)." },
+        { symbol: "A", label: "Conductor Area", unit: "Square Meters (m²)", description: "Cross-sectional metallic area of the conductor." }
       ]
     },
     inputParameters: [
       {
-        name: "supplyVoltage",
-        label: "Supply Voltage (Vsupply)",
-        unit: "Volts (V)",
-        defaultValue: 120,
-        explanation: "Source voltage at distribution panel (120V, 240V, 277V, 480V). Baseline is 120 Volts."
+        name: "length",
+        label: "One-Way Conductor Length",
+        unit: "Meters (m)",
+        defaultValue: 50,
+        explanation: "One-way distance between source panel and load terminal. Default is set to 50 meters."
       },
       {
         name: "current",
         label: "Load Current (I)",
         unit: "Amperes (A)",
         defaultValue: 15,
-        explanation: "Continuous operating load current in Amperes. Baseline is set to 15 Amperes."
+        explanation: "Continuous operating load current in Amperes. Default is set to 15 Amperes."
       },
       {
-        name: "distance",
-        label: "One-Way Conductor Length (L)",
-        unit: "Feet (ft)",
-        defaultValue: 100,
-        explanation: "One-way distance between source panel and load terminal. Baseline set to 100 feet."
+        name: "resistivity",
+        label: "Resistivity (ρ)",
+        unit: "Ohm-meters (Ω·m)",
+        defaultValue: 0.0000000168,
+        explanation: "Material resistivity (default copper = 1.68 × 10⁻⁸ Ω·m at 20°C)."
       },
       {
-        name: "resistancePer1000ft",
-        label: "Wire Resistance (Rwire)",
-        unit: "Ω / 1,000 ft",
-        defaultValue: 1.93,
-        explanation: "Conductor resistance (12 AWG copper = 1.93 Ω/1,000 ft). Baseline set."
+        name: "area",
+        label: "Conductor Area (A)",
+        unit: "Square Meters (m²)",
+        defaultValue: 0.0000025,
+        explanation: "Cross-sectional area of conductor wire (default 2.5 mm² = 0.0000025 m²)."
       }
     ],
     outputExplanation: {
-      unit: "Volts (V) & Percentage (%)",
-      interpretation: "The primary result provides total lost line voltage in Volts and as a percentage of supply voltage.",
+      unit: "Volts (V)",
+      interpretation: "The result represents total line voltage lost across the two-wire conductor loop.",
       designImpact: "NEC Section 210.19(A) recommends keeping branch circuit voltage drop below 3% (and total feeder + branch drop below 5%)."
     },
     stepByStepExample: {
       givenInputs: [
-        { label: "Supply Voltage (Vsupply)", value: 120, unit: "V" },
+        { label: "One-Way Conductor Length (L)", value: 50, unit: "m" },
         { label: "Load Current (I)", value: 15, unit: "A" },
-        { label: "One-Way Distance (L)", value: 100, unit: "ft" },
-        { label: "Wire Resistance (Rwire)", value: 1.93, unit: "Ω/1k ft" }
+        { label: "Resistivity (ρ)", value: 0.0000000168, unit: "Ω·m" },
+        { label: "Conductor Area (A)", value: 0.0000025, unit: "m²" }
       ],
-      substitution: "Substitute I = 15 A, L = 100 ft, and Rwire = 1.93 Ω/1k ft into Vdrop = 2 × I × L × (Rwire / 1000):",
+      substitution: "Substitute L = 50 m, I = 15 A, ρ = 1.68 × 10⁻⁸ Ω·m, and A = 2.5 × 10⁻⁶ m² into Vdrop = (2 × L × I × ρ) / A:",
       intermediateSteps: [
-        "1. Calculate round-trip conductor distance: 2 × 100 ft = 200 feet.",
-        "2. Compute round-trip wire resistance: 200 ft × (1.93 Ω / 1000 ft) = 0.386 Ohms.",
-        "3. Multiply by load current: Vdrop = 15 A × 0.386 Ω = 5.79 Volts.",
-        "4. Calculate percentage drop: (5.79 V / 120 V) × 100 = 4.825%."
+        "1. Multiply two-wire factor, one-way distance, and load current: 2 × 50 m × 15 A = 1,500 A·m.",
+        "2. Multiply by material resistivity: 1,500 A·m × 1.68 × 10⁻⁸ Ω·m = 0.0000252 A·m²·Ω.",
+        "3. Divide by conductor area: 0.0000252 / 0.0000025 m² = 10.08 Volts."
       ],
-      finalResult: "5.79",
-      unit: "Volts (4.83%)"
+      finalResult: "10.08",
+      unit: "Volts (V)"
     },
     practicalExample: {
       scenarioTitle: "Commercial EV Charger Cable Sizing Compliance",
@@ -1630,10 +1631,10 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
   // 12. WIRE RESISTANCE CALCULATOR
   "wire-resistance-calculator": (canonicalUrl, relatedTools, relevantUnitCategories) => ({
     title: "Wire Resistance Calculator | AWG & Metric Cable Resistance Solver",
-    metaDescription: "Calculate total DC resistance of electrical wire conductors from AWG gauge, cross-sectional area, material type, and length. Aligns with ASTM & IEC standards.",
+    metaDescription: "Calculate total DC resistance of electrical wire conductors from diameter, material resistivity, and length. Aligns with ASTM & IEC standards.",
     canonicalUrl,
     introduction: {
-      overview: "Wire resistance measures the opposition presented by a solid or stranded cable conductor to the flow of direct current. It depends directly on conductor physical length, material resistivity, cross-sectional area, and ambient operating temperature. Accurate wire resistance calculations are essential for designing transformer windings, motor coils, audio speaker cables, and power distribution systems.",
+      overview: "Wire resistance measures the opposition presented by a solid round conductor to the flow of direct current. It depends directly on conductor physical length, material resistivity, and cross-sectional area. Accurate wire resistance calculations are essential for designing transformer windings, motor coils, audio speaker cables, and power distribution systems.",
       applications: [
         "Determining loop resistance for telecommunication and signal wiring.",
         "Selecting gauge for high-power audio speaker wire runs.",
@@ -1647,46 +1648,38 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
         "Automotive Wiring Harness Design"
       ]
     },
-    quickAnswer: "Wire resistance (R) is calculated using R = ρ × L / A, where ρ is material resistivity, L is total wire length, and A is conductor cross-sectional area. For 100 feet of 10 AWG copper wire (A = 5.26 mm², ρ = 1.68 × 10⁻⁸ Ω·m), total resistance is approximately 0.0998 Ohms.",
+    quickAnswer: "Wire resistance (R) of a solid round conductor is calculated using R = (ρ × L) / [π × (d / 2000)²], where ρ is material resistivity, L is wire length in meters, and d is wire diameter in millimeters. For 25 meters of 1.63 mm diameter copper wire (ρ = 1.68 × 10⁻⁸ Ω·m), total wire resistance is 0.2013 Ohms.",
     governingEquation: {
-      formula: "R = \\frac{\\rho \\times L}{A} \\times \\left[ 1 + \\alpha \\times (T - 20) \\right]",
-      explanation: "Wire resistance (R in Ohms) multiplies material resistivity (ρ in Ω·m) by conductor length (L in meters) divided by cross-sectional area (A in m²), incorporating linear thermal correction for operating temperature (T in °C).",
+      formula: "R = \\frac{\\rho \\times L}{\\pi \\times \\left( \\frac{d}{2000} \\right)^2}",
+      explanation: "Calculates resistance of a round solid conductor by deriving radius in meters (r = d / 2000), cross-sectional area A = π × r², and applying Ohmic conductor law R = ρ × L / A.",
       variables: [
         { symbol: "R", label: "Wire Resistance", unit: "Ohms (Ω)", description: "Total DC electrical resistance of the wire run." },
         { symbol: "ρ", label: "Material Resistivity", unit: "Ohm-meters (Ω·m)", description: "Resistivity of conductor metal at 20°C (copper = 1.68 × 10⁻⁸ Ω·m)." },
-        { symbol: "L", label: "Wire Length", unit: "Meters (m) / Feet (ft)", description: "Total continuous physical length of the wire." },
-        { symbol: "A", label: "Cross-Sectional Area", unit: "Square Meters (m²)", description: "Conductor metallic cross-sectional area derived from AWG gauge." },
-        { symbol: "α", label: "Temperature Coefficient", unit: "per °C (/°C)", description: "Material thermal factor (copper = 0.00393 /°C)." }
+        { symbol: "L", label: "Wire Length", unit: "Meters (m)", description: "Total continuous physical length of the wire." },
+        { symbol: "d", label: "Wire Diameter", unit: "Millimeters (mm)", description: "Diameter of the solid round metallic conductor." }
       ]
     },
     inputParameters: [
       {
         name: "length",
-        label: "Wire Length (L)",
+        label: "Wire Length",
         unit: "Meters (m)",
-        defaultValue: 30.48,
-        explanation: "Total wire length in meters (30.48 m = 100 feet). Baseline value set."
+        defaultValue: 25,
+        explanation: "Total wire length in meters. Default value is set to 25 meters."
       },
       {
-        name: "area",
-        label: "Conductor Area (A)",
-        unit: "Square Meters (m²)",
-        defaultValue: 0.00000526,
-        explanation: "Conductor area for 10 AWG (5.26 mm² = 0.00000526 m²). Baseline set."
+        name: "diameterMm",
+        label: "Wire Diameter",
+        unit: "Millimeters (mm)",
+        defaultValue: 1.63,
+        explanation: "Wire conductor diameter in millimeters (1.63 mm ≈ 14 AWG). Default set to 1.63 mm."
       },
       {
         name: "resistivity",
-        label: "Material Resistivity (ρ)",
+        label: "Resistivity (ρ)",
         unit: "Ohm-meters (Ω·m)",
         defaultValue: 0.0000000168,
-        explanation: "Resistivity of copper at 20°C (1.68 × 10⁻⁸ Ω·m). Baseline set."
-      },
-      {
-        name: "temperature",
-        label: "Operating Temperature (T)",
-        unit: "Celsius (°C)",
-        defaultValue: 20,
-        explanation: "Operating temperature in °C. Baseline set to standard 20°C."
+        explanation: "Resistivity of copper at 20°C (1.68 × 10⁻⁸ Ω·m). Default set."
       }
     ],
     outputExplanation: {
@@ -1696,19 +1689,17 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
     },
     stepByStepExample: {
       givenInputs: [
-        { label: "Wire Length (L)", value: 30.48, unit: "m (100 ft)" },
-        { label: "Conductor Area (A)", value: 0.00000526, unit: "m² (10 AWG)" },
-        { label: "Material Resistivity (ρ)", value: 0.0000000168, unit: "Ω·m" },
-        { label: "Temperature (T)", value: 20, unit: "°C" }
+        { label: "Wire Length (L)", value: 25, unit: "m" },
+        { label: "Wire Diameter (d)", value: 1.63, unit: "mm" },
+        { label: "Resistivity (ρ)", value: 0.0000000168, unit: "Ω·m" }
       ],
-      substitution: "Substitute ρ = 1.68 × 10⁻⁸ Ω·m, L = 30.48 m, A = 5.26 × 10⁻⁶ m², and T = 20°C into R = (ρ × L) / A:",
+      substitution: "Substitute L = 25 m, d = 1.63 mm, and ρ = 1.68 × 10⁻⁸ Ω·m into R = (ρ × L) / [π × (d / 2000)²]:",
       intermediateSteps: [
-        "1. Compute baseline product: ρ × L = 1.68 × 10⁻⁸ Ω·m × 30.48 m = 5.1206 × 10⁻⁷ Ω·m².",
-        "2. Divide by conductor area: (5.1206 × 10⁻⁷ Ω·m²) / (5.26 × 10⁻⁶ m²) = 0.09735 Ohms.",
-        "3. Apply temperature factor [1 + 0.00393 × (20 - 20)] = 1.000.",
-        "4. Final wire resistance at 20°C = 0.09735 Ohms (~0.0998 Ω accounting for AWG manufacturing tolerances)."
+        "1. Convert wire diameter to radius in meters: r = 1.63 mm / 2000 = 0.000815 m.",
+        "2. Compute cross-sectional area: A = π × (0.000815 m)² = 2.0867 × 10⁻⁶ m².",
+        "3. Calculate resistance: R = (1.68 × 10⁻⁸ Ω·m × 25 m) / (2.0867 × 10⁻⁶ m²) = 0.2013 Ohms."
       ],
-      finalResult: "0.0974",
+      finalResult: "0.2013",
       unit: "Ohms (Ω)"
     },
     practicalExample: {
@@ -1786,7 +1777,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
 
   // 13. JOULE HEATING CALCULATOR
   "joule-heating-calculator": (canonicalUrl, relatedTools, relevantUnitCategories) => ({
-    title: "Joule Heating Calculator | Heat Dissipation (P = I²R) Solver",
+    title: "Joule Heating Calculator | Heat Dissipation (Q = I²Rt) Solver",
     metaDescription: "Calculate thermal power dissipation (P = I²R) and total thermal energy (Q = I²Rt) generated by electric current in Ohmic conductors. Follows ISO & IEEE standards.",
     canonicalUrl,
     introduction: {
@@ -1795,7 +1786,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
         "Sizing electric heating elements in water heaters, ovens, and industrial furnaces.",
         "Evaluating thermal power dissipation in PCB traces, busbars, and power resistors.",
         "Calculating thermal energy losses in electrical transmission lines.",
-        "Designing thermal fusing safety protection and current-limiting devices."
+        "Evaluating resistive heating in fuses, current-limiting components, and thermal protection systems."
       ],
       industries: [
         "Industrial Heating Equipment",
@@ -1804,72 +1795,70 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
         "Appliance Manufacturing"
       ]
     },
-    quickAnswer: "Joule thermal power is calculated using P = I² × R, and total heat energy is Q = P × t = I² × R × t. For a current of 10 Amperes passing through a 5 Ohm resistor for 60 seconds, thermal power dissipation is 500 Watts, generating 30,000 Joules (30 kJ) of heat energy.",
+    quickAnswer: "Joule thermal power is calculated using P = I² × R, and total heat energy is Q = P × t = I² × R × t. For a current of 5 Amperes passing through a 10 Ohm resistor for 60 seconds, thermal power dissipation is 250 Watts, generating 15,000 Joules (15 kJ) of heat energy.",
     governingEquation: {
-      formula: "P = I^2 \\times R, \\quad Q = I^2 \\times R \\times t",
-      explanation: "Thermal heating power (P in Watts) equals current squared (I² in A²) multiplied by resistance (R in Ω). Total thermal energy (Q in Joules) multiplies power by operating duration (t in seconds).",
+      formula: "Q = I^2 \\times R \\times t",
+      explanation: "Total thermal energy (Q in Joules) equals current squared (I² in A²) multiplied by resistance (R in Ω) and operating duration (t in seconds). Thermal dissipation power rate is P = I² × R (Watts).",
       variables: [
-        { symbol: "P", label: "Heating Power", unit: "Watts (W) / Joules/sec", description: "Rate of electrical energy conversion into heat." },
-        { symbol: "Q", label: "Thermal Energy", unit: "Joules (J) / Watt-hours", description: "Total heat energy generated over time." },
-        { symbol: "I", label: "Electric Current", unit: "Amperes (A)", description: "Current flowing through the conductive element." },
-        { symbol: "R", label: "Electrical Resistance", unit: "Ohms (Ω)", description: "Resistance opposing electric current flow." },
-        { symbol: "t", label: "Duration", unit: "Seconds (s)", description: "Time period during which current flows." }
+        { symbol: "Q", label: "Thermal Heat Energy", unit: "Joules (J)", description: "Total thermal energy generated by current flow over time." },
+        { symbol: "I", label: "Current", unit: "Amperes (A)", description: "Electric current flowing through the resistance." },
+        { symbol: "R", label: "Resistance", unit: "Ohms (Ω)", description: "Electrical resistance opposing current flow." },
+        { symbol: "t", label: "Time", unit: "Seconds (s)", description: "Duration during which current flows." }
       ]
     },
     inputParameters: [
       {
         name: "current",
-        label: "Electric Current (I)",
+        label: "Current (I)",
         unit: "Amperes (A)",
-        defaultValue: 10,
-        explanation: "Electric current in Amperes. Baseline value is set to 10 Amperes."
+        defaultValue: 5,
+        explanation: "Electric current in Amperes. Default value is set to 5 Amperes."
       },
       {
         name: "resistance",
         label: "Resistance (R)",
         unit: "Ohms (Ω)",
-        defaultValue: 5,
-        explanation: "Electrical resistance in Ohms. Baseline value is set to 5 Ohms."
+        defaultValue: 10,
+        explanation: "Electrical resistance in Ohms. Default value is set to 10 Ohms."
       },
       {
-        name: "time",
-        label: "Duration (t)",
+        name: "timeSeconds",
+        label: "Time (t)",
         unit: "Seconds (s)",
         defaultValue: 60,
-        explanation: "Heating time in seconds. Baseline value is set to 60 seconds."
+        explanation: "Heating duration in seconds. Default value is set to 60 seconds."
       }
     ],
     outputExplanation: {
-      unit: "Watts (W) & Joules (J)",
-      interpretation: "The primary outputs report instant thermal dissipation rate in Watts and accumulated heat energy in Joules.",
-      designImpact: "Critical for thermal heat sink design, preventing insulation melting, and sizing cooling systems."
+      unit: "Joules (J)",
+      interpretation: "The primary result represents accumulated thermal heat energy generated over the specified duration.",
+      designImpact: "Critical for thermal heat sink design, preventing insulation melting, and sizing thermal overload protection."
     },
     stepByStepExample: {
       givenInputs: [
-        { label: "Electric Current (I)", value: 10, unit: "A" },
-        { label: "Resistance (R)", value: 5, unit: "Ω" },
-        { label: "Duration (t)", value: 60, unit: "s" }
+        { label: "Current (I)", value: 5, unit: "A" },
+        { label: "Resistance (R)", value: 10, unit: "Ω" },
+        { label: "Time (t)", value: 60, unit: "s" }
       ],
-      substitution: "Substitute I = 10 A, R = 5 Ω, and t = 60 s into P = I² × R and Q = P × t:",
+      substitution: "Substitute I = 5 A, R = 10 Ω, and t = 60 s into Q = I² × R × t:",
       intermediateSteps: [
-        "1. Square the current value: I² = (10 A)² = 100 A².",
-        "2. Multiply by resistance: P = 100 A² × 5 Ω = 500 Watts (J/s).",
-        "3. Multiply thermal power by duration: Q = 500 W × 60 s = 30,000 Joules (30 kJ).",
-        "4. Convert Joules to Kilocalories: 30,000 J / 4184 = 7.17 kcal."
+        "1. Square the current value: I² = (5 A)² = 25 A².",
+        "2. Multiply by resistance to calculate thermal power: P = 25 A² × 10 Ω = 250 Watts.",
+        "3. Multiply thermal power by time duration: Q = 250 W × 60 s = 15,000 Joules (15 kJ)."
       ],
-      finalResult: "500 W / 30,000 J",
-      unit: "Watts (W) & Joules (J)"
+      finalResult: "15000",
+      unit: "Joules (J)"
     },
     practicalExample: {
       scenarioTitle: "Electric Water Heater Heating Element Thermal Output",
       industryContext: "An industrial immersion water heating element has an Ohmic resistance of 12 Ω connected to a 240V AC power source (drawing I = 20 A).",
       problemStatement: "Determine thermal heat power produced and calculate water temperature rise in a 50 liter tank after 15 minutes (900 seconds).",
-      engineeringSolution: "Thermal power P = I² × R = (20 A)² × 12 Ω = 4000 Watts (4.0 kW). Heat generated Q = 4000 W × 900 s = 3,600,000 Joules (3.6 MJ). Using water specific heat capacity c = 4184 J/(kg·°C) for 50 kg water: ΔT = Q / (m × c) = 3,600,000 / (50 × 4184) = 17.21°C temperature increase."
+      engineeringSolution: "Thermal power P = I² × R = (20 A)² × 12 Ω = 4,800 W (4.8 kW). Heat generated Q = 4,800 W × 900 s = 4,320,000 Joules (4.32 MJ). Using water specific heat capacity c = 4,184 J/(kg·°C) for 50 kg of water: ΔT = 4,320,000 / (50 × 4,184) = 20.65°C. Note: The water temperature-rise calculation is a secondary engineering application derived from the Joule heating result; it is not a direct output of this calculator."
     },
     assumptions: [
-      "100% of electrical energy dissipated across resistance converts into thermal heat energy.",
+      "The electrical energy dissipated in the resistance is modeled as thermal energy.",
       "Resistance R remains constant over the heating duration.",
-      "Steady DC or AC RMS current value."
+      "For AC calculations, the current input is treated as RMS current for a resistive load with approximately constant resistance."
     ],
     limitations: [
       "As conductor temperature increases, resistance R rises, altering current and heat generation rate.",
@@ -1882,7 +1871,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
       "Neglecting temperature-induced resistance changes during long heating cycles."
     ],
     bestPractices: [
-      "Because power scales quadratically with current (I²), halving current reduces thermal heat generation by 75%.",
+      "For constant resistance, halving current reduces I²R heating power by 75%.",
       "In high-power PCB designs, add thermal vias and wider copper pours to dissipate Joule heat.",
       "Integrate thermal cutoffs or thermistors to protect circuits against thermal runaway."
     ],
@@ -2113,8 +2102,8 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
         name: "resistance",
         label: "Component Resistance (R)",
         unit: "Ohms (Ω)",
-        defaultValue: 15,
-        explanation: "Component resistance in Ohms. Baseline value is set to 15 Ohms."
+        defaultValue: 8,
+        explanation: "Component resistance in Ohms. Baseline value is set to 8 Ohms."
       }
     ],
     outputExplanation: {
@@ -2125,15 +2114,15 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
     stepByStepExample: {
       givenInputs: [
         { label: "Circuit Current (I)", value: 3, unit: "A" },
-        { label: "Component Resistance (R)", value: 15, unit: "Ω" }
+        { label: "Component Resistance (R)", value: 8, unit: "Ω" }
       ],
-      substitution: "Substitute I = 3 A and R = 15 Ω into V = I × R:",
+      substitution: "Substitute I = 3 A and R = 8 Ω into V = I × R:",
       intermediateSteps: [
         "1. Identify given direct current: I = 3 Amperes.",
-        "2. Identify given component resistance: R = 15 Ohms.",
-        "3. Multiply current by resistance: V = 3 A × 15 Ω = 45.0 Volts DC."
+        "2. Identify given component resistance: R = 8 Ohms.",
+        "3. Multiply current by resistance: V = 3 A × 8 Ω = 24.0 Volts DC."
       ],
-      finalResult: "45.0",
+      finalResult: "24.0",
       unit: "Volts (V)"
     },
     practicalExample: {

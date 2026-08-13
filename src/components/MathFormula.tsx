@@ -63,6 +63,10 @@ export default function MathFormula({
   className = "",
   asInline = false
 }: MathFormulaProps) {
+  const hasTextColor = /\btext-/.test(className);
+  const hasBgColor = /\bbg-/.test(className);
+  const hasBorder = /\bborder/.test(className);
+
   const renderedContent = useMemo(() => {
     if (!formula) return null;
 
@@ -83,7 +87,7 @@ export default function MathFormula({
               return (
                 <span
                   key={idx}
-                  className="katex-inline inline-block text-slate-900 dark:text-slate-100 font-sans"
+                  className={`katex-inline inline-block font-sans ${hasTextColor ? "" : "text-slate-900 dark:text-slate-100"}`}
                   dangerouslySetInnerHTML={{ __html: html }}
                 />
               );
@@ -108,7 +112,7 @@ export default function MathFormula({
       console.warn("KaTeX equation rendering error:", err, "for formula:", formula);
       return null;
     }
-  }, [formula, displayMode, asInline]);
+  }, [formula, displayMode, asInline, hasTextColor]);
 
   if (!formula) return null;
 
@@ -126,7 +130,7 @@ export default function MathFormula({
   if (displayMode && !asInline) {
     return (
       <div 
-        className={`w-full overflow-x-auto custom-scrollbar my-2.5 py-2 px-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800 text-center font-sans text-slate-900 dark:text-slate-100 shadow-xs transition-colors ${className}`}
+        className={`w-full overflow-x-auto custom-scrollbar my-2.5 py-2 px-3 rounded-xl ${hasBgColor ? "" : "bg-slate-50/80 dark:bg-slate-900/60"} ${hasBorder ? "" : "border border-slate-200/70 dark:border-slate-800"} text-center font-sans ${hasTextColor ? "" : "text-slate-900 dark:text-slate-100"} shadow-xs transition-colors ${className}`}
         aria-label={`Mathematical equation: ${formula}`}
       >
         <div 
@@ -140,7 +144,7 @@ export default function MathFormula({
   // Inline math rendering
   return (
     <span
-      className={`katex-inline-wrapper inline-block font-sans text-slate-900 dark:text-slate-100 align-middle ${className}`}
+      className={`katex-inline-wrapper inline-block font-sans ${hasTextColor ? "" : "text-slate-900 dark:text-slate-100"} align-middle ${className}`}
       aria-label={`Inline formula: ${formula}`}
       dangerouslySetInnerHTML={{ __html: renderedContent }}
     />

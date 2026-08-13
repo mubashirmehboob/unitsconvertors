@@ -26,7 +26,7 @@ export default function EngineeringArticleEngine({
   return (
     <article className="space-y-10 animate-in fade-in duration-300">
       
-      {/* 1. Introduction & Executive Overview */}
+      {/* 1. Engineering Technical Guide & Physical Principles */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-6 shadow-sm">
         <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60">
@@ -34,10 +34,10 @@ export default function EngineeringArticleEngine({
           </div>
           <div>
             <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-              Engineering Technical Guide & Physical Principles
+              1. Engineering Technical Guide & Physical Principles
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">
-              Verified Physical Reference & Technical Guide
+              Engineering Technical Guide & Physical Principles
             </p>
           </div>
         </div>
@@ -46,12 +46,12 @@ export default function EngineeringArticleEngine({
           <p>{article.introduction.overview}</p>
         </div>
 
-        {/* Real-World Applications & Industries Grid */}
+        {/* Real-World Applications & Industries Grid (Sections 2 & 3) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <h3 className="font-bold text-xs uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
               <Compass className="h-4 w-4 text-amber-500" />
-              Primary Engineering Applications
+              2. Primary Engineering Applications
             </h3>
             <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
               {article.introduction.applications.map((app, idx) => (
@@ -66,7 +66,7 @@ export default function EngineeringArticleEngine({
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <h3 className="font-bold text-xs uppercase tracking-wider text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
               <Award className="h-4 w-4 text-blue-500" />
-              Key Industries & Sector Deployment
+              3. Key Industries & Sector Deployment
             </h3>
             <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
               {article.introduction.industries.map((ind, idx) => (
@@ -80,30 +80,30 @@ export default function EngineeringArticleEngine({
         </div>
       </section>
 
-      {/* 2. Quick Answer Summary Box */}
+      {/* 4. Quick Answer Summary Box */}
       <section className="p-6 rounded-3xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-300/60 dark:border-amber-800/60 space-y-3">
         <div className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-wider text-amber-800 dark:text-amber-300">
           <Zap className="h-4 w-4 text-amber-500" />
-          Quick Answer & Key Summary
+          4. Quick Answer & Key Summary
         </div>
         <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
           {article.quickAnswer}
         </p>
       </section>
 
-      {/* 3. Governing Equation & Variables Table */}
+      {/* 5. Governing Equation & Variables Table */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-6 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
             <Calculator className="h-5 w-5" />
           </div>
           <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            3. Governing Equation & Mathematical Formulation
+            5. Governing Equation & Mathematical Formulation
           </h2>
         </div>
 
         <div className="p-5 rounded-2xl bg-slate-950 text-amber-400 font-mono font-bold text-center text-sm sm:text-base border border-slate-800 shadow-inner">
-          <MathFormula formula={article.governingEquation.formula} displayMode={true} />
+          <MathFormula formula={article.governingEquation.formula} displayMode={true} className="text-amber-400 dark:text-amber-400 bg-transparent border-0 shadow-none my-0 py-0" />
         </div>
 
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -135,7 +135,7 @@ export default function EngineeringArticleEngine({
         </div>
       </section>
 
-      {/* 4 & 5. Input Parameters & Output Explanation */}
+      {/* 6 & 7. Input Parameters & Output Explanation */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Input Parameters */}
@@ -143,7 +143,7 @@ export default function EngineeringArticleEngine({
           <div className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-amber-500" />
             <h2 className="font-display text-base font-bold text-slate-900 dark:text-white">
-              4. Input Parameters Explained
+              6. Input Parameters Explained
             </h2>
           </div>
 
@@ -168,7 +168,7 @@ export default function EngineeringArticleEngine({
             <div className="flex items-center gap-2">
               <Scale className="h-5 w-5 text-emerald-500" />
               <h2 className="font-display text-base font-bold text-slate-900 dark:text-white">
-                5. Output Property & Design Impact
+                7. Output Property & Design Impact
               </h2>
             </div>
 
@@ -190,14 +190,14 @@ export default function EngineeringArticleEngine({
 
       </div>
 
-      {/* 6. Step-by-Step Worked Calculation */}
+      {/* 8. Step-by-Step Worked Calculation */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-6 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
             <CheckCircle2 className="h-5 w-5" />
           </div>
           <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            6. Step-by-Step Worked Calculation
+            8. Step-by-Step Worked Calculation
           </h2>
         </div>
 
@@ -229,12 +229,12 @@ export default function EngineeringArticleEngine({
         </div>
       </section>
 
-      {/* 7. Practical Engineering Real-World Example */}
+      {/* 9. Practical Engineering Real-World Example */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-4 shadow-sm">
         <div className="flex items-center gap-2">
           <Lightbulb className="h-5 w-5 text-amber-500" />
           <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            7. {article.practicalExample.scenarioTitle}
+            9. Engineering Application Example: {article.practicalExample.scenarioTitle}
           </h2>
         </div>
 
@@ -257,7 +257,7 @@ export default function EngineeringArticleEngine({
         </div>
       </section>
 
-      {/* 8 & 9. Assumptions & Limitations */}
+      {/* 10 & 11. Assumptions & Limitations */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Physical Assumptions */}
@@ -265,7 +265,7 @@ export default function EngineeringArticleEngine({
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-5 w-5 text-blue-500" />
             <h2 className="font-display text-base font-bold text-slate-900 dark:text-white">
-              8. Physical Boundary Assumptions
+              10. Physical Boundary Assumptions
             </h2>
           </div>
 
@@ -284,7 +284,7 @@ export default function EngineeringArticleEngine({
           <div className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-amber-500" />
             <h2 className="font-display text-base font-bold text-slate-900 dark:text-white">
-              9. Operational Limitations
+              11. Operational Limitations
             </h2>
           </div>
 
@@ -300,14 +300,14 @@ export default function EngineeringArticleEngine({
 
       </div>
 
-      {/* 10 & 11. Common Mistakes & Engineering Best Practices */}
+      {/* 12 & 13. Common Mistakes & Engineering Best Practices */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-6 shadow-sm">
         
         {/* Common Mistakes */}
         <div className="space-y-4">
           <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-red-500" />
-            10. Common Engineering Mistakes to Avoid
+            12. Common Engineering Mistakes to Avoid
           </h2>
 
           <div className="space-y-2.5">
@@ -326,7 +326,7 @@ export default function EngineeringArticleEngine({
         <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
           <h2 className="font-display text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <ShieldCheck className="h-5 w-5 text-amber-500" />
-            11. Engineering Best Practices & Guidelines
+            13. Engineering Best Practices & Guidelines
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -341,7 +341,7 @@ export default function EngineeringArticleEngine({
 
       </section>
 
-      {/* 12. Frequently Asked Questions (FAQs) Section */}
+      {/* 14. Frequently Asked Questions (FAQs) Section */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-6 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
@@ -349,11 +349,8 @@ export default function EngineeringArticleEngine({
           </div>
           <div>
             <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-              12. Frequently Asked Questions ({article.faqs.length} FAQs)
+              14. Frequently Asked Questions ({article.faqs.length} FAQs)
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Technical answers addressing user intent, SI standards, and calculation accuracy.
-            </p>
           </div>
         </div>
 
@@ -384,17 +381,17 @@ export default function EngineeringArticleEngine({
         </div>
       </section>
 
-      {/* 13. International Engineering Standards & References */}
+      {/* 15. Technical Standards & Reference Framework */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-4 shadow-sm">
         <div className="flex items-center gap-2">
           <Award className="h-5 w-5 text-amber-500" />
           <h2 className="font-display text-lg font-bold text-slate-900 dark:text-white">
-            13. International Engineering Standards & References
+            15. Technical Standards & Reference Framework
           </h2>
         </div>
 
         <p className="text-xs text-slate-500 dark:text-slate-400">
-          Calculations and physical formulas align with guidelines published by internationally recognized technical bodies:
+          The following publications provide relevant terminology, quantities, units, measurement, or electrical safety context related to this calculator. They are provided for technical reference and do not constitute design certification.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -414,12 +411,12 @@ export default function EngineeringArticleEngine({
         </div>
       </section>
 
-      {/* Dynamic Internal Linking Navigation Hub */}
+      {/* 16. Dynamic Internal Linking Navigation Hub */}
       <section className="p-6 rounded-3xl bg-slate-900 text-white space-y-6 shadow-xl">
         <div className="space-y-1">
           <h3 className="font-display text-lg font-bold flex items-center gap-2">
             <Layers className="h-5 w-5 text-amber-400" />
-            Internal Linking & Related Engineering Tools
+            16. Internal Linking & Related Engineering Tools
           </h3>
           <p className="text-xs text-slate-300">
             Explore related physical models in {article.internalLinks.parentDiscipline.name} and complementary unit conversion tools.

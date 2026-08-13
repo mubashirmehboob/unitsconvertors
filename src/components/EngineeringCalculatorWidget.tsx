@@ -282,12 +282,12 @@ export default function EngineeringCalculatorWidget({
           </div>
 
           {/* Verification Footnote */}
-          <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs text-slate-600 dark:text-slate-400 space-y-1">
-            <span className="font-bold text-slate-900 dark:text-slate-100 block">
+          <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-950/80 text-xs text-slate-600 dark:text-slate-400 space-y-1.5 shadow-2xs">
+            <span className="font-bold text-slate-900 dark:text-slate-100 block tracking-tight">
               Dimensional SI Verification:
             </span>
-            <p className="text-[11px] leading-relaxed">
-              Calculated dynamically in standard SI/metric dimensions. Always apply appropriate safety factors for commercial engineering design.
+            <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400 font-sans">
+              Calculated dynamically using the selected SI inputs. Real-world thermal behavior may vary with temperature, material properties, cooling conditions, and operating conditions.
             </p>
           </div>
         </div>

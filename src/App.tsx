@@ -3,7 +3,7 @@ import {
   Ruler, HelpCircle, ChevronRight, Check, History, Heart, 
   Trash2, Moon, Star, Award, Shield, CheckCircle, ArrowRight,
   TrendingUp, Compass, Mail, Phone, MapPin, List, Eye, ArrowUpDown, ChevronDown,
-  Zap, Lock, Info, Search, Layers
+  Zap, Lock, Info, Search, Layers, Grid, X
 } from "lucide-react";
 import Header, { categoryIconMap, getCategoryStyle } from "./components/Header";
 import Footer from "./components/Footer";
@@ -507,6 +507,22 @@ export default function App() {
       targetPath = "/";
     } else if (category === "converters") {
       targetPath = "/converters";
+    } else if (category === "about") {
+      targetPath = "/about";
+    } else if (category === "contact") {
+      targetPath = "/contact";
+    } else if (category === "privacy" || category === "privacy-policy") {
+      targetPath = "/privacy-policy";
+    } else if (category === "terms" || category === "terms-and-conditions") {
+      targetPath = "/terms";
+    } else if (category === "disclaimer" || category === "disclaimer-notice") {
+      targetPath = "/disclaimer";
+    } else if (category === "sitemap") {
+      targetPath = "/sitemap";
+    } else if (category === "favorites") {
+      targetPath = "/favorites";
+    } else if (category === "validator") {
+      targetPath = "/validator";
     } else if (category === "calculators" || category === "engineering-calculators") {
       if (fromUnit && toUnit) {
         const catSlug = getCategorySlugForDiscipline(fromUnit);
@@ -685,7 +701,7 @@ export default function App() {
                           </div>
                           <div className="flex flex-col text-left">
                             <span className="font-bold text-[13px] text-slate-800 dark:text-slate-200 leading-snug">Instant Results</span>
-                            <span className="text-[11px] text-slate-400 dark:text-slate-500">Real-time update</span>
+                            <span className="text-[11px] text-slate-400 dark:text-slate-500">Real-time calculation</span>
                           </div>
                         </div>
 
@@ -708,89 +724,37 @@ export default function App() {
                   <AdPlaceholder slotId="home-top-banner" className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 w-full" />
 
                   {/* CONVERTER CATEGORIES GRID */}
-                  <section className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-10 py-4" id="categories-grid">
-                    {/* Centered Heading and Subtitle */}
-                    <div className="flex flex-col items-center text-center max-w-3xl mx-auto gap-3">
-                      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight mt-1 leading-none">
-                        Find Your Converter
+                  <section className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-6 py-4" id="categories-grid">
+                    {/* Header Bar: Category Title, Badge, and Search Input */}
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
+                      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                        <Grid className="h-5 w-5 text-blue-600 dark:text-cyan-400" />
+                        Converter Categories
+                        <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-cyan-400 border border-blue-200 dark:border-blue-900/60">
+                          {categoriesData.length} Categories
+                        </span>
                       </h2>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base max-w-2xl leading-relaxed">
-                        Explore our collection of <span className="font-semibold text-slate-800 dark:text-slate-200">accurate measurement converters</span> designed by experts to solve everyday, scientific, and professional calculations.
-                      </p>
-                    </div>
 
-                    {/* Integrated Centered Search Bar */}
-                    <div className="relative w-full max-w-xl mx-auto z-40">
-                      <div className="relative flex items-center">
-                        <Search className="absolute left-4 h-5 w-5 text-slate-400 dark:text-slate-500 pointer-events-none" />
+                      {/* Search All Converters */}
+                      <div className="relative w-full sm:w-80">
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 dark:text-slate-500" />
                         <input
                           type="text"
+                          placeholder={`Search all ${categoriesData.reduce((acc, c) => acc + c.units.length, 0)} converters...`}
                           value={heroSearchQuery}
                           onChange={(e) => setHeroSearchQuery(e.target.value)}
-                          onFocus={() => setHeroSearchFocused(true)}
-                          onBlur={() => setTimeout(() => setHeroSearchFocused(false), 250)}
-                          placeholder="Search for a unit or category (e.g., 'inch to cm', 'temperature')..."
-                          className="w-full h-[52px] pl-12 pr-12 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-sans font-medium text-slate-800 dark:text-slate-100 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 dark:focus:border-cyan-500 dark:focus:ring-cyan-500/10 transition-all placeholder-slate-400 dark:placeholder-slate-500"
+                          className="w-full h-10 pl-10 pr-9 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-cyan-500 shadow-sm placeholder-slate-400 dark:placeholder-slate-500"
                         />
                         {heroSearchQuery && (
                           <button
                             onClick={() => setHeroSearchQuery("")}
-                            className="absolute right-4 h-6 w-6 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 flex items-center justify-center text-xs transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 cursor-pointer"
+                            title="Clear search query"
                           >
-                            ✕
+                            <X className="h-3.5 w-3.5" />
                           </button>
                         )}
                       </div>
-
-                      {/* Suggestions Dropdown Overlay */}
-                      {heroSearchFocused && heroSuggestions.length > 0 && (
-                        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden z-50 text-left animate-in fade-in slide-in-from-top-2 duration-200">
-                          <div className="p-2 border-b border-slate-100 dark:border-slate-800/60 bg-slate-50/50 dark:bg-slate-950/30 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest px-4">
-                            Suggested Results
-                          </div>
-                          <div className="flex flex-col divide-y divide-slate-100 dark:divide-slate-800/40">
-                            {heroSuggestions.map((item, idx) => (
-                              <button
-                                key={idx}
-                                onMouseDown={() => {
-                                  if (item.type === "category") {
-                                    handleNavigate(item.id);
-                                  } else if (item.type === "engineering-discipline") {
-                                    handleNavigate("engineering-calculators", undefined, undefined, item.id);
-                                  } else {
-                                    handleNavigate(item.categoryId, item.fromUnitId, item.toUnitId);
-                                  }
-                                  setHeroSearchQuery("");
-                                }}
-                                className="flex items-center justify-between p-3 hover:bg-slate-50 dark:hover:bg-slate-950/50 text-left transition-colors w-full group"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-cyan-400">
-                                    {item.type === "category" ? (
-                                      <Compass className="h-4 w-4" />
-                                    ) : (
-                                      <ArrowUpDown className="h-4 w-4" />
-                                    )}
-                                  </div>
-                                  <div className="flex flex-col">
-                                    <span className="text-xs font-bold text-slate-700 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
-                                      {item.name}
-                                    </span>
-                                    {item.description && (
-                                      <span className="text-[10px] text-slate-400 dark:text-slate-500 line-clamp-1">
-                                        {item.description}
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                                <span className="text-[9px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-md">
-                                  {item.badge}
-                                </span>
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
                     </div>
 
                     {/* Highly Aligned 4-Column Responsive Grid */}

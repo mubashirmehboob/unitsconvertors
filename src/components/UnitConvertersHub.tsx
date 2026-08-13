@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { 
   Ruler, 
   ArrowRight, 
-  Sparkles, 
+  TrendingUp, 
   CheckCircle2, 
   Search, 
   Zap, 
@@ -13,7 +13,9 @@ import {
   ShieldCheck, 
   BarChart3,
   ExternalLink,
-  ChevronRight
+  ChevronRight,
+  Grid,
+  X
 } from "lucide-react";
 import { categoriesData } from "../data/convertersData";
 import { categoryIconMap, getCategoryStyle } from "./Header";
@@ -112,11 +114,6 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
         {/* Hero Section */}
         <div className="relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 shadow-sm mb-10">
           <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider mb-4">
-              <Ruler className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
-              <span>32 Unit Conversion Categories</span>
-            </div>
-
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
               Unit Converters
             </h1>
@@ -125,47 +122,43 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
               Explore 32 measurement categories covering SI, metric, customary, scientific, engineering, and commonly used units. Choose a category below to explore available units and direct conversion tools.
             </p>
 
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               UnitsConvertors.com provides direct unit-to-unit conversion tools covering SI, metric, customary, scientific, engineering, and commonly used measurement units. Each converter delivers instant calculation results along with standardized formulas, calculation steps, and physical quantity definitions.
             </p>
-
-            {/* Quick Search */}
-            <div className="relative max-w-xl">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Search categories or units (e.g., length, pascal, kilogram, lux)..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold px-2 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700"
-                >
-                  Clear
-                </button>
-              )}
-            </div>
           </div>
         </div>
 
         {/* Categories Directory Section */}
         <div className="mb-14">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
-                <Layers className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                Category Directory
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-                Explore all 32 measurement categories and their available units.
-              </p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200/80 dark:border-slate-800">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+              <Grid className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              Converter Categories
+              <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900">
+                {categoriesData.length} Categories
+              </span>
+            </h2>
+
+            {/* Search All Converters */}
+            <div className="relative w-full sm:w-80">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <input
+                type="text"
+                placeholder={`Search all ${categoriesData.reduce((acc, c) => acc + c.units.length, 0)} converters...`}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full h-10 pl-10 pr-9 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 shadow-sm"
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 cursor-pointer"
+                  title="Clear search query"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
             </div>
-            <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 self-start sm:self-auto">
-              {filteredCategories.length} Categories Shown
-            </span>
           </div>
 
           {filteredCategories.length === 0 ? (
@@ -232,7 +225,7 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             <div>
               <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
-                <Sparkles className="h-5 w-5 text-amber-500" />
+                <TrendingUp className="h-5 w-5 text-blue-600 dark:text-cyan-400" />
                 Popular Unit Conversions
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">

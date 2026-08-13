@@ -216,6 +216,21 @@ import { byteToTerabit } from "./byteToTerabit";
 import { byteToTerabyte } from "./byteToTerabyte";
 import { byteToPetabyte } from "./byteToPetabyte";
 
+import { bpsToBpsArticle } from "./bitPerSecToBytePerSec";
+import { bpsToKbpsArticle } from "./bitPerSecToKilobitPerSec";
+import { bpsToMbpsArticle } from "./bitPerSecToMegabitPerSec";
+import { bpsToGbpsArticle } from "./bitPerSecToGigabitPerSec";
+import { bpsToTbpsArticle } from "./bitPerSecToTerabitPerSec";
+import { bpsToKBpsArticle } from "./bitPerSecToKilobytePerSec";
+import { bpsToMBpsArticle } from "./bitPerSecToMegabytePerSec";
+import { bpsToGBpsArticle } from "./bitPerSecToGigabytePerSec";
+import { BpsToBpsArticle } from "./bytePerSecToBitPerSec";
+import { BpsToKbpsArticle } from "./bytePerSecToKilobitPerSec";
+import { BpsToMbpsArticle } from "./bytePerSecToMegabitPerSec";
+import { BpsToGbpsArticle } from "./bytePerSecToGigabitPerSec";
+import { BpsToTbpsArticle } from "./bytePerSecToTerabitPerSec";
+import { BpsToKBpsArticle } from "./bytePerSecToKilobytePerSec";
+
 import { kgPerCubicMeterToGramPerCubicCentimeter } from "./kgPerCubicMeterToGramPerCubicCentimeter";
 import { kgPerCubicMeterToPoundPerCubicFoot } from "./kgPerCubicMeterToPoundPerCubicFoot";
 import { kgPerCubicMeterToGramPerLiter } from "./kgPerCubicMeterToGramPerLiter";
@@ -553,6 +568,21 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "byte-to-terabit": byteToTerabit,
   "byte-to-terabyte": byteToTerabyte,
   "byte-to-petabyte": byteToPetabyte,
+
+  "bps-to-Bps": bpsToBpsArticle,
+  "bps-to-kbps": bpsToKbpsArticle,
+  "bps-to-Mbps": bpsToMbpsArticle,
+  "bps-to-Gbps": bpsToGbpsArticle,
+  "bps-to-Tbps": bpsToTbpsArticle,
+  "bps-to-KBps": bpsToKBpsArticle,
+  "bps-to-MBps": bpsToMBpsArticle,
+  "bps-to-GBps": bpsToGBpsArticle,
+  "Bps-to-bps": BpsToBpsArticle,
+  "Bps-to-kbps": BpsToKbpsArticle,
+  "Bps-to-Mbps": BpsToMbpsArticle,
+  "Bps-to-Gbps": BpsToGbpsArticle,
+  "Bps-to-Tbps": BpsToTbpsArticle,
+  "Bps-to-KBps": BpsToKBpsArticle,
 
   "kilogram-per-cubic-meter-to-gram-per-cubic-centimeter": kgPerCubicMeterToGramPerCubicCentimeter,
   "kilogram-per-cubic-meter-to-pound-per-cubic-foot": kgPerCubicMeterToPoundPerCubicFoot,
@@ -920,6 +950,21 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "byte-to-terabit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "byte-to-terabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "byte-to-petabyte": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+
+  "bps-to-Bps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "bps-to-kbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "bps-to-Mbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "bps-to-Gbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "bps-to-Tbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "bps-to-KBps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "bps-to-MBps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "bps-to-GBps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "Bps-to-bps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "Bps-to-kbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "Bps-to-Mbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "Bps-to-Gbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "Bps-to-Tbps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
+  "Bps-to-KBps": { seoReady: true, publishedAt: "2026-08-12", updatedAt: "2026-08-12", priority: 0.9 },
 
   "kilogram-per-cubic-meter-to-gram-per-cubic-centimeter": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
   "kilogram-per-cubic-meter-to-pound-per-cubic-foot": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
