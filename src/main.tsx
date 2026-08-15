@@ -1,6 +1,7 @@
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
+import 'katex/dist/katex.min.css';
 import './index.css';
 
 // Global resilience handlers to catch and suppress read-only fetch getter/setter collision errors

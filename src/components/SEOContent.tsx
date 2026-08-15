@@ -5,6 +5,7 @@ import { generateSEOContent, performConversion, getStringHash, isValidPair } fro
 import { customLengthArticles, isSeoReady } from "../data/articles";
 import { categoriesData } from "../data/convertersData";
 import { injectPageSchemas } from "../utils/schemaEngine";
+import { SITE_URL, LOGO_URL } from "../constants";
 import MathFormula from "./MathFormula";
 
 // --- REUSABLE SUB-COMPONENTS FOR TOPICAL SEO & INTERNAL LINKING ---
@@ -27,13 +28,27 @@ function RelatedConvertersCards({
 }: RelatedConvertersCardsProps) {
   return (
     <section className="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col gap-4">
-      <div className="flex flex-col gap-1">
-        <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-          Related {category.name} Converters
-        </h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400">
-          Explore closely linked unit pairs sharing source unit <span className="font-semibold text-slate-700 dark:text-slate-300">"{fromUnit.name}"</span> or target unit <span className="font-semibold text-slate-700 dark:text-slate-300">"{toUnit.name}"</span>.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex flex-col gap-1">
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Related {category.name} Converters
+          </h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Explore closely linked unit pairs sharing source unit <span className="font-semibold text-slate-700 dark:text-slate-300">"{fromUnit.name}"</span> or target unit <span className="font-semibold text-slate-700 dark:text-slate-300">"{toUnit.name}"</span>.
+          </p>
+        </div>
+
+        <a
+          href={`/converters/${category.id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate(category.id);
+          }}
+          className="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors shrink-0 self-start sm:self-auto"
+        >
+          <span>Explore All {category.name} Converters</span>
+          <ArrowRight className="h-3.5 w-3.5" />
+        </a>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-2">
@@ -328,7 +343,7 @@ function ReferencesSection({ references }: ReferencesSectionProps) {
       <div className="flex items-center gap-2">
         <Award className="h-5 w-5 text-blue-500" />
         <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-          Scientific & Regulatory References
+          Standards & References
         </h3>
       </div>
       <div className="p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
@@ -375,25 +390,25 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": window.location.origin
+          "item": SITE_URL
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Unit Converters",
-          "item": `${window.location.origin}/converters`
+          "item": `${SITE_URL}/converters`
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": `${category.name} Converters`,
-          "item": `${window.location.origin}/converters/${category.id}`
+          "item": `${SITE_URL}/converters/${category.id}`
         },
         {
           "@type": "ListItem",
           "position": 4,
           "name": customArticle ? customArticle.h1 : (isMeterToKm ? "Meter to Kilometer Converter" : (isMeterToCm ? "Meter to Centimeter Converter" : (isMeterToMm ? "Meter to Millimeter Converter" : (isMeterToUm ? "Meter to Micrometer Converter" : (isMeterToNm ? "Meter to Nanometer Converter" : `${fromUnit.name} to ${toUnit.name}`))))),
-          "item": `${window.location.origin}/converters/${category.id}/${fromUnit.id}-to-${toUnit.id}`
+          "item": `${SITE_URL}/converters/${category.id}/${fromUnit.id}-to-${toUnit.id}`
         }
       ]
     };
@@ -642,13 +657,13 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       "@type": "WebPage",
       "name": pageTitle,
       "description": pageDesc,
-      "url": window.location.href,
+      "url": `${SITE_URL}/converters/${category.id}/${fromUnit.id}-to-${toUnit.id}`,
       "publisher": {
         "@type": "Organization",
         "name": "Units Convertors",
         "logo": {
           "@type": "ImageObject",
-          "url": `${window.location.origin}/icon.png`
+          "url": LOGO_URL
         }
       }
     };
@@ -674,8 +689,8 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       document.head.appendChild(newMeta);
     }
 
-    // Canonical URL
-    const canonicalUrl = `${window.location.origin}/converters/${category.id}/${fromUnit.id}-to-${toUnit.id}`;
+    // Canonical URL (always enforce production domain SITE_URL)
+    const canonicalUrl = `${SITE_URL}/converters/${category.id}/${fromUnit.id}-to-${toUnit.id}`;
     let canonicalTag = document.querySelector('link[rel="canonical"]');
     if (!canonicalTag) {
       canonicalTag = document.createElement("link");
@@ -1044,7 +1059,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </section>
         )}
 
-        {/* Step 13: Frequently Asked Questions (FAQ) Accordion */}
+        {/* Step 13: Frequently Asked Questions (FAQ) */}
         <section className="flex flex-col gap-4">
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <HelpCircle className="h-5 w-5 text-blue-500" />
@@ -1052,16 +1067,20 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </h3>
           <div className="flex flex-col gap-3">
             {customArticle.faqs.map((faq, idx) => (
-              <div key={idx} className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+              <div 
+                key={idx} 
+                className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50/50 dark:bg-slate-900/30 transition-colors"
+              >
                 <button
+                  type="button"
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-950 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-xs sm:text-sm"
+                  className="w-full flex items-center justify-between p-4 sm:p-5 font-display font-bold text-left text-slate-900 dark:text-white cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors text-xs sm:text-sm"
                 >
                   <span>{faq.question}</span>
-                  <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""} shrink-0 ml-2`} />
                 </button>
                 {openFaqIndex === idx && (
-                  <div className="p-5 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
                     {faq.answer}
                   </div>
                 )}
@@ -1070,7 +1089,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           </div>
         </section>
 
-        {/* Step 14: Related Converters Cards */}
+        {/* Step 14: Related Converters */}
         <RelatedConvertersCards
           items={getDynamicRelatedList(customArticle.relatedList)}
           category={category}
@@ -1079,22 +1098,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           onNavigate={onNavigate}
         />
 
-        {/* Step 15: Related Educational Guides / Articles */}
-        <RelatedGuidesSection
-          category={category}
-          customArticles={customArticle.relatedArticles}
-          onNavigate={onNavigate}
-        />
-
-        {/* Step 16: Explore More & Topic Cluster Navigation */}
-        <ExploreMoreSection
-          category={category}
-          fromUnit={fromUnit}
-          toUnit={toUnit}
-          onNavigate={onNavigate}
-        />
-
-        {/* Step 17: Scientific & Regulatory References */}
+        {/* Step 15: Standards & References */}
         <ReferencesSection references={customArticle.references} />
 
       </article>
@@ -2709,17 +2713,18 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             {customFaqs.map((faq, idx) => (
               <div 
                 key={idx} 
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden"
+                className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50/50 dark:bg-slate-900/30 transition-colors"
               >
                 <button
+                  type="button"
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-950 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
+                  className="w-full flex items-center justify-between p-4 sm:p-5 font-display font-bold text-left text-slate-900 dark:text-white cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors text-xs sm:text-sm"
                 >
                   <span>{faq.question}</span>
-                  <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""} shrink-0 ml-2`} />
                 </button>
                 {openFaqIndex === idx && (
-                  <div className="p-5 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
                     {faq.answer}
                   </div>
                 )}
@@ -2737,21 +2742,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           onNavigate={onNavigate}
         />
 
-        {/* 12. Related Guides */}
-        <RelatedGuidesSection
-          category={category}
-          onNavigate={onNavigate}
-        />
-
-        {/* 13. Explore More */}
-        <ExploreMoreSection
-          category={category}
-          fromUnit={fromUnit}
-          toUnit={toUnit}
-          onNavigate={onNavigate}
-        />
-
-        {/* 14. Scientific & Regulatory References */}
+        {/* 12. Standards & References */}
         <ReferencesSection />
 
       </article>
@@ -2795,6 +2786,39 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       )
     },
     {
+      id: "table",
+      node: article.conversionTable && article.conversionTable.length > 0 ? (
+        <section className="flex flex-col gap-4" key="table">
+          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+            Common {fromUnit.name} to {toUnit.name} Conversion Table
+          </h3>
+          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
+            Quick reference chart showing standard values converted from {fromUnit.plural} to {toUnit.plural}:
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+            <table className="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
+                  <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white">{fromUnit.name} ({fromUnit.symbol})</th>
+                  <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white">{toUnit.name} ({toUnit.symbol})</th>
+                  <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white hidden sm:table-cell">Context / Typical Use</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                {article.conversionTable.map((row, idx) => (
+                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                    <td className="p-3 sm:p-4 font-mono font-medium text-slate-900 dark:text-white">{row.value} {fromUnit.symbol}</td>
+                    <td className="p-3 sm:p-4 font-mono font-bold text-blue-600 dark:text-cyan-400" dangerouslySetInnerHTML={{ __html: `${row.converted} ${toUnit.symbol}` }} />
+                    <td className="p-3 sm:p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.context}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ) : null
+    },
+    {
       id: "solver",
       node: (
         <section className="flex flex-col gap-4" key="solver">
@@ -2817,33 +2841,78 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       )
     },
     {
+      id: "examples",
+      node: article.examples && article.examples.items && article.examples.items.length > 0 ? (
+        <section className="flex flex-col gap-4" key="examples">
+          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+            {article.examples.heading || `Worked Examples: Converting ${fromUnit.name} to ${toUnit.name}`}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {article.examples.items.map((ex, idx) => (
+              <div key={idx} className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Example {idx + 1}</span>
+                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-cyan-400">{ex.input} {fromUnit.symbol} = <span dangerouslySetInnerHTML={{ __html: ex.output }} /> {toUnit.symbol}</span>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{ex.explanation}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null
+    },
+    {
+      id: "history",
+      node: article.historySection?.text ? (
+        <section className="flex flex-col gap-4" key="history">
+          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+            {article.historySection.heading}
+          </h3>
+          <div className="prose dark:prose-invert max-w-none text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
+            {article.historySection.text}
+          </div>
+        </section>
+      ) : null
+    },
+    {
+      id: "faqs",
+      node: article.faqs && article.faqs.length > 0 ? (
+        <section className="flex flex-col gap-4" key="faqs">
+          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <HelpCircle className="h-5 w-5 text-blue-500" />
+            Frequently Asked Questions
+          </h3>
+          <div className="flex flex-col gap-3">
+            {article.faqs.map((faq, idx) => (
+              <div 
+                key={idx} 
+                className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50/50 dark:bg-slate-900/30 transition-colors"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                  className="w-full flex items-center justify-between p-4 sm:p-5 font-display font-bold text-left text-slate-900 dark:text-white cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors text-xs sm:text-sm"
+                >
+                  <span>{faq.question}</span>
+                  <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""} shrink-0 ml-2`} />
+                </button>
+                {openFaqIndex === idx && (
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null
+    },
+    {
       id: "related",
       node: (
         <RelatedConvertersCards
           key="related"
           items={getDynamicRelatedList()}
-          category={category}
-          fromUnit={fromUnit}
-          toUnit={toUnit}
-          onNavigate={onNavigate}
-        />
-      )
-    },
-    {
-      id: "guides",
-      node: (
-        <RelatedGuidesSection
-          key="guides"
-          category={category}
-          onNavigate={onNavigate}
-        />
-      )
-    },
-    {
-      id: "explore",
-      node: (
-        <ExploreMoreSection
-          key="explore"
           category={category}
           fromUnit={fromUnit}
           toUnit={toUnit}
@@ -2860,7 +2929,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
   ];
 
   // Render standard blocks in exact recommended page order for full topical authority
-  const standardOrder = ["intro", "formula", "table", "solver", "examples", "history", "faqs", "related", "guides", "explore", "references"];
+  const standardOrder = ["intro", "formula", "table", "solver", "examples", "history", "faqs", "related", "references"];
 
   const renderedStandardNodes = standardOrder
     .map(id => standardBlocks.find(b => b.id === id))

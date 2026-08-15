@@ -1,5 +1,6 @@
 import { Category, Unit } from "../types";
 import { categoriesData } from "../data/convertersData";
+import { categoryGenerators } from "./articleGenerators";
 
 /**
  * Perform unit conversion using base-unit architecture.
@@ -465,6 +466,11 @@ export function generateSEOContent(
   toUnit: Unit,
   formatOpts: FormatOptions = { precision: 9, useSigFigs: false, notation: "auto" }
 ): SEOArticle {
+  const specializedGenerator = categoryGenerators[category.id];
+  if (specializedGenerator) {
+    return specializedGenerator(category, fromUnit, toUnit, formatOpts);
+  }
+
   const catName = category.name;
   const catId = category.id;
   const fromName = fromUnit.name;

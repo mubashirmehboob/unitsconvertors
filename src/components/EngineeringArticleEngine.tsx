@@ -425,23 +425,29 @@ export default function EngineeringArticleEngine({
 
         {/* Related Engineering Tools */}
         {article.internalLinks.relatedTools.length > 0 && (
-          <div className="space-y-2">
+          <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">
               Related Solvers in {article.internalLinks.parentDiscipline.name}:
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
               {article.internalLinks.relatedTools.map(t => (
                 <button
                   key={t.id}
                   onClick={() => onNavigate(article.internalLinks.parentDiscipline.id, t.id)}
-                  className="p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-left border border-slate-700/80 hover:border-amber-400 transition-all flex flex-col justify-between gap-1 group cursor-pointer"
+                  className="p-4 rounded-2xl bg-slate-800/90 hover:bg-slate-800 text-left border border-slate-700/80 hover:border-amber-400 transition-all flex flex-col justify-between gap-3 group cursor-pointer shadow-sm hover:shadow-md"
                 >
-                  <span className="text-xs font-bold text-slate-100 group-hover:text-amber-400 transition-colors">
-                    {t.name}
-                  </span>
-                  <span className="text-[10px] font-mono text-slate-400 truncate">
-                    <MathFormula formula={t.formula} asInline={true} />
-                  </span>
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-xs sm:text-sm font-bold text-slate-100 group-hover:text-amber-300 transition-colors leading-snug">
+                      {t.name}
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all shrink-0 mt-0.5" />
+                  </div>
+                  
+                  <div className="px-3 py-2 rounded-xl bg-slate-950/80 border border-slate-700/60 group-hover:border-amber-500/40 transition-colors overflow-x-auto custom-scrollbar">
+                    <span className="text-xs font-mono font-medium text-amber-300 block whitespace-nowrap">
+                      <MathFormula formula={t.formula} asInline={true} className="text-amber-300" />
+                    </span>
+                  </div>
                 </button>
               ))}
             </div>

@@ -12,8 +12,8 @@ export interface SchemaRouteParams {
   toolId?: string;
 }
 
-const DOMAIN = "https://unitsconvertors.com";
-const LOGO_URL = "https://unitsconvertors.com/icon.png";
+import { SITE_URL, DOMAIN, LOGO_URL } from "../constants";
+export { SITE_URL, DOMAIN, LOGO_URL };
 
 export const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",

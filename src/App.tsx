@@ -16,6 +16,7 @@ import { ConversionHistoryItem, FavoriteTool } from "./types";
 import { performConversion, runEngineAudit, isValidPair } from "./utils/conversionEngine";
 import { applyAutomatedSeo } from "./utils/classificationEngine";
 import { injectPageSchemas } from "./utils/schemaEngine";
+import { SITE_URL } from "./constants";
 
 // Lazy-loaded components for optimal code-splitting and core web vitals
 const SEOContent = React.lazy(() => import("./components/SEOContent"));
@@ -257,7 +258,7 @@ export default function App() {
           isEngineering: true,
           title: "Engineering Calculators Hub | UnitsConvertors.com",
           description: "Explore comprehensive engineering calculators across electrical, mechanical, civil, physics, and more on UnitsConvertors.com.",
-          canonicalUrl: "https://unitsconvertors.com/calculators"
+          canonicalUrl: `${SITE_URL}/calculators`
         });
       } else {
         const disc = engineeringCalculatorsData.find(d => d.id === route.category || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(route.category));
@@ -269,7 +270,7 @@ export default function App() {
           isEngineering: true,
           title: `${titleName} | UnitsConvertors.com`,
           description: descText,
-          canonicalUrl: `https://unitsconvertors.com/calculators/${catSlug}`
+          canonicalUrl: `${SITE_URL}/calculators/${catSlug}`
         });
       }
     } else if (route.page === "engineering-category") {
@@ -278,7 +279,7 @@ export default function App() {
       const matchedTool = disc && route.fromUnit ? disc.tools.find(t => t.id === route.fromUnit || t.slug === route.fromUnit) : null;
       const titleName = matchedTool ? `${matchedTool.name} | ${disc?.name}` : (disc ? `${disc.name} Calculators` : "Engineering Calculators");
       const descText = matchedTool ? matchedTool.description : (disc ? disc.description : "Explore comprehensive engineering calculators on UnitsConvertors.com.");
-      const canonical = matchedTool ? `https://unitsconvertors.com/calculators/${catSlug}/${matchedTool.slug}` : `https://unitsconvertors.com/calculators/${catSlug}`;
+      const canonical = matchedTool ? `${SITE_URL}/calculators/${catSlug}/${matchedTool.slug}` : `${SITE_URL}/calculators/${catSlug}`;
       applyAutomatedSeo({
         pageType: "engineering-category",
         isEngineering: true,
@@ -291,7 +292,7 @@ export default function App() {
         pageType: "converters-hub",
         title: "Unit Converters | Free Online Unit Conversion Tools",
         description: "Explore free online unit converters for length, mass, area, volume, temperature, pressure, energy, power, light, electricity, data, and more. Convert units instantly with precision.",
-        canonicalUrl: "https://unitsconvertors.com/converters"
+        canonicalUrl: `${SITE_URL}/converters`
       });
     } else if (route.page === "category") {
       const descText = route.category ? `Explore all available ${route.category} converters on UnitsConvertors.com.` : "Explore comprehensive unit converters on UnitsConvertors.com.";
@@ -300,14 +301,14 @@ export default function App() {
         isEngineering: false,
         title: `${route.category ? route.category.toUpperCase() : "Converters"} | UnitsConvertors.com`,
         description: descText,
-        canonicalUrl: route.category ? `https://unitsconvertors.com/converters/${route.category}` : "https://unitsconvertors.com/converters"
+        canonicalUrl: route.category ? `${SITE_URL}/converters/${route.category}` : `${SITE_URL}/converters`
       });
     } else if (route.page === "converter") {
       applyAutomatedSeo({
         pageType: "individual-tool",
         title: `${route.fromUnit} to ${route.toUnit} Converter | UnitsConvertors.com`,
         description: `Convert ${route.fromUnit} to ${route.toUnit} with exact mathematical formulas, worked calculation examples, reference tables, and FAQs.`,
-        canonicalUrl: `https://unitsconvertors.com/converters/${route.category}/${route.fromUnit}-to-${route.toUnit}`,
+        canonicalUrl: `${SITE_URL}/converters/${route.category}/${route.fromUnit}-to-${route.toUnit}`,
         contentQuality: {
           hasOriginalArticle: true,
           hasFormula: true,
@@ -1075,7 +1076,7 @@ export default function App() {
                 {activeCategory.units.find(u => u.id === route.fromUnit)?.name} to {activeCategory.units.find(u => u.id === route.toUnit)?.name} Converter
               </h1>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Convert {activeCategory.units.find(u => u.id === route.fromUnit)?.plural} to {activeCategory.units.find(u => u.id === route.toUnit)?.plural} instantly with our high-precision offline converter.
+                Convert {activeCategory.units.find(u => u.id === route.fromUnit)?.plural} to {activeCategory.units.find(u => u.id === route.toUnit)?.plural} with instant calculations and step-by-step conversion formulas.
               </p>
             </div>
 

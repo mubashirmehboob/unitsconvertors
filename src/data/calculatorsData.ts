@@ -1,3 +1,5 @@
+import { SITE_URL } from "../constants";
+
 export interface EngineeringInput {
   name: string;
   label: string;
@@ -6457,7 +6459,7 @@ engineeringCalculatorRegistry.forEach(tool => {
   tool.route = `/calculators/${catSlug}/${tool.slug}`;
   tool.seo = {
     ...tool.seo,
-    canonicalUrl: `https://unitsconvertors.com/calculators/${catSlug}/${tool.slug}`
+    canonicalUrl: `${SITE_URL}/calculators/${catSlug}/${tool.slug}`
   };
 });
 

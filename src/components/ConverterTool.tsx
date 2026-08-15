@@ -3,6 +3,7 @@ import {
   ArrowLeftRight, RotateCcw, Copy, Check, Sliders, Share2, Printer, Heart, AlertCircle, ChevronDown, Zap, Calculator
 } from "lucide-react";
 import { Category, Unit, ConversionHistoryItem } from "../types";
+import { SITE_URL } from "../constants";
 import { performConversion, formatUnitValue } from "../utils/conversionEngine";
 import { isIdentityUnitConversion } from "../utils/identityDetection";
 import IdentityConversionNotice from "./IdentityConversionNotice";
@@ -265,7 +266,7 @@ export default function ConverterTool({
   // Generate share links
   const favoriteId = `${category.id}/${fromUnitId}-to-${toUnitId}`;
   const isFavorite = favorites.includes(favoriteId);
-  const shareUrl = `${window.location.origin}/converters/${category.id}/${fromUnitId}-to-${toUnitId}`;
+  const shareUrl = `${SITE_URL}/converters/${category.id}/${fromUnitId}-to-${toUnitId}`;
   const shareText = `Convert ${fromUnit.plural} to ${toUnit.plural} effortlessly with this free offline calculator!`;
 
   const handleShare = (platform: "x" | "facebook" | "whatsapp" | "copy") => {

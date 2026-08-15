@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { engineeringCalculatorsData, EngineeringCalculatorDiscipline, EngineeringTool, getCategorySlugForDiscipline } from "../data/calculatorsData";
 import { applyAutomatedSeo } from "../utils/classificationEngine";
+import { SITE_URL } from "../constants";
 import EngineeringCalculatorWidget from "./EngineeringCalculatorWidget";
 import MathFormula from "./MathFormula";
 
@@ -32,7 +33,7 @@ export default function EngineeringCalculatorsView({
         isEngineering: true,
         title: `${activeTool.name} | Engineering Calculators`,
         description: activeTool.description,
-        canonicalUrl: "https://unitsconvertors.com/calculators"
+        canonicalUrl: `${SITE_URL}/calculators`
       });
     } else {
       applyAutomatedSeo({
@@ -40,7 +41,7 @@ export default function EngineeringCalculatorsView({
         isEngineering: true,
         title: "Engineering Calculators Hub | UnitsConvertors.com",
         description: "Explore comprehensive engineering calculators across electrical, mechanical, civil, physics, and more on UnitsConvertors.com.",
-        canonicalUrl: "https://unitsconvertors.com/calculators"
+        canonicalUrl: `${SITE_URL}/calculators`
       });
     }
   }, [activeTool]);

@@ -365,6 +365,28 @@ import { cubicMeterToBoardFoot } from "./cubicMeterToBoardFoot";
 import { cubicMeterToCubicFoot } from "./cubicMeterToCubicFoot";
 import { squareFootToSquareMeter } from "./squareFootToSquareMeter";
 
+import { steradianToSpatArticle } from "./steradianToSpat";
+import { steradianToSquareDegreeArticle } from "./steradianToSquareDegree";
+import { steradianToSquareRadianArticle } from "./steradianToSquareRadian";
+import { steradianToSquareArcminuteArticle } from "./steradianToSquareArcminute";
+import { steradianToSquareArcsecondArticle } from "./steradianToSquareArcsecond";
+import { spatToSteradianArticle } from "./spatToSteradian";
+import { spatToSquareDegreeArticle } from "./spatToSquareDegree";
+import { spatToSquareRadianArticle } from "./spatToSquareRadian";
+import { spatToSquareArcminuteArticle } from "./spatToSquareArcminute";
+import { spatToSquareArcsecondArticle } from "./spatToSquareArcsecond";
+
+import { newtonMeterToPoundFoot } from "./newtonMeterToPoundFoot";
+import { newtonMeterToPoundInch } from "./newtonMeterToPoundInch";
+import { newtonMeterToKilogramForceMeter } from "./newtonMeterToKilogramForceMeter";
+import { newtonMeterToNewtonCentimeter } from "./newtonMeterToNewtonCentimeter";
+import { newtonMeterToDyneCentimeter } from "./newtonMeterToDyneCentimeter";
+import { poundFootToNewtonMeter } from "./poundFootToNewtonMeter";
+import { poundFootToPoundInch } from "./poundFootToPoundInch";
+import { poundFootToKilogramForceMeter } from "./poundFootToKilogramForceMeter";
+import { poundFootToNewtonCentimeter } from "./poundFootToNewtonCentimeter";
+import { poundFootToDyneCentimeter } from "./poundFootToDyneCentimeter";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -731,7 +753,29 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "cubic-meter-to-board-foot": cubicMeterToBoardFoot,
   "cubic-meter-to-cubic-foot": cubicMeterToCubicFoot,
   "cubic-inch-to-board-foot": cubicInchToBoardFoot,
-  "square-foot-to-square-meter": squareFootToSquareMeter
+  "square-foot-to-square-meter": squareFootToSquareMeter,
+
+  "steradian-to-spat": steradianToSpatArticle,
+  "steradian-to-square-degree": steradianToSquareDegreeArticle,
+  "steradian-to-square-radian": steradianToSquareRadianArticle,
+  "steradian-to-square-arcmin": steradianToSquareArcminuteArticle,
+  "steradian-to-square-arcsec": steradianToSquareArcsecondArticle,
+  "spat-to-steradian": spatToSteradianArticle,
+  "spat-to-square-degree": spatToSquareDegreeArticle,
+  "spat-to-square-radian": spatToSquareRadianArticle,
+  "spat-to-square-arcmin": spatToSquareArcminuteArticle,
+  "spat-to-square-arcsec": spatToSquareArcsecondArticle,
+
+  "newton-meter-to-pound-foot": newtonMeterToPoundFoot,
+  "newton-meter-to-pound-inch": newtonMeterToPoundInch,
+  "newton-meter-to-kilogram-force-meter": newtonMeterToKilogramForceMeter,
+  "newton-meter-to-newton-centimeter": newtonMeterToNewtonCentimeter,
+  "newton-meter-to-dyne-centimeter": newtonMeterToDyneCentimeter,
+  "pound-foot-to-newton-meter": poundFootToNewtonMeter,
+  "pound-foot-to-pound-inch": poundFootToPoundInch,
+  "pound-foot-to-kilogram-force-meter": poundFootToKilogramForceMeter,
+  "pound-foot-to-newton-centimeter": poundFootToNewtonCentimeter,
+  "pound-foot-to-dyne-centimeter": poundFootToDyneCentimeter
 };
 
 export interface ArticleMetadata {
@@ -1114,7 +1158,29 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "cubic-meter-to-board-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
   "cubic-meter-to-cubic-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
   "cubic-inch-to-board-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
-  "square-foot-to-square-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 }
+  "square-foot-to-square-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+
+  "steradian-to-spat": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "steradian-to-square-degree": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "steradian-to-square-radian": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "steradian-to-square-arcmin": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "steradian-to-square-arcsec": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "spat-to-steradian": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "spat-to-square-degree": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "spat-to-square-radian": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "spat-to-square-arcmin": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+  "spat-to-square-arcsec": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
+
+  "newton-meter-to-pound-foot": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
+  "newton-meter-to-pound-inch": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "newton-meter-to-kilogram-force-meter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "newton-meter-to-newton-centimeter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "newton-meter-to-dyne-centimeter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "pound-foot-to-newton-meter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
+  "pound-foot-to-pound-inch": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "pound-foot-to-kilogram-force-meter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "pound-foot-to-newton-centimeter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "pound-foot-to-dyne-centimeter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

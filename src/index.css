@@ -102,4 +102,27 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+/* KaTeX formula rendering enhancements */
+.katex {
+  text-rendering: auto;
+  font-family: KaTeX_Main, "Times New Roman", serif;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.katex-html {
+  white-space: nowrap;
+}
+
+.katex-inline-wrapper {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.katex-inline {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 

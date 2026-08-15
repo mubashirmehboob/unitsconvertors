@@ -580,20 +580,29 @@ export const categoriesData: Category[] = [
     baseUnitId: "degree",
     customFormula: (value: number, from: string, to: string) => {
       const angleFactors: Record<string, number> = {
-        "degree": 1, "radian": 57.295779513, "gradian": 0.9, "arcminute": 0.016666667,
-        "arcsecond": 0.000277778, "revolution": 360, "mil-angle": 0.05625, "turn-angle": 360,
-        "quadrant-angle": 90, "sextant-angle": 60, "grad-angle": 0.9, "circular-mil-angle": 1
+        "degree": 1,
+        "radian": 180 / Math.PI,
+        "gradian": 0.9,
+        "arcminute": 1 / 60,
+        "arcsecond": 1 / 3600,
+        "revolution": 360,
+        "mil-angle": 0.05625,
+        "turn-angle": 360,
+        "quadrant-angle": 90,
+        "sextant-angle": 60,
+        "grad-angle": 0.9,
+        "circular-mil-angle": 1
       };
-      const fFrom = angleFactors[from] || 1;
-      const fTo = angleFactors[to] || 1;
+      const fFrom = angleFactors[from] ?? 1;
+      const fTo = angleFactors[to] ?? 1;
       return (value * fFrom) / fTo;
     },
     units: [
       { id: "degree", name: "Degree", plural: "Degrees", symbol: "°", factor: 1 },
-      { id: "radian", name: "Radian", plural: "Radians", symbol: "rad", factor: 57.295779513 },
+      { id: "radian", name: "Radian", plural: "Radians", symbol: "rad", factor: 180 / Math.PI },
       { id: "gradian", name: "Gradian", plural: "Gradians", symbol: "grad", factor: 0.9 },
-      { id: "arcminute", name: "Arcminute", plural: "Arcminutes", symbol: "'", factor: 0.016666667 },
-      { id: "arcsecond", name: "Arcsecond", plural: "Arcseconds", symbol: "\"", factor: 0.000277778 },
+      { id: "arcminute", name: "Arcminute", plural: "Arcminutes", symbol: "'", factor: 1 / 60 },
+      { id: "arcsecond", name: "Arcsecond", plural: "Arcseconds", symbol: "\"", factor: 1 / 3600 },
       { id: "revolution", name: "Revolution", plural: "Revolutions", symbol: "rev", factor: 360 },
       { id: "mil-angle", name: "Mil (Angle)", plural: "Mil Angles", symbol: "mil", factor: 0.05625 },
       { id: "turn-angle", name: "Turn", plural: "Turns", symbol: "turn", factor: 360 },
@@ -672,11 +681,11 @@ export const categoriesData: Category[] = [
     baseUnitId: "steradian",
     units: [
       { id: "steradian", name: "Steradian", plural: "Steradians", symbol: "sr", factor: 1 },
-      { id: "spat", name: "Spat", plural: "Spats", symbol: "sp", factor: 12.566370614 },
-      { id: "square-degree", name: "Square Degree", plural: "Square Degrees", symbol: "deg²", factor: 0.0003046174197 },
+      { id: "spat", name: "Spat", plural: "Spats", symbol: "sp", factor: 4 * Math.PI },
+      { id: "square-degree", name: "Square Degree", plural: "Square Degrees", symbol: "deg²", factor: Math.pow(Math.PI / 180, 2) },
       { id: "square-radian", name: "Square Radian", plural: "Square Radians", symbol: "rad²", factor: 1 },
-      { id: "square-arcmin", name: "Square Arcminute", plural: "Square Arcminutes", symbol: "arcmin²", factor: 8.461595e-8 },
-      { id: "square-arcsec", name: "Square Arcsecond", plural: "Square Arcseconds", symbol: "arcsec²", factor: 2.350443e-11 }
+      { id: "square-arcmin", name: "Square Arcminute", plural: "Square Arcminutes", symbol: "arcmin²", factor: Math.pow(Math.PI / 10800, 2) },
+      { id: "square-arcsec", name: "Square Arcsecond", plural: "Square Arcseconds", symbol: "arcsec²", factor: Math.pow(Math.PI / 648000, 2) }
     ]
   },
   {

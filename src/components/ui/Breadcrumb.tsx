@@ -1,5 +1,6 @@
 import React from "react";
 import { ChevronRight, Home } from "lucide-react";
+import { SITE_URL } from "../../constants";
 
 export interface BreadcrumbItem {
   label: string;
@@ -30,7 +31,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://unitsconvertors.com",
+            item: SITE_URL,
           },
           ...items.map((item, idx) => ({
             "@type": "ListItem",
