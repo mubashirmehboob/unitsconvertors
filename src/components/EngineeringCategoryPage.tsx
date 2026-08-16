@@ -361,16 +361,6 @@ export default function EngineeringCategoryPage({
             <Icon className="h-8 w-8" />
           </div>
           <div className="flex flex-col gap-1.5">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[10px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
-                {discipline.badge || "Engineering Discipline"}
-              </span>
-              <span className="text-xs font-mono font-bold text-slate-500 flex items-center gap-1">
-                <ShieldCheck className="h-3.5 w-3.5 text-blue-500" />
-                {discipline.tools.length} Verified Calculators
-              </span>
-            </div>
-
             <h1 className="font-display text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               {disciplineTitle} Studio
             </h1>

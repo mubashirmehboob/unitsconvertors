@@ -71,6 +71,14 @@ function normalizeToLatex(input: string): string {
     return `_{${p1}}`;
   });
 
+  // Ensure commands like \cdot, \times, \tau have spaces when directly followed by alphanumeric chars
+  s = s
+    .replace(/\\cdot(?=[a-zA-Z0-9])/g, "\\cdot ")
+    .replace(/\\times(?=[a-zA-Z0-9])/g, "\\times ")
+    .replace(/\\tau(?=[a-zA-Z0-9(])/g, "\\tau ")
+    .replace(/\\mu(?=[a-zA-Z0-9(])/g, "\\mu ")
+    .replace(/\\omega(?=[a-zA-Z0-9(])/g, "\\omega ");
+
   return s;
 }
 

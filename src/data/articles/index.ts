@@ -38,6 +38,10 @@ import { kilometerToYard } from "./kilometerToYard";
 import { kilometerToFoot } from "./kilometerToFoot";
 import { kilometerToInch } from "./kilometerToInch";
 import { kilometerToNmi } from "./kilometerToNmi";
+import { kilometerToRod } from "./kilometerToRod";
+import { kilometerToChain } from "./kilometerToChain";
+import { kilometerToFurlong } from "./kilometerToFurlong";
+import { kilometerToLeague } from "./kilometerToLeague";
 
 import { henryToMillihenry } from "./henryToMillihenry";
 import { henryToMicrohenry } from "./henryToMicrohenry";
@@ -387,6 +391,17 @@ import { poundFootToKilogramForceMeter } from "./poundFootToKilogramForceMeter";
 import { poundFootToNewtonCentimeter } from "./poundFootToNewtonCentimeter";
 import { poundFootToDyneCentimeter } from "./poundFootToDyneCentimeter";
 
+import { meterPerSecondSquaredToFootPerSecondSquared } from "./meterPerSecondSquaredToFootPerSecondSquared";
+import { meterPerSecondSquaredToGravityAcceleration } from "./meterPerSecondSquaredToGravityAcceleration";
+import { meterPerSecondSquaredToGalAcceleration } from "./meterPerSecondSquaredToGalAcceleration";
+import { meterPerSecondSquaredToMilligalAcceleration } from "./meterPerSecondSquaredToMilligalAcceleration";
+import { meterPerSecondSquaredToKilometerPerHourSecond } from "./meterPerSecondSquaredToKilometerPerHourSecond";
+import { meterPerSecondSquaredToMilePerHourSecond } from "./meterPerSecondSquaredToMilePerHourSecond";
+import { footPerSecondSquaredToMeterPerSecondSquared } from "./footPerSecondSquaredToMeterPerSecondSquared";
+import { footPerSecondSquaredToGravityAcceleration } from "./footPerSecondSquaredToGravityAcceleration";
+import { footPerSecondSquaredToGalAcceleration } from "./footPerSecondSquaredToGalAcceleration";
+import { footPerSecondSquaredToMilligalAcceleration } from "./footPerSecondSquaredToMilligalAcceleration";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -413,6 +428,10 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "kilometer-to-foot": kilometerToFoot,
   "kilometer-to-inch": kilometerToInch,
   "kilometer-to-nautical-mile": kilometerToNmi,
+  "kilometer-to-rod": kilometerToRod,
+  "kilometer-to-chain": kilometerToChain,
+  "kilometer-to-furlong": kilometerToFurlong,
+  "kilometer-to-league": kilometerToLeague,
 
   "henry-to-millihenry": henryToMillihenry,
   "henry-to-microhenry": henryToMicrohenry,
@@ -775,7 +794,18 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "pound-foot-to-pound-inch": poundFootToPoundInch,
   "pound-foot-to-kilogram-force-meter": poundFootToKilogramForceMeter,
   "pound-foot-to-newton-centimeter": poundFootToNewtonCentimeter,
-  "pound-foot-to-dyne-centimeter": poundFootToDyneCentimeter
+  "pound-foot-to-dyne-centimeter": poundFootToDyneCentimeter,
+
+  "meter-per-second-squared-to-foot-per-second-squared": meterPerSecondSquaredToFootPerSecondSquared,
+  "meter-per-second-squared-to-gravity-acceleration": meterPerSecondSquaredToGravityAcceleration,
+  "meter-per-second-squared-to-gal-acceleration": meterPerSecondSquaredToGalAcceleration,
+  "meter-per-second-squared-to-milligal-acceleration": meterPerSecondSquaredToMilligalAcceleration,
+  "meter-per-second-squared-to-kilometer-per-hour-second": meterPerSecondSquaredToKilometerPerHourSecond,
+  "meter-per-second-squared-to-mile-per-hour-second": meterPerSecondSquaredToMilePerHourSecond,
+  "foot-per-second-squared-to-meter-per-second-squared": footPerSecondSquaredToMeterPerSecondSquared,
+  "foot-per-second-squared-to-gravity-acceleration": footPerSecondSquaredToGravityAcceleration,
+  "foot-per-second-squared-to-gal-acceleration": footPerSecondSquaredToGalAcceleration,
+  "foot-per-second-squared-to-milligal-acceleration": footPerSecondSquaredToMilligalAcceleration
 };
 
 export interface ArticleMetadata {
@@ -817,6 +847,10 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "kilometer-to-foot": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "kilometer-to-inch": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "kilometer-to-nautical-mile": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
+  "kilometer-to-rod": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.85 },
+  "kilometer-to-chain": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.85 },
+  "kilometer-to-furlong": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.85 },
+  "kilometer-to-league": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.85 },
 
   "henry-to-millihenry": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "henry-to-microhenry": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
@@ -1180,7 +1214,18 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "pound-foot-to-pound-inch": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
   "pound-foot-to-kilogram-force-meter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
   "pound-foot-to-newton-centimeter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
-  "pound-foot-to-dyne-centimeter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 }
+  "pound-foot-to-dyne-centimeter": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+
+  "meter-per-second-squared-to-foot-per-second-squared": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
+  "meter-per-second-squared-to-gravity-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
+  "meter-per-second-squared-to-gal-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "meter-per-second-squared-to-milligal-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "meter-per-second-squared-to-kilometer-per-hour-second": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "meter-per-second-squared-to-mile-per-hour-second": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "foot-per-second-squared-to-meter-per-second-squared": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
+  "foot-per-second-squared-to-gravity-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
+  "foot-per-second-squared-to-gal-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+  "foot-per-second-squared-to-milligal-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

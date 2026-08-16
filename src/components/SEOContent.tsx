@@ -879,7 +879,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
 
         {customArticle.quickAnswer && (
           <section className="p-5 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-stretch md:items-center gap-6 justify-between">
-            <div className="flex flex-col gap-2 w-[530px] max-w-full">
+            <div className="flex-1 min-w-0 flex flex-col gap-2">
               <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
                 Quick Answer
               </h3>
@@ -887,12 +887,12 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                 {customArticle.quickAnswer.text}
               </p>
             </div>
-            <div className="flex-shrink-0 w-[300px] max-w-full p-[15px] rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex flex-col items-center justify-center text-center">
+            <div className="flex-shrink-0 min-w-[260px] sm:min-w-[290px] w-auto max-w-full p-4 sm:px-5 sm:py-4 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex flex-col items-center justify-center text-center">
               <span className="text-[10px] font-black tracking-wider uppercase opacity-85">Conversion Standard</span>
-              <div className="text-lg md:text-xl font-mono font-black select-all mt-1.5 text-white">
+              <div className="text-sm sm:text-base font-mono font-black select-all mt-1.5 text-white max-w-full overflow-x-auto whitespace-nowrap px-1">
                 <MathFormula formula={customArticle.quickAnswer.formulaDisplay} asInline={true} className="text-white dark:text-white" />
               </div>
-              <span className="text-xs opacity-90 mt-2 leading-relaxed -mx-[7px]">{customArticle.quickAnswer.subtext}</span>
+              <span className="text-xs opacity-90 mt-2 leading-relaxed">{customArticle.quickAnswer.subtext}</span>
             </div>
           </section>
         )}
@@ -925,27 +925,29 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
         )}
 
         {/* Step 6 & Step 7: About Source Unit & About Target Unit */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-xs flex flex-col gap-3">
-            <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-blue-500" />
-              {customArticle.aboutSourceUnit.title}
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              {customArticle.aboutSourceUnit.text}
-            </p>
-          </div>
-          
-          <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-xs flex flex-col gap-3">
-            <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-cyan-500" />
-              {customArticle.aboutTargetUnit.title}
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              {customArticle.aboutTargetUnit.text}
-            </p>
-          </div>
-        </section>
+        {customArticle.aboutSourceUnit && customArticle.aboutTargetUnit && (
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-xs flex flex-col gap-3">
+              <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-blue-500" />
+                {customArticle.aboutSourceUnit.title}
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                {customArticle.aboutSourceUnit.text}
+              </p>
+            </div>
+            
+            <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-xs flex flex-col gap-3">
+              <h4 className="font-display font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-cyan-500" />
+                {customArticle.aboutTargetUnit.title}
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                {customArticle.aboutTargetUnit.text}
+              </p>
+            </div>
+          </section>
+        )}
 
         {/* Step 8: Unit Relationship */}
         <section className="flex flex-col gap-4">
@@ -966,54 +968,58 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
         </section>
 
         {/* Step 9: Step-by-Step Conversion Examples */}
-        <section className="flex flex-col gap-4">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-            {customArticle.examples.title}
-          </h3>
-          <div className="flex flex-col gap-4">
-            {customArticle.examples.items.map((ex, idx) => (
-              <div key={idx} className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
-                <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">{ex.title}</span>
-                <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">{ex.subtitle}</p>
-                <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-1 text-slate-500 dark:text-slate-400">
-                  {ex.steps.map((step, sIdx) => (
-                    <li key={sIdx}>{step}</li>
-                  ))}
-                </ol>
-              </div>
-            ))}
-          </div>
-        </section>
+        {customArticle.examples && (
+          <section className="flex flex-col gap-4">
+            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+              {customArticle.examples.title || "Step-by-Step Conversion Examples"}
+            </h3>
+            <div className="flex flex-col gap-4">
+              {customArticle.examples.items?.map((ex, idx) => (
+                <div key={idx} className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+                  <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">{ex.title}</span>
+                  <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">{ex.subtitle}</p>
+                  <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-1 text-slate-500 dark:text-slate-400">
+                    {ex.steps?.map((step, sIdx) => (
+                      <li key={sIdx}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Step 10: Quick Reference Conversion Table */}
-        <section className="flex flex-col gap-4">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-            {customArticle.table.title}
-          </h3>
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            <table className="w-full text-left text-sm border-collapse">
-              <thead>
-                <tr className="bg-[var(--background-secondary)] dark:bg-slate-950 border-b border-[var(--border-subtle)] dark:border-slate-800">
-                  {customArticle.table.headers.map((h, hIdx) => (
-                    <th key={hIdx} className={`p-4 font-bold text-slate-900 dark:text-white ${hIdx >= 2 ? 'hidden sm:table-cell' : ''}`}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[var(--divider-subtle)] dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-900/50">
-                {customArticle.table.rows.map((row, rIdx) => (
-                  <tr key={rIdx} className="hover:bg-[var(--surface-hover)] dark:hover:bg-slate-950/20 transition-all">
-                    <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400">{row.fromVal}</td>
-                    <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.toVal}</td>
-                    <td className="p-4 text-xs text-slate-400 font-mono hidden sm:table-cell">{row.extra}</td>
-                    {row.extra2 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra2}</td>}
-                    {row.extra3 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra3}</td>}
-                    {row.extra4 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra4}</td>}
+        {customArticle.table && (
+          <section className="flex flex-col gap-4">
+            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+              {customArticle.table.title || "Quick Reference Conversion Table"}
+            </h3>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <table className="w-full text-left text-sm border-collapse">
+                <thead>
+                  <tr className="bg-[var(--background-secondary)] dark:bg-slate-950 border-b border-[var(--border-subtle)] dark:border-slate-800">
+                    {customArticle.table.headers?.map((h, hIdx) => (
+                      <th key={hIdx} className={`p-4 font-bold text-slate-900 dark:text-white ${hIdx >= 2 ? 'hidden sm:table-cell' : ''}`}>{h}</th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+                </thead>
+                <tbody className="divide-y divide-[var(--divider-subtle)] dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-900/50">
+                  {customArticle.table.rows?.map((row, rIdx) => (
+                    <tr key={rIdx} className="hover:bg-[var(--surface-hover)] dark:hover:bg-slate-950/20 transition-all">
+                      <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400">{row.fromVal}</td>
+                      <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.toVal}</td>
+                      <td className="p-4 text-xs text-slate-400 font-mono hidden sm:table-cell">{row.extra}</td>
+                      {row.extra2 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra2}</td>}
+                      {row.extra3 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra3}</td>}
+                      {row.extra4 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra4}</td>}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
 
         {/* Expert Note (Did You Know?) */}
         {customArticle.expertNote && (
@@ -1029,21 +1035,23 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
         )}
 
         {/* Step 11: Real-World Applications */}
-        <section className="flex flex-col gap-4">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-            {customArticle.applications.title}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {customArticle.applications.items.map((app, idx) => (
-              <div key={idx} className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
-                <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">{app.title}</span>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                  {app.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        {customArticle.applications && (
+          <section className="flex flex-col gap-4">
+            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+              {customArticle.applications.title || "Real-World Applications"}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {customArticle.applications.items?.map((app, idx) => (
+                <div key={idx} className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
+                  <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">{app.title}</span>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                    {app.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Step 12: Common Pitfalls & Mistakes */}
         {customArticle.pitfalls && (
@@ -1060,34 +1068,36 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
         )}
 
         {/* Step 13: Frequently Asked Questions (FAQ) */}
-        <section className="flex flex-col gap-4">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <HelpCircle className="h-5 w-5 text-blue-500" />
-            Frequently Asked Questions (FAQs)
-          </h3>
-          <div className="flex flex-col gap-3">
-            {customArticle.faqs.map((faq, idx) => (
-              <div 
-                key={idx} 
-                className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50/50 dark:bg-slate-900/30 transition-colors"
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-4 sm:p-5 font-display font-bold text-left text-slate-900 dark:text-white cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors text-xs sm:text-sm"
+        {customArticle.faqs && customArticle.faqs.length > 0 && (
+          <section className="flex flex-col gap-4">
+            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <HelpCircle className="h-5 w-5 text-blue-500" />
+              Frequently Asked Questions (FAQs)
+            </h3>
+            <div className="flex flex-col gap-3">
+              {customArticle.faqs.map((faq, idx) => (
+                <div 
+                  key={idx} 
+                  className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50/50 dark:bg-slate-900/30 transition-colors"
                 >
-                  <span>{faq.question}</span>
-                  <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""} shrink-0 ml-2`} />
-                </button>
-                {openFaqIndex === idx && (
-                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                    className="w-full flex items-center justify-between p-4 sm:p-5 font-display font-bold text-left text-slate-900 dark:text-white cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors text-xs sm:text-sm"
+                  >
+                    <span>{faq.question}</span>
+                    <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""} shrink-0 ml-2`} />
+                  </button>
+                  {openFaqIndex === idx && (
+                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Step 14: Related Converters */}
         <RelatedConvertersCards
@@ -1169,7 +1179,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
 
         {/* 2. Quick Formula */}
         <section className="p-5 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-center gap-6 justify-between">
-          <div className="flex flex-col gap-2 w-full md:max-w-lg">
+          <div className="flex-1 min-w-0 flex flex-col gap-2">
             <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
               Quick Formula
             </h3>
@@ -1177,7 +1187,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               To convert meters to kilometers, divide the number of meters by 1,000. Since one kilometer contains exactly 1,000 meters, moving the decimal point three places to the left gives the equivalent value in kilometers.
             </p>
           </div>
-          <div className="flex-shrink-0 w-full md:w-auto p-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-lg md:text-xl font-mono font-black select-all">
+          <div className="flex-shrink-0 min-w-[240px] sm:min-w-[280px] w-auto max-w-full p-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-sm sm:text-base font-mono font-black select-all text-center">
             1 Meter = 0.001 Kilometer
           </div>
         </section>
@@ -1480,7 +1490,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
 
         {/* 2. Quick Formula */}
         <section className="p-5 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-center gap-6 justify-between">
-          <div className="flex flex-col gap-2 w-full md:max-w-lg">
+          <div className="flex-1 min-w-0 flex flex-col gap-2">
             <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
               Quick Formula
             </h3>
@@ -1488,7 +1498,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               To convert meters to centimeters, multiply the number of meters by 100. Since one meter contains exactly 100 centimeters, shifting the decimal point two places to the right gives the equivalent value in centimeters.
             </p>
           </div>
-          <div className="flex-shrink-0 w-full md:w-auto p-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-lg md:text-xl font-mono font-black select-all">
+          <div className="flex-shrink-0 min-w-[240px] sm:min-w-[280px] w-auto max-w-full p-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-sm sm:text-base font-mono font-black select-all text-center">
             1 Meter = 100 Centimeters
           </div>
         </section>
@@ -1793,7 +1803,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
 
         {/* 2. Quick Formula */}
         <section className="p-5 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-center gap-6 justify-between">
-          <div className="flex flex-col gap-2 w-full md:max-w-lg">
+          <div className="flex-1 min-w-0 flex flex-col gap-2">
             <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
               Quick Formula
             </h3>
@@ -1801,9 +1811,9 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               Because a millimeter is defined as one-thousandth of a meter, you multiply any meter value by 1,000 to convert it directly into millimeters.
             </p>
           </div>
-          <div className="px-6 py-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col items-center justify-center flex-shrink-0 w-full md:w-auto">
+          <div className="px-5 py-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col items-center justify-center flex-shrink-0 min-w-[240px] sm:min-w-[280px] w-auto max-w-full text-center">
             <span className="text-[10px] font-black tracking-wider text-blue-600 dark:text-cyan-400 uppercase">Multiplier Factor</span>
-            <span className="text-2xl font-black text-slate-900 dark:text-white mt-1">m × 1,000 = mm</span>
+            <span className="text-lg sm:text-xl font-black text-slate-900 dark:text-white mt-1">m × 1,000 = mm</span>
           </div>
         </section>
 
@@ -2137,7 +2147,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
 
         {/* 2. Quick Formula */}
         <section className="p-5 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-center gap-6 justify-between">
-          <div className="flex flex-col gap-2 max-w-lg">
+          <div className="flex-1 min-w-0 flex flex-col gap-2">
             <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
               Quick Formula
             </h3>
@@ -2145,9 +2155,9 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               Since a micrometer is exactly one-millionth of a meter, you multiply the meter value by 1,000,000 to convert it directly into micrometers.
             </p>
           </div>
-          <div className="px-6 py-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col items-center justify-center flex-shrink-0 min-w-[200px]">
+          <div className="px-5 py-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col items-center justify-center flex-shrink-0 min-w-[240px] sm:min-w-[280px] w-auto max-w-full text-center">
             <span className="text-[10px] font-black tracking-wider text-blue-600 dark:text-cyan-400 uppercase">Multiplier Factor</span>
-            <span className="text-2xl font-black text-slate-900 dark:text-white mt-1">m × 1,000,000 = µm</span>
+            <span className="text-lg sm:text-xl font-black text-slate-900 dark:text-white mt-1">m × 1,000,000 = µm</span>
           </div>
         </section>
 
@@ -2770,16 +2780,16 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
     {
       id: "formula",
       node: (
-        <section className="p-5 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-center gap-6 justify-between" key="formula">
-          <div className="flex flex-col gap-2 max-w-lg">
+        <section className="p-5 rounded-3xl border border-blue-100 dark:border-blue-950/40 bg-blue-50/50 dark:bg-blue-950/10 flex flex-col md:flex-row items-stretch md:items-center gap-6 justify-between" key="formula">
+          <div className="flex-1 min-w-0 flex flex-col gap-2 max-w-2xl">
             <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
               {article.formulaSection.heading}
             </h3>
-            <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
+            <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
               {article.formulaSection.text}
             </p>
           </div>
-          <div className="flex-shrink-0 w-full md:w-auto p-4 sm:px-6 sm:py-5 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-sm md:text-base font-mono font-black select-all">
+          <div className="flex-shrink-0 min-w-[240px] sm:min-w-[280px] w-auto max-w-full p-4 sm:px-5 sm:py-4 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-xs sm:text-sm md:text-base font-mono font-black select-all text-center">
             <MathFormula formula={article.formulaSection.formula} asInline={true} className="text-white dark:text-white" />
           </div>
         </section>

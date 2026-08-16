@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Copy, Check, ShieldCheck, ExternalLink, Calculator, ArrowRight, RefreshCw } from "lucide-react";
+import { Copy, Check, Calculator, ArrowRight, RefreshCw } from "lucide-react";
 import { EngineeringTool } from "../data/calculatorsData";
 import { isIdentityEngineeringTool } from "../utils/identityDetection";
 import IdentityConversionNotice from "./IdentityConversionNotice";
-import MathFormula from "./MathFormula";
 
 interface EngineeringCalculatorWidgetProps {
   tool: EngineeringTool;
@@ -110,21 +109,6 @@ export default function EngineeringCalculatorWidget({
       {/* Widget Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-800">
         <div className="space-y-1.5">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-900/50 flex items-center gap-1">
-              <ShieldCheck className="h-3 w-3 text-blue-500" />
-              Verified Physics Model
-            </span>
-            {disciplineName && (
-              <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900/50">
-                {disciplineName}
-              </span>
-            )}
-            <span className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400">
-              Output: {tool.outputUnit}
-            </span>
-          </div>
-
           <h2 className="font-display text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             {tool.name}
           </h2>
@@ -156,16 +140,6 @@ export default function EngineeringCalculatorWidget({
                 ))}
               </select>
             </div>
-          )}
-
-          {showOpenFullButton && onOpenFull && (
-            <button
-              onClick={onOpenFull}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-all shadow-md hover:shadow-lg cursor-pointer"
-            >
-              <ExternalLink className="h-3.5 w-3.5" />
-              Open Full Page Calculator
-            </button>
           )}
         </div>
       </div>
@@ -237,7 +211,7 @@ export default function EngineeringCalculatorWidget({
             </h3>
 
             {/* Display Card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl space-y-4 border border-slate-800">
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl space-y-4 border border-slate-800 min-w-0 max-w-full">
               <div className="text-xs text-slate-400 font-mono flex items-center justify-between">
                 <span>Calculated Property</span>
                 <span className="text-amber-400 font-bold font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700">
@@ -270,13 +244,6 @@ export default function EngineeringCalculatorWidget({
                     </>
                   )}
                 </button>
-              </div>
-
-              <div className="pt-3 border-t border-slate-800/80 text-xs text-slate-400 font-mono flex items-center justify-between gap-2 flex-wrap">
-                <span>Governing Equation:</span>
-                <span className="text-cyan-400 font-bold font-mono text-sm px-2.5 py-1 rounded bg-slate-950 border border-slate-800">
-                  <MathFormula formula={tool.formula} asInline={true} className="text-cyan-400 dark:text-cyan-400" />
-                </span>
               </div>
             </div>
           </div>
