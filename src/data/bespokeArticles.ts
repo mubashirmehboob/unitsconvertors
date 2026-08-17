@@ -1,5 +1,7 @@
 import { EngineeringArticleData } from "./engineeringArticlesEngine";
 import { mechanicalBespokeArticlesMap } from "./mechanicalBespokeArticles";
+import { physicsBespokeArticlesMap } from "./physicsBespokeArticles";
+import { opticsBespokeArticlesMap } from "./opticsBespokeArticles";
 
 /**
  * Bespoke production-quality technical articles for Engineering Calculators.
@@ -10,6 +12,8 @@ import { mechanicalBespokeArticlesMap } from "./mechanicalBespokeArticles";
 
 export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTools: any[], relevantUnitCategories: any[]) => EngineeringArticleData> = {
   ...mechanicalBespokeArticlesMap,
+  ...physicsBespokeArticlesMap,
+  ...opticsBespokeArticlesMap,
 
   // 1. OHM'S LAW CALCULATOR
   "ohms-law-calculator": (canonicalUrl, relatedTools, relevantUnitCategories) => ({
