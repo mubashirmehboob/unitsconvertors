@@ -3,6 +3,7 @@ export interface CustomArticleData {
   toUnitId: string;
   seoTitle: string;
   metaDescription: string;
+  canonicalUrl?: string;
   h1: string;
   introduction: string[];
   quickAnswer: {

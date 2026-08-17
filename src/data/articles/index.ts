@@ -402,6 +402,28 @@ import { footPerSecondSquaredToGravityAcceleration } from "./footPerSecondSquare
 import { footPerSecondSquaredToGalAcceleration } from "./footPerSecondSquaredToGalAcceleration";
 import { footPerSecondSquaredToMilligalAcceleration } from "./footPerSecondSquaredToMilligalAcceleration";
 
+import { ohmToKilohm } from "./ohmToKilohm";
+import { ohmToMegohm } from "./ohmToMegohm";
+import { ohmToMilliohm } from "./ohmToMilliohm";
+import { ohmToMicroohm } from "./ohmToMicroohm";
+import { ohmToGigaohm } from "./ohmToGigaohm";
+import { kilohmToOhm } from "./kilohmToOhm";
+import { kilohmToMegohm } from "./kilohmToMegohm";
+import { kilohmToMilliohm } from "./kilohmToMilliohm";
+import { kilohmToMicroohm } from "./kilohmToMicroohm";
+import { kilohmToGigaohm } from "./kilohmToGigaohm";
+
+import { coulombToAmpereHour } from "./coulombToAmpereHour";
+import { coulombToMilliampereHour } from "./coulombToMilliampereHour";
+import { coulombToKilocoulomb } from "./coulombToKilocoulomb";
+import { coulombToMegacoulomb } from "./coulombToMegacoulomb";
+import { coulombToFaraday } from "./coulombToFaraday";
+import { ampereHourToCoulomb } from "./ampereHourToCoulomb";
+import { ampereHourToMilliampereHour } from "./ampereHourToMilliampereHour";
+import { ampereHourToKilocoulomb } from "./ampereHourToKilocoulomb";
+import { ampereHourToMegacoulomb } from "./ampereHourToMegacoulomb";
+import { ampereHourToFaraday } from "./ampereHourToFaraday";
+
 export const customLengthArticles: Record<string, CustomArticleData> = {
   "meter-to-mile": meterToMile,
   "meter-to-yard": meterToYard,
@@ -805,7 +827,29 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "foot-per-second-squared-to-meter-per-second-squared": footPerSecondSquaredToMeterPerSecondSquared,
   "foot-per-second-squared-to-gravity-acceleration": footPerSecondSquaredToGravityAcceleration,
   "foot-per-second-squared-to-gal-acceleration": footPerSecondSquaredToGalAcceleration,
-  "foot-per-second-squared-to-milligal-acceleration": footPerSecondSquaredToMilligalAcceleration
+  "foot-per-second-squared-to-milligal-acceleration": footPerSecondSquaredToMilligalAcceleration,
+
+  "ohm-to-kilohm": ohmToKilohm,
+  "ohm-to-megohm": ohmToMegohm,
+  "ohm-to-milliohm": ohmToMilliohm,
+  "ohm-to-microohm": ohmToMicroohm,
+  "ohm-to-gigaohm": ohmToGigaohm,
+  "kilohm-to-ohm": kilohmToOhm,
+  "kilohm-to-megohm": kilohmToMegohm,
+  "kilohm-to-milliohm": kilohmToMilliohm,
+  "kilohm-to-microohm": kilohmToMicroohm,
+  "kilohm-to-gigaohm": kilohmToGigaohm,
+
+  "coulomb-to-ampere-hour": coulombToAmpereHour,
+  "coulomb-to-milliampere-hour": coulombToMilliampereHour,
+  "coulomb-to-kilocoulomb": coulombToKilocoulomb,
+  "coulomb-to-megacoulomb": coulombToMegacoulomb,
+  "coulomb-to-faraday": coulombToFaraday,
+  "ampere-hour-to-coulomb": ampereHourToCoulomb,
+  "ampere-hour-to-milliampere-hour": ampereHourToMilliampereHour,
+  "ampere-hour-to-kilocoulomb": ampereHourToKilocoulomb,
+  "ampere-hour-to-megacoulomb": ampereHourToMegacoulomb,
+  "ampere-hour-to-faraday": ampereHourToFaraday
 };
 
 export interface ArticleMetadata {
@@ -1225,7 +1269,29 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "foot-per-second-squared-to-meter-per-second-squared": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
   "foot-per-second-squared-to-gravity-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.95 },
   "foot-per-second-squared-to-gal-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
-  "foot-per-second-squared-to-milligal-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 }
+  "foot-per-second-squared-to-milligal-acceleration": { seoReady: true, publishedAt: "2026-08-15", updatedAt: "2026-08-15", priority: 0.9 },
+
+  "ohm-to-kilohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.95 },
+  "ohm-to-megohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.95 },
+  "ohm-to-milliohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.9 },
+  "ohm-to-microohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.9 },
+  "ohm-to-gigaohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.9 },
+  "kilohm-to-ohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.95 },
+  "kilohm-to-megohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.95 },
+  "kilohm-to-milliohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.9 },
+  "kilohm-to-microohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.9 },
+  "kilohm-to-gigaohm": { seoReady: true, publishedAt: "2026-08-16", updatedAt: "2026-08-16", priority: 0.9 },
+
+  "coulomb-to-ampere-hour": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.95 },
+  "coulomb-to-milliampere-hour": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.95 },
+  "coulomb-to-kilocoulomb": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
+  "coulomb-to-megacoulomb": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
+  "coulomb-to-faraday": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
+  "ampere-hour-to-coulomb": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.95 },
+  "ampere-hour-to-milliampere-hour": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.95 },
+  "ampere-hour-to-kilocoulomb": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
+  "ampere-hour-to-megacoulomb": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
+  "ampere-hour-to-faraday": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(
