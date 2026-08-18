@@ -98,6 +98,17 @@ import { gramToMetricTon } from "./gramToMetricTon";
 import { gramToUsTon } from "./gramToUsTon";
 import { gramToImperialTon } from "./gramToImperialTon";
 import { gramToCarat } from "./gramToCarat";
+import { gramToGrain } from "./gramToGrain";
+import { gramToSlug } from "./gramToSlug";
+import { gramToTroyOunce } from "./gramToTroyOunce";
+import { kilogramToGram } from "./kilogramToGram";
+import { kilogramToMilligram } from "./kilogramToMilligram";
+import { kilogramToMicrogram } from "./kilogramToMicrogram";
+import { kilogramToPound } from "./kilogramToPound";
+import { kilogramToOunce } from "./kilogramToOunce";
+import { kilogramToStone } from "./kilogramToStone";
+import { kilogramToMetricTon } from "./kilogramToMetricTon";
+import { kilogramToUsTon } from "./kilogramToUsTon";
 
 import { squareMeterToSquareKilometer } from "./squareMeterToSquareKilometer";
 import { squareMeterToSquareCentimeter } from "./squareMeterToSquareCentimeter";
@@ -510,6 +521,17 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "gram-to-us-ton": gramToUsTon,
   "gram-to-imperial-ton": gramToImperialTon,
   "gram-to-carat": gramToCarat,
+  "gram-to-grain": gramToGrain,
+  "gram-to-slug": gramToSlug,
+  "gram-to-troy-ounce": gramToTroyOunce,
+  "kilogram-to-gram": kilogramToGram,
+  "kilogram-to-milligram": kilogramToMilligram,
+  "kilogram-to-microgram": kilogramToMicrogram,
+  "kilogram-to-pound": kilogramToPound,
+  "kilogram-to-ounce": kilogramToOunce,
+  "kilogram-to-stone": kilogramToStone,
+  "kilogram-to-metric-ton": kilogramToMetricTon,
+  "kilogram-to-us-ton": kilogramToUsTon,
 
   "square-meter-to-square-kilometer": squareMeterToSquareKilometer,
   "square-meter-to-square-centimeter": squareMeterToSquareCentimeter,

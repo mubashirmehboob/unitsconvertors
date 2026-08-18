@@ -2,6 +2,7 @@ import { EngineeringArticleData } from "./engineeringArticlesEngine";
 import { mechanicalBespokeArticlesMap } from "./mechanicalBespokeArticles";
 import { physicsBespokeArticlesMap } from "./physicsBespokeArticles";
 import { opticsBespokeArticlesMap } from "./opticsBespokeArticles";
+import { thermodynamicsBespokeArticlesMap } from "./thermodynamicsBespokeArticles";
 
 /**
  * Bespoke production-quality technical articles for Engineering Calculators.
@@ -14,6 +15,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
   ...mechanicalBespokeArticlesMap,
   ...physicsBespokeArticlesMap,
   ...opticsBespokeArticlesMap,
+  ...thermodynamicsBespokeArticlesMap,
 
   // 1. OHM'S LAW CALCULATOR
   "ohms-law-calculator": (canonicalUrl, relatedTools, relevantUnitCategories) => ({
