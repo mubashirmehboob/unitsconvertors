@@ -120,6 +120,18 @@ import { squareMeterToSquareInch } from "./squareMeterToSquareInch";
 import { squareMeterToAcre } from "./squareMeterToAcre";
 import { squareMeterToHectare } from "./squareMeterToHectare";
 import { squareMeterToBigha } from "./squareMeterToBigha";
+import { squareMeterToKanal } from "./squareMeterToKanal";
+
+import { squareKilometerToSquareMeter } from "./squareKilometerToSquareMeter";
+import { squareKilometerToSquareCentimeter } from "./squareKilometerToSquareCentimeter";
+import { squareKilometerToSquareMillimeter } from "./squareKilometerToSquareMillimeter";
+import { squareKilometerToSquareMile } from "./squareKilometerToSquareMile";
+import { squareKilometerToSquareYard } from "./squareKilometerToSquareYard";
+import { squareKilometerToSquareFoot } from "./squareKilometerToSquareFoot";
+import { squareKilometerToSquareInch } from "./squareKilometerToSquareInch";
+import { squareKilometerToAcre } from "./squareKilometerToAcre";
+import { squareKilometerToHectare } from "./squareKilometerToHectare";
+import { squareKilometerToBigha } from "./squareKilometerToBigha";
 
 import { literToMilliliter } from "./literToMilliliter";
 import { literToCubicMeter } from "./literToCubicMeter";
@@ -543,6 +555,18 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "square-meter-to-acre": squareMeterToAcre,
   "square-meter-to-hectare": squareMeterToHectare,
   "square-meter-to-bigha": squareMeterToBigha,
+  "square-meter-to-kanal": squareMeterToKanal,
+
+  "square-kilometer-to-square-meter": squareKilometerToSquareMeter,
+  "square-kilometer-to-square-centimeter": squareKilometerToSquareCentimeter,
+  "square-kilometer-to-square-millimeter": squareKilometerToSquareMillimeter,
+  "square-kilometer-to-square-mile": squareKilometerToSquareMile,
+  "square-kilometer-to-square-yard": squareKilometerToSquareYard,
+  "square-kilometer-to-square-foot": squareKilometerToSquareFoot,
+  "square-kilometer-to-square-inch": squareKilometerToSquareInch,
+  "square-kilometer-to-acre": squareKilometerToAcre,
+  "square-kilometer-to-hectare": squareKilometerToHectare,
+  "square-kilometer-to-bigha": squareKilometerToBigha,
 
   "liter-to-milliliter": literToMilliliter,
   "liter-to-cubic-meter": literToCubicMeter,
@@ -984,6 +1008,18 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "square-meter-to-acre": { seoReady: true, publishedAt: "2026-07-20", updatedAt: "2026-07-20", priority: 0.8 },
   "square-meter-to-hectare": { seoReady: true, publishedAt: "2026-07-20", updatedAt: "2026-07-20", priority: 0.8 },
   "square-meter-to-bigha": { seoReady: true, publishedAt: "2026-07-20", updatedAt: "2026-07-20", priority: 0.8 },
+  "square-meter-to-kanal": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
+
+  "square-kilometer-to-square-meter": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
+  "square-kilometer-to-square-centimeter": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.9 },
+  "square-kilometer-to-square-millimeter": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.9 },
+  "square-kilometer-to-square-mile": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
+  "square-kilometer-to-square-yard": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.9 },
+  "square-kilometer-to-square-foot": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
+  "square-kilometer-to-square-inch": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.9 },
+  "square-kilometer-to-acre": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
+  "square-kilometer-to-hectare": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
+  "square-kilometer-to-bigha": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
 
   "liter-to-milliliter": { seoReady: true, publishedAt: "2026-07-22", updatedAt: "2026-07-22", priority: 0.8 },
   "liter-to-cubic-meter": { seoReady: true, publishedAt: "2026-07-22", updatedAt: "2026-07-22", priority: 0.8 },
