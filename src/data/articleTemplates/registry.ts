@@ -1,6 +1,8 @@
 import { CalculatorCategoryArticleTemplate } from "./types";
 import { electricalArticleTemplate } from "./electricalTemplate";
 import { mechanicalArticleTemplate } from "./mechanicalTemplate";
+import { chemistryArticleTemplate } from "./chemistryTemplate";
+import { fluidMechanicsArticleTemplate } from "./fluidMechanicsTemplate";
 
 /**
  * Category Template Registry
@@ -26,6 +28,18 @@ categoryTemplateRegistry["electronics-calculators"] = electricalArticleTemplate;
 categoryTemplateRegistry["electronics-calculators-calc"] = electricalArticleTemplate;
 
 registerCategoryTemplate(mechanicalArticleTemplate);
+
+// Register chemistry template
+registerCategoryTemplate(chemistryArticleTemplate);
+categoryTemplateRegistry["chemistry-calculators"] = chemistryArticleTemplate;
+categoryTemplateRegistry["chemistry-calculators-calc"] = chemistryArticleTemplate;
+
+// Register fluid mechanics template
+registerCategoryTemplate(fluidMechanicsArticleTemplate);
+categoryTemplateRegistry["fluid-mechanics-calculators"] = fluidMechanicsArticleTemplate;
+categoryTemplateRegistry["fluid-mechanics-calculators-calc"] = fluidMechanicsArticleTemplate;
+categoryTemplateRegistry["fluid-calc"] = fluidMechanicsArticleTemplate;
+categoryTemplateRegistry["fluid-calculators"] = fluidMechanicsArticleTemplate;
 
 /**
  * Retrieve a registered category article template by category/discipline ID
