@@ -13,7 +13,7 @@ export const millisecondToMonth: CustomArticleData = {
   quickAnswer: {
     text: "To convert milliseconds to average calendar months, divide the total number of milliseconds by 2,629,746,000. For example, 7,889,238,000 milliseconds equals exactly 3.0 average months (one quarter year).",
     formulaDisplay: "months = ms / 2,629,746,000",
-    subtext: "1 mean Gregorian month (30.436875 days) = 2,629,746,000 ms. 1 standard 30-day month = 2,592,000,000 ms."
+    subtext: "1 mean Gregorian month (30.436875 days) = 2,629,746,000 ms.\n1 standard 30-day month = 2,592,000,000 ms."
   },
   aboutSourceUnit: {
     title: "Understanding the Millisecond (ms)",

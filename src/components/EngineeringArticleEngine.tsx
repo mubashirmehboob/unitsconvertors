@@ -391,7 +391,7 @@ export default function EngineeringArticleEngine({
         </div>
 
         <p className="text-xs text-slate-500 dark:text-slate-400">
-          The following publications provide relevant optical, photometric, telecommunications, and measurement reference information related to this calculator. They are provided for technical reference and do not constitute design certification.
+          The following standards and technical references provide background for physical definitions, design criteria, and measurement specifications related to this calculator. They are provided for technical reference and do not constitute design certification.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

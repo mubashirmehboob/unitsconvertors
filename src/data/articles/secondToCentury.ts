@@ -13,7 +13,7 @@ export const secondToCentury: CustomArticleData = {
   quickAnswer: {
     text: "To convert seconds to standard calendar centuries, divide the total number of seconds by 3,153,600,000. For example, 6,307,200,000 seconds equals exactly 2.0 centuries.",
     formulaDisplay: "centuries = s / 3,153,600,000",
-    subtext: "1 common calendar century (100 non-leap years) = 3,153,600,000 seconds. An astronomical Julian century (36,525 days) = 3,155,760,000 seconds."
+    subtext: "1 common calendar century (100 non-leap years) = 3,153,600,000 seconds.\nAn astronomical Julian century (36,525 days) = 3,155,760,000 seconds."
   },
   aboutSourceUnit: {
     title: "Understanding the Second (s)",

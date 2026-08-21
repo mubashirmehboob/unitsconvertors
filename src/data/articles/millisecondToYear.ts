@@ -13,7 +13,7 @@ export const millisecondToYear: CustomArticleData = {
   quickAnswer: {
     text: "To convert milliseconds to standard common years, divide the total number of milliseconds by 31,536,000,000. For example, 63,072,000,000 milliseconds equals exactly 2.0 common years.",
     formulaDisplay: "yr = ms / 31,536,000,000",
-    subtext: "1 common year (365 days) = 31,536,000,000 ms. 1 leap year (366 days) = 31,622,400,000 ms. 1 Julian year (365.25 days) = 31,557,600,000 ms."
+    subtext: "1 common year (365 days) = 31,536,000,000 ms.\n1 leap year (366 days) = 31,622,400,000 ms.\n1 Julian year (365.25 days) = 31,557,600,000 ms."
   },
   aboutSourceUnit: {
     title: "Understanding the Millisecond (ms)",

@@ -10,6 +10,82 @@ import MathFormula from "./MathFormula";
 
 // --- REUSABLE SUB-COMPONENTS FOR TOPICAL SEO & INTERNAL LINKING ---
 
+function splitSentenceIntoTwoLines(line: string): string[] {
+  const trimmed = line.trim();
+  if (!trimmed) return [];
+  
+  const words = trimmed.split(/\s+/);
+  if (words.length <= 10) {
+    return [trimmed];
+  }
+
+  // If words > 10, split into 2 lines
+  // Look for natural sentence or clause break boundaries
+  const patterns: { pat: string; includePunct: boolean; weight: number }[] = [
+    { pat: ". ", includePunct: true, weight: 0.4 },
+    { pat: ", or ", includePunct: true, weight: 0.5 },
+    { pat: ", and ", includePunct: true, weight: 0.5 },
+    { pat: ", while ", includePunct: true, weight: 0.6 },
+    { pat: ", but ", includePunct: true, weight: 0.6 },
+    { pat: "; ", includePunct: true, weight: 0.6 },
+    { pat: ", ", includePunct: true, weight: 0.8 },
+    { pat: " or ", includePunct: false, weight: 1.0 },
+    { pat: " and ", includePunct: false, weight: 1.0 },
+    { pat: " where ", includePunct: false, weight: 1.0 }
+  ];
+
+  const midChar = trimmed.length / 2;
+  let bestIndex = -1;
+  let minScore = Infinity;
+
+  for (const { pat, includePunct, weight } of patterns) {
+    let idx = trimmed.indexOf(pat);
+    while (idx !== -1) {
+      const splitAt = includePunct ? (idx + 1) : idx;
+      const part1 = trimmed.substring(0, splitAt).trim();
+      const part2 = trimmed.substring(splitAt).trim();
+      const w1 = part1.split(/\s+/).length;
+      const w2 = part2.split(/\s+/).length;
+
+      // Both parts should have at least 3 words to prevent awkward dangling words
+      if (w1 >= 3 && w2 >= 3) {
+        const dist = Math.abs(idx - midChar);
+        const score = dist * weight;
+        if (score < minScore) {
+          minScore = score;
+          bestIndex = splitAt;
+        }
+      }
+      idx = trimmed.indexOf(pat, idx + 1);
+    }
+  }
+
+  if (bestIndex !== -1) {
+    const part1 = trimmed.substring(0, bestIndex).trim();
+    const part2 = trimmed.substring(bestIndex).trim();
+    return [part1, part2];
+  }
+
+  // Fallback: split roughly at the middle word
+  const midWordIndex = Math.ceil(words.length / 2);
+  const part1 = words.slice(0, midWordIndex).join(" ");
+  const part2 = words.slice(midWordIndex).join(" ");
+  return [part1, part2];
+}
+
+export function formatSubtextLines(subtext?: string): string[] {
+  if (!subtext) return [];
+  const rawParagraphs = subtext.split("\n").map(p => p.trim()).filter(Boolean);
+  const result: string[] = [];
+
+  for (const para of rawParagraphs) {
+    const lines = splitSentenceIntoTwoLines(para);
+    result.push(...lines);
+  }
+
+  return result;
+}
+
 interface RelatedConvertersCardsProps {
   items: Array<{ label: string; from: string; to: string }>;
   category: Category;
@@ -892,7 +968,11 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               <div className="text-sm sm:text-base font-mono font-black select-all mt-1.5 text-white max-w-full overflow-x-auto whitespace-nowrap px-1">
                 <MathFormula formula={customArticle.quickAnswer.formulaDisplay} asInline={true} className="text-white dark:text-white" />
               </div>
-              <span className="text-xs opacity-90 mt-2 leading-relaxed">{customArticle.quickAnswer.subtext}</span>
+              <div className="text-xs opacity-90 mt-2 leading-relaxed flex flex-col gap-1 text-center whitespace-pre-line">
+                {formatSubtextLines(customArticle.quickAnswer.subtext).map((line, lIdx) => (
+                  <span key={lIdx} className="block">{line}</span>
+                ))}
+              </div>
             </div>
           </section>
         )}

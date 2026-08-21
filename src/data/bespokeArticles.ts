@@ -7,6 +7,8 @@ import { chemistryBespokeArticlesPart1 } from "./chemistryBespokeArticles1";
 import { chemistryBespokeArticlesPart2 } from "./chemistryBespokeArticles2";
 import { fluidMechanicsBespokeArticlesPart1 } from "./fluidMechanicsBespokeArticles1";
 import { fluidMechanicsBespokeArticlesPart2 } from "./fluidMechanicsBespokeArticles2";
+import { electronicsBespokeArticlesPart1 } from "./electronicsBespokeArticles1";
+import { electronicsBespokeArticlesPart2 } from "./electronicsBespokeArticles2";
 
 /**
  * Bespoke production-quality technical articles for Engineering Calculators.
@@ -24,6 +26,8 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
   ...chemistryBespokeArticlesPart2,
   ...fluidMechanicsBespokeArticlesPart1,
   ...fluidMechanicsBespokeArticlesPart2,
+  ...electronicsBespokeArticlesPart1,
+  ...electronicsBespokeArticlesPart2,
 
   // 1. OHM'S LAW CALCULATOR
   "ohms-law-calculator": (canonicalUrl, relatedTools, relevantUnitCategories) => ({

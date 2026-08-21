@@ -215,6 +215,17 @@ import { kilometerPerHourToMeterPerSecond } from "./kilometerPerHourToMeterPerSe
 import { kilometerPerHourToMilePerHour } from "./kilometerPerHourToMilePerHour";
 import { kilometerPerHourToKnot } from "./kilometerPerHourToKnot";
 import { kilometerPerHourToMach } from "./kilometerPerHourToMach";
+import { kilometerPerHourToSpeedOfLight } from "./kilometerPerHourToSpeedOfLight";
+import { kilometerPerHourToFootPerSecond } from "./kilometerPerHourToFootPerSecond";
+import { milePerHourToMeterPerSecond } from "./milePerHourToMeterPerSecond";
+import { milePerHourToKilometerPerHour } from "./milePerHourToKilometerPerHour";
+import { milePerHourToKnot } from "./milePerHourToKnot";
+import { milePerHourToMach } from "./milePerHourToMach";
+import { milePerHourToSpeedOfLight } from "./milePerHourToSpeedOfLight";
+import { milePerHourToFootPerSecond } from "./milePerHourToFootPerSecond";
+import { knotToMeterPerSecond } from "./knotToMeterPerSecond";
+import { knotToKilometerPerHour } from "./knotToKilometerPerHour";
+import { knotToMilePerHour } from "./knotToMilePerHour";
 
 import { pascalToKilopascal } from "./pascalToKilopascal";
 import { pascalToMegapascal } from "./pascalToMegapascal";
@@ -226,6 +237,17 @@ import { pascalToTorr } from "./pascalToTorr";
 import { pascalToMmhg } from "./pascalToMmhg";
 import { kilopascalToPascal } from "./kilopascalToPascal";
 import { kilopascalToMegapascal } from "./kilopascalToMegapascal";
+import { kilopascalToBar } from "./kilopascalToBar";
+import { kilopascalToMillibar } from "./kilopascalToMillibar";
+import { kilopascalToPsi } from "./kilopascalToPsi";
+import { kilopascalToAtmosphere } from "./kilopascalToAtmosphere";
+import { kilopascalToTorr } from "./kilopascalToTorr";
+import { kilopascalToMmhg } from "./kilopascalToMmhg";
+import { megapascalToPascal } from "./megapascalToPascal";
+import { megapascalToKilopascal } from "./megapascalToKilopascal";
+import { megapascalToBar } from "./megapascalToBar";
+import { megapascalToMillibar } from "./megapascalToMillibar";
+import { megapascalToPsi } from "./megapascalToPsi";
 
 import { jouleToKilojoule } from "./jouleToKilojoule";
 import { jouleToCalorie } from "./jouleToCalorie";
@@ -680,6 +702,17 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "kilometer-per-hour-to-mile-per-hour": kilometerPerHourToMilePerHour,
   "kilometer-per-hour-to-knot": kilometerPerHourToKnot,
   "kilometer-per-hour-to-mach": kilometerPerHourToMach,
+  "kilometer-per-hour-to-speed-of-light": kilometerPerHourToSpeedOfLight,
+  "kilometer-per-hour-to-foot-per-second": kilometerPerHourToFootPerSecond,
+  "mile-per-hour-to-meter-per-second": milePerHourToMeterPerSecond,
+  "mile-per-hour-to-kilometer-per-hour": milePerHourToKilometerPerHour,
+  "mile-per-hour-to-knot": milePerHourToKnot,
+  "mile-per-hour-to-mach": milePerHourToMach,
+  "mile-per-hour-to-speed-of-light": milePerHourToSpeedOfLight,
+  "mile-per-hour-to-foot-per-second": milePerHourToFootPerSecond,
+  "knot-to-meter-per-second": knotToMeterPerSecond,
+  "knot-to-kilometer-per-hour": knotToKilometerPerHour,
+  "knot-to-mile-per-hour": knotToMilePerHour,
 
   "pascal-to-kilopascal": pascalToKilopascal,
   "pascal-to-megapascal": pascalToMegapascal,
@@ -691,6 +724,17 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "pascal-to-mmhg": pascalToMmhg,
   "kilopascal-to-pascal": kilopascalToPascal,
   "kilopascal-to-megapascal": kilopascalToMegapascal,
+  "kilopascal-to-bar": kilopascalToBar,
+  "kilopascal-to-millibar": kilopascalToMillibar,
+  "kilopascal-to-psi": kilopascalToPsi,
+  "kilopascal-to-atmosphere": kilopascalToAtmosphere,
+  "kilopascal-to-torr": kilopascalToTorr,
+  "kilopascal-to-mmhg": kilopascalToMmhg,
+  "megapascal-to-pascal": megapascalToPascal,
+  "megapascal-to-kilopascal": megapascalToKilopascal,
+  "megapascal-to-bar": megapascalToBar,
+  "megapascal-to-millibar": megapascalToMillibar,
+  "megapascal-to-psi": megapascalToPsi,
 
   "joule-to-kilojoule": jouleToKilojoule,
   "joule-to-calorie": jouleToCalorie,
@@ -1136,6 +1180,17 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "kilometer-per-hour-to-mile-per-hour": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.9 },
   "kilometer-per-hour-to-knot": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.9 },
   "kilometer-per-hour-to-mach": { seoReady: true, publishedAt: "2026-07-23", updatedAt: "2026-07-23", priority: 0.8 },
+  "kilometer-per-hour-to-speed-of-light": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.85 },
+  "kilometer-per-hour-to-foot-per-second": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.9 },
+  "mile-per-hour-to-meter-per-second": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "mile-per-hour-to-kilometer-per-hour": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "mile-per-hour-to-knot": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "mile-per-hour-to-mach": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.9 },
+  "mile-per-hour-to-speed-of-light": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.85 },
+  "mile-per-hour-to-foot-per-second": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "knot-to-meter-per-second": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "knot-to-kilometer-per-hour": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "knot-to-mile-per-hour": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
 
   "pascal-to-kilopascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
   "pascal-to-megapascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 },
@@ -1147,6 +1202,17 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "pascal-to-mmhg": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
   "kilopascal-to-pascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
   "kilopascal-to-megapascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 },
+  "kilopascal-to-bar": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "kilopascal-to-millibar": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.9 },
+  "kilopascal-to-psi": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "kilopascal-to-atmosphere": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "kilopascal-to-torr": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.9 },
+  "kilopascal-to-mmhg": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "megapascal-to-pascal": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "megapascal-to-kilopascal": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "megapascal-to-bar": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "megapascal-to-millibar": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.9 },
+  "megapascal-to-psi": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
 
   "joule-to-kilojoule": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
   "joule-to-calorie": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
