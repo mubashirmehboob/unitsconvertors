@@ -294,47 +294,87 @@ export const categoriesData: Category[] = [
       // Normalizing to MPG (US)
       let mpgUs = value;
       if (from === "mpg-us") mpgUs = value;
-      else if (from === "mpg-uk") mpgUs = value * 0.832674184;
-      else if (from === "km-per-liter") mpgUs = value * 2.35214583;
-      else if (from === "liters-per-100km") mpgUs = value === 0 ? 0 : 235.214583 / value;
-      else if (from === "liters-per-km") mpgUs = value === 0 ? 0 : 2.35214583 / value;
+      else if (from === "mpg-uk") mpgUs = value * (3.785411784 / 4.54609);
+      else if (from === "km-per-liter") mpgUs = value * (3.785411784 / 1.609344);
+      else if (from === "liters-per-100km") mpgUs = value === 0 ? 0 : (100 * 3.785411784 / 1.609344) / value;
+      else if (from === "liters-per-km") mpgUs = value === 0 ? 0 : (3.785411784 / 1.609344) / value;
+      else if (from === "miles-per-liter") mpgUs = value * 3.785411784;
+      else if (from === "km-per-gallon-us") mpgUs = value / 1.609344;
+      else if (from === "km-per-gallon-imperial") mpgUs = (value / 1.609344) * (3.785411784 / 4.54609);
+      else if (from === "liters-per-100miles") mpgUs = value === 0 ? 0 : (100 * 3.785411784) / value;
 
       // Converting from MPG (US) to target
       if (to === "mpg-us") return mpgUs;
-      if (to === "mpg-uk") return mpgUs / 0.832674184;
-      if (to === "km-per-liter") return mpgUs / 2.35214583;
-      if (to === "liters-per-100km") return mpgUs === 0 ? 0 : 235.214583 / mpgUs;
-      if (to === "liters-per-km") return mpgUs === 0 ? 0 : 2.35214583 / mpgUs;
+      if (to === "mpg-uk") return mpgUs / (3.785411784 / 4.54609);
+      if (to === "km-per-liter") return mpgUs / (3.785411784 / 1.609344);
+      if (to === "liters-per-100km") return mpgUs === 0 ? 0 : (100 * 3.785411784 / 1.609344) / mpgUs;
+      if (to === "liters-per-km") return mpgUs === 0 ? 0 : (3.785411784 / 1.609344) / mpgUs;
+      if (to === "miles-per-liter") return mpgUs / 3.785411784;
+      if (to === "km-per-gallon-us") return mpgUs * 1.609344;
+      if (to === "km-per-gallon-imperial") return mpgUs * 1.609344 * (4.54609 / 3.785411784);
+      if (to === "liters-per-100miles") return mpgUs === 0 ? 0 : (100 * 3.785411784) / mpgUs;
       return mpgUs;
     },
     customExplain: (value: number, from: any, to: any) => {
       const steps = [];
-      steps.push(`Start with the vehicle fuel economy: ${value} ${from.symbol}`);
+      steps.push(`Start with the vehicle fuel measurement: ${value} ${from.symbol || from.name}`);
       
       let mpgUs = value;
       if (from.id !== "mpg-us") {
         if (from.id === "liters-per-100km") {
-          mpgUs = value === 0 ? 0 : 235.214583 / value;
-          steps.push(`Convert L/100km to MPG (US) using inverse formula: 235.2146 / ${value} = ${mpgUs.toFixed(4)} MPG`);
+          mpgUs = value === 0 ? 0 : (100 * 3.785411784 / 1.609344) / value;
+          steps.push(`Convert L/100km to MPG (US) using inverse formula: 235.2146 / ${value} = ${mpgUs.toFixed(4)} MPG (US)`);
+        } else if (from.id === "liters-per-km") {
+          mpgUs = value === 0 ? 0 : (3.785411784 / 1.609344) / value;
+          steps.push(`Convert L/km to MPG (US) using inverse formula: 2.3521 / ${value} = ${mpgUs.toFixed(4)} MPG (US)`);
         } else if (from.id === "km-per-liter") {
-          mpgUs = value * 2.35214583;
-          steps.push(`Convert km/L to MPG (US): ${value} * 2.3521 = ${mpgUs.toFixed(4)} MPG`);
+          mpgUs = value * (3.785411784 / 1.609344);
+          steps.push(`Convert km/L to MPG (US): ${value} * 2.352146 = ${mpgUs.toFixed(4)} MPG (US)`);
         } else if (from.id === "mpg-uk") {
-          mpgUs = value * 0.832674;
-          steps.push(`Convert MPG (UK) to MPG (US): ${value} * 0.8327 = ${mpgUs.toFixed(4)} MPG`);
+          mpgUs = value * (3.785411784 / 4.54609);
+          steps.push(`Convert MPG (UK) to MPG (US): ${value} * 0.832674 = ${mpgUs.toFixed(4)} MPG (US)`);
+        } else if (from.id === "miles-per-liter") {
+          mpgUs = value * 3.785411784;
+          steps.push(`Convert Miles per Liter to MPG (US): ${value} * 3.785412 = ${mpgUs.toFixed(4)} MPG (US)`);
+        } else if (from.id === "km-per-gallon-us") {
+          mpgUs = value / 1.609344;
+          steps.push(`Convert km/gal (US) to MPG (US): ${value} / 1.609344 = ${mpgUs.toFixed(4)} MPG (US)`);
+        } else if (from.id === "km-per-gallon-imperial") {
+          mpgUs = (value / 1.609344) * (3.785411784 / 4.54609);
+          steps.push(`Convert km/gal (Imp) to MPG (US): (${value} / 1.609344) * 0.832674 = ${mpgUs.toFixed(4)} MPG (US)`);
+        } else if (from.id === "liters-per-100miles") {
+          mpgUs = value === 0 ? 0 : (100 * 3.785411784) / value;
+          steps.push(`Convert L/100mi to MPG (US) using inverse formula: 378.5412 / ${value} = ${mpgUs.toFixed(4)} MPG (US)`);
         }
       }
 
       if (to.id !== from.id) {
-        if (to.id === "liters-per-100km") {
-          const l100 = mpgUs === 0 ? 0 : 235.214583 / mpgUs;
+        if (to.id === "mpg-us") {
+          steps.push(`Result in MPG (US): ${mpgUs.toFixed(4)} mpg (US)`);
+        } else if (to.id === "liters-per-100km") {
+          const l100 = mpgUs === 0 ? 0 : (100 * 3.785411784 / 1.609344) / mpgUs;
           steps.push(`Convert MPG (US) to L/100km using inverse formula: 235.2146 / ${mpgUs.toFixed(4)} = ${l100.toFixed(4)} L/100km`);
+        } else if (to.id === "liters-per-km") {
+          const lkm = mpgUs === 0 ? 0 : (3.785411784 / 1.609344) / mpgUs;
+          steps.push(`Convert MPG (US) to L/km using inverse formula: 2.3521 / ${mpgUs.toFixed(4)} = ${lkm.toFixed(4)} L/km`);
         } else if (to.id === "km-per-liter") {
-          const kml = mpgUs / 2.35214583;
-          steps.push(`Convert MPG (US) to km/L: ${mpgUs.toFixed(4)} / 2.3521 = ${kml.toFixed(4)} km/L`);
+          const kml = mpgUs / (3.785411784 / 1.609344);
+          steps.push(`Convert MPG (US) to km/L: ${mpgUs.toFixed(4)} / 2.352146 = ${kml.toFixed(4)} km/L`);
         } else if (to.id === "mpg-uk") {
-          const mpgUk = mpgUs / 0.832674184;
-          steps.push(`Convert MPG (US) to MPG (UK): ${mpgUs.toFixed(4)} / 0.8327 = ${mpgUk.toFixed(4)} MPG (UK)`);
+          const mpgUk = mpgUs / (3.785411784 / 4.54609);
+          steps.push(`Convert MPG (US) to MPG (UK): ${mpgUs.toFixed(4)} / 0.832674 = ${mpgUk.toFixed(4)} mpg (UK)`);
+        } else if (to.id === "miles-per-liter") {
+          const mpl = mpgUs / 3.785411784;
+          steps.push(`Convert MPG (US) to Miles per Liter: ${mpgUs.toFixed(4)} / 3.785412 = ${mpl.toFixed(4)} mi/L`);
+        } else if (to.id === "km-per-gallon-us") {
+          const kmgUs = mpgUs * 1.609344;
+          steps.push(`Convert MPG (US) to km/gal (US): ${mpgUs.toFixed(4)} * 1.609344 = ${kmgUs.toFixed(4)} km/gal (US)`);
+        } else if (to.id === "km-per-gallon-imperial") {
+          const kmgImp = mpgUs * 1.609344 * (4.54609 / 3.785411784);
+          steps.push(`Convert MPG (US) to km/gal (Imp): ${mpgUs.toFixed(4)} * 1.932739 = ${kmgImp.toFixed(4)} km/gal (Imp)`);
+        } else if (to.id === "liters-per-100miles") {
+          const l100m = mpgUs === 0 ? 0 : (100 * 3.785411784) / mpgUs;
+          steps.push(`Convert MPG (US) to L/100mi using inverse formula: 378.5412 / ${mpgUs.toFixed(4)} = ${l100m.toFixed(4)} L/100mi`);
         }
       }
       return steps;
@@ -344,7 +384,11 @@ export const categoriesData: Category[] = [
       { id: "mpg-uk", name: "MPG (UK)", plural: "Miles per Gallon (UK)", symbol: "mpg (UK)", factor: 1 },
       { id: "km-per-liter", name: "Kilometers per Liter", plural: "Kilometers per Liter", symbol: "km/L", factor: 1 },
       { id: "liters-per-100km", name: "Liters per 100km", plural: "Liters per 100 Kilometers", symbol: "L/100km", factor: 1 },
-      { id: "liters-per-km", name: "Liters per Kilometer", plural: "Liters per Kilometer", symbol: "L/km", factor: 1 }
+      { id: "liters-per-km", name: "Liters per Kilometer", plural: "Liters per Kilometer", symbol: "L/km", factor: 1 },
+      { id: "miles-per-liter", name: "Miles per Liter", plural: "Miles per Liter", symbol: "mi/L", factor: 1 },
+      { id: "km-per-gallon-us", name: "Kilometers per Gallon (US)", plural: "Kilometers per Gallon (US)", symbol: "km/gal (US)", factor: 1 },
+      { id: "km-per-gallon-imperial", name: "Kilometers per Gallon (Imperial)", plural: "Kilometers per Gallon (Imperial)", symbol: "km/gal (Imp)", factor: 1 },
+      { id: "liters-per-100miles", name: "Liters per 100 Miles", plural: "Liters per 100 Miles", symbol: "L/100mi", factor: 1 }
     ]
   },
   {

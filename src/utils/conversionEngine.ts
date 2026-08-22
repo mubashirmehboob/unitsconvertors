@@ -61,6 +61,84 @@ export function isValidPair(catId: string, fromUnitId: string, toUnitId: string)
     }
   }
 
+  if (catId === "fuel-economy") {
+    const allowedFuelEconomyPairs = new Set([
+      // Original 20 converters
+      "mpg-us->mpg-uk",
+      "mpg-us->km-per-liter",
+      "mpg-us->liters-per-100km",
+      "mpg-us->liters-per-km",
+      "mpg-uk->mpg-us",
+      "mpg-uk->km-per-liter",
+      "mpg-uk->liters-per-100km",
+      "mpg-uk->liters-per-km",
+      "km-per-liter->mpg-us",
+      "km-per-liter->mpg-uk",
+      "km-per-liter->liters-per-100km",
+      "km-per-liter->liters-per-km",
+      "liters-per-100km->mpg-us",
+      "liters-per-100km->mpg-uk",
+      "liters-per-100km->km-per-liter",
+      "liters-per-100km->liters-per-km",
+      "liters-per-km->mpg-us",
+      "liters-per-km->mpg-uk",
+      "liters-per-km->km-per-liter",
+      "liters-per-km->liters-per-100km",
+
+      // 32 new requested converters
+      // 1. Miles per Liter (8)
+      "miles-per-liter->mpg-us",
+      "mpg-us->miles-per-liter",
+      "miles-per-liter->mpg-uk",
+      "mpg-uk->miles-per-liter",
+      "miles-per-liter->km-per-liter",
+      "km-per-liter->miles-per-liter",
+      "miles-per-liter->liters-per-100km",
+      "liters-per-100km->miles-per-liter",
+
+      // 2. Kilometers per Gallon (US) (8)
+      "km-per-gallon-us->mpg-us",
+      "mpg-us->km-per-gallon-us",
+      "km-per-gallon-us->mpg-uk",
+      "mpg-uk->km-per-gallon-us",
+      "km-per-gallon-us->km-per-liter",
+      "km-per-liter->km-per-gallon-us",
+      "km-per-gallon-us->liters-per-100km",
+      "liters-per-100km->km-per-gallon-us",
+
+      // 3. Kilometers per Gallon (Imperial) (8)
+      "km-per-gallon-imperial->mpg-us",
+      "mpg-us->km-per-gallon-imperial",
+      "km-per-gallon-imperial->mpg-uk",
+      "mpg-uk->km-per-gallon-imperial",
+      "km-per-gallon-imperial->km-per-liter",
+      "km-per-liter->km-per-gallon-imperial",
+      "km-per-gallon-imperial->liters-per-100km",
+      "liters-per-100km->km-per-gallon-imperial",
+
+      // 4. Liters per 100 Miles (8)
+      "liters-per-100miles->mpg-us",
+      "mpg-us->liters-per-100miles",
+      "liters-per-100miles->mpg-uk",
+      "mpg-uk->liters-per-100miles",
+      "liters-per-100miles->km-per-liter",
+      "km-per-liter->liters-per-100miles",
+      "liters-per-100miles->liters-per-100km",
+      "liters-per-100km->liters-per-100miles",
+
+      // With dash alias
+      "liters-per-100-miles->mpg-us",
+      "mpg-us->liters-per-100-miles",
+      "liters-per-100-miles->mpg-uk",
+      "mpg-uk->liters-per-100-miles",
+      "liters-per-100-miles->km-per-liter",
+      "km-per-liter->liters-per-100-miles",
+      "liters-per-100-miles->liters-per-100km",
+      "liters-per-100km->liters-per-100-miles"
+    ]);
+    return allowedFuelEconomyPairs.has(`${fromUnitId}->${toUnitId}`);
+  }
+
   if (catId === "construction") {
     const allowedConstructionPairs = new Set([
       "board-foot->cubic-foot",

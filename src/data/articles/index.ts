@@ -283,6 +283,62 @@ import { mpgUkToLitersPerKm } from "./mpgUkToLitersPerKm";
 
 import { kmPerLiterToMpgUs } from "./kmPerLiterToMpgUs";
 import { kmPerLiterToMpgUk } from "./kmPerLiterToMpgUk";
+import { kmPerLiterToLitersPer100km } from "./kmPerLiterToLitersPer100km";
+import { kmPerLiterToLitersPerKm } from "./kmPerLiterToLitersPerKm";
+
+import { litersPer100kmToMpgUs } from "./litersPer100kmToMpgUs";
+import { litersPer100kmToMpgUk } from "./litersPer100kmToMpgUk";
+import { litersPer100kmToKmPerLiter } from "./litersPer100kmToKmPerLiter";
+import { litersPer100kmToLitersPerKm } from "./litersPer100kmToLitersPerKm";
+
+import { litersPerKmToMpgUs } from "./litersPerKmToMpgUs";
+import { litersPerKmToMpgUk } from "./litersPerKmToMpgUk";
+import { litersPerKmToKmPerLiter } from "./litersPerKmToKmPerLiter";
+import { litersPerKmToLitersPer100km } from "./litersPerKmToLitersPer100km";
+
+import {
+  milesPerLiterToMpgUs,
+  mpgUsToMilesPerLiter,
+  milesPerLiterToMpgUk,
+  mpgUkToMilesPerLiter,
+  milesPerLiterToKmPerLiter,
+  kmPerLiterToMilesPerLiter,
+  milesPerLiterToLitersPer100km,
+  litersPer100kmToMilesPerLiter
+} from "./fuelEconomyMilesPerLiter";
+
+import {
+  kmPerGallonUsToMpgUs,
+  mpgUsToKmPerGallonUs,
+  kmPerGallonUsToMpgUk,
+  mpgUkToKmPerGallonUs,
+  kmPerGallonUsToKmPerLiter,
+  kmPerLiterToKmPerGallonUs,
+  kmPerGallonUsToLitersPer100km,
+  litersPer100kmToKmPerGallonUs
+} from "./fuelEconomyKmPerGallonUs";
+
+import {
+  kmPerGallonImperialToMpgUs,
+  mpgUsToKmPerGallonImperial,
+  kmPerGallonImperialToMpgUk,
+  mpgUkToKmPerGallonImperial,
+  kmPerGallonImperialToKmPerLiter,
+  kmPerLiterToKmPerGallonImperial,
+  kmPerGallonImperialToLitersPer100km,
+  litersPer100kmToKmPerGallonImperial
+} from "./fuelEconomyKmPerGallonImperial";
+
+import {
+  litersPer100MilesToMpgUs,
+  mpgUsToLitersPer100Miles,
+  litersPer100MilesToMpgUk,
+  mpgUkToLitersPer100Miles,
+  litersPer100MilesToKmPerLiter,
+  kmPerLiterToLitersPer100Miles,
+  litersPer100MilesToLitersPer100km,
+  litersPer100kmToLitersPer100Miles
+} from "./fuelEconomyLitersPer100Miles";
 
 import { byteToBit } from "./byteToBit";
 import { byteToKilobit } from "./byteToKilobit";
@@ -770,6 +826,63 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
 
   "km-per-liter-to-mpg-us": kmPerLiterToMpgUs,
   "km-per-liter-to-mpg-uk": kmPerLiterToMpgUk,
+  "km-per-liter-to-liters-per-100km": kmPerLiterToLitersPer100km,
+  "km-per-liter-to-liters-per-km": kmPerLiterToLitersPerKm,
+
+  "liters-per-100km-to-mpg-us": litersPer100kmToMpgUs,
+  "liters-per-100km-to-mpg-uk": litersPer100kmToMpgUk,
+  "liters-per-100km-to-km-per-liter": litersPer100kmToKmPerLiter,
+  "liters-per-100km-to-liters-per-km": litersPer100kmToLitersPerKm,
+
+  "liters-per-km-to-mpg-us": litersPerKmToMpgUs,
+  "liters-per-km-to-mpg-uk": litersPerKmToMpgUk,
+  "liters-per-km-to-km-per-liter": litersPerKmToKmPerLiter,
+  "liters-per-km-to-liters-per-100km": litersPerKmToLitersPer100km,
+
+  "miles-per-liter-to-mpg-us": milesPerLiterToMpgUs,
+  "mpg-us-to-miles-per-liter": mpgUsToMilesPerLiter,
+  "miles-per-liter-to-mpg-uk": milesPerLiterToMpgUk,
+  "mpg-uk-to-miles-per-liter": mpgUkToMilesPerLiter,
+  "miles-per-liter-to-km-per-liter": milesPerLiterToKmPerLiter,
+  "km-per-liter-to-miles-per-liter": kmPerLiterToMilesPerLiter,
+  "miles-per-liter-to-liters-per-100km": milesPerLiterToLitersPer100km,
+  "liters-per-100km-to-miles-per-liter": litersPer100kmToMilesPerLiter,
+
+  "km-per-gallon-us-to-mpg-us": kmPerGallonUsToMpgUs,
+  "mpg-us-to-km-per-gallon-us": mpgUsToKmPerGallonUs,
+  "km-per-gallon-us-to-mpg-uk": kmPerGallonUsToMpgUk,
+  "mpg-uk-to-km-per-gallon-us": mpgUkToKmPerGallonUs,
+  "km-per-gallon-us-to-km-per-liter": kmPerGallonUsToKmPerLiter,
+  "km-per-liter-to-km-per-gallon-us": kmPerLiterToKmPerGallonUs,
+  "km-per-gallon-us-to-liters-per-100km": kmPerGallonUsToLitersPer100km,
+  "liters-per-100km-to-km-per-gallon-us": litersPer100kmToKmPerGallonUs,
+
+  "km-per-gallon-imperial-to-mpg-us": kmPerGallonImperialToMpgUs,
+  "mpg-us-to-km-per-gallon-imperial": mpgUsToKmPerGallonImperial,
+  "km-per-gallon-imperial-to-mpg-uk": kmPerGallonImperialToMpgUk,
+  "mpg-uk-to-km-per-gallon-imperial": mpgUkToKmPerGallonImperial,
+  "km-per-gallon-imperial-to-km-per-liter": kmPerGallonImperialToKmPerLiter,
+  "km-per-liter-to-km-per-gallon-imperial": kmPerLiterToKmPerGallonImperial,
+  "km-per-gallon-imperial-to-liters-per-100km": kmPerGallonImperialToLitersPer100km,
+  "liters-per-100km-to-km-per-gallon-imperial": litersPer100kmToKmPerGallonImperial,
+
+  "liters-per-100-miles-to-mpg-us": litersPer100MilesToMpgUs,
+  "mpg-us-to-liters-per-100-miles": mpgUsToLitersPer100Miles,
+  "liters-per-100-miles-to-mpg-uk": litersPer100MilesToMpgUk,
+  "mpg-uk-to-liters-per-100-miles": mpgUkToLitersPer100Miles,
+  "liters-per-100-miles-to-km-per-liter": litersPer100MilesToKmPerLiter,
+  "km-per-liter-to-liters-per-100-miles": kmPerLiterToLitersPer100Miles,
+  "liters-per-100-miles-to-liters-per-100km": litersPer100MilesToLitersPer100km,
+  "liters-per-100km-to-liters-per-100-miles": litersPer100kmToLitersPer100Miles,
+
+  "liters-per-100miles-to-mpg-us": litersPer100MilesToMpgUs,
+  "mpg-us-to-liters-per-100miles": mpgUsToLitersPer100Miles,
+  "liters-per-100miles-to-mpg-uk": litersPer100MilesToMpgUk,
+  "mpg-uk-to-liters-per-100miles": mpgUkToLitersPer100Miles,
+  "liters-per-100miles-to-km-per-liter": litersPer100MilesToKmPerLiter,
+  "km-per-liter-to-liters-per-100miles": kmPerLiterToLitersPer100Miles,
+  "liters-per-100miles-to-liters-per-100km": litersPer100MilesToLitersPer100km,
+  "liters-per-100km-to-liters-per-100miles": litersPer100kmToLitersPer100Miles,
 
   "byte-to-bit": byteToBit,
   "byte-to-kilobit": byteToKilobit,
@@ -1248,6 +1361,63 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
 
   "km-per-liter-to-mpg-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "km-per-liter-to-mpg-uk": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "km-per-liter-to-liters-per-100km": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.95 },
+  "km-per-liter-to-liters-per-km": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.9 },
+
+  "liters-per-100km-to-mpg-us": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.95 },
+  "liters-per-100km-to-mpg-uk": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.95 },
+  "liters-per-100km-to-km-per-liter": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.95 },
+  "liters-per-100km-to-liters-per-km": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.9 },
+
+  "liters-per-km-to-mpg-us": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.9 },
+  "liters-per-km-to-mpg-uk": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.9 },
+  "liters-per-km-to-km-per-liter": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.9 },
+  "liters-per-km-to-liters-per-100km": { seoReady: true, publishedAt: "2026-08-20", updatedAt: "2026-08-20", priority: 0.9 },
+
+  "miles-per-liter-to-mpg-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "mpg-us-to-miles-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "miles-per-liter-to-mpg-uk": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "mpg-uk-to-miles-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "miles-per-liter-to-km-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-liter-to-miles-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "miles-per-liter-to-liters-per-100km": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100km-to-miles-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+
+  "km-per-gallon-us-to-mpg-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "mpg-us-to-km-per-gallon-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "km-per-gallon-us-to-mpg-uk": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "mpg-uk-to-km-per-gallon-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-gallon-us-to-km-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-liter-to-km-per-gallon-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-gallon-us-to-liters-per-100km": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100km-to-km-per-gallon-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+
+  "km-per-gallon-imperial-to-mpg-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "mpg-us-to-km-per-gallon-imperial": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "km-per-gallon-imperial-to-mpg-uk": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "mpg-uk-to-km-per-gallon-imperial": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-gallon-imperial-to-km-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-liter-to-km-per-gallon-imperial": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-gallon-imperial-to-liters-per-100km": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100km-to-km-per-gallon-imperial": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+
+  "liters-per-100-miles-to-mpg-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "mpg-us-to-liters-per-100-miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "liters-per-100-miles-to-mpg-uk": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "mpg-uk-to-liters-per-100-miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100-miles-to-km-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-liter-to-liters-per-100-miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100-miles-to-liters-per-100km": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100km-to-liters-per-100-miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+
+  "liters-per-100miles-to-mpg-us": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "mpg-us-to-liters-per-100miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "liters-per-100miles-to-mpg-uk": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "mpg-uk-to-liters-per-100miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100miles-to-km-per-liter": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "km-per-liter-to-liters-per-100miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100miles-to-liters-per-100km": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "liters-per-100km-to-liters-per-100miles": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
 
   "milliliter-to-liter": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "milliliter-to-cup-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
