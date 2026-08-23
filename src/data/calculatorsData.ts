@@ -6039,8 +6039,8 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   {
     id: "degree-to-right-ascension-calc",
     slug: "degree-to-right-ascension-calc",
-    title: "Degree ↔ Right Ascension Calculator",
-    name: "Degree ↔ Right Ascension Calculator",
+    title: "Degree to Right Ascension Calculator",
+    name: "Degree to Right Ascension Calculator",
     discipline: "Astronomy & Astrophysics",
     disciplineId: "astronomy-calc",
     description: "Convert equatorial celestial longitude in arc degrees into Right Ascension (RA) in sidereal hours.",
@@ -6063,8 +6063,8 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   {
     id: "degree-to-hour-angle-calc",
     slug: "degree-to-hour-angle-calc",
-    title: "Degree ↔ Hour Angle Calculator",
-    name: "Degree ↔ Hour Angle Calculator",
+    title: "Degree to Hour Angle Calculator",
+    name: "Degree to Hour Angle Calculator",
     discipline: "Astronomy & Astrophysics",
     disciplineId: "astronomy-calc",
     description: "Convert local hour angle in arc degrees into equatorial Hour Angle (HA) in hours.",
@@ -6087,8 +6087,8 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   {
     id: "right-ascension-to-hour-angle-calc",
     slug: "right-ascension-to-hour-angle-calc",
-    title: "Right Ascension ↔ Hour Angle Calculator",
-    name: "Right Ascension ↔ Hour Angle Calculator",
+    title: "Right Ascension to Hour Angle Calculator",
+    name: "Right Ascension to Hour Angle Calculator",
     discipline: "Astronomy & Astrophysics",
     disciplineId: "astronomy-calc",
     description: "Calculate Local Hour Angle (LHA) in hours from Local Sidereal Time (LST) and target Right Ascension (RA).",

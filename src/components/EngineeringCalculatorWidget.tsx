@@ -1,8 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { Copy, Check, Calculator, ArrowRight, RefreshCw } from "lucide-react";
+import { Copy, Check, Calculator, ArrowRight, RefreshCw, Compass } from "lucide-react";
 import { EngineeringTool } from "../data/calculatorsData";
 import { isIdentityEngineeringTool } from "../utils/identityDetection";
 import IdentityConversionNotice from "./IdentityConversionNotice";
+
+/**
+ * Format arc degrees to standard astronomical Right Ascension (Hours, Minutes, Seconds).
+ * 360° = 24h, 15° = 1h, 1h = 60m, 1m = 60s.
+ */
+function formatDegreesToRightAscension(degrees: number) {
+  if (isNaN(degrees)) {
+    return {
+      hms: "--",
+      hours: 0,
+      minutes: 0,
+      seconds: "0",
+      decimalHours: 0,
+      formattedDegrees: "0°",
+    };
+  }
+
+  let normDeg = degrees;
+  if (normDeg < 0) {
+    normDeg = ((normDeg % 360) + 360) % 360;
+  }
+
+  const totalHours = normDeg / 15;
+
+  let h = Math.floor(totalHours);
+  const remMinutes = (totalHours - h) * 60;
+  let m = Math.floor(remMinutes);
+  const remSeconds = (remMinutes - m) * 60;
+
+  // Round seconds to 1 decimal place when needed, avoid unnecessary trailing zeros
+  let roundedSec = Math.round(remSeconds * 10) / 10;
+  if (roundedSec >= 60) {
+    roundedSec = 0;
+    m += 1;
+  }
+  if (m >= 60) {
+    m = 0;
+    h += 1;
+  }
+
+  if (degrees === 360) {
+    h = 24;
+    m = 0;
+    roundedSec = 0;
+  } else if (normDeg > 360 && h >= 24) {
+    h = h % 24;
+  }
+
+  const secFormatted = roundedSec % 1 === 0 ? roundedSec.toFixed(0) : roundedSec.toFixed(1);
+  const hms = `${h}h ${m}m ${secFormatted}s`;
+
+  return {
+    hms,
+    hours: h,
+    minutes: m,
+    seconds: secFormatted,
+    decimalHours: totalHours,
+    formattedDegrees: `${parseFloat(degrees.toFixed(6))}°`
+  };
+}
 
 interface EngineeringCalculatorWidgetProps {
   tool: EngineeringTool;
@@ -96,9 +156,10 @@ export default function EngineeringCalculatorWidget({
     }
   };
 
-  const handleCopy = () => {
-    if (calcResult !== null) {
-      navigator.clipboard.writeText(calcResult.toString());
+  const handleCopy = (customText?: string) => {
+    const textToCopy = customText !== undefined ? customText : (calcResult !== null ? calcResult.toString() : "");
+    if (textToCopy) {
+      navigator.clipboard.writeText(textToCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -211,50 +272,118 @@ export default function EngineeringCalculatorWidget({
             </h3>
 
             {/* Display Card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl space-y-4 border border-slate-800 min-w-0 max-w-full">
-              <div className="text-xs text-slate-400 font-mono flex items-center justify-between">
-                <span>Calculated Property</span>
-                <span className="text-amber-400 font-bold font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700">
-                  {tool.outputUnit}
-                </span>
-              </div>
+            {tool.id === "degree-to-right-ascension-calc" ? (() => {
+              const degInput = calcInputs["degrees"] ?? 180;
+              const ra = formatDegreesToRightAscension(degInput);
+              return (
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl space-y-4 border border-slate-800 min-w-0 max-w-full">
+                  <div className="text-xs text-slate-400 font-mono flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-300">
+                      <Compass className="h-3.5 w-3.5 text-amber-400" />
+                      Right Ascension
+                    </span>
+                    <span className="text-amber-400 font-bold font-mono px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-[11px]">
+                      Hours, Minutes, Seconds
+                    </span>
+                  </div>
 
-              <div className="flex items-baseline justify-between gap-3 flex-wrap">
-                <div className="text-3xl sm:text-4xl font-black text-amber-400 font-mono tracking-tight">
-                  {calcResult !== null ? calcResult.toLocaleString(undefined, { maximumFractionDigits: 6 }) : "Invalid"}
-                  <span className="text-sm font-normal text-slate-300 ml-2">{tool.outputUnit}</span>
+                  <div className="flex items-baseline justify-between gap-3 flex-wrap">
+                    <div className="space-y-1">
+                      <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                        Right Ascension
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-black text-amber-400 font-mono tracking-tight">
+                        {ra.hms}
+                      </div>
+                    </div>
+
+                    {/* Copy Button */}
+                    <button
+                      onClick={() => handleCopy(ra.hms)}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all border border-slate-700 cursor-pointer"
+                      title="Copy Right Ascension (H:M:S) to clipboard"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="h-4 w-4 text-emerald-400" />
+                          <span className="text-emerald-400">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-4 w-4 text-slate-300" />
+                          <span>Copy Result</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Secondary Astronomical Precision Output Values */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-3 border-t border-slate-800/80 text-xs">
+                    <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-1">
+                      <span className="text-slate-400 font-mono text-[11px] block">Decimal Right Ascension</span>
+                      <span className="text-sm font-bold text-white font-mono">
+                        {ra.decimalHours.toFixed(6)} hours
+                      </span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-1">
+                      <span className="text-slate-400 font-mono text-[11px] block">Degrees</span>
+                      <span className="text-sm font-bold text-amber-300 font-mono">
+                        {ra.formattedDegrees}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })() : (
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl space-y-4 border border-slate-800 min-w-0 max-w-full">
+                <div className="text-xs text-slate-400 font-mono flex items-center justify-between">
+                  <span>Calculated Property</span>
+                  <span className="text-amber-400 font-bold font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700">
+                    {tool.outputUnit}
+                  </span>
                 </div>
 
-                {/* Copy Button */}
-                <button
-                  onClick={handleCopy}
-                  disabled={calcResult === null}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all border border-slate-700 cursor-pointer disabled:opacity-50"
-                  title="Copy output value to clipboard"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="h-4 w-4 text-emerald-400" />
-                      <span className="text-emerald-400">Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4 text-slate-300" />
-                      <span>Copy Result</span>
-                    </>
-                  )}
-                </button>
+                <div className="flex items-baseline justify-between gap-3 flex-wrap">
+                  <div className="text-3xl sm:text-4xl font-black text-amber-400 font-mono tracking-tight">
+                    {calcResult !== null ? calcResult.toLocaleString(undefined, { maximumFractionDigits: 6 }) : "Invalid"}
+                    <span className="text-sm font-normal text-slate-300 ml-2">{tool.outputUnit}</span>
+                  </div>
+
+                  {/* Copy Button */}
+                  <button
+                    onClick={() => handleCopy()}
+                    disabled={calcResult === null}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all border border-slate-700 cursor-pointer disabled:opacity-50"
+                    title="Copy output value to clipboard"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="h-4 w-4 text-emerald-400" />
+                        <span className="text-emerald-400">Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4 text-slate-300" />
+                        <span>Copy Result</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Verification Footnote */}
           <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-950/80 text-xs text-slate-600 dark:text-slate-400 space-y-1.5 shadow-2xs">
             <span className="font-bold text-slate-900 dark:text-slate-100 block tracking-tight">
-              Dimensional SI Verification:
+              {tool.disciplineId === "astronomy-calc" ? "Astronomical Coordinate Verification:" : "Dimensional SI Verification:"}
             </span>
             <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400 font-sans">
-              Calculated dynamically using the selected SI inputs. Real-world thermal behavior may vary with temperature, material properties, cooling conditions, and operating conditions.
+              {tool.id === "degree-to-right-ascension-calc"
+                ? "Calculated dynamically using the standard celestial rate: 360° ≡ 24ʰ (15°/hour). Seconds are rounded to 1 decimal place when needed."
+                : tool.disciplineId === "astronomy-calc"
+                ? "Calculated dynamically using standard astronomical constants and equatorial celestial kinematics."
+                : "Calculated dynamically using the selected SI inputs. Real-world thermal behavior may vary with temperature, material properties, cooling conditions, and operating conditions."}
             </p>
           </div>
         </div>

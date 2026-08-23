@@ -26,7 +26,7 @@ export default function EngineeringArticleEngine({
   return (
     <article className="space-y-10 animate-in fade-in duration-300">
       
-      {/* 1. Engineering Technical Guide & Physical Principles */}
+      {/* 1. Technical Guide & Physical Principles */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-6 shadow-sm">
         <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60">
@@ -34,10 +34,10 @@ export default function EngineeringArticleEngine({
           </div>
           <div>
             <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-              1. Engineering Technical Guide & Physical Principles
+              1. Technical Guide & Physical Principles
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">
-              Engineering Technical Guide & Physical Principles
+              Theoretical Foundation & Coordinate Framework
             </p>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function EngineeringArticleEngine({
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <h3 className="font-bold text-xs uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
               <Compass className="h-4 w-4 text-amber-500" />
-              2. Primary Engineering Applications
+              2. Primary Applications
             </h3>
             <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
               {article.introduction.applications.map((app, idx) => (
@@ -117,7 +117,7 @@ export default function EngineeringArticleEngine({
               <tr>
                 <th className="p-3">Variable</th>
                 <th className="p-3">Symbol</th>
-                <th className="p-3">SI Unit</th>
+                <th className="p-3">Unit</th>
                 <th className="p-3">Physical Description</th>
               </tr>
             </thead>
@@ -229,12 +229,12 @@ export default function EngineeringArticleEngine({
         </div>
       </section>
 
-      {/* 9. Practical Engineering Real-World Example */}
+      {/* 9. Practical Real-World Example */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-4 shadow-sm">
         <div className="flex items-center gap-2">
           <Lightbulb className="h-5 w-5 text-amber-500" />
           <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            9. Engineering Application Example: {article.practicalExample.scenarioTitle}
+            9. Application Example: {article.practicalExample.scenarioTitle}
           </h2>
         </div>
 
@@ -250,7 +250,7 @@ export default function EngineeringArticleEngine({
           </div>
           <div className="p-4 rounded-2xl bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 space-y-2">
             <span className="font-bold text-amber-800 dark:text-amber-400 block text-xs uppercase tracking-wider">
-              Engineering Solution & Verification:
+              Analytical Solution & Verification:
             </span>
             <p>{article.practicalExample.engineeringSolution}</p>
           </div>
@@ -300,14 +300,14 @@ export default function EngineeringArticleEngine({
 
       </div>
 
-      {/* 12 & 13. Common Mistakes & Engineering Best Practices */}
+      {/* 12 & 13. Common Mistakes & Best Practices */}
       <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 p-6 sm:p-8 space-y-6 shadow-sm">
         
         {/* Common Mistakes */}
         <div className="space-y-4">
           <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-red-500" />
-            12. Common Engineering Mistakes to Avoid
+            12. Common Mistakes to Avoid
           </h2>
 
           <div className="space-y-2.5">
@@ -326,7 +326,7 @@ export default function EngineeringArticleEngine({
         <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
           <h2 className="font-display text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <ShieldCheck className="h-5 w-5 text-amber-500" />
-            13. Engineering Best Practices & Guidelines
+            13. Best Practices & Guidelines
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

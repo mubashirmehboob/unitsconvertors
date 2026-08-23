@@ -259,6 +259,16 @@ import { jouleToElectronVolt } from "./jouleToElectronVolt";
 import { jouleToErg } from "./jouleToErg";
 import { jouleToFootPound } from "./jouleToFootPound";
 import { kilojouleToJoule } from "./kilojouleToJoule";
+import { kilojouleToCalorie } from "./kilojouleToCalorie";
+import { kilojouleToKilocalorie } from "./kilojouleToKilocalorie";
+import { kilojouleToWattHour } from "./kilojouleToWattHour";
+import { kilojouleToKilowattHour } from "./kilojouleToKilowattHour";
+import { kilojouleToBtu } from "./kilojouleToBtu";
+import { kilojouleToElectronVolt } from "./kilojouleToElectronVolt";
+import { kilojouleToErg } from "./kilojouleToErg";
+import { kilojouleToFootPound } from "./kilojouleToFootPound";
+import { calorieToJoule } from "./calorieToJoule";
+import { calorieToKilojoule } from "./calorieToKilojoule";
 
 import { wattToKilowatt } from "./wattToKilowatt";
 import { wattToMegawatt } from "./wattToMegawatt";
@@ -270,6 +280,16 @@ import { wattToCaloriePerSecond } from "./wattToCaloriePerSecond";
 import { kilowattToWatt } from "./kilowattToWatt";
 import { kilowattToMegawatt } from "./kilowattToMegawatt";
 import { kilowattToGigawatt } from "./kilowattToGigawatt";
+import { kilowattToHorsepowerMechanical } from "./kilowattToHorsepowerMechanical";
+import { kilowattToHorsepowerMetric } from "./kilowattToHorsepowerMetric";
+import { kilowattToBtuPerHour } from "./kilowattToBtuPerHour";
+import { kilowattToCaloriePerSecond } from "./kilowattToCaloriePerSecond";
+import { megawattToWatt } from "./megawattToWatt";
+import { megawattToKilowatt } from "./megawattToKilowatt";
+import { megawattToGigawatt } from "./megawattToGigawatt";
+import { megawattToHorsepowerMechanical } from "./megawattToHorsepowerMechanical";
+import { megawattToHorsepowerMetric } from "./megawattToHorsepowerMetric";
+import { megawattToBtuPerHour } from "./megawattToBtuPerHour";
 
 import { mpgUsToMpgUk } from "./mpgUsToMpgUk";
 import { mpgUsToKmPerLiter } from "./mpgUsToKmPerLiter";
@@ -802,6 +822,16 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "joule-to-erg": jouleToErg,
   "joule-to-foot-pound": jouleToFootPound,
   "kilojoule-to-joule": kilojouleToJoule,
+  "kilojoule-to-calorie": kilojouleToCalorie,
+  "kilojoule-to-kilocalorie": kilojouleToKilocalorie,
+  "kilojoule-to-watt-hour": kilojouleToWattHour,
+  "kilojoule-to-kilowatt-hour": kilojouleToKilowattHour,
+  "kilojoule-to-btu": kilojouleToBtu,
+  "kilojoule-to-electron-volt": kilojouleToElectronVolt,
+  "kilojoule-to-erg": kilojouleToErg,
+  "kilojoule-to-foot-pound": kilojouleToFootPound,
+  "calorie-to-joule": calorieToJoule,
+  "calorie-to-kilojoule": calorieToKilojoule,
 
   "watt-to-kilowatt": wattToKilowatt,
   "watt-to-megawatt": wattToMegawatt,
@@ -813,6 +843,16 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "kilowatt-to-watt": kilowattToWatt,
   "kilowatt-to-megawatt": kilowattToMegawatt,
   "kilowatt-to-gigawatt": kilowattToGigawatt,
+  "kilowatt-to-horsepower-mechanical": kilowattToHorsepowerMechanical,
+  "kilowatt-to-horsepower-metric": kilowattToHorsepowerMetric,
+  "kilowatt-to-btu-per-hour": kilowattToBtuPerHour,
+  "kilowatt-to-calorie-per-second": kilowattToCaloriePerSecond,
+  "megawatt-to-watt": megawattToWatt,
+  "megawatt-to-kilowatt": megawattToKilowatt,
+  "megawatt-to-gigawatt": megawattToGigawatt,
+  "megawatt-to-horsepower-mechanical": megawattToHorsepowerMechanical,
+  "megawatt-to-horsepower-metric": megawattToHorsepowerMetric,
+  "megawatt-to-btu-per-hour": megawattToBtuPerHour,
 
   "mpg-us-to-mpg-uk": mpgUsToMpgUk,
   "mpg-us-to-km-per-liter": mpgUsToKmPerLiter,
@@ -1337,6 +1377,16 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "joule-to-erg": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
   "joule-to-foot-pound": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
   "kilojoule-to-joule": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
+  "kilojoule-to-calorie": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilojoule-to-kilocalorie": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilojoule-to-watt-hour": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilojoule-to-kilowatt-hour": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilojoule-to-btu": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilojoule-to-electron-volt": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "kilojoule-to-erg": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "kilojoule-to-foot-pound": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "calorie-to-joule": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "calorie-to-kilojoule": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
 
   "watt-to-kilowatt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
   "watt-to-megawatt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
@@ -1348,6 +1398,16 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "kilowatt-to-watt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
   "kilowatt-to-megawatt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.9 },
   "kilowatt-to-gigawatt": { seoReady: true, publishedAt: "2026-07-25", updatedAt: "2026-07-25", priority: 0.8 },
+  "kilowatt-to-horsepower-mechanical": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilowatt-to-horsepower-metric": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilowatt-to-btu-per-hour": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "kilowatt-to-calorie-per-second": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.9 },
+  "megawatt-to-watt": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "megawatt-to-kilowatt": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "megawatt-to-gigawatt": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "megawatt-to-horsepower-mechanical": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "megawatt-to-horsepower-metric": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
+  "megawatt-to-btu-per-hour": { seoReady: true, publishedAt: "2026-08-22", updatedAt: "2026-08-22", priority: 0.95 },
 
   "mpg-us-to-mpg-uk": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "mpg-us-to-km-per-liter": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
