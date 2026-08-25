@@ -6013,8 +6013,8 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   {
     id: "degree-to-compass-point-calc",
     slug: "degree-to-compass-point-calc",
-    title: "Degree ↔ Compass Point Calculator",
-    name: "Degree ↔ Compass Point Calculator",
+    title: "Degree to Compass Point Calculator",
+    name: "Degree to Compass Point Calculator",
     discipline: "Navigation & Marine",
     disciplineId: "navigation-marine-calc",
     description: "Convert bearing angle in degrees into the standard 32-point compass index and nautical direction notation.",
@@ -6033,6 +6033,610 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
       keywords: ["degree to compass point calculator", "bearing to compass point", "32 point compass calculator", "nautical navigation"]
     },
     searchKeywords: ["degree to compass point", "degree to compass point calculator", "bearing compass point", "nautical compass"]
+  },
+  {
+    id: "speed-distance-time-calc",
+    slug: "speed-distance-time-calc",
+    title: "Speed, Distance & Time Calculator",
+    name: "Speed, Distance & Time Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate nautical distance, vessel speed in knots, or transit duration using marine kinematics.",
+    formula: "Distance = Speed × Time",
+    outputUnit: "Nautical Miles (NM)",
+    assumptions: ["Uniform forward velocity", "1 knot = 1 Nautical Mile per hour"],
+    inputs: [
+      { name: "speed", label: "Vessel Speed", unit: "Knots (kn)", defaultValue: 14.5 },
+      { name: "time", label: "Transit Time", unit: "Hours (h)", defaultValue: 4.5 }
+    ],
+    calculate: (inputs) => (inputs.speed || 0) * (inputs.time || 0),
+    route: "/engineering-calculators/navigation-marine-calc/speed-distance-time-calc",
+    seo: {
+      title: "Speed, Distance & Time Calculator | Navigation & Marine Engineering",
+      description: "Calculate nautical distance, vessel speed in knots, or voyage duration using marine kinematics.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/speed-distance-time-calc",
+      keywords: ["speed distance time calculator", "nautical miles calculator", "knots to distance", "marine kinematics"]
+    },
+    searchKeywords: ["speed distance time", "speed distance time calculator", "nautical distance", "knots speed time", "marine voyage calculator"]
+  },
+  {
+    id: "course-to-steer-calc",
+    slug: "course-to-steer-calc",
+    title: "Course to Steer Calculator",
+    name: "Course to Steer Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate compass heading to steer through water to counteract tidal stream set and drift.",
+    formula: "CTS = Ground Track - arcsin((Drift / Boat Speed) × sin(Track - Set))",
+    outputUnit: "Degrees True (°T)",
+    assumptions: ["Steady tidal stream vector", "Constant speed through water"],
+    inputs: [
+      { name: "groundTrack", label: "Desired Track / COG", unit: "Degrees True (°T)", defaultValue: 85 },
+      { name: "boatSpeed", label: "Boat Speed (STW)", unit: "Knots (kn)", defaultValue: 12 },
+      { name: "currentSet", label: "Tidal Stream Set (Dir)", unit: "Degrees True (°T)", defaultValue: 140 },
+      { name: "currentDrift", label: "Tidal Stream Drift (Rate)", unit: "Knots (kn)", defaultValue: 2.5 }
+    ],
+    calculate: (inputs) => {
+      const track = (inputs.groundTrack || 0) * Math.PI / 180;
+      const set = (inputs.currentSet || 0) * Math.PI / 180;
+      const speed = Math.max(inputs.boatSpeed || 1, 0.1);
+      const drift = inputs.currentDrift || 0;
+      const sinDiff = Math.sin(track - set);
+      const ratio = (drift / speed) * sinDiff;
+      const clampedRatio = Math.max(-1, Math.min(1, ratio));
+      const wcaRad = Math.asin(clampedRatio);
+      const wcaDeg = wcaRad * 180 / Math.PI;
+      let cts = ((inputs.groundTrack || 0) - wcaDeg) % 360;
+      return cts < 0 ? cts + 360 : cts;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/course-to-steer-calc",
+    seo: {
+      title: "Course to Steer Calculator | Navigation & Marine Engineering",
+      description: "Solve the marine navigation tidal stream vector triangle to find required Course to Steer.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/course-to-steer-calc",
+      keywords: ["course to steer calculator", "cts calculator", "tidal stream triangle", "marine navigation vector"]
+    },
+    searchKeywords: ["course to steer", "course to steer calculator", "cts calculator", "heading to steer", "tidal stream course"]
+  },
+  {
+    id: "dead-reckoning-calc",
+    slug: "dead-reckoning-calc",
+    title: "Dead Reckoning Calculator",
+    name: "Dead Reckoning Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate distance run and advance along a true course heading without current correction.",
+    formula: "Distance Run = Speed × Time",
+    outputUnit: "Nautical Miles (NM)",
+    assumptions: ["Steady course heading", "Constant forward speed through water"],
+    inputs: [
+      { name: "speed", label: "Vessel Speed (STW)", unit: "Knots (kn)", defaultValue: 15 },
+      { name: "hours", label: "Elapsed Time", unit: "Hours (h)", defaultValue: 3.5 },
+      { name: "heading", label: "True Heading", unit: "Degrees True (°T)", defaultValue: 65 }
+    ],
+    calculate: (inputs) => (inputs.speed || 0) * (inputs.hours || 0),
+    route: "/engineering-calculators/navigation-marine-calc/dead-reckoning-calc",
+    seo: {
+      title: "Dead Reckoning Calculator | Marine Navigation Position Solver",
+      description: "Calculate nautical distance run and position advance from vessel heading, speed, and time.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/dead-reckoning-calc",
+      keywords: ["dead reckoning calculator", "dr navigation calculator", "distance run calculator", "marine dead reckoning"]
+    },
+    searchKeywords: ["dead reckoning", "dead reckoning calculator", "dr calculator", "distance run", "marine dr"]
+  },
+  {
+    id: "set-and-drift-calc",
+    slug: "set-and-drift-calc",
+    title: "Set & Drift Calculator",
+    name: "Set & Drift Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Determine ocean current drift speed in knots from the offset between Dead Reckoning and GPS Fix.",
+    formula: "Drift Rate = Vector Distance / Elapsed Time",
+    outputUnit: "Knots (kn)",
+    assumptions: ["Spherical Earth coordinate offset", "Uniform current over interval"],
+    inputs: [
+      { name: "drLat", label: "DR Latitude", unit: "Decimal Degrees (°)", defaultValue: 32.5 },
+      { name: "drLon", label: "DR Longitude", unit: "Decimal Degrees (°)", defaultValue: -64.8 },
+      { name: "fixLat", label: "Observed Fix Latitude", unit: "Decimal Degrees (°)", defaultValue: 32.55 },
+      { name: "fixLon", label: "Observed Fix Longitude", unit: "Decimal Degrees (°)", defaultValue: -64.75 },
+      { name: "timeHours", label: "Elapsed Time", unit: "Hours (h)", defaultValue: 2.0 }
+    ],
+    calculate: (inputs) => {
+      const lat1 = (inputs.drLat || 0) * Math.PI / 180;
+      const lon1 = (inputs.drLon || 0) * Math.PI / 180;
+      const lat2 = (inputs.fixLat || 0) * Math.PI / 180;
+      const lon2 = (inputs.fixLon || 0) * Math.PI / 180;
+      const dlat = lat2 - lat1;
+      const dlon = lon2 - lon1;
+      const a = Math.sin(dlat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(Math.max(0, 1 - a)));
+      const distNM = 3440.065 * c;
+      const t = Math.max(inputs.timeHours || 1, 0.01);
+      return distNM / t;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/set-and-drift-calc",
+    seo: {
+      title: "Set & Drift Calculator | Marine Current Velocity Solver",
+      description: "Calculate ocean current drift speed in knots and set direction from DR position and observed Fix.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/set-and-drift-calc",
+      keywords: ["set and drift calculator", "ocean current rate", "dr to fix current", "marine set drift"]
+    },
+    searchKeywords: ["set and drift", "set and drift calculator", "ocean current drift", "current set drift", "marine current speed"]
+  },
+  {
+    id: "true-magnetic-compass-bearing-calc",
+    slug: "true-magnetic-compass-bearing-calc",
+    title: "True, Magnetic & Compass Bearing Calculator",
+    name: "True, Magnetic & Compass Bearing Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Convert between Compass Bearing (°C), Magnetic Bearing (°M), and True Bearing (°T).",
+    formula: "True Bearing = Compass Bearing + Variation + Deviation",
+    outputUnit: "Degrees True (°T)",
+    assumptions: ["Easterly errors are positive (+)", "Westerly errors are negative (-)"],
+    inputs: [
+      { name: "compassBearing", label: "Compass Bearing", unit: "Degrees (°C)", defaultValue: 110 },
+      { name: "variation", label: "Variation (E is +, W is -)", unit: "Degrees (°)", defaultValue: -6 },
+      { name: "deviation", label: "Deviation (E is +, W is -)", unit: "Degrees (°)", defaultValue: 4 }
+    ],
+    calculate: (inputs) => {
+      let trueB = ((inputs.compassBearing || 0) + (inputs.variation || 0) + (inputs.deviation || 0)) % 360;
+      return trueB < 0 ? trueB + 360 : trueB;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/true-magnetic-compass-bearing-calc",
+    seo: {
+      title: "True, Magnetic & Compass Bearing Calculator | Navigation",
+      description: "Convert between True, Magnetic, and Compass bearings using variation and vessel deviation.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/true-magnetic-compass-bearing-calc",
+      keywords: ["true magnetic compass bearing calculator", "bearing conversion", "tvdc calculator", "compass to true bearing"]
+    },
+    searchKeywords: ["true magnetic compass bearing", "true magnetic compass calculator", "compass bearing to true", "bearing variation deviation"]
+  },
+  {
+    id: "great-circle-distance-calc",
+    slug: "great-circle-distance-calc",
+    title: "Great Circle Distance Calculator",
+    name: "Great Circle Distance Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate shortest orthodromic distance across Earth's spherical surface between two waypoints.",
+    formula: "d = 2 × R × arcsin(√(sin²(Δlat/2) + cos(lat1)cos(lat2)sin²(Δlon/2)))",
+    outputUnit: "Nautical Miles (NM)",
+    assumptions: ["Spherical Earth model (Mean Radius R = 3440.065 NM = 6371 km)"],
+    inputs: [
+      { name: "lat1", label: "Departure Latitude", unit: "Degrees (°)", defaultValue: 40.7128 },
+      { name: "lon1", label: "Departure Longitude", unit: "Degrees (°)", defaultValue: -74.0060 },
+      { name: "lat2", label: "Destination Latitude", unit: "Degrees (°)", defaultValue: 51.5074 },
+      { name: "lon2", label: "Destination Longitude", unit: "Degrees (°)", defaultValue: -0.1278 }
+    ],
+    calculate: (inputs) => {
+      const lat1 = (inputs.lat1 || 0) * Math.PI / 180;
+      const lon1 = (inputs.lon1 || 0) * Math.PI / 180;
+      const lat2 = (inputs.lat2 || 0) * Math.PI / 180;
+      const lon2 = (inputs.lon2 || 0) * Math.PI / 180;
+      const dlat = lat2 - lat1;
+      const dlon = lon2 - lon1;
+      const a = Math.sin(dlat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(Math.max(0, 1 - a)));
+      return 3440.065 * c;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/great-circle-distance-calc",
+    seo: {
+      title: "Great Circle Distance Calculator | Orthodromic Navigation",
+      description: "Calculate shortest Great Circle nautical distance between coordinate waypoints via Haversine.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/great-circle-distance-calc",
+      keywords: ["great circle distance calculator", "haversine distance nautical", "orthodromic distance", "waypoint distance"]
+    },
+    searchKeywords: ["great circle distance", "great circle distance calculator", "haversine distance", "orthodromic distance", "nautical distance coordinates"]
+  },
+  {
+    id: "rhumb-line-distance-calc",
+    slug: "rhumb-line-distance-calc",
+    title: "Rhumb Line Distance Calculator",
+    name: "Rhumb Line Distance Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate constant-bearing loxodromic distance between two geographic waypoints.",
+    formula: "Distance = Δlat / cos(Course)",
+    outputUnit: "Nautical Miles (NM)",
+    assumptions: ["Mercator conformal projection", "Constant true course angle"],
+    inputs: [
+      { name: "lat1", label: "Departure Latitude", unit: "Degrees (°)", defaultValue: 40.7128 },
+      { name: "lon1", label: "Departure Longitude", unit: "Degrees (°)", defaultValue: -74.0060 },
+      { name: "lat2", label: "Destination Latitude", unit: "Degrees (°)", defaultValue: 51.5074 },
+      { name: "lon2", label: "Destination Longitude", unit: "Degrees (°)", defaultValue: -0.1278 }
+    ],
+    calculate: (inputs) => {
+      const lat1 = (inputs.lat1 || 0) * Math.PI / 180;
+      const lon1 = (inputs.lon1 || 0) * Math.PI / 180;
+      const lat2 = (inputs.lat2 || 0) * Math.PI / 180;
+      const lon2 = (inputs.lon2 || 0) * Math.PI / 180;
+      const dlat = (inputs.lat2 || 0) - (inputs.lat1 || 0);
+      let dlon = (inputs.lon2 || 0) - (inputs.lon1 || 0);
+      if (Math.abs(dlon) > 180) {
+        dlon = dlon > 0 ? dlon - 360 : dlon + 360;
+      }
+      const dpsi = Math.log(Math.tan(Math.PI / 4 + lat2 / 2) / Math.tan(Math.PI / 4 + lat1 / 2));
+      const q = Math.abs(dpsi) > 1e-12 ? (lat2 - lat1) / dpsi : Math.cos(lat1);
+      const dlonRad = dlon * Math.PI / 180;
+      return 3440.065 * Math.sqrt((lat2 - lat1) ** 2 + (q * dlonRad) ** 2);
+    },
+    route: "/engineering-calculators/navigation-marine-calc/rhumb-line-distance-calc",
+    seo: {
+      title: "Rhumb Line Distance Calculator | Loxodromic Navigation",
+      description: "Calculate constant compass course loxodromic distance between two nautical waypoints.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/rhumb-line-distance-calc",
+      keywords: ["rhumb line distance calculator", "loxodrome distance", "constant bearing distance", "marine navigation"]
+    },
+    searchKeywords: ["rhumb line distance", "rhumb line distance calculator", "loxodromic distance", "constant course distance"]
+  },
+  {
+    id: "waypoint-bearing-calc",
+    slug: "waypoint-bearing-calc",
+    title: "Waypoint Bearing Calculator",
+    name: "Waypoint Bearing Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate initial True azimuth forward course heading between two geographic waypoints.",
+    formula: "Bearing = atan2(sin(Δlon)cos(lat2), cos(lat1)sin(lat2) - sin(lat1)cos(lat2)cos(Δlon))",
+    outputUnit: "Degrees True (°T)",
+    assumptions: ["Great Circle initial forward azimuth", "Spherical Earth model"],
+    inputs: [
+      { name: "lat1", label: "Departure Latitude", unit: "Degrees (°)", defaultValue: 36.1408 },
+      { name: "lon1", label: "Departure Longitude", unit: "Degrees (°)", defaultValue: -5.3536 },
+      { name: "lat2", label: "Destination Latitude", unit: "Degrees (°)", defaultValue: 35.8894 },
+      { name: "lon2", label: "Destination Longitude", unit: "Degrees (°)", defaultValue: 14.4439 }
+    ],
+    calculate: (inputs) => {
+      const lat1 = (inputs.lat1 || 0) * Math.PI / 180;
+      const lon1 = (inputs.lon1 || 0) * Math.PI / 180;
+      const lat2 = (inputs.lat2 || 0) * Math.PI / 180;
+      const lon2 = (inputs.lon2 || 0) * Math.PI / 180;
+      const dlon = lon2 - lon1;
+      const y = Math.sin(dlon) * Math.cos(lat2);
+      const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dlon);
+      let bearing = Math.atan2(y, x) * 180 / Math.PI;
+      bearing = (bearing + 360) % 360;
+      return bearing;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/waypoint-bearing-calc",
+    seo: {
+      title: "Waypoint Bearing Calculator | Great Circle Initial Azimuth",
+      description: "Calculate initial True course bearing angle between two coordinates using spherical forward azimuth.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/waypoint-bearing-calc",
+      keywords: ["waypoint bearing calculator", "initial azimuth calculator", "forward bearing between coordinates", "navigation"]
+    },
+    searchKeywords: ["waypoint bearing", "waypoint bearing calculator", "bearing between coordinates", "initial azimuth", "course heading"]
+  },
+  {
+    id: "eta-calculator",
+    slug: "eta-calculator",
+    title: "ETA (Estimated Time of Arrival) Calculator",
+    name: "ETA (Estimated Time of Arrival) Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate passage transit duration in hours and estimated time of arrival based on speed and distance.",
+    formula: "Transit Time = Distance / Speed Over Ground",
+    outputUnit: "Hours (h)",
+    assumptions: ["Constant Speed Over Ground (SOG)", "Unobstructed transit corridor"],
+    inputs: [
+      { name: "distance", label: "Remaining Distance", unit: "Nautical Miles (NM)", defaultValue: 240 },
+      { name: "speed", label: "Speed Over Ground (SOG)", unit: "Knots (kn)", defaultValue: 16 },
+      { name: "startHour", label: "Departure Time (Hour of Day)", unit: "Hours (0-24)", defaultValue: 8 }
+    ],
+    calculate: (inputs) => (inputs.distance || 0) / Math.max(inputs.speed || 1, 0.1),
+    route: "/engineering-calculators/navigation-marine-calc/eta-calculator",
+    seo: {
+      title: "ETA (Estimated Time of Arrival) Calculator | Marine Passage Planning",
+      description: "Calculate transit duration in hours and estimated arrival time based on distance and speed.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/eta-calculator",
+      keywords: ["eta calculator", "estimated time of arrival", "passage duration calculator", "marine voyage eta"]
+    },
+    searchKeywords: ["eta calculator", "estimated time of arrival", "voyage eta", "passage time calculator", "arrival time"]
+  },
+  {
+    id: "cross-track-error-calc",
+    slug: "cross-track-error-calc",
+    title: "Cross-Track Error Calculator",
+    name: "Cross-Track Error Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate perpendicular lateral off-course distance (XTE) from planned track line in nautical miles.",
+    formula: "XTE = Distance × sin(Angular Deviation)",
+    outputUnit: "Nautical Miles (NM)",
+    assumptions: ["Planar cross-track approximation", "Positive is Starboard / Negative is Port"],
+    inputs: [
+      { name: "crossAngle", label: "Angular Deviation from Track", unit: "Degrees (°)", defaultValue: 15 },
+      { name: "distanceFromOrigin", label: "Distance from Waypoint Origin", unit: "Nautical Miles (NM)", defaultValue: 8.5 }
+    ],
+    calculate: (inputs) => (inputs.distanceFromOrigin || 0) * Math.sin((inputs.crossAngle || 0) * Math.PI / 180),
+    route: "/engineering-calculators/navigation-marine-calc/cross-track-error-calc",
+    seo: {
+      title: "Cross-Track Error Calculator | Marine & Aviation XTE Solver",
+      description: "Calculate perpendicular cross-track error distance from planned route in Nautical Miles.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/cross-track-error-calc",
+      keywords: ["cross track error calculator", "xte calculator", "off track distance", "gps cross track error"]
+    },
+    searchKeywords: ["cross track error", "cross track error calculator", "xte calculator", "off track error", "gps xte"]
+  },
+  {
+    id: "compass-correction-calc",
+    slug: "compass-correction-calc",
+    title: "Compass Correction Calculator",
+    name: "Compass Correction Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate True Heading (°T) from raw compass reading by applying variation and vessel deviation.",
+    formula: "True Heading = (Compass Heading + Variation + Deviation) mod 360",
+    outputUnit: "Degrees True (°T)",
+    assumptions: ["Easterly errors are positive (+)", "Westerly errors are negative (-)"],
+    inputs: [
+      { name: "compassHeading", label: "Ship Compass Heading", unit: "Degrees (°C)", defaultValue: 85 },
+      { name: "variation", label: "Magnetic Variation (E is +, W is -)", unit: "Degrees (°)", defaultValue: -7 },
+      { name: "deviation", label: "Compass Deviation (E is +, W is -)", unit: "Degrees (°)", defaultValue: 3 }
+    ],
+    calculate: (inputs) => {
+      let trueH = ((inputs.compassHeading || 0) + (inputs.variation || 0) + (inputs.deviation || 0)) % 360;
+      return trueH < 0 ? trueH + 360 : trueH;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/compass-correction-calc",
+    seo: {
+      title: "Compass Correction Calculator | Total Compass Error Solver",
+      description: "Convert Compass Heading to True Heading by applying local variation and ship deviation.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/compass-correction-calc",
+      keywords: ["compass correction calculator", "total compass error", "compass to true heading", "cadet rule calculator"]
+    },
+    searchKeywords: ["compass correction", "compass correction calculator", "total compass error", "compass heading to true", "tvdc"]
+  },
+  {
+    id: "magnetic-declination-calc",
+    slug: "magnetic-declination-calc",
+    title: "Magnetic Declination Calculator",
+    name: "Magnetic Declination Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Update chart base magnetic variation for annual secular geomagnetic drift rate over elapsed years.",
+    formula: "Current Declination = Base Declination + (Annual Rate × Years / 60)",
+    outputUnit: "Decimal Degrees (°)",
+    assumptions: ["Linear secular drift rate over elapsed period", "East is positive / West is negative"],
+    inputs: [
+      { name: "baseDeclination", label: "Base Declination (E is +, W is -)", unit: "Degrees (°)", defaultValue: -12.5 },
+      { name: "annualChange", label: "Annual Change Rate (E is +, W is -)", unit: "Minutes / Year (′/yr)", defaultValue: 4.5 },
+      { name: "yearsElapsed", label: "Years Elapsed", unit: "Years (yr)", defaultValue: 6 }
+    ],
+    calculate: (inputs) => (inputs.baseDeclination || 0) + (((inputs.annualChange || 0) * (inputs.yearsElapsed || 0)) / 60),
+    route: "/engineering-calculators/navigation-marine-calc/magnetic-declination-calc",
+    seo: {
+      title: "Magnetic Declination Calculator | Secular Variation Drift",
+      description: "Update chart compass rose magnetic declination for annual drift rates over elapsed years.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/magnetic-declination-calc",
+      keywords: ["magnetic declination calculator", "magnetic variation drift", "chart compass rose update", "geomagnetic secular variation"]
+    },
+    searchKeywords: ["magnetic declination", "magnetic declination calculator", "magnetic variation update", "secular drift calculator"]
+  },
+  {
+    id: "wind-correction-angle-calc",
+    slug: "wind-correction-angle-calc",
+    title: "Wind Correction Angle Calculator",
+    name: "Wind Correction Angle Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate crab angle required to counteract crosswind and maintain intended ground track.",
+    formula: "WCA = arcsin((Wind Speed / Craft Speed) × sin(Wind Dir - Course))",
+    outputUnit: "Degrees (°)",
+    assumptions: ["Wind direction is direction FROM which wind blows", "Steady horizontal wind vector"],
+    inputs: [
+      { name: "desiredCourse", label: "Desired Course / Ground Track", unit: "Degrees (°)", defaultValue: 90 },
+      { name: "vesselSpeed", label: "Vessel / Aircraft Speed", unit: "Knots (kn)", defaultValue: 18 },
+      { name: "windDirection", label: "Wind Direction (From)", unit: "Degrees (°)", defaultValue: 30 },
+      { name: "windSpeed", label: "Wind Speed", unit: "Knots (kn)", defaultValue: 12 }
+    ],
+    calculate: (inputs) => {
+      const course = (inputs.desiredCourse || 0) * Math.PI / 180;
+      const windDir = (inputs.windDirection || 0) * Math.PI / 180;
+      const speed = Math.max(inputs.vesselSpeed || 1, 0.1);
+      const windSpeed = inputs.windSpeed || 0;
+      const angleDiff = windDir - course;
+      const ratio = (windSpeed / speed) * Math.sin(angleDiff);
+      const clamped = Math.max(-1, Math.min(1, ratio));
+      return Math.asin(clamped) * 180 / Math.PI;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/wind-correction-angle-calc",
+    seo: {
+      title: "Wind Correction Angle Calculator | Crosswind Crab Angle",
+      description: "Calculate Wind Correction Angle (WCA) and crab heading required to hold track in crosswinds.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/wind-correction-angle-calc",
+      keywords: ["wind correction angle calculator", "wca calculator", "crosswind crab angle", "wind triangle navigation"]
+    },
+    searchKeywords: ["wind correction angle", "wind correction angle calculator", "wca calculator", "crab angle", "crosswind correction"]
+  },
+  {
+    id: "leeway-angle-calc",
+    slug: "leeway-angle-calc",
+    title: "Leeway Angle Calculator",
+    name: "Leeway Angle Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Estimate vessel downwind lateral hull slip angle caused by surface wind forces on superstructure.",
+    formula: "Leeway = K × (Wind Speed / Boat Speed) × sin(Wind Angle)",
+    outputUnit: "Degrees (°)",
+    assumptions: ["Empirical marine hull leeway model", "Displacement and semi-displacement hulls"],
+    inputs: [
+      { name: "windSpeed", label: "Apparent Wind Speed", unit: "Knots (kn)", defaultValue: 25 },
+      { name: "boatSpeed", label: "Boat Speed through Water", unit: "Knots (kn)", defaultValue: 8 },
+      { name: "windAngle", label: "Apparent Wind Angle", unit: "Degrees (°)", defaultValue: 60 },
+      { name: "leewayFactor", label: "Hull Leeway Coefficient (K)", unit: "Factor", defaultValue: 1.2 }
+    ],
+    calculate: (inputs) => {
+      const k = inputs.leewayFactor || 1.2;
+      const ws = inputs.windSpeed || 0;
+      const bs = Math.max(inputs.boatSpeed || 1, 0.1);
+      const wa = (inputs.windAngle || 0) * Math.PI / 180;
+      return k * (ws / bs) * Math.sin(wa);
+    },
+    route: "/engineering-calculators/navigation-marine-calc/leeway-angle-calc",
+    seo: {
+      title: "Leeway Angle Calculator | Vessel Wind Drift & Lateral Slip",
+      description: "Estimate vessel leeway drift angle downwind based on apparent wind, speed through water, and hull factor.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/leeway-angle-calc",
+      keywords: ["leeway angle calculator", "vessel leeway drift", "wind leeway calculation", "marine search and rescue leeway"]
+    },
+    searchKeywords: ["leeway angle", "leeway angle calculator", "vessel leeway", "boat leeway drift", "wind drift angle"]
+  },
+  {
+    id: "dipping-distance-calc",
+    slug: "dipping-distance-calc",
+    title: "Dipping Distance Calculator",
+    name: "Dipping Distance Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate geographic visible horizon distance and dipping range of coastal lights in nautical miles.",
+    formula: "Distance = 2.072 × (√H_eye + √H_light)",
+    outputUnit: "Nautical Miles (NM)",
+    assumptions: ["Standard terrestrial atmospheric refraction (k = 0.08)", "Heights in meters"],
+    inputs: [
+      { name: "heightEye", label: "Observer Height of Eye (H_eye)", unit: "Meters (m)", defaultValue: 15 },
+      { name: "heightLight", label: "Elevation of Light (H_light)", unit: "Meters (m)", defaultValue: 45 }
+    ],
+    calculate: (inputs) => {
+      const heye = Math.max(inputs.heightEye || 0, 0);
+      const hlight = Math.max(inputs.heightLight || 0, 0);
+      return 2.072 * (Math.sqrt(heye) + Math.sqrt(hlight));
+    },
+    route: "/engineering-calculators/navigation-marine-calc/dipping-distance-calc",
+    seo: {
+      title: "Dipping Distance Calculator | Geographic Horizon Light Range",
+      description: "Calculate dipping and raising distance of lighthouses and coastal navigational aids in nautical miles.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/dipping-distance-calc",
+      keywords: ["dipping distance calculator", "geographic range lighthouse", "visible horizon distance", "raising a light"]
+    },
+    searchKeywords: ["dipping distance", "dipping distance calculator", "geographic range lighthouse", "horizon distance", "lighthouse visible range"]
+  },
+  {
+    id: "under-keel-clearance-calc",
+    slug: "under-keel-clearance-calc",
+    title: "Under Keel Clearance Calculator",
+    name: "Under Keel Clearance Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate net dynamic Under Keel Clearance (UKC) accounting for charted depth, tide, draft, and squat.",
+    formula: "Net UKC = Charted Depth + Tide - Static Draft - Dynamic Squat - Safety Margin",
+    outputUnit: "Meters (m)",
+    assumptions: ["Uniform water depth over transit fairway", "Chart datum referenced to LAT"],
+    inputs: [
+      { name: "chartedDepth", label: "Charted Water Depth", unit: "Meters (m)", defaultValue: 14.5 },
+      { name: "heightOfTide", label: "Height of Tide", unit: "Meters (m)", defaultValue: 2.2 },
+      { name: "staticDraft", label: "Maximum Static Draft", unit: "Meters (m)", defaultValue: 12.8 },
+      { name: "dynamicSquat", label: "Estimated Dynamic Squat", unit: "Meters (m)", defaultValue: 0.6 },
+      { name: "safetyMargin", label: "Safety Allowance (Wave/Roll)", unit: "Meters (m)", defaultValue: 0.5 }
+    ],
+    calculate: (inputs) => (inputs.chartedDepth || 0) + (inputs.heightOfTide || 0) - (inputs.staticDraft || 0) - (inputs.dynamicSquat || 0) - (inputs.safetyMargin || 0),
+    route: "/engineering-calculators/navigation-marine-calc/under-keel-clearance-calc",
+    seo: {
+      title: "Under Keel Clearance Calculator | Dynamic Marine UKC Solver",
+      description: "Calculate dynamic Under Keel Clearance (UKC) for port entry and shallow channel transit safety.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/under-keel-clearance-calc",
+      keywords: ["under keel clearance calculator", "ukc calculator", "dynamic under keel clearance", "ship grounding prevention"]
+    },
+    searchKeywords: ["under keel clearance", "under keel clearance calculator", "ukc calculator", "dynamic ukc", "ship clearance shallow water"]
+  },
+  {
+    id: "squat-calculator",
+    slug: "squat-calculator",
+    title: "Squat Calculator",
+    name: "Squat Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate dynamic ship squat sinkage in confined channels and open shallow waters using the Barrass formula.",
+    formula: "Squat = (C_b × V²) / Channel Factor",
+    outputUnit: "Meters (m)",
+    assumptions: ["Barrass empirical shallow water squat model", "Shallow water depth-to-draft ratio < 1.4"],
+    inputs: [
+      { name: "blockCoefficient", label: "Block Coefficient (C_b)", unit: "Factor [0.5 - 0.9]", defaultValue: 0.82 },
+      { name: "shipSpeed", label: "Ship Speed Through Water", unit: "Knots (kn)", defaultValue: 10 },
+      { name: "channelFactor", label: "Channel Confinement Divisor", unit: "Divisor [30 or 100]", defaultValue: 30 }
+    ],
+    calculate: (inputs) => {
+      const cb = inputs.blockCoefficient || 0.82;
+      const v = inputs.shipSpeed || 0;
+      const factor = Math.max(inputs.channelFactor || 30, 1);
+      return (cb * v * v) / factor;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/squat-calculator",
+    seo: {
+      title: "Squat Calculator | Marine Hydrodynamic Ship Sinkage Solver",
+      description: "Calculate dynamic ship squat sinkage in confined channels and open water via the Barrass formula.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/squat-calculator",
+      keywords: ["squat calculator", "ship squat formula", "barrass squat formula", "marine hydrodynamic sinkage"]
+    },
+    searchKeywords: ["squat calculator", "ship squat", "barrass squat formula", "vessel sinkage shallow water", "dynamic squat"]
+  },
+  {
+    id: "tidal-height-calc",
+    slug: "tidal-height-calc",
+    title: "Tidal Height Calculator",
+    name: "Tidal Height Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Calculate intermediate tidal height between Low Water and High Water using harmonic sinusoidal modeling.",
+    formula: "Height = LW + Range × (1 - cos(π × Elapsed / Duration)) / 2",
+    outputUnit: "Meters (m)",
+    assumptions: ["Standard semi-diurnal harmonic tidal curve", "Rule of Twelfths sinusoidal profile"],
+    inputs: [
+      { name: "lowWaterHeight", label: "Low Water Height (LW)", unit: "Meters (m)", defaultValue: 1.2 },
+      { name: "highWaterHeight", label: "High Water Height (HW)", unit: "Meters (m)", defaultValue: 5.6 },
+      { name: "duration", label: "Tidal Cycle Duration", unit: "Hours (h)", defaultValue: 6.2 },
+      { name: "elapsedTime", label: "Elapsed Time after Low Water", unit: "Hours (h)", defaultValue: 2.5 }
+    ],
+    calculate: (inputs) => {
+      const lw = inputs.lowWaterHeight || 0;
+      const hw = inputs.highWaterHeight || 0;
+      const range = hw - lw;
+      const dur = Math.max(inputs.duration || 6.2, 0.1);
+      const t = inputs.elapsedTime || 0;
+      const factor = (1 - Math.cos(Math.PI * t / dur)) / 2;
+      return lw + range * factor;
+    },
+    route: "/engineering-calculators/navigation-marine-calc/tidal-height-calc",
+    seo: {
+      title: "Tidal Height Calculator | Intermediate Harmonic Tide Level",
+      description: "Calculate instantaneous intermediate tidal height between Low and High Water using sinusoidal harmonics.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/tidal-height-calc",
+      keywords: ["tidal height calculator", "intermediate tide height", "rule of twelfths calculator", "harmonic tide solver"]
+    },
+    searchKeywords: ["tidal height", "tidal height calculator", "intermediate tide height", "rule of twelfths", "tide level calculator"]
+  },
+  {
+    id: "tidal-current-stream-calc",
+    slug: "tidal-current-stream-calc",
+    title: "Tidal Current / Tidal Stream Calculator",
+    name: "Tidal Current / Tidal Stream Calculator",
+    discipline: "Navigation & Marine",
+    disciplineId: "navigation-marine-calc",
+    description: "Compute instantaneous tidal stream velocity and current flow rate in knots between slack waters.",
+    formula: "Velocity = V_max × sin(π × Elapsed / Duration)",
+    outputUnit: "Knots (kn)",
+    assumptions: ["Sinusoidal rate acceleration between slack waters", "Reversing tidal stream regime"],
+    inputs: [
+      { name: "maxCurrentRate", label: "Max Tidal Stream Rate (V_max)", unit: "Knots (kn)", defaultValue: 4.2 },
+      { name: "currentDuration", label: "Duration between Slack Waters", unit: "Hours (h)", defaultValue: 6 },
+      { name: "elapsedTime", label: "Elapsed Time since Slack", unit: "Hours (h)", defaultValue: 2 }
+    ],
+    calculate: (inputs) => {
+      const vmax = inputs.maxCurrentRate || 0;
+      const dur = Math.max(inputs.currentDuration || 6, 0.1);
+      const t = inputs.elapsedTime || 0;
+      return vmax * Math.sin(Math.PI * t / dur);
+    },
+    route: "/engineering-calculators/navigation-marine-calc/tidal-current-stream-calc",
+    seo: {
+      title: "Tidal Current / Tidal Stream Calculator | Marine Flow Rate",
+      description: "Calculate instantaneous tidal stream velocity in knots between slack waters using sinusoidal rate modeling.",
+      canonicalUrl: "https://unitsconvertors.com/engineering-calculators/navigation-marine-calc/tidal-current-stream-calc",
+      keywords: ["tidal current calculator", "tidal stream calculator", "tidal stream rate", "slack water velocity"]
+    },
+    searchKeywords: ["tidal current", "tidal current calculator", "tidal stream calculator", "tidal stream speed", "slack water flow rate"]
   },
 
   // --- RESTORED ASTRONOMY CALCULATORS ---
