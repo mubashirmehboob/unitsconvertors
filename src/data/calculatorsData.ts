@@ -5944,7 +5944,7 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
     outputUnit: "Total Arcseconds (\")",
     assumptions: ["Sexagesimal angular subdivision", "Euclidean or geodetic arc representation"],
     inputs: [
-      { name: "decimalDegree", label: "Decimal Degrees (DD)", unit: "Arc Degrees (°)", defaultValue: 45.8725 }
+      { name: "decimalDegree", label: "Decimal Degrees (DD)", unit: "Arc Degrees (°)", defaultValue: 179.35 }
     ],
     calculate: (inputs) => (inputs.decimalDegree || 0) * 3600,
     route: "/engineering-calculators/surveying-gis-calc/degree-to-dms-calc",

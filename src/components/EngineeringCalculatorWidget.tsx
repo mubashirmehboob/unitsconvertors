@@ -64,6 +64,92 @@ function formatDegreesToRightAscension(degrees: number) {
   };
 }
 
+/**
+ * Format arc degrees to standard Geodetic & Surveying DMS, DMM, DD and total minutes/seconds notations.
+ */
+function formatDegreesToDmsMultiFormat(decimalDegrees: number) {
+  if (isNaN(decimalDegrees)) {
+    return {
+      dmsSymbols: "--",
+      dmsWords: "--",
+      dmmSymbols: "--",
+      dmmWords: "--",
+      ddSymbols: "--",
+      ddWords: "--",
+      totalMinutes: "--",
+      totalSeconds: "--",
+      fullCopyText: "--"
+    };
+  }
+
+  const sign = decimalDegrees < 0 ? -1 : 1;
+  const absDd = Math.abs(decimalDegrees);
+  const signPrefix = sign < 0 ? "-" : "";
+
+  let deg = Math.floor(absDd);
+  const minRemainder = (absDd - deg) * 60;
+  let min = Math.floor(minRemainder + 1e-10);
+  const secRemainder = Math.max(0, (minRemainder - min) * 60);
+
+  // Round seconds to up to 4 decimal places, avoiding trailing zeros
+  let roundedSec = Math.round(secRemainder * 10000) / 10000;
+  let finalMin = min;
+  let finalDeg = deg;
+  if (roundedSec >= 60) {
+    roundedSec = 0;
+    finalMin += 1;
+  }
+  if (finalMin >= 60) {
+    finalMin = 0;
+    finalDeg += 1;
+  }
+
+  const secFormatted = roundedSec % 1 === 0 ? roundedSec.toFixed(0) : parseFloat(roundedSec.toFixed(4)).toString();
+
+  // 1. DMS
+  const dmsSymbols = `${signPrefix}${finalDeg}° ${finalMin}' ${secFormatted}"`;
+  const dmsWords = `${signPrefix}${finalDeg} degrees, ${finalMin} minutes, ${secFormatted} seconds`;
+
+  // 2. DMM (Degrees and Decimal Minutes)
+  let roundedDm = Math.round(minRemainder * 10000) / 10000;
+  let dmmDeg = deg;
+  if (roundedDm >= 60) {
+    roundedDm = 0;
+    dmmDeg += 1;
+  }
+  const dmFormatted = roundedDm % 1 === 0 ? roundedDm.toFixed(0) : parseFloat(roundedDm.toFixed(4)).toString();
+  const dmmSymbols = `${signPrefix}${dmmDeg}° ${dmFormatted}'`;
+  const dmmWords = `${signPrefix}${dmmDeg} degrees, ${dmFormatted} minutes`;
+
+  // 3. DD
+  const ddRounded = parseFloat(decimalDegrees.toFixed(6));
+  const ddFormatted = ddRounded.toString();
+  const ddSymbols = `${ddFormatted}°`;
+  const ddWords = `${ddFormatted} decimal degrees`;
+
+  // 4. Total in Minutes
+  const totalMinVal = parseFloat((sign * absDd * 60).toFixed(4));
+  const totalMinutes = `= ${totalMinVal.toLocaleString('en-US', { maximumFractionDigits: 4 })} minutes`;
+
+  // 5. Total in Seconds
+  const totalSecVal = parseFloat((sign * absDd * 3600).toFixed(4));
+  const totalSeconds = `= ${totalSecVal.toLocaleString('en-US', { maximumFractionDigits: 4 })} seconds`;
+
+  const fullCopyText = `DMS\n${dmsSymbols}\n${dmsWords}\n\nDMM\n${dmmSymbols}\n${dmmWords}\n\nDD\n${ddSymbols}\n${ddWords}\n\nTotal in Minutes\n${totalMinutes}\n\nTotal in Seconds\n${totalSeconds}`;
+
+  return {
+    dmsSymbols,
+    dmsWords,
+    dmmSymbols,
+    dmmWords,
+    ddSymbols,
+    ddWords,
+    totalMinutes,
+    totalSeconds,
+    fullCopyText
+  };
+}
+
 interface EngineeringCalculatorWidgetProps {
   tool: EngineeringTool;
   disciplineName?: string;
@@ -261,10 +347,30 @@ export default function EngineeringCalculatorWidget({
               ))}
             </ul>
           </div>
+
+          {/* Verification Footnote */}
+          <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-950/80 text-xs text-slate-600 dark:text-slate-400 space-y-1.5 shadow-2xs">
+            <span className="font-bold text-slate-900 dark:text-slate-100 block tracking-tight">
+              {tool.id === "degree-to-dms-calc" || tool.id === "decimal-degree-to-dms-calc" || tool.id === "degree-to-decimal-degree-calc"
+                ? "Geodetic & Angular Coordinate Verification:"
+                : tool.disciplineId === "astronomy-calc"
+                ? "Astronomical Coordinate Verification:"
+                : "Dimensional SI Verification:"}
+            </span>
+            <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400 font-sans">
+              {tool.id === "degree-to-dms-calc" || tool.id === "decimal-degree-to-dms-calc" || tool.id === "degree-to-decimal-degree-calc"
+                ? "Calculated dynamically using the exact base-60 sexagesimal angular subdivision: 1° = 60' (arcminutes) = 3,600\" (arcseconds). All representations (DMS, DMM, DD, total minutes, and total seconds) update in real time."
+                : tool.id === "degree-to-right-ascension-calc"
+                ? "Calculated dynamically using the standard celestial rate: 360° ≡ 24ʰ (15°/hour). Seconds are rounded to 1 decimal place when needed."
+                : tool.disciplineId === "astronomy-calc"
+                ? "Calculated dynamically using standard astronomical constants and equatorial celestial kinematics."
+                : "Calculated dynamically using the selected SI inputs. Real-world thermal behavior may vary with temperature, material properties, cooling conditions, and operating conditions."}
+            </p>
+          </div>
         </div>
 
         {/* Column 2: Computed Output Result */}
-        <div className="space-y-4 flex flex-col justify-between">
+        <div className="space-y-4 flex flex-col justify-start">
           <div className="space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 flex items-center gap-2">
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 text-white text-[10px] font-bold">2</span>
@@ -334,6 +440,130 @@ export default function EngineeringCalculatorWidget({
                   </div>
                 </div>
               );
+            })() : (tool.id === "degree-to-dms-calc" || tool.id === "decimal-degree-to-dms-calc" || tool.id === "degree-to-decimal-degree-calc") ? (() => {
+              const degInput = tool.id === "degree-to-dms-calc"
+                ? (calcInputs["decimalDegree"] ?? 179.35)
+                : ((calcInputs["degrees"] ?? 0) + ((calcInputs["minutes"] ?? 0) / 60) + ((calcInputs["seconds"] ?? 0) / 3600));
+              const dms = formatDegreesToDmsMultiFormat(degInput);
+              return (
+                <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white shadow-xl space-y-2.5 border border-slate-800 min-w-0 max-w-full">
+                  <div className="text-[11px] text-slate-400 font-mono flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-300">
+                      <Compass className="h-3 w-3 text-amber-400" />
+                      Geodetic & Angular Output
+                    </span>
+                    <span className="text-amber-400 font-bold font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px]">
+                      DMS • DMM • DD
+                    </span>
+                  </div>
+
+                  {/* DMS Primary Section */}
+                  <div className="p-3 rounded-lg bg-slate-800/90 border border-slate-700/80 space-y-0.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono">DMS</span>
+                      <button
+                        onClick={() => handleCopy(`${dms.dmsSymbols}\n${dms.dmsWords}`)}
+                        className="text-[10px] text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors cursor-pointer"
+                        title="Copy DMS representation"
+                      >
+                        <Copy className="h-2.5 w-2.5" />
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <div className="text-xl sm:text-2xl font-black text-amber-400 font-mono tracking-tight">
+                      {dms.dmsSymbols}
+                    </div>
+                    <div className="text-[11px] sm:text-xs font-medium text-slate-300">
+                      {dms.dmsWords}
+                    </div>
+                  </div>
+
+                  {/* DMM & DD Compact Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {/* DMM */}
+                    <div className="p-2.5 rounded-lg bg-slate-800/60 border border-slate-700/60 space-y-0.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300/90 font-mono">DMM</span>
+                        <button
+                          onClick={() => handleCopy(`${dms.dmmSymbols}\n${dms.dmmWords}`)}
+                          className="text-[10px] text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors cursor-pointer"
+                          title="Copy DMM representation"
+                        >
+                          <Copy className="h-2.5 w-2.5" />
+                        </button>
+                      </div>
+                      <div className="text-base font-bold text-white font-mono">
+                        {dms.dmmSymbols}
+                      </div>
+                      <div className="text-[11px] text-slate-300">
+                        {dms.dmmWords}
+                      </div>
+                    </div>
+
+                    {/* DD */}
+                    <div className="p-2.5 rounded-lg bg-slate-800/60 border border-slate-700/60 space-y-0.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300/90 font-mono">DD</span>
+                        <button
+                          onClick={() => handleCopy(`${dms.ddSymbols}\n${dms.ddWords}`)}
+                          className="text-[10px] text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors cursor-pointer"
+                          title="Copy DD representation"
+                        >
+                          <Copy className="h-2.5 w-2.5" />
+                        </button>
+                      </div>
+                      <div className="text-base font-bold text-white font-mono">
+                        {dms.ddSymbols}
+                      </div>
+                      <div className="text-[11px] text-slate-300">
+                        {dms.ddWords}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Total in Minutes & Total in Seconds Compact */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="p-2 rounded-lg bg-slate-800/50 border border-slate-700/50 flex items-center justify-between px-3">
+                      <span className="text-[10px] font-semibold text-slate-400 tracking-wide">
+                        Total in Minutes
+                      </span>
+                      <span className="text-xs sm:text-sm font-bold text-amber-300 font-mono">
+                        {dms.totalMinutes}
+                      </span>
+                    </div>
+
+                    <div className="p-2 rounded-lg bg-slate-800/50 border border-slate-700/50 flex items-center justify-between px-3">
+                      <span className="text-[10px] font-semibold text-slate-400 tracking-wide">
+                        Total in Seconds
+                      </span>
+                      <span className="text-xs sm:text-sm font-bold text-amber-300 font-mono">
+                        {dms.totalSeconds}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Copy All Button */}
+                  <div className="pt-1.5 border-t border-slate-800 flex justify-end">
+                    <button
+                      onClick={() => handleCopy(dms.fullCopyText)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold transition-all border border-slate-700 cursor-pointer"
+                      title="Copy all representations to clipboard"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="h-3.5 w-3.5 text-emerald-400" />
+                          <span className="text-emerald-400">All Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-3.5 w-3.5 text-slate-300" />
+                          <span>Copy All Results</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              );
             })() : (
               <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl space-y-4 border border-slate-800 min-w-0 max-w-full">
                 <div className="text-xs text-slate-400 font-mono flex items-center justify-between">
@@ -371,20 +601,6 @@ export default function EngineeringCalculatorWidget({
                 </div>
               </div>
             )}
-          </div>
-
-          {/* Verification Footnote */}
-          <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-950/80 text-xs text-slate-600 dark:text-slate-400 space-y-1.5 shadow-2xs">
-            <span className="font-bold text-slate-900 dark:text-slate-100 block tracking-tight">
-              {tool.disciplineId === "astronomy-calc" ? "Astronomical Coordinate Verification:" : "Dimensional SI Verification:"}
-            </span>
-            <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400 font-sans">
-              {tool.id === "degree-to-right-ascension-calc"
-                ? "Calculated dynamically using the standard celestial rate: 360° ≡ 24ʰ (15°/hour). Seconds are rounded to 1 decimal place when needed."
-                : tool.disciplineId === "astronomy-calc"
-                ? "Calculated dynamically using standard astronomical constants and equatorial celestial kinematics."
-                : "Calculated dynamically using the selected SI inputs. Real-world thermal behavior may vary with temperature, material properties, cooling conditions, and operating conditions."}
-            </p>
           </div>
         </div>
       </div>

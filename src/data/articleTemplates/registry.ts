@@ -3,6 +3,7 @@ import { electricalArticleTemplate } from "./electricalTemplate";
 import { mechanicalArticleTemplate } from "./mechanicalTemplate";
 import { chemistryArticleTemplate } from "./chemistryTemplate";
 import { fluidMechanicsArticleTemplate } from "./fluidMechanicsTemplate";
+import { surveyingArticleTemplate } from "./surveyingTemplate";
 
 /**
  * Category Template Registry
@@ -40,6 +41,14 @@ categoryTemplateRegistry["fluid-mechanics-calculators"] = fluidMechanicsArticleT
 categoryTemplateRegistry["fluid-mechanics-calculators-calc"] = fluidMechanicsArticleTemplate;
 categoryTemplateRegistry["fluid-calc"] = fluidMechanicsArticleTemplate;
 categoryTemplateRegistry["fluid-calculators"] = fluidMechanicsArticleTemplate;
+
+// Register surveying & GIS template
+registerCategoryTemplate(surveyingArticleTemplate);
+categoryTemplateRegistry["surveying-gis-calculators"] = surveyingArticleTemplate;
+categoryTemplateRegistry["surveying-gis-calculators-calc"] = surveyingArticleTemplate;
+categoryTemplateRegistry["surveying-gis-calc"] = surveyingArticleTemplate;
+categoryTemplateRegistry["surveying-calculators"] = surveyingArticleTemplate;
+categoryTemplateRegistry["gis-calculators"] = surveyingArticleTemplate;
 
 /**
  * Retrieve a registered category article template by category/discipline ID

@@ -14,6 +14,7 @@ import { astronomyBespokeArticlesPart2 } from "./astronomyBespokeArticles2";
 import { navigationBespokeArticlesMap } from "./navigationBespokeArticles";
 import { navigationBespokeArticlesPart1 } from "./navigationBespokeArticles1";
 import { navigationBespokeArticlesPart2 } from "./navigationBespokeArticles2";
+import { surveyingBespokeArticlesMap } from "./surveyingBespokeArticles";
 
 /**
  * Bespoke production-quality technical articles for Engineering Calculators.
@@ -38,6 +39,7 @@ export const bespokeArticlesMap: Record<string, (canonicalUrl: string, relatedTo
   ...navigationBespokeArticlesMap,
   ...navigationBespokeArticlesPart1,
   ...navigationBespokeArticlesPart2,
+  ...surveyingBespokeArticlesMap,
 
   // 1. OHM'S LAW CALCULATOR
   "ohms-law-calculator": (canonicalUrl, relatedTools, relevantUnitCategories) => ({

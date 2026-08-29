@@ -437,6 +437,16 @@ import { kilovoltToMicrovolt } from "./kilovoltToMicrovolt";
 import { kilovoltToMegavolt } from "./kilovoltToMegavolt";
 import { millivoltToVolt } from "./millivoltToVolt";
 import { millivoltToKilovolt } from "./millivoltToKilovolt";
+import { millivoltToMicrovolt } from "./millivoltToMicrovolt";
+import { millivoltToMegavolt } from "./millivoltToMegavolt";
+import { microvoltToVolt } from "./microvoltToVolt";
+import { microvoltToKilovolt } from "./microvoltToKilovolt";
+import { microvoltToMillivolt } from "./microvoltToMillivolt";
+import { microvoltToMegavolt } from "./microvoltToMegavolt";
+import { megavoltToVolt } from "./megavoltToVolt";
+import { megavoltToKilovolt } from "./megavoltToKilovolt";
+import { megavoltToMillivolt } from "./megavoltToMillivolt";
+import { megavoltToMicrovolt } from "./megavoltToMicrovolt";
 
 import { moleToMillimole } from "./moleToMillimole";
 import { moleToMicromole } from "./moleToMicromole";
@@ -448,6 +458,16 @@ import { millimoleToNanomole } from "./millimoleToNanomole";
 import { millimoleToKilomole } from "./millimoleToKilomole";
 import { micromoleToMole } from "./micromoleToMole";
 import { micromoleToMillimole } from "./micromoleToMillimole";
+import { micromoleToNanomole } from "./micromoleToNanomole";
+import { micromoleToKilomole } from "./micromoleToKilomole";
+import { nanomoleToMole } from "./nanomoleToMole";
+import { nanomoleToMillimole } from "./nanomoleToMillimole";
+import { nanomoleToMicromole } from "./nanomoleToMicromole";
+import { nanomoleToKilomole } from "./nanomoleToKilomole";
+import { kilomoleToMole } from "./kilomoleToMole";
+import { kilomoleToMillimole } from "./kilomoleToMillimole";
+import { kilomoleToMicromole } from "./kilomoleToMicromole";
+import { kilomoleToNanomole } from "./kilomoleToNanomole";
 
 import { luxToFootCandle } from "./luxToFootCandle";
 import { luxToCandelaLuxInverse } from "./luxToCandelaLuxInverse";
@@ -462,6 +482,18 @@ import { luxToLuxWattM2 } from "./luxToLuxWattM2";
 import { luxToIlluminanceConverter } from "./luxToIlluminanceConverter";
 import { luxToLuminanceConverter } from "./luxToLuminanceConverter";
 import { luxToApostilb } from "./luxToApostilb";
+import { luxToBlondel } from "./luxToBlondel";
+import { luxToSkot } from "./luxToSkot";
+import { footCandleToLux } from "./footCandleToLux";
+import { footCandleToNit } from "./footCandleToNit";
+import { footCandleToCandelaPerM2 } from "./footCandleToCandelaPerM2";
+import { footCandleToLambert } from "./footCandleToLambert";
+import { footCandleToFootLambert } from "./footCandleToFootLambert";
+import { footCandleToStilb } from "./footCandleToStilb";
+import { footCandleToPhot } from "./footCandleToPhot";
+import { footCandleToApostilb } from "./footCandleToApostilb";
+import { footCandleToBlondel } from "./footCandleToBlondel";
+import { footCandleToSkot } from "./footCandleToSkot";
 
 import { decibelToBel } from "./decibelToBel";
 import { decibelToDecibelSpl } from "./decibelToDecibelSpl";
@@ -484,6 +516,15 @@ import { belToPascalSound } from "./belToPascalSound";
 import { belToSoundPressure } from "./belToSoundPressure";
 import { belToSoundIntensity } from "./belToSoundIntensity";
 import { belToWattM2Sound } from "./belToWattM2Sound";
+
+import { decibelSplToDecibel } from "./decibelSplToDecibel";
+import { decibelSplToBel } from "./decibelSplToBel";
+import { decibelSplToPascalSound } from "./decibelSplToPascalSound";
+import { decibelSplToSoundPressure } from "./decibelSplToSoundPressure";
+import { decibelSplToSoundIntensity } from "./decibelSplToSoundIntensity";
+import { decibelSplToWattM2 } from "./decibelSplToWattM2";
+import { pascalSoundToDecibel } from "./pascalSoundToDecibel";
+import { pascalSoundToBel } from "./pascalSoundToBel";
 
 import { newtonToDyne } from "./newtonToDyne";
 import { newtonToPoundForce } from "./newtonToPoundForce";
@@ -1031,6 +1072,16 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "kilovolt-to-megavolt": kilovoltToMegavolt,
   "millivolt-to-volt": millivoltToVolt,
   "millivolt-to-kilovolt": millivoltToKilovolt,
+  "millivolt-to-microvolt": millivoltToMicrovolt,
+  "millivolt-to-megavolt": millivoltToMegavolt,
+  "microvolt-to-volt": microvoltToVolt,
+  "microvolt-to-kilovolt": microvoltToKilovolt,
+  "microvolt-to-millivolt": microvoltToMillivolt,
+  "microvolt-to-megavolt": microvoltToMegavolt,
+  "megavolt-to-volt": megavoltToVolt,
+  "megavolt-to-kilovolt": megavoltToKilovolt,
+  "megavolt-to-millivolt": megavoltToMillivolt,
+  "megavolt-to-microvolt": megavoltToMicrovolt,
 
   "mole-to-millimole": moleToMillimole,
   "mole-to-micromole": moleToMicromole,
@@ -1042,6 +1093,16 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "millimole-to-kilomole": millimoleToKilomole,
   "micromole-to-mole": micromoleToMole,
   "micromole-to-millimole": micromoleToMillimole,
+  "micromole-to-nanomole": micromoleToNanomole,
+  "micromole-to-kilomole": micromoleToKilomole,
+  "nanomole-to-mole": nanomoleToMole,
+  "nanomole-to-millimole": nanomoleToMillimole,
+  "nanomole-to-micromole": nanomoleToMicromole,
+  "nanomole-to-kilomole": nanomoleToKilomole,
+  "kilomole-to-mole": kilomoleToMole,
+  "kilomole-to-millimole": kilomoleToMillimole,
+  "kilomole-to-micromole": kilomoleToMicromole,
+  "kilomole-to-nanomole": kilomoleToNanomole,
 
   "lux-to-foot-candle": luxToFootCandle,
   "lux-to-candela-lux-inverse": luxToCandelaLuxInverse,
@@ -1056,6 +1117,18 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "lux-to-illuminance-converter": luxToIlluminanceConverter,
   "lux-to-luminance-converter": luxToLuminanceConverter,
   "lux-to-apostilb": luxToApostilb,
+  "lux-to-blondel": luxToBlondel,
+  "lux-to-skot": luxToSkot,
+  "foot-candle-to-lux": footCandleToLux,
+  "foot-candle-to-nit": footCandleToNit,
+  "foot-candle-to-candela-per-m2": footCandleToCandelaPerM2,
+  "foot-candle-to-lambert": footCandleToLambert,
+  "foot-candle-to-foot-lambert": footCandleToFootLambert,
+  "foot-candle-to-stilb": footCandleToStilb,
+  "foot-candle-to-phot": footCandleToPhot,
+  "foot-candle-to-apostilb": footCandleToApostilb,
+  "foot-candle-to-blondel": footCandleToBlondel,
+  "foot-candle-to-skot": footCandleToSkot,
 
   "decibel-to-bel": decibelToBel,
   "decibel-to-decibel-spl": decibelToDecibelSpl,
@@ -1078,6 +1151,15 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "bel-to-sound-pressure": belToSoundPressure,
   "bel-to-sound-intensity": belToSoundIntensity,
   "bel-to-watt-m2-sound": belToWattM2Sound,
+
+  "decibel-spl-to-decibel": decibelSplToDecibel,
+  "decibel-spl-to-bel": decibelSplToBel,
+  "decibel-spl-to-pascal-sound": decibelSplToPascalSound,
+  "decibel-spl-to-sound-pressure": decibelSplToSoundPressure,
+  "decibel-spl-to-sound-intensity": decibelSplToSoundIntensity,
+  "decibel-spl-to-watt-m2-sound": decibelSplToWattM2,
+  "pascal-sound-to-decibel": pascalSoundToDecibel,
+  "pascal-sound-to-bel": pascalSoundToBel,
 
   "newton-to-dyne": newtonToDyne,
   "newton-to-pound-force": newtonToPoundForce,
@@ -1626,6 +1708,16 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "kilovolt-to-megavolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
   "millivolt-to-volt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
   "millivolt-to-kilovolt": { seoReady: true, publishedAt: "2026-07-28", updatedAt: "2026-07-28", priority: 0.9 },
+  "millivolt-to-microvolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.95 },
+  "millivolt-to-megavolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.9 },
+  "microvolt-to-volt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.95 },
+  "microvolt-to-kilovolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.9 },
+  "microvolt-to-millivolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.95 },
+  "microvolt-to-megavolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.9 },
+  "megavolt-to-volt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.95 },
+  "megavolt-to-kilovolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.95 },
+  "megavolt-to-millivolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.9 },
+  "megavolt-to-microvolt": { seoReady: true, publishedAt: "2026-08-26", updatedAt: "2026-08-26", priority: 0.9 },
 
   "mole-to-millimole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
   "mole-to-micromole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
@@ -1637,6 +1729,16 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "millimole-to-kilomole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
   "micromole-to-mole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
   "micromole-to-millimole": { seoReady: true, publishedAt: "2026-07-30", updatedAt: "2026-07-30", priority: 0.9 },
+  "micromole-to-nanomole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.95 },
+  "micromole-to-kilomole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.9 },
+  "nanomole-to-mole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.95 },
+  "nanomole-to-millimole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.95 },
+  "nanomole-to-micromole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.95 },
+  "nanomole-to-kilomole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.9 },
+  "kilomole-to-mole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.95 },
+  "kilomole-to-millimole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.95 },
+  "kilomole-to-micromole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.9 },
+  "kilomole-to-nanomole": { seoReady: true, publishedAt: "2026-08-27", updatedAt: "2026-08-27", priority: 0.9 },
 
   "lux-to-foot-candle": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
   "lux-to-candela-lux-inverse": { seoReady: true, publishedAt: "2026-07-31", updatedAt: "2026-07-31", priority: 0.9 },
@@ -1688,6 +1790,27 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "newton-to-millinewton": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
 
   "lux-to-apostilb": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "lux-to-blondel": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "lux-to-skot": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-lux": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.95 },
+  "foot-candle-to-nit": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-candela-per-m2": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-lambert": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-foot-lambert": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.95 },
+  "foot-candle-to-stilb": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-phot": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-apostilb": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-blondel": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "foot-candle-to-skot": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+
+  "decibel-spl-to-decibel": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.95 },
+  "decibel-spl-to-bel": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "decibel-spl-to-pascal-sound": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.95 },
+  "decibel-spl-to-sound-pressure": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "decibel-spl-to-sound-intensity": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "decibel-spl-to-watt-m2-sound": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
+  "pascal-sound-to-decibel": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.95 },
+  "pascal-sound-to-bel": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
 
   "liter-per-sec-to-gallon-per-min": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
   "liter-per-sec-to-cubic-meter-per-hour": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
