@@ -539,6 +539,12 @@ import { newtonToTonForceMetric } from "./newtonToTonForceMetric";
 import { newtonToSthene } from "./newtonToSthene";
 import { newtonToKipForce } from "./newtonToKipForce";
 import { newtonToMillinewton } from "./newtonToMillinewton";
+import { newtonToMicronewton } from "./newtonToMicronewton";
+import { dyneToNewton } from "./dyneToNewton";
+import { dyneToPoundForce } from "./dyneToPoundForce";
+import { dyneToKilogramForce } from "./dyneToKilogramForce";
+import { dyneToKipForce } from "./dyneToKipForce";
+import { dyneToPoundal } from "./dyneToPoundal";
 
 import { literPerSecToGallonPerMin } from "./literPerSecToGallonPerMin";
 import { literPerSecToCubicMeterPerHour } from "./literPerSecToCubicMeterPerHour";
@@ -552,6 +558,21 @@ import { literPerSecToCubicCentimeterPerSec } from "./literPerSecToCubicCentimet
 import { literPerSecToMilliliterPerMin } from "./literPerSecToMilliliterPerMin";
 import { literPerSecToCfmUnit } from "./literPerSecToCfmUnit";
 import { literPerSecToCmhUnit } from "./literPerSecToCmhUnit";
+import { literPerSecToAcreFeetPerDay } from "./literPerSecToAcreFeetPerDay";
+import { literPerSecToMillionGallonsPerDay } from "./literPerSecToMillionGallonsPerDay";
+import { literPerSecToFlowPerUnitArea } from "./literPerSecToFlowPerUnitArea";
+import { literPerSecToMassFlux } from "./literPerSecToMassFlux";
+import { literPerSecToMolarFlowRate } from "./literPerSecToMolarFlowRate";
+import { literPerSecToWeightFlowRate } from "./literPerSecToWeightFlowRate";
+import { gallonPerMinToLiterPerSec } from "./gallonPerMinToLiterPerSec";
+import { gallonPerMinToCubicMeterPerHour } from "./gallonPerMinToCubicMeterPerHour";
+
+import { radianToArcsecond } from "./radianToArcsecond";
+import { radianToRevolution } from "./radianToRevolution";
+import { radianToMilAngle } from "./radianToMilAngle";
+import { radianToTurnAngle } from "./radianToTurnAngle";
+import { radianToQuadrantAngle } from "./radianToQuadrantAngle";
+import { radianToSextantAngle } from "./radianToSextantAngle";
 
 import { ampereToMilliampere } from "./ampereToMilliampere";
 import { ampereToMicroampere } from "./ampereToMicroampere";
@@ -1174,6 +1195,12 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "newton-to-sthene": newtonToSthene,
   "newton-to-kip-force": newtonToKipForce,
   "newton-to-millinewton": newtonToMillinewton,
+  "newton-to-micronewton": newtonToMicronewton,
+  "dyne-to-newton": dyneToNewton,
+  "dyne-to-pound-force": dyneToPoundForce,
+  "dyne-to-kilogram-force": dyneToKilogramForce,
+  "dyne-to-kip-force": dyneToKipForce,
+  "dyne-to-poundal": dyneToPoundal,
 
   "liter-per-sec-to-gallon-per-min": literPerSecToGallonPerMin,
   "liter-per-sec-to-cubic-meter-per-hour": literPerSecToCubicMeterPerHour,
@@ -1187,6 +1214,14 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "liter-per-sec-to-milliliter-per-min": literPerSecToMilliliterPerMin,
   "liter-per-sec-to-cfm-unit": literPerSecToCfmUnit,
   "liter-per-sec-to-cmh-unit": literPerSecToCmhUnit,
+  "liter-per-sec-to-acre-feet-per-day": literPerSecToAcreFeetPerDay,
+  "liter-per-sec-to-million-gallons-per-day": literPerSecToMillionGallonsPerDay,
+  "liter-per-sec-to-flow-per-unit-area": literPerSecToFlowPerUnitArea,
+  "liter-per-sec-to-mass-flux": literPerSecToMassFlux,
+  "liter-per-sec-to-molar-flow-rate": literPerSecToMolarFlowRate,
+  "liter-per-sec-to-weight-flow-rate": literPerSecToWeightFlowRate,
+  "gallon-per-min-to-liter-per-sec": gallonPerMinToLiterPerSec,
+  "gallon-per-min-to-cubic-meter-per-hour": gallonPerMinToCubicMeterPerHour,
 
   "degree-to-radian": degreeToRadian,
   "degree-to-gradian": degreeToGradian,
@@ -1202,6 +1237,12 @@ export const customLengthArticles: Record<string, CustomArticleData> = {
   "radian-to-degree": radianToDegree,
   "radian-to-gradian": radianToGradian,
   "radian-to-arcminute": radianToArcminute,
+  "radian-to-arcsecond": radianToArcsecond,
+  "radian-to-revolution": radianToRevolution,
+  "radian-to-mil-angle": radianToMilAngle,
+  "radian-to-turn-angle": radianToTurnAngle,
+  "radian-to-quadrant-angle": radianToQuadrantAngle,
+  "radian-to-sextant-angle": radianToSextantAngle,
 
   "ampere-to-milliampere": ampereToMilliampere,
   "ampere-to-microampere": ampereToMicroampere,
@@ -1788,6 +1829,12 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "newton-to-sthene": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
   "newton-to-kip-force": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
   "newton-to-millinewton": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
+  "newton-to-micronewton": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "dyne-to-newton": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "dyne-to-pound-force": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "dyne-to-kilogram-force": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "dyne-to-kip-force": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "dyne-to-poundal": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
 
   "lux-to-apostilb": { seoReady: true, publishedAt: "2026-08-04", updatedAt: "2026-08-04", priority: 0.9 },
   "lux-to-blondel": { seoReady: true, publishedAt: "2026-08-28", updatedAt: "2026-08-28", priority: 0.9 },
@@ -1824,6 +1871,14 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "liter-per-sec-to-milliliter-per-min": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
   "liter-per-sec-to-cfm-unit": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
   "liter-per-sec-to-cmh-unit": { seoReady: true, publishedAt: "2026-08-05", updatedAt: "2026-08-05", priority: 0.9 },
+  "liter-per-sec-to-acre-feet-per-day": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "liter-per-sec-to-million-gallons-per-day": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "liter-per-sec-to-flow-per-unit-area": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "liter-per-sec-to-mass-flux": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "liter-per-sec-to-molar-flow-rate": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "liter-per-sec-to-weight-flow-rate": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "gallon-per-min-to-liter-per-sec": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "gallon-per-min-to-cubic-meter-per-hour": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
 
   "degree-to-radian": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
   "degree-to-gradian": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
@@ -1839,6 +1894,12 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "radian-to-degree": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
   "radian-to-gradian": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
   "radian-to-arcminute": { seoReady: true, publishedAt: "2026-08-06", updatedAt: "2026-08-06", priority: 0.9 },
+  "radian-to-arcsecond": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "radian-to-revolution": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.95 },
+  "radian-to-mil-angle": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "radian-to-turn-angle": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "radian-to-quadrant-angle": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
+  "radian-to-sextant-angle": { seoReady: true, publishedAt: "2026-08-30", updatedAt: "2026-08-30", priority: 0.9 },
 
   "ampere-to-milliampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
   "ampere-to-microampere": { seoReady: true, publishedAt: "2026-08-07", updatedAt: "2026-08-07", priority: 0.9 },
