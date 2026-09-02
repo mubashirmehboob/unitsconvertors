@@ -1,0 +1,2562 @@
+{
+  "meter-to-mile": {
+    "file": "meterToMile",
+    "varName": "meterToMile"
+  },
+  "meter-to-yard": {
+    "file": "meterToYard",
+    "varName": "meterToYard"
+  },
+  "meter-to-foot": {
+    "file": "meterToFoot",
+    "varName": "meterToFoot"
+  },
+  "meter-to-inch": {
+    "file": "meterToInch",
+    "varName": "meterToInch"
+  },
+  "meter-to-kilometer": {
+    "file": "meterToKilometer",
+    "varName": "meterToKilometer"
+  },
+  "meter-to-centimeter": {
+    "file": "meterToCentimeter",
+    "varName": "meterToCentimeter"
+  },
+  "meter-to-millimeter": {
+    "file": "meterToMillimeter",
+    "varName": "meterToMillimeter"
+  },
+  "meter-to-nautical-mile": {
+    "file": "meterToNmi",
+    "varName": "meterToNmi"
+  },
+  "meter-to-rod": {
+    "file": "meterToRod",
+    "varName": "meterToRod"
+  },
+  "meter-to-chain": {
+    "file": "meterToChain",
+    "varName": "meterToChain"
+  },
+  "meter-to-furlong": {
+    "file": "meterToFurlong",
+    "varName": "meterToFurlong"
+  },
+  "meter-to-league": {
+    "file": "meterToLeague",
+    "varName": "meterToLeague"
+  },
+  "meter-to-hand": {
+    "file": "meterToHand",
+    "varName": "meterToHand"
+  },
+  "meter-to-cubit": {
+    "file": "meterToCubit",
+    "varName": "meterToCubit"
+  },
+  "kilometer-to-meter": {
+    "file": "kilometerToMeter",
+    "varName": "kilometerToMeter"
+  },
+  "kilometer-to-centimeter": {
+    "file": "kilometerToCentimeter",
+    "varName": "kilometerToCentimeter"
+  },
+  "kilometer-to-millimeter": {
+    "file": "kilometerToMillimeter",
+    "varName": "kilometerToMillimeter"
+  },
+  "kilometer-to-micrometer": {
+    "file": "kilometerToMicrometer",
+    "varName": "kilometerToMicrometer"
+  },
+  "kilometer-to-nanometer": {
+    "file": "kilometerToNanometer",
+    "varName": "kilometerToNanometer"
+  },
+  "kilometer-to-mile": {
+    "file": "kilometerToMile",
+    "varName": "kilometerToMile"
+  },
+  "kilometer-to-yard": {
+    "file": "kilometerToYard",
+    "varName": "kilometerToYard"
+  },
+  "kilometer-to-foot": {
+    "file": "kilometerToFoot",
+    "varName": "kilometerToFoot"
+  },
+  "kilometer-to-inch": {
+    "file": "kilometerToInch",
+    "varName": "kilometerToInch"
+  },
+  "kilometer-to-nautical-mile": {
+    "file": "kilometerToNmi",
+    "varName": "kilometerToNmi"
+  },
+  "kilometer-to-rod": {
+    "file": "kilometerToRod",
+    "varName": "kilometerToRod"
+  },
+  "kilometer-to-chain": {
+    "file": "kilometerToChain",
+    "varName": "kilometerToChain"
+  },
+  "kilometer-to-furlong": {
+    "file": "kilometerToFurlong",
+    "varName": "kilometerToFurlong"
+  },
+  "kilometer-to-league": {
+    "file": "kilometerToLeague",
+    "varName": "kilometerToLeague"
+  },
+  "henry-to-millihenry": {
+    "file": "henryToMillihenry",
+    "varName": "henryToMillihenry"
+  },
+  "henry-to-microhenry": {
+    "file": "henryToMicrohenry",
+    "varName": "henryToMicrohenry"
+  },
+  "henry-to-nanohenry": {
+    "file": "henryToNanohenry",
+    "varName": "henryToNanohenry"
+  },
+  "millihenry-to-henry": {
+    "file": "millihenryToHenry",
+    "varName": "millihenryToHenry"
+  },
+  "millihenry-to-microhenry": {
+    "file": "millihenryToMicrohenry",
+    "varName": "millihenryToMicrohenry"
+  },
+  "millihenry-to-nanohenry": {
+    "file": "millihenryToNanohenry",
+    "varName": "millihenryToNanohenry"
+  },
+  "microhenry-to-henry": {
+    "file": "microhenryToHenry",
+    "varName": "microhenryToHenry"
+  },
+  "microhenry-to-millihenry": {
+    "file": "microhenryToMillihenry",
+    "varName": "microhenryToMillihenry"
+  },
+  "microhenry-to-nanohenry": {
+    "file": "microhenryToNanohenry",
+    "varName": "microhenryToNanohenry"
+  },
+  "nanohenry-to-henry": {
+    "file": "nanohenryToHenry",
+    "varName": "nanohenryToHenry"
+  },
+  "nanohenry-to-millihenry": {
+    "file": "nanohenryToMillihenry",
+    "varName": "nanohenryToMillihenry"
+  },
+  "nanohenry-to-microhenry": {
+    "file": "nanohenryToMicrohenry",
+    "varName": "nanohenryToMicrohenry"
+  },
+  "becquerel-to-curie": {
+    "file": "becquerelToCurie",
+    "varName": "becquerelToCurie"
+  },
+  "becquerel-to-rutherford": {
+    "file": "becquerelToRutherford",
+    "varName": "becquerelToRutherford"
+  },
+  "becquerel-to-kilobecquerel": {
+    "file": "becquerelToKilobecquerel",
+    "varName": "becquerelToKilobecquerel"
+  },
+  "becquerel-to-megabecquerel": {
+    "file": "becquerelToMegabecquerel",
+    "varName": "becquerelToMegabecquerel"
+  },
+  "curie-to-becquerel": {
+    "file": "curieToBecquerel",
+    "varName": "curieToBecquerel"
+  },
+  "curie-to-rutherford": {
+    "file": "curieToRutherford",
+    "varName": "curieToRutherford"
+  },
+  "curie-to-kilobecquerel": {
+    "file": "curieToKilobecquerel",
+    "varName": "curieToKilobecquerel"
+  },
+  "curie-to-megabecquerel": {
+    "file": "curieToMegabecquerel",
+    "varName": "curieToMegabecquerel"
+  },
+  "rutherford-to-becquerel": {
+    "file": "rutherfordToBecquerel",
+    "varName": "rutherfordToBecquerel"
+  },
+  "rutherford-to-curie": {
+    "file": "rutherfordToCurie",
+    "varName": "rutherfordToCurie"
+  },
+  "rutherford-to-kilobecquerel": {
+    "file": "rutherfordToKilobecquerel",
+    "varName": "rutherfordToKilobecquerel"
+  },
+  "rutherford-to-megabecquerel": {
+    "file": "rutherfordToMegabecquerel",
+    "varName": "rutherfordToMegabecquerel"
+  },
+  "kilobecquerel-to-becquerel": {
+    "file": "kilobecquerelToBecquerel",
+    "varName": "kilobecquerelToBecquerel"
+  },
+  "kilobecquerel-to-curie": {
+    "file": "kilobecquerelToCurie",
+    "varName": "kilobecquerelToCurie"
+  },
+  "kilobecquerel-to-rutherford": {
+    "file": "kilobecquerelToRutherford",
+    "varName": "kilobecquerelToRutherford"
+  },
+  "kilobecquerel-to-megabecquerel": {
+    "file": "kilobecquerelToMegabecquerel",
+    "varName": "kilobecquerelToMegabecquerel"
+  },
+  "megabecquerel-to-becquerel": {
+    "file": "megabecquerelToBecquerel",
+    "varName": "megabecquerelToBecquerel"
+  },
+  "megabecquerel-to-curie": {
+    "file": "megabecquerelToCurie",
+    "varName": "megabecquerelToCurie"
+  },
+  "megabecquerel-to-rutherford": {
+    "file": "megabecquerelToRutherford",
+    "varName": "megabecquerelToRutherford"
+  },
+  "megabecquerel-to-kilobecquerel": {
+    "file": "megabecquerelToKilobecquerel",
+    "varName": "megabecquerelToKilobecquerel"
+  },
+  "farad-to-millifarad": {
+    "file": "faradToMillifarad",
+    "varName": "faradToMillifarad"
+  },
+  "farad-to-microfarad": {
+    "file": "faradToMicrofarad",
+    "varName": "faradToMicrofarad"
+  },
+  "farad-to-nanofarad": {
+    "file": "faradToNanofarad",
+    "varName": "faradToNanofarad"
+  },
+  "farad-to-picofarad": {
+    "file": "faradToPicofarad",
+    "varName": "faradToPicofarad"
+  },
+  "millifarad-to-farad": {
+    "file": "millifaradToFarad",
+    "varName": "millifaradToFarad"
+  },
+  "millifarad-to-microfarad": {
+    "file": "millifaradToMicrofarad",
+    "varName": "millifaradToMicrofarad"
+  },
+  "millifarad-to-nanofarad": {
+    "file": "millifaradToNanofarad",
+    "varName": "millifaradToNanofarad"
+  },
+  "millifarad-to-picofarad": {
+    "file": "millifaradToPicofarad",
+    "varName": "millifaradToPicofarad"
+  },
+  "microfarad-to-farad": {
+    "file": "microfaradToFarad",
+    "varName": "microfaradToFarad"
+  },
+  "microfarad-to-millifarad": {
+    "file": "microfaradToMillifarad",
+    "varName": "microfaradToMillifarad"
+  },
+  "gram-to-kilogram": {
+    "file": "gramToKilogram",
+    "varName": "gramToKilogram"
+  },
+  "gram-to-milligram": {
+    "file": "gramToMilligram",
+    "varName": "gramToMilligram"
+  },
+  "gram-to-microgram": {
+    "file": "gramToMicrogram",
+    "varName": "gramToMicrogram"
+  },
+  "gram-to-pound": {
+    "file": "gramToPound",
+    "varName": "gramToPound"
+  },
+  "gram-to-ounce": {
+    "file": "gramToOunce",
+    "varName": "gramToOunce"
+  },
+  "gram-to-stone": {
+    "file": "gramToStone",
+    "varName": "gramToStone"
+  },
+  "gram-to-metric-ton": {
+    "file": "gramToMetricTon",
+    "varName": "gramToMetricTon"
+  },
+  "gram-to-us-ton": {
+    "file": "gramToUsTon",
+    "varName": "gramToUsTon"
+  },
+  "gram-to-imperial-ton": {
+    "file": "gramToImperialTon",
+    "varName": "gramToImperialTon"
+  },
+  "gram-to-carat": {
+    "file": "gramToCarat",
+    "varName": "gramToCarat"
+  },
+  "gram-to-grain": {
+    "file": "gramToGrain",
+    "varName": "gramToGrain"
+  },
+  "gram-to-slug": {
+    "file": "gramToSlug",
+    "varName": "gramToSlug"
+  },
+  "gram-to-troy-ounce": {
+    "file": "gramToTroyOunce",
+    "varName": "gramToTroyOunce"
+  },
+  "kilogram-to-gram": {
+    "file": "kilogramToGram",
+    "varName": "kilogramToGram"
+  },
+  "kilogram-to-milligram": {
+    "file": "kilogramToMilligram",
+    "varName": "kilogramToMilligram"
+  },
+  "kilogram-to-microgram": {
+    "file": "kilogramToMicrogram",
+    "varName": "kilogramToMicrogram"
+  },
+  "kilogram-to-pound": {
+    "file": "kilogramToPound",
+    "varName": "kilogramToPound"
+  },
+  "kilogram-to-ounce": {
+    "file": "kilogramToOunce",
+    "varName": "kilogramToOunce"
+  },
+  "kilogram-to-stone": {
+    "file": "kilogramToStone",
+    "varName": "kilogramToStone"
+  },
+  "kilogram-to-metric-ton": {
+    "file": "kilogramToMetricTon",
+    "varName": "kilogramToMetricTon"
+  },
+  "kilogram-to-us-ton": {
+    "file": "kilogramToUsTon",
+    "varName": "kilogramToUsTon"
+  },
+  "square-meter-to-square-kilometer": {
+    "file": "squareMeterToSquareKilometer",
+    "varName": "squareMeterToSquareKilometer"
+  },
+  "square-meter-to-square-centimeter": {
+    "file": "squareMeterToSquareCentimeter",
+    "varName": "squareMeterToSquareCentimeter"
+  },
+  "square-meter-to-square-millimeter": {
+    "file": "squareMeterToSquareMillimeter",
+    "varName": "squareMeterToSquareMillimeter"
+  },
+  "square-meter-to-square-mile": {
+    "file": "squareMeterToSquareMile",
+    "varName": "squareMeterToSquareMile"
+  },
+  "square-meter-to-square-yard": {
+    "file": "squareMeterToSquareYard",
+    "varName": "squareMeterToSquareYard"
+  },
+  "square-meter-to-square-foot": {
+    "file": "squareMeterToSquareFoot",
+    "varName": "squareMeterToSquareFoot"
+  },
+  "square-meter-to-square-inch": {
+    "file": "squareMeterToSquareInch",
+    "varName": "squareMeterToSquareInch"
+  },
+  "square-meter-to-acre": {
+    "file": "squareMeterToAcre",
+    "varName": "squareMeterToAcre"
+  },
+  "square-meter-to-hectare": {
+    "file": "squareMeterToHectare",
+    "varName": "squareMeterToHectare"
+  },
+  "square-meter-to-bigha": {
+    "file": "squareMeterToBigha",
+    "varName": "squareMeterToBigha"
+  },
+  "square-meter-to-kanal": {
+    "file": "squareMeterToKanal",
+    "varName": "squareMeterToKanal"
+  },
+  "square-kilometer-to-square-meter": {
+    "file": "squareKilometerToSquareMeter",
+    "varName": "squareKilometerToSquareMeter"
+  },
+  "square-kilometer-to-square-centimeter": {
+    "file": "squareKilometerToSquareCentimeter",
+    "varName": "squareKilometerToSquareCentimeter"
+  },
+  "square-kilometer-to-square-millimeter": {
+    "file": "squareKilometerToSquareMillimeter",
+    "varName": "squareKilometerToSquareMillimeter"
+  },
+  "square-kilometer-to-square-mile": {
+    "file": "squareKilometerToSquareMile",
+    "varName": "squareKilometerToSquareMile"
+  },
+  "square-kilometer-to-square-yard": {
+    "file": "squareKilometerToSquareYard",
+    "varName": "squareKilometerToSquareYard"
+  },
+  "square-kilometer-to-square-foot": {
+    "file": "squareKilometerToSquareFoot",
+    "varName": "squareKilometerToSquareFoot"
+  },
+  "square-kilometer-to-square-inch": {
+    "file": "squareKilometerToSquareInch",
+    "varName": "squareKilometerToSquareInch"
+  },
+  "square-kilometer-to-acre": {
+    "file": "squareKilometerToAcre",
+    "varName": "squareKilometerToAcre"
+  },
+  "square-kilometer-to-hectare": {
+    "file": "squareKilometerToHectare",
+    "varName": "squareKilometerToHectare"
+  },
+  "square-kilometer-to-bigha": {
+    "file": "squareKilometerToBigha",
+    "varName": "squareKilometerToBigha"
+  },
+  "liter-to-milliliter": {
+    "file": "literToMilliliter",
+    "varName": "literToMilliliter"
+  },
+  "liter-to-cubic-meter": {
+    "file": "literToCubicMeter",
+    "varName": "literToCubicMeter"
+  },
+  "liter-to-cubic-centimeter": {
+    "file": "literToCubicCentimeter",
+    "varName": "literToCubicCentimeter"
+  },
+  "liter-to-cubic-foot": {
+    "file": "literToCubicFoot",
+    "varName": "literToCubicFoot"
+  },
+  "liter-to-cubic-inch": {
+    "file": "literToCubicInch",
+    "varName": "literToCubicInch"
+  },
+  "liter-to-gallon-us": {
+    "file": "literToGallonUs",
+    "varName": "literToGallonUs"
+  },
+  "liter-to-gallon-uk": {
+    "file": "literToGallonUk",
+    "varName": "literToGallonUk"
+  },
+  "liter-to-quart-us": {
+    "file": "literToQuartUs",
+    "varName": "literToQuartUs"
+  },
+  "liter-to-pint-us": {
+    "file": "literToPintUs",
+    "varName": "literToPintUs"
+  },
+  "liter-to-cup-us": {
+    "file": "literToCupUs",
+    "varName": "literToCupUs"
+  },
+  "liter-to-fluid-ounce-us": {
+    "file": "literToFluidOunceUs",
+    "varName": "literToFluidOunceUs"
+  },
+  "liter-to-tablespoon-us": {
+    "file": "literToTablespoonUs",
+    "varName": "literToTablespoonUs"
+  },
+  "liter-to-teaspoon-us": {
+    "file": "literToTeaspoonUs",
+    "varName": "literToTeaspoonUs"
+  },
+  "liter-to-barrel": {
+    "file": "literToBarrel",
+    "varName": "literToBarrel"
+  },
+  "cup-us-to-milliliter": {
+    "file": "cupUsToMilliliter",
+    "varName": "cupUsToMilliliter"
+  },
+  "cup-us-to-liter": {
+    "file": "cupUsToLiter",
+    "varName": "cupUsToLiter"
+  },
+  "cup-us-to-tablespoon-us": {
+    "file": "cupUsToTablespoonUs",
+    "varName": "cupUsToTablespoonUs"
+  },
+  "cup-us-to-teaspoon-us": {
+    "file": "cupUsToTeaspoonUs",
+    "varName": "cupUsToTeaspoonUs"
+  },
+  "milliliter-to-liter": {
+    "file": "milliliterToLiter",
+    "varName": "milliliterToLiter"
+  },
+  "milliliter-to-cubic-meter": {
+    "file": "milliliterToCubicMeter",
+    "varName": "milliliterToCubicMeter"
+  },
+  "milliliter-to-cubic-centimeter": {
+    "file": "milliliterToCubicCentimeter",
+    "varName": "milliliterToCubicCentimeter"
+  },
+  "milliliter-to-cubic-foot": {
+    "file": "milliliterToCubicFoot",
+    "varName": "milliliterToCubicFoot"
+  },
+  "milliliter-to-cubic-inch": {
+    "file": "milliliterToCubicInch",
+    "varName": "milliliterToCubicInch"
+  },
+  "milliliter-to-cup-us": {
+    "file": "milliliterToCupUs",
+    "varName": "milliliterToCupUs"
+  },
+  "milliliter-to-tablespoon-us": {
+    "file": "milliliterToTablespoonUs",
+    "varName": "milliliterToTablespoonUs"
+  },
+  "milliliter-to-teaspoon-us": {
+    "file": "milliliterToTeaspoonUs",
+    "varName": "milliliterToTeaspoonUs"
+  },
+  "milliliter-to-fluid-ounce-us": {
+    "file": "milliliterToFluidOunceUs",
+    "varName": "milliliterToFluidOunceUs"
+  },
+  "milliliter-to-pint-us": {
+    "file": "milliliterToPintUs",
+    "varName": "milliliterToPintUs"
+  },
+  "milliliter-to-quart-us": {
+    "file": "milliliterToQuartUs",
+    "varName": "milliliterToQuartUs"
+  },
+  "milliliter-to-gallon-us": {
+    "file": "milliliterToGallonUs",
+    "varName": "milliliterToGallonUs"
+  },
+  "milliliter-to-gallon-uk": {
+    "file": "milliliterToGallonUk",
+    "varName": "milliliterToGallonUk"
+  },
+  "celsius-to-fahrenheit": {
+    "file": "celsiusToFahrenheit",
+    "varName": "celsiusToFahrenheit"
+  },
+  "celsius-to-kelvin": {
+    "file": "celsiusToKelvin",
+    "varName": "celsiusToKelvin"
+  },
+  "celsius-to-rankine": {
+    "file": "celsiusToRankine",
+    "varName": "celsiusToRankine"
+  },
+  "celsius-to-reaumur": {
+    "file": "celsiusToReaumur",
+    "varName": "celsiusToReaumur"
+  },
+  "celsius-to-newton": {
+    "file": "celsiusToNewton",
+    "varName": "celsiusToNewton"
+  },
+  "celsius-to-romer": {
+    "file": "celsiusToRomer",
+    "varName": "celsiusToRomer"
+  },
+  "celsius-to-delisle": {
+    "file": "celsiusToDelisle",
+    "varName": "celsiusToDelisle"
+  },
+  "fahrenheit-to-celsius": {
+    "file": "fahrenheitToCelsius",
+    "varName": "fahrenheitToCelsius"
+  },
+  "fahrenheit-to-kelvin": {
+    "file": "fahrenheitToKelvin",
+    "varName": "fahrenheitToKelvin"
+  },
+  "fahrenheit-to-rankine": {
+    "file": "fahrenheitToRankine",
+    "varName": "fahrenheitToRankine"
+  },
+  "fahrenheit-to-reaumur": {
+    "file": "fahrenheitToReaumur",
+    "varName": "fahrenheitToReaumur"
+  },
+  "fahrenheit-to-newton": {
+    "file": "fahrenheitToNewton",
+    "varName": "fahrenheitToNewton"
+  },
+  "fahrenheit-to-romer": {
+    "file": "fahrenheitToRomer",
+    "varName": "fahrenheitToRomer"
+  },
+  "fahrenheit-to-delisle": {
+    "file": "fahrenheitToDelisle",
+    "varName": "fahrenheitToDelisle"
+  },
+  "kelvin-to-celsius": {
+    "file": "kelvinToCelsius",
+    "varName": "kelvinToCelsius"
+  },
+  "kelvin-to-fahrenheit": {
+    "file": "kelvinToFahrenheit",
+    "varName": "kelvinToFahrenheit"
+  },
+  "kelvin-to-rankine": {
+    "file": "kelvinToRankine",
+    "varName": "kelvinToRankine"
+  },
+  "kelvin-to-reaumur": {
+    "file": "kelvinToReaumur",
+    "varName": "kelvinToReaumur"
+  },
+  "kelvin-to-newton": {
+    "file": "kelvinToNewton",
+    "varName": "kelvinToNewton"
+  },
+  "kelvin-to-romer": {
+    "file": "kelvinToRomer",
+    "varName": "kelvinToRomer"
+  },
+  "kelvin-to-delisle": {
+    "file": "kelvinToDelisle",
+    "varName": "kelvinToDelisle"
+  },
+  "second-to-millisecond": {
+    "file": "secondToMillisecond",
+    "varName": "secondToMillisecond"
+  },
+  "second-to-microsecond": {
+    "file": "secondToMicrosecond",
+    "varName": "secondToMicrosecond"
+  },
+  "second-to-nanosecond": {
+    "file": "secondToNanosecond",
+    "varName": "secondToNanosecond"
+  },
+  "second-to-minute": {
+    "file": "secondToMinute",
+    "varName": "secondToMinute"
+  },
+  "second-to-hour": {
+    "file": "secondToHour",
+    "varName": "secondToHour"
+  },
+  "second-to-day": {
+    "file": "secondToDay",
+    "varName": "secondToDay"
+  },
+  "second-to-week": {
+    "file": "secondToWeek",
+    "varName": "secondToWeek"
+  },
+  "second-to-month": {
+    "file": "secondToMonth",
+    "varName": "secondToMonth"
+  },
+  "second-to-year": {
+    "file": "secondToYear",
+    "varName": "secondToYear"
+  },
+  "second-to-decade": {
+    "file": "secondToDecade",
+    "varName": "secondToDecade"
+  },
+  "second-to-century": {
+    "file": "secondToCentury",
+    "varName": "secondToCentury"
+  },
+  "second-to-fortnight": {
+    "file": "secondToFortnight",
+    "varName": "secondToFortnight"
+  },
+  "millisecond-to-second": {
+    "file": "millisecondToSecond",
+    "varName": "millisecondToSecond"
+  },
+  "millisecond-to-microsecond": {
+    "file": "millisecondToMicrosecond",
+    "varName": "millisecondToMicrosecond"
+  },
+  "millisecond-to-nanosecond": {
+    "file": "millisecondToNanosecond",
+    "varName": "millisecondToNanosecond"
+  },
+  "millisecond-to-minute": {
+    "file": "millisecondToMinute",
+    "varName": "millisecondToMinute"
+  },
+  "millisecond-to-hour": {
+    "file": "millisecondToHour",
+    "varName": "millisecondToHour"
+  },
+  "millisecond-to-day": {
+    "file": "millisecondToDay",
+    "varName": "millisecondToDay"
+  },
+  "millisecond-to-week": {
+    "file": "millisecondToWeek",
+    "varName": "millisecondToWeek"
+  },
+  "millisecond-to-month": {
+    "file": "millisecondToMonth",
+    "varName": "millisecondToMonth"
+  },
+  "millisecond-to-year": {
+    "file": "millisecondToYear",
+    "varName": "millisecondToYear"
+  },
+  "meter-per-second-to-kilometer-per-hour": {
+    "file": "meterPerSecondToKilometerPerHour",
+    "varName": "meterPerSecondToKilometerPerHour"
+  },
+  "meter-per-second-to-mile-per-hour": {
+    "file": "meterPerSecondToMilePerHour",
+    "varName": "meterPerSecondToMilePerHour"
+  },
+  "meter-per-second-to-knot": {
+    "file": "meterPerSecondToKnot",
+    "varName": "meterPerSecondToKnot"
+  },
+  "meter-per-second-to-mach": {
+    "file": "meterPerSecondToMach",
+    "varName": "meterPerSecondToMach"
+  },
+  "meter-per-second-to-speed-of-light": {
+    "file": "meterPerSecondToSpeedOfLight",
+    "varName": "meterPerSecondToSpeedOfLight"
+  },
+  "meter-per-second-to-foot-per-second": {
+    "file": "meterPerSecondToFootPerSecond",
+    "varName": "meterPerSecondToFootPerSecond"
+  },
+  "kilometer-per-hour-to-meter-per-second": {
+    "file": "kilometerPerHourToMeterPerSecond",
+    "varName": "kilometerPerHourToMeterPerSecond"
+  },
+  "kilometer-per-hour-to-mile-per-hour": {
+    "file": "kilometerPerHourToMilePerHour",
+    "varName": "kilometerPerHourToMilePerHour"
+  },
+  "kilometer-per-hour-to-knot": {
+    "file": "kilometerPerHourToKnot",
+    "varName": "kilometerPerHourToKnot"
+  },
+  "kilometer-per-hour-to-mach": {
+    "file": "kilometerPerHourToMach",
+    "varName": "kilometerPerHourToMach"
+  },
+  "kilometer-per-hour-to-speed-of-light": {
+    "file": "kilometerPerHourToSpeedOfLight",
+    "varName": "kilometerPerHourToSpeedOfLight"
+  },
+  "kilometer-per-hour-to-foot-per-second": {
+    "file": "kilometerPerHourToFootPerSecond",
+    "varName": "kilometerPerHourToFootPerSecond"
+  },
+  "mile-per-hour-to-meter-per-second": {
+    "file": "milePerHourToMeterPerSecond",
+    "varName": "milePerHourToMeterPerSecond"
+  },
+  "mile-per-hour-to-kilometer-per-hour": {
+    "file": "milePerHourToKilometerPerHour",
+    "varName": "milePerHourToKilometerPerHour"
+  },
+  "mile-per-hour-to-knot": {
+    "file": "milePerHourToKnot",
+    "varName": "milePerHourToKnot"
+  },
+  "mile-per-hour-to-mach": {
+    "file": "milePerHourToMach",
+    "varName": "milePerHourToMach"
+  },
+  "mile-per-hour-to-speed-of-light": {
+    "file": "milePerHourToSpeedOfLight",
+    "varName": "milePerHourToSpeedOfLight"
+  },
+  "mile-per-hour-to-foot-per-second": {
+    "file": "milePerHourToFootPerSecond",
+    "varName": "milePerHourToFootPerSecond"
+  },
+  "knot-to-meter-per-second": {
+    "file": "knotToMeterPerSecond",
+    "varName": "knotToMeterPerSecond"
+  },
+  "knot-to-kilometer-per-hour": {
+    "file": "knotToKilometerPerHour",
+    "varName": "knotToKilometerPerHour"
+  },
+  "knot-to-mile-per-hour": {
+    "file": "knotToMilePerHour",
+    "varName": "knotToMilePerHour"
+  },
+  "pascal-to-kilopascal": {
+    "file": "pascalToKilopascal",
+    "varName": "pascalToKilopascal"
+  },
+  "pascal-to-megapascal": {
+    "file": "pascalToMegapascal",
+    "varName": "pascalToMegapascal"
+  },
+  "pascal-to-bar": {
+    "file": "pascalToBar",
+    "varName": "pascalToBar"
+  },
+  "pascal-to-millibar": {
+    "file": "pascalToMillibar",
+    "varName": "pascalToMillibar"
+  },
+  "pascal-to-psi": {
+    "file": "pascalToPsi",
+    "varName": "pascalToPsi"
+  },
+  "pascal-to-atmosphere": {
+    "file": "pascalToAtmosphere",
+    "varName": "pascalToAtmosphere"
+  },
+  "pascal-to-torr": {
+    "file": "pascalToTorr",
+    "varName": "pascalToTorr"
+  },
+  "pascal-to-mmhg": {
+    "file": "pascalToMmhg",
+    "varName": "pascalToMmhg"
+  },
+  "kilopascal-to-pascal": {
+    "file": "kilopascalToPascal",
+    "varName": "kilopascalToPascal"
+  },
+  "kilopascal-to-megapascal": {
+    "file": "kilopascalToMegapascal",
+    "varName": "kilopascalToMegapascal"
+  },
+  "kilopascal-to-bar": {
+    "file": "kilopascalToBar",
+    "varName": "kilopascalToBar"
+  },
+  "kilopascal-to-millibar": {
+    "file": "kilopascalToMillibar",
+    "varName": "kilopascalToMillibar"
+  },
+  "kilopascal-to-psi": {
+    "file": "kilopascalToPsi",
+    "varName": "kilopascalToPsi"
+  },
+  "kilopascal-to-atmosphere": {
+    "file": "kilopascalToAtmosphere",
+    "varName": "kilopascalToAtmosphere"
+  },
+  "kilopascal-to-torr": {
+    "file": "kilopascalToTorr",
+    "varName": "kilopascalToTorr"
+  },
+  "kilopascal-to-mmhg": {
+    "file": "kilopascalToMmhg",
+    "varName": "kilopascalToMmhg"
+  },
+  "megapascal-to-pascal": {
+    "file": "megapascalToPascal",
+    "varName": "megapascalToPascal"
+  },
+  "megapascal-to-kilopascal": {
+    "file": "megapascalToKilopascal",
+    "varName": "megapascalToKilopascal"
+  },
+  "megapascal-to-bar": {
+    "file": "megapascalToBar",
+    "varName": "megapascalToBar"
+  },
+  "megapascal-to-millibar": {
+    "file": "megapascalToMillibar",
+    "varName": "megapascalToMillibar"
+  },
+  "megapascal-to-psi": {
+    "file": "megapascalToPsi",
+    "varName": "megapascalToPsi"
+  },
+  "joule-to-kilojoule": {
+    "file": "jouleToKilojoule",
+    "varName": "jouleToKilojoule"
+  },
+  "joule-to-calorie": {
+    "file": "jouleToCalorie",
+    "varName": "jouleToCalorie"
+  },
+  "joule-to-kilocalorie": {
+    "file": "jouleToKilocalorie",
+    "varName": "jouleToKilocalorie"
+  },
+  "joule-to-watt-hour": {
+    "file": "jouleToWattHour",
+    "varName": "jouleToWattHour"
+  },
+  "joule-to-kilowatt-hour": {
+    "file": "jouleToKilowattHour",
+    "varName": "jouleToKilowattHour"
+  },
+  "joule-to-btu": {
+    "file": "jouleToBtu",
+    "varName": "jouleToBtu"
+  },
+  "joule-to-electron-volt": {
+    "file": "jouleToElectronVolt",
+    "varName": "jouleToElectronVolt"
+  },
+  "joule-to-erg": {
+    "file": "jouleToErg",
+    "varName": "jouleToErg"
+  },
+  "joule-to-foot-pound": {
+    "file": "jouleToFootPound",
+    "varName": "jouleToFootPound"
+  },
+  "kilojoule-to-joule": {
+    "file": "kilojouleToJoule",
+    "varName": "kilojouleToJoule"
+  },
+  "kilojoule-to-calorie": {
+    "file": "kilojouleToCalorie",
+    "varName": "kilojouleToCalorie"
+  },
+  "kilojoule-to-kilocalorie": {
+    "file": "kilojouleToKilocalorie",
+    "varName": "kilojouleToKilocalorie"
+  },
+  "kilojoule-to-watt-hour": {
+    "file": "kilojouleToWattHour",
+    "varName": "kilojouleToWattHour"
+  },
+  "kilojoule-to-kilowatt-hour": {
+    "file": "kilojouleToKilowattHour",
+    "varName": "kilojouleToKilowattHour"
+  },
+  "kilojoule-to-btu": {
+    "file": "kilojouleToBtu",
+    "varName": "kilojouleToBtu"
+  },
+  "kilojoule-to-electron-volt": {
+    "file": "kilojouleToElectronVolt",
+    "varName": "kilojouleToElectronVolt"
+  },
+  "kilojoule-to-erg": {
+    "file": "kilojouleToErg",
+    "varName": "kilojouleToErg"
+  },
+  "kilojoule-to-foot-pound": {
+    "file": "kilojouleToFootPound",
+    "varName": "kilojouleToFootPound"
+  },
+  "calorie-to-joule": {
+    "file": "calorieToJoule",
+    "varName": "calorieToJoule"
+  },
+  "calorie-to-kilojoule": {
+    "file": "calorieToKilojoule",
+    "varName": "calorieToKilojoule"
+  },
+  "watt-to-kilowatt": {
+    "file": "wattToKilowatt",
+    "varName": "wattToKilowatt"
+  },
+  "watt-to-megawatt": {
+    "file": "wattToMegawatt",
+    "varName": "wattToMegawatt"
+  },
+  "watt-to-gigawatt": {
+    "file": "wattToGigawatt",
+    "varName": "wattToGigawatt"
+  },
+  "watt-to-horsepower-mechanical": {
+    "file": "wattToHorsepowerMechanical",
+    "varName": "wattToHorsepowerMechanical"
+  },
+  "watt-to-horsepower-metric": {
+    "file": "wattToHorsepowerMetric",
+    "varName": "wattToHorsepowerMetric"
+  },
+  "watt-to-btu-per-hour": {
+    "file": "wattToBtuPerHour",
+    "varName": "wattToBtuPerHour"
+  },
+  "watt-to-calorie-per-second": {
+    "file": "wattToCaloriePerSecond",
+    "varName": "wattToCaloriePerSecond"
+  },
+  "kilowatt-to-watt": {
+    "file": "kilowattToWatt",
+    "varName": "kilowattToWatt"
+  },
+  "kilowatt-to-megawatt": {
+    "file": "kilowattToMegawatt",
+    "varName": "kilowattToMegawatt"
+  },
+  "kilowatt-to-gigawatt": {
+    "file": "kilowattToGigawatt",
+    "varName": "kilowattToGigawatt"
+  },
+  "kilowatt-to-horsepower-mechanical": {
+    "file": "kilowattToHorsepowerMechanical",
+    "varName": "kilowattToHorsepowerMechanical"
+  },
+  "kilowatt-to-horsepower-metric": {
+    "file": "kilowattToHorsepowerMetric",
+    "varName": "kilowattToHorsepowerMetric"
+  },
+  "kilowatt-to-btu-per-hour": {
+    "file": "kilowattToBtuPerHour",
+    "varName": "kilowattToBtuPerHour"
+  },
+  "kilowatt-to-calorie-per-second": {
+    "file": "kilowattToCaloriePerSecond",
+    "varName": "kilowattToCaloriePerSecond"
+  },
+  "megawatt-to-watt": {
+    "file": "megawattToWatt",
+    "varName": "megawattToWatt"
+  },
+  "megawatt-to-kilowatt": {
+    "file": "megawattToKilowatt",
+    "varName": "megawattToKilowatt"
+  },
+  "megawatt-to-gigawatt": {
+    "file": "megawattToGigawatt",
+    "varName": "megawattToGigawatt"
+  },
+  "megawatt-to-horsepower-mechanical": {
+    "file": "megawattToHorsepowerMechanical",
+    "varName": "megawattToHorsepowerMechanical"
+  },
+  "megawatt-to-horsepower-metric": {
+    "file": "megawattToHorsepowerMetric",
+    "varName": "megawattToHorsepowerMetric"
+  },
+  "megawatt-to-btu-per-hour": {
+    "file": "megawattToBtuPerHour",
+    "varName": "megawattToBtuPerHour"
+  },
+  "mpg-us-to-mpg-uk": {
+    "file": "mpgUsToMpgUk",
+    "varName": "mpgUsToMpgUk"
+  },
+  "mpg-us-to-km-per-liter": {
+    "file": "mpgUsToKmPerLiter",
+    "varName": "mpgUsToKmPerLiter"
+  },
+  "mpg-us-to-liters-per-100km": {
+    "file": "mpgUsToLitersPer100km",
+    "varName": "mpgUsToLitersPer100km"
+  },
+  "mpg-us-to-liters-per-km": {
+    "file": "mpgUsToLitersPerKm",
+    "varName": "mpgUsToLitersPerKm"
+  },
+  "mpg-uk-to-mpg-us": {
+    "file": "mpgUkToMpgUs",
+    "varName": "mpgUkToMpgUs"
+  },
+  "mpg-uk-to-km-per-liter": {
+    "file": "mpgUkToKmPerLiter",
+    "varName": "mpgUkToKmPerLiter"
+  },
+  "mpg-uk-to-liters-per-100km": {
+    "file": "mpgUkToLitersPer100km",
+    "varName": "mpgUkToLitersPer100km"
+  },
+  "mpg-uk-to-liters-per-km": {
+    "file": "mpgUkToLitersPerKm",
+    "varName": "mpgUkToLitersPerKm"
+  },
+  "km-per-liter-to-mpg-us": {
+    "file": "kmPerLiterToMpgUs",
+    "varName": "kmPerLiterToMpgUs"
+  },
+  "km-per-liter-to-mpg-uk": {
+    "file": "kmPerLiterToMpgUk",
+    "varName": "kmPerLiterToMpgUk"
+  },
+  "km-per-liter-to-liters-per-100km": {
+    "file": "kmPerLiterToLitersPer100km",
+    "varName": "kmPerLiterToLitersPer100km"
+  },
+  "km-per-liter-to-liters-per-km": {
+    "file": "kmPerLiterToLitersPerKm",
+    "varName": "kmPerLiterToLitersPerKm"
+  },
+  "liters-per-100km-to-mpg-us": {
+    "file": "litersPer100kmToMpgUs",
+    "varName": "litersPer100kmToMpgUs"
+  },
+  "liters-per-100km-to-mpg-uk": {
+    "file": "litersPer100kmToMpgUk",
+    "varName": "litersPer100kmToMpgUk"
+  },
+  "liters-per-100km-to-km-per-liter": {
+    "file": "litersPer100kmToKmPerLiter",
+    "varName": "litersPer100kmToKmPerLiter"
+  },
+  "liters-per-100km-to-liters-per-km": {
+    "file": "litersPer100kmToLitersPerKm",
+    "varName": "litersPer100kmToLitersPerKm"
+  },
+  "liters-per-km-to-mpg-us": {
+    "file": "litersPerKmToMpgUs",
+    "varName": "litersPerKmToMpgUs"
+  },
+  "liters-per-km-to-mpg-uk": {
+    "file": "litersPerKmToMpgUk",
+    "varName": "litersPerKmToMpgUk"
+  },
+  "liters-per-km-to-km-per-liter": {
+    "file": "litersPerKmToKmPerLiter",
+    "varName": "litersPerKmToKmPerLiter"
+  },
+  "liters-per-km-to-liters-per-100km": {
+    "file": "litersPerKmToLitersPer100km",
+    "varName": "litersPerKmToLitersPer100km"
+  },
+  "miles-per-liter-to-mpg-us": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "milesPerLiterToMpgUs"
+  },
+  "mpg-us-to-miles-per-liter": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "mpgUsToMilesPerLiter"
+  },
+  "miles-per-liter-to-mpg-uk": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "milesPerLiterToMpgUk"
+  },
+  "mpg-uk-to-miles-per-liter": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "mpgUkToMilesPerLiter"
+  },
+  "miles-per-liter-to-km-per-liter": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "milesPerLiterToKmPerLiter"
+  },
+  "km-per-liter-to-miles-per-liter": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "kmPerLiterToMilesPerLiter"
+  },
+  "miles-per-liter-to-liters-per-100km": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "milesPerLiterToLitersPer100km"
+  },
+  "liters-per-100km-to-miles-per-liter": {
+    "file": "fuelEconomyMilesPerLiter",
+    "varName": "litersPer100kmToMilesPerLiter"
+  },
+  "km-per-gallon-us-to-mpg-us": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "kmPerGallonUsToMpgUs"
+  },
+  "mpg-us-to-km-per-gallon-us": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "mpgUsToKmPerGallonUs"
+  },
+  "km-per-gallon-us-to-mpg-uk": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "kmPerGallonUsToMpgUk"
+  },
+  "mpg-uk-to-km-per-gallon-us": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "mpgUkToKmPerGallonUs"
+  },
+  "km-per-gallon-us-to-km-per-liter": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "kmPerGallonUsToKmPerLiter"
+  },
+  "km-per-liter-to-km-per-gallon-us": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "kmPerLiterToKmPerGallonUs"
+  },
+  "km-per-gallon-us-to-liters-per-100km": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "kmPerGallonUsToLitersPer100km"
+  },
+  "liters-per-100km-to-km-per-gallon-us": {
+    "file": "fuelEconomyKmPerGallonUs",
+    "varName": "litersPer100kmToKmPerGallonUs"
+  },
+  "km-per-gallon-imperial-to-mpg-us": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "kmPerGallonImperialToMpgUs"
+  },
+  "mpg-us-to-km-per-gallon-imperial": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "mpgUsToKmPerGallonImperial"
+  },
+  "km-per-gallon-imperial-to-mpg-uk": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "kmPerGallonImperialToMpgUk"
+  },
+  "mpg-uk-to-km-per-gallon-imperial": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "mpgUkToKmPerGallonImperial"
+  },
+  "km-per-gallon-imperial-to-km-per-liter": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "kmPerGallonImperialToKmPerLiter"
+  },
+  "km-per-liter-to-km-per-gallon-imperial": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "kmPerLiterToKmPerGallonImperial"
+  },
+  "km-per-gallon-imperial-to-liters-per-100km": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "kmPerGallonImperialToLitersPer100km"
+  },
+  "liters-per-100km-to-km-per-gallon-imperial": {
+    "file": "fuelEconomyKmPerGallonImperial",
+    "varName": "litersPer100kmToKmPerGallonImperial"
+  },
+  "liters-per-100-miles-to-mpg-us": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToMpgUs"
+  },
+  "mpg-us-to-liters-per-100-miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "mpgUsToLitersPer100Miles"
+  },
+  "liters-per-100-miles-to-mpg-uk": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToMpgUk"
+  },
+  "mpg-uk-to-liters-per-100-miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "mpgUkToLitersPer100Miles"
+  },
+  "liters-per-100-miles-to-km-per-liter": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToKmPerLiter"
+  },
+  "km-per-liter-to-liters-per-100-miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "kmPerLiterToLitersPer100Miles"
+  },
+  "liters-per-100-miles-to-liters-per-100km": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToLitersPer100km"
+  },
+  "liters-per-100km-to-liters-per-100-miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100kmToLitersPer100Miles"
+  },
+  "liters-per-100miles-to-mpg-us": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToMpgUs"
+  },
+  "mpg-us-to-liters-per-100miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "mpgUsToLitersPer100Miles"
+  },
+  "liters-per-100miles-to-mpg-uk": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToMpgUk"
+  },
+  "mpg-uk-to-liters-per-100miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "mpgUkToLitersPer100Miles"
+  },
+  "liters-per-100miles-to-km-per-liter": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToKmPerLiter"
+  },
+  "km-per-liter-to-liters-per-100miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "kmPerLiterToLitersPer100Miles"
+  },
+  "liters-per-100miles-to-liters-per-100km": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100MilesToLitersPer100km"
+  },
+  "liters-per-100km-to-liters-per-100miles": {
+    "file": "fuelEconomyLitersPer100Miles",
+    "varName": "litersPer100kmToLitersPer100Miles"
+  },
+  "byte-to-bit": {
+    "file": "byteToBit",
+    "varName": "byteToBit"
+  },
+  "byte-to-kilobit": {
+    "file": "byteToKilobit",
+    "varName": "byteToKilobit"
+  },
+  "byte-to-kilobyte": {
+    "file": "byteToKilobyte",
+    "varName": "byteToKilobyte"
+  },
+  "byte-to-megabit": {
+    "file": "byteToMegabit",
+    "varName": "byteToMegabit"
+  },
+  "byte-to-megabyte": {
+    "file": "byteToMegabyte",
+    "varName": "byteToMegabyte"
+  },
+  "byte-to-gigabit": {
+    "file": "byteToGigabit",
+    "varName": "byteToGigabit"
+  },
+  "byte-to-gigabyte": {
+    "file": "byteToGigabyte",
+    "varName": "byteToGigabyte"
+  },
+  "byte-to-terabit": {
+    "file": "byteToTerabit",
+    "varName": "byteToTerabit"
+  },
+  "byte-to-terabyte": {
+    "file": "byteToTerabyte",
+    "varName": "byteToTerabyte"
+  },
+  "byte-to-petabyte": {
+    "file": "byteToPetabyte",
+    "varName": "byteToPetabyte"
+  },
+  "byte-to-kibibyte": {
+    "file": "byteToKibibyte",
+    "varName": "byteToKibibyte"
+  },
+  "byte-to-mebibyte": {
+    "file": "byteToMebibyte",
+    "varName": "byteToMebibyte"
+  },
+  "byte-to-gibibyte": {
+    "file": "byteToGibibyte",
+    "varName": "byteToGibibyte"
+  },
+  "byte-to-tebibyte": {
+    "file": "byteToTebibyte",
+    "varName": "byteToTebibyte"
+  },
+  "bit-to-byte": {
+    "file": "bitToByte",
+    "varName": "bitToByte"
+  },
+  "bit-to-kilobit": {
+    "file": "bitToKilobit",
+    "varName": "bitToKilobit"
+  },
+  "bit-to-kilobyte": {
+    "file": "bitToKilobyte",
+    "varName": "bitToKilobyte"
+  },
+  "bit-to-megabit": {
+    "file": "bitToMegabit",
+    "varName": "bitToMegabit"
+  },
+  "bit-to-megabyte": {
+    "file": "bitToMegabyte",
+    "varName": "bitToMegabyte"
+  },
+  "bit-to-gigabit": {
+    "file": "bitToGigabit",
+    "varName": "bitToGigabit"
+  },
+  "bps-to-Bps": {
+    "file": "bitPerSecToBytePerSec",
+    "varName": "bpsToBpsArticle"
+  },
+  "bps-to-kbps": {
+    "file": "bitPerSecToKilobitPerSec",
+    "varName": "bpsToKbpsArticle"
+  },
+  "bps-to-Mbps": {
+    "file": "bitPerSecToMegabitPerSec",
+    "varName": "bpsToMbpsArticle"
+  },
+  "bps-to-Gbps": {
+    "file": "bitPerSecToGigabitPerSec",
+    "varName": "bpsToGbpsArticle"
+  },
+  "bps-to-Tbps": {
+    "file": "bitPerSecToTerabitPerSec",
+    "varName": "bpsToTbpsArticle"
+  },
+  "bps-to-KBps": {
+    "file": "bitPerSecToKilobytePerSec",
+    "varName": "bpsToKBpsArticle"
+  },
+  "bps-to-MBps": {
+    "file": "bitPerSecToMegabytePerSec",
+    "varName": "bpsToMBpsArticle"
+  },
+  "bps-to-GBps": {
+    "file": "bitPerSecToGigabytePerSec",
+    "varName": "bpsToGBpsArticle"
+  },
+  "Bps-to-bps": {
+    "file": "bytePerSecToBitPerSec",
+    "varName": "BpsToBpsArticle"
+  },
+  "Bps-to-kbps": {
+    "file": "bytePerSecToKilobitPerSec",
+    "varName": "BpsToKbpsArticle"
+  },
+  "Bps-to-Mbps": {
+    "file": "bytePerSecToMegabitPerSec",
+    "varName": "BpsToMbpsArticle"
+  },
+  "Bps-to-Gbps": {
+    "file": "bytePerSecToGigabitPerSec",
+    "varName": "BpsToGbpsArticle"
+  },
+  "Bps-to-Tbps": {
+    "file": "bytePerSecToTerabitPerSec",
+    "varName": "BpsToTbpsArticle"
+  },
+  "Bps-to-KBps": {
+    "file": "bytePerSecToKilobytePerSec",
+    "varName": "BpsToKBpsArticle"
+  },
+  "Bps-to-MBps": {
+    "file": "bytePerSecToMegabytePerSec",
+    "varName": "BpsToMBpsArticle"
+  },
+  "Bps-to-GBps": {
+    "file": "bytePerSecToGigabytePerSec",
+    "varName": "BpsToGBpsArticle"
+  },
+  "kbps-to-bps": {
+    "file": "kilobitPerSecToBitPerSec",
+    "varName": "kbpsToBpsArticle"
+  },
+  "kbps-to-Bps": {
+    "file": "kilobitPerSecToBytePerSec",
+    "varName": "kbpsToBpsByteArticle"
+  },
+  "kbps-to-Mbps": {
+    "file": "kilobitPerSecToMegabitPerSec",
+    "varName": "kbpsToMbpsArticle"
+  },
+  "kbps-to-Gbps": {
+    "file": "kilobitPerSecToGigabitPerSec",
+    "varName": "kbpsToGbpsArticle"
+  },
+  "kilogram-per-cubic-meter-to-gram-per-cubic-centimeter": {
+    "file": "kgPerCubicMeterToGramPerCubicCentimeter",
+    "varName": "kgPerCubicMeterToGramPerCubicCentimeter"
+  },
+  "kilogram-per-cubic-meter-to-pound-per-cubic-foot": {
+    "file": "kgPerCubicMeterToPoundPerCubicFoot",
+    "varName": "kgPerCubicMeterToPoundPerCubicFoot"
+  },
+  "kilogram-per-cubic-meter-to-gram-per-liter": {
+    "file": "kgPerCubicMeterToGramPerLiter",
+    "varName": "kgPerCubicMeterToGramPerLiter"
+  },
+  "kilogram-per-cubic-meter-to-pound-per-gallon-us": {
+    "file": "kgPerCubicMeterToPoundPerGallonUs",
+    "varName": "kgPerCubicMeterToPoundPerGallonUs"
+  },
+  "kilogram-per-cubic-meter-to-ounce-per-cubic-inch": {
+    "file": "kgPerCubicMeterToOuncePerCubicInch",
+    "varName": "kgPerCubicMeterToOuncePerCubicInch"
+  },
+  "gram-per-cubic-centimeter-to-kilogram-per-cubic-meter": {
+    "file": "gramPerCubicCentimeterToKgPerCubicMeter",
+    "varName": "gramPerCubicCentimeterToKgPerCubicMeter"
+  },
+  "gram-per-cubic-centimeter-to-pound-per-cubic-foot": {
+    "file": "gramPerCubicCentimeterToPoundPerCubicFoot",
+    "varName": "gramPerCubicCentimeterToPoundPerCubicFoot"
+  },
+  "gram-per-cubic-centimeter-to-gram-per-liter": {
+    "file": "gramPerCubicCentimeterToGramPerLiter",
+    "varName": "gramPerCubicCentimeterToGramPerLiter"
+  },
+  "gram-per-cubic-centimeter-to-pound-per-gallon-us": {
+    "file": "gramPerCubicCentimeterToPoundPerGallonUs",
+    "varName": "gramPerCubicCentimeterToPoundPerGallonUs"
+  },
+  "gram-per-cubic-centimeter-to-ounce-per-cubic-inch": {
+    "file": "gramPerCubicCentimeterToOuncePerCubicInch",
+    "varName": "gramPerCubicCentimeterToOuncePerCubicInch"
+  },
+  "pound-per-cubic-foot-to-kilogram-per-cubic-meter": {
+    "file": "poundPerCubicFootToKgPerCubicMeter",
+    "varName": "poundPerCubicFootToKgPerCubicMeter"
+  },
+  "pound-per-cubic-foot-to-gram-per-cubic-centimeter": {
+    "file": "poundPerCubicFootToGramPerCubicCentimeter",
+    "varName": "poundPerCubicFootToGramPerCubicCentimeter"
+  },
+  "pound-per-cubic-foot-to-gram-per-liter": {
+    "file": "poundPerCubicFootToGramPerLiter",
+    "varName": "poundPerCubicFootToGramPerLiter"
+  },
+  "pound-per-cubic-foot-to-pound-per-gallon-us": {
+    "file": "poundPerCubicFootToPoundPerGallonUs",
+    "varName": "poundPerCubicFootToPoundPerGallonUs"
+  },
+  "pound-per-cubic-foot-to-ounce-per-cubic-inch": {
+    "file": "poundPerCubicFootToOuncePerCubicInch",
+    "varName": "poundPerCubicFootToOuncePerCubicInch"
+  },
+  "gram-per-liter-to-kilogram-per-cubic-meter": {
+    "file": "gramPerLiterToKgPerCubicMeter",
+    "varName": "gramPerLiterToKgPerCubicMeter"
+  },
+  "gram-per-liter-to-gram-per-cubic-centimeter": {
+    "file": "gramPerLiterToGramPerCubicCentimeter",
+    "varName": "gramPerLiterToGramPerCubicCentimeter"
+  },
+  "gram-per-liter-to-pound-per-cubic-foot": {
+    "file": "gramPerLiterToPoundPerCubicFoot",
+    "varName": "gramPerLiterToPoundPerCubicFoot"
+  },
+  "gram-per-liter-to-pound-per-gallon-us": {
+    "file": "gramPerLiterToPoundPerGallonUs",
+    "varName": "gramPerLiterToPoundPerGallonUs"
+  },
+  "gram-per-liter-to-ounce-per-cubic-inch": {
+    "file": "gramPerLiterToOuncePerCubicInch",
+    "varName": "gramPerLiterToOuncePerCubicInch"
+  },
+  "volt-to-kilovolt": {
+    "file": "voltToKilovolt",
+    "varName": "voltToKilovolt"
+  },
+  "volt-to-millivolt": {
+    "file": "voltToMillivolt",
+    "varName": "voltToMillivolt"
+  },
+  "volt-to-microvolt": {
+    "file": "voltToMicrovolt",
+    "varName": "voltToMicrovolt"
+  },
+  "volt-to-megavolt": {
+    "file": "voltToMegavolt",
+    "varName": "voltToMegavolt"
+  },
+  "kilovolt-to-volt": {
+    "file": "kilovoltToVolt",
+    "varName": "kilovoltToVolt"
+  },
+  "kilovolt-to-millivolt": {
+    "file": "kilovoltToMillivolt",
+    "varName": "kilovoltToMillivolt"
+  },
+  "kilovolt-to-microvolt": {
+    "file": "kilovoltToMicrovolt",
+    "varName": "kilovoltToMicrovolt"
+  },
+  "kilovolt-to-megavolt": {
+    "file": "kilovoltToMegavolt",
+    "varName": "kilovoltToMegavolt"
+  },
+  "millivolt-to-volt": {
+    "file": "millivoltToVolt",
+    "varName": "millivoltToVolt"
+  },
+  "millivolt-to-kilovolt": {
+    "file": "millivoltToKilovolt",
+    "varName": "millivoltToKilovolt"
+  },
+  "millivolt-to-microvolt": {
+    "file": "millivoltToMicrovolt",
+    "varName": "millivoltToMicrovolt"
+  },
+  "millivolt-to-megavolt": {
+    "file": "millivoltToMegavolt",
+    "varName": "millivoltToMegavolt"
+  },
+  "microvolt-to-volt": {
+    "file": "microvoltToVolt",
+    "varName": "microvoltToVolt"
+  },
+  "microvolt-to-kilovolt": {
+    "file": "microvoltToKilovolt",
+    "varName": "microvoltToKilovolt"
+  },
+  "microvolt-to-millivolt": {
+    "file": "microvoltToMillivolt",
+    "varName": "microvoltToMillivolt"
+  },
+  "microvolt-to-megavolt": {
+    "file": "microvoltToMegavolt",
+    "varName": "microvoltToMegavolt"
+  },
+  "megavolt-to-volt": {
+    "file": "megavoltToVolt",
+    "varName": "megavoltToVolt"
+  },
+  "megavolt-to-kilovolt": {
+    "file": "megavoltToKilovolt",
+    "varName": "megavoltToKilovolt"
+  },
+  "megavolt-to-millivolt": {
+    "file": "megavoltToMillivolt",
+    "varName": "megavoltToMillivolt"
+  },
+  "megavolt-to-microvolt": {
+    "file": "megavoltToMicrovolt",
+    "varName": "megavoltToMicrovolt"
+  },
+  "mole-to-millimole": {
+    "file": "moleToMillimole",
+    "varName": "moleToMillimole"
+  },
+  "mole-to-micromole": {
+    "file": "moleToMicromole",
+    "varName": "moleToMicromole"
+  },
+  "mole-to-nanomole": {
+    "file": "moleToNanomole",
+    "varName": "moleToNanomole"
+  },
+  "mole-to-kilomole": {
+    "file": "moleToKilomole",
+    "varName": "moleToKilomole"
+  },
+  "millimole-to-mole": {
+    "file": "millimoleToMole",
+    "varName": "millimoleToMole"
+  },
+  "millimole-to-micromole": {
+    "file": "millimoleToMicromole",
+    "varName": "millimoleToMicromole"
+  },
+  "millimole-to-nanomole": {
+    "file": "millimoleToNanomole",
+    "varName": "millimoleToNanomole"
+  },
+  "millimole-to-kilomole": {
+    "file": "millimoleToKilomole",
+    "varName": "millimoleToKilomole"
+  },
+  "micromole-to-mole": {
+    "file": "micromoleToMole",
+    "varName": "micromoleToMole"
+  },
+  "micromole-to-millimole": {
+    "file": "micromoleToMillimole",
+    "varName": "micromoleToMillimole"
+  },
+  "micromole-to-nanomole": {
+    "file": "micromoleToNanomole",
+    "varName": "micromoleToNanomole"
+  },
+  "micromole-to-kilomole": {
+    "file": "micromoleToKilomole",
+    "varName": "micromoleToKilomole"
+  },
+  "nanomole-to-mole": {
+    "file": "nanomoleToMole",
+    "varName": "nanomoleToMole"
+  },
+  "nanomole-to-millimole": {
+    "file": "nanomoleToMillimole",
+    "varName": "nanomoleToMillimole"
+  },
+  "nanomole-to-micromole": {
+    "file": "nanomoleToMicromole",
+    "varName": "nanomoleToMicromole"
+  },
+  "nanomole-to-kilomole": {
+    "file": "nanomoleToKilomole",
+    "varName": "nanomoleToKilomole"
+  },
+  "kilomole-to-mole": {
+    "file": "kilomoleToMole",
+    "varName": "kilomoleToMole"
+  },
+  "kilomole-to-millimole": {
+    "file": "kilomoleToMillimole",
+    "varName": "kilomoleToMillimole"
+  },
+  "kilomole-to-micromole": {
+    "file": "kilomoleToMicromole",
+    "varName": "kilomoleToMicromole"
+  },
+  "kilomole-to-nanomole": {
+    "file": "kilomoleToNanomole",
+    "varName": "kilomoleToNanomole"
+  },
+  "lux-to-foot-candle": {
+    "file": "luxToFootCandle",
+    "varName": "luxToFootCandle"
+  },
+  "lux-to-candela-lux-inverse": {
+    "file": "luxToCandelaLuxInverse",
+    "varName": "luxToCandelaLuxInverse"
+  },
+  "lux-to-nit": {
+    "file": "luxToNit",
+    "varName": "luxToNit"
+  },
+  "lux-to-candela-per-m2": {
+    "file": "luxToCandelaPerM2",
+    "varName": "luxToCandelaPerM2"
+  },
+  "lux-to-lambert": {
+    "file": "luxToLambert",
+    "varName": "luxToLambert"
+  },
+  "lux-to-foot-lambert": {
+    "file": "luxToFootLambert",
+    "varName": "luxToFootLambert"
+  },
+  "lux-to-stilb": {
+    "file": "luxToStilb",
+    "varName": "luxToStilb"
+  },
+  "lux-to-phot": {
+    "file": "luxToPhot",
+    "varName": "luxToPhot"
+  },
+  "lux-to-watt-lumen-efficacy": {
+    "file": "luxToWattLumenEfficacy",
+    "varName": "luxToWattLumenEfficacy"
+  },
+  "lux-to-lux-watt-m2": {
+    "file": "luxToLuxWattM2",
+    "varName": "luxToLuxWattM2"
+  },
+  "lux-to-illuminance-converter": {
+    "file": "luxToIlluminanceConverter",
+    "varName": "luxToIlluminanceConverter"
+  },
+  "lux-to-luminance-converter": {
+    "file": "luxToLuminanceConverter",
+    "varName": "luxToLuminanceConverter"
+  },
+  "lux-to-apostilb": {
+    "file": "luxToApostilb",
+    "varName": "luxToApostilb"
+  },
+  "lux-to-blondel": {
+    "file": "luxToBlondel",
+    "varName": "luxToBlondel"
+  },
+  "lux-to-skot": {
+    "file": "luxToSkot",
+    "varName": "luxToSkot"
+  },
+  "foot-candle-to-lux": {
+    "file": "footCandleToLux",
+    "varName": "footCandleToLux"
+  },
+  "foot-candle-to-nit": {
+    "file": "footCandleToNit",
+    "varName": "footCandleToNit"
+  },
+  "foot-candle-to-candela-per-m2": {
+    "file": "footCandleToCandelaPerM2",
+    "varName": "footCandleToCandelaPerM2"
+  },
+  "foot-candle-to-lambert": {
+    "file": "footCandleToLambert",
+    "varName": "footCandleToLambert"
+  },
+  "foot-candle-to-foot-lambert": {
+    "file": "footCandleToFootLambert",
+    "varName": "footCandleToFootLambert"
+  },
+  "foot-candle-to-stilb": {
+    "file": "footCandleToStilb",
+    "varName": "footCandleToStilb"
+  },
+  "foot-candle-to-phot": {
+    "file": "footCandleToPhot",
+    "varName": "footCandleToPhot"
+  },
+  "foot-candle-to-apostilb": {
+    "file": "footCandleToApostilb",
+    "varName": "footCandleToApostilb"
+  },
+  "foot-candle-to-blondel": {
+    "file": "footCandleToBlondel",
+    "varName": "footCandleToBlondel"
+  },
+  "foot-candle-to-skot": {
+    "file": "footCandleToSkot",
+    "varName": "footCandleToSkot"
+  },
+  "decibel-to-bel": {
+    "file": "decibelToBel",
+    "varName": "decibelToBel"
+  },
+  "decibel-to-decibel-spl": {
+    "file": "decibelToDecibelSpl",
+    "varName": "decibelToDecibelSpl"
+  },
+  "decibel-to-pascal-sound": {
+    "file": "decibelToPascalSound",
+    "varName": "decibelToPascalSound"
+  },
+  "decibel-to-sound-pressure": {
+    "file": "decibelToSoundPressure",
+    "varName": "decibelToSoundPressure"
+  },
+  "decibel-to-sound-intensity": {
+    "file": "decibelToSoundIntensity",
+    "varName": "decibelToSoundIntensity"
+  },
+  "decibel-to-watt-m2-sound": {
+    "file": "decibelToWattM2",
+    "varName": "decibelToWattM2"
+  },
+  "decibel-to-phon": {
+    "file": "decibelToPhon",
+    "varName": "decibelToPhon"
+  },
+  "decibel-to-sone": {
+    "file": "decibelToSone",
+    "varName": "decibelToSone"
+  },
+  "decibel-to-sound-power-level": {
+    "file": "decibelToSoundPowerLevel",
+    "varName": "decibelToSoundPowerLevel"
+  },
+  "decibel-to-sound-intensity-level": {
+    "file": "decibelToSoundIntensityLevel",
+    "varName": "decibelToSoundIntensityLevel"
+  },
+  "decibel-to-frequency-sound": {
+    "file": "decibelToFrequency",
+    "varName": "decibelToFrequency"
+  },
+  "decibel-to-wavelength-sound": {
+    "file": "decibelToWavelengthSound",
+    "varName": "decibelToWavelengthSound"
+  },
+  "decibel-to-octave-ratio": {
+    "file": "decibelToOctaveRatio",
+    "varName": "decibelToOctaveRatio"
+  },
+  "decibel-to-semitone-ratio": {
+    "file": "decibelToSemitoneRatio",
+    "varName": "decibelToSemitoneRatio"
+  },
+  "bel-to-decibel": {
+    "file": "belToDecibel",
+    "varName": "belToDecibel"
+  },
+  "bel-to-decibel-spl": {
+    "file": "belToDecibelSpl",
+    "varName": "belToDecibelSpl"
+  },
+  "bel-to-pascal-sound": {
+    "file": "belToPascalSound",
+    "varName": "belToPascalSound"
+  },
+  "bel-to-sound-pressure": {
+    "file": "belToSoundPressure",
+    "varName": "belToSoundPressure"
+  },
+  "bel-to-sound-intensity": {
+    "file": "belToSoundIntensity",
+    "varName": "belToSoundIntensity"
+  },
+  "bel-to-watt-m2-sound": {
+    "file": "belToWattM2Sound",
+    "varName": "belToWattM2Sound"
+  },
+  "decibel-spl-to-decibel": {
+    "file": "decibelSplToDecibel",
+    "varName": "decibelSplToDecibel"
+  },
+  "decibel-spl-to-bel": {
+    "file": "decibelSplToBel",
+    "varName": "decibelSplToBel"
+  },
+  "decibel-spl-to-pascal-sound": {
+    "file": "decibelSplToPascalSound",
+    "varName": "decibelSplToPascalSound"
+  },
+  "decibel-spl-to-sound-pressure": {
+    "file": "decibelSplToSoundPressure",
+    "varName": "decibelSplToSoundPressure"
+  },
+  "decibel-spl-to-sound-intensity": {
+    "file": "decibelSplToSoundIntensity",
+    "varName": "decibelSplToSoundIntensity"
+  },
+  "decibel-spl-to-watt-m2-sound": {
+    "file": "decibelSplToWattM2",
+    "varName": "decibelSplToWattM2"
+  },
+  "pascal-sound-to-decibel": {
+    "file": "pascalSoundToDecibel",
+    "varName": "pascalSoundToDecibel"
+  },
+  "pascal-sound-to-bel": {
+    "file": "pascalSoundToBel",
+    "varName": "pascalSoundToBel"
+  },
+  "newton-to-dyne": {
+    "file": "newtonToDyne",
+    "varName": "newtonToDyne"
+  },
+  "newton-to-pound-force": {
+    "file": "newtonToPoundForce",
+    "varName": "newtonToPoundForce"
+  },
+  "newton-to-kilogram-force": {
+    "file": "newtonToKilogramForce",
+    "varName": "newtonToKilogramForce"
+  },
+  "newton-to-poundal": {
+    "file": "newtonToPoundal",
+    "varName": "newtonToPoundal"
+  },
+  "newton-to-kilonewton": {
+    "file": "newtonToKilonewton",
+    "varName": "newtonToKilonewton"
+  },
+  "newton-to-meganewton": {
+    "file": "newtonToMeganewton",
+    "varName": "newtonToMeganewton"
+  },
+  "newton-to-ounce-force": {
+    "file": "newtonToOunceForce",
+    "varName": "newtonToOunceForce"
+  },
+  "newton-to-gram-force": {
+    "file": "newtonToGramForce",
+    "varName": "newtonToGramForce"
+  },
+  "newton-to-ton-force-us": {
+    "file": "newtonToTonForceUs",
+    "varName": "newtonToTonForceUs"
+  },
+  "newton-to-ton-force-metric": {
+    "file": "newtonToTonForceMetric",
+    "varName": "newtonToTonForceMetric"
+  },
+  "newton-to-sthene": {
+    "file": "newtonToSthene",
+    "varName": "newtonToSthene"
+  },
+  "newton-to-kip-force": {
+    "file": "newtonToKipForce",
+    "varName": "newtonToKipForce"
+  },
+  "newton-to-millinewton": {
+    "file": "newtonToMillinewton",
+    "varName": "newtonToMillinewton"
+  },
+  "newton-to-micronewton": {
+    "file": "newtonToMicronewton",
+    "varName": "newtonToMicronewton"
+  },
+  "dyne-to-newton": {
+    "file": "dyneToNewton",
+    "varName": "dyneToNewton"
+  },
+  "dyne-to-pound-force": {
+    "file": "dyneToPoundForce",
+    "varName": "dyneToPoundForce"
+  },
+  "dyne-to-kilogram-force": {
+    "file": "dyneToKilogramForce",
+    "varName": "dyneToKilogramForce"
+  },
+  "dyne-to-kip-force": {
+    "file": "dyneToKipForce",
+    "varName": "dyneToKipForce"
+  },
+  "dyne-to-poundal": {
+    "file": "dyneToPoundal",
+    "varName": "dyneToPoundal"
+  },
+  "liter-per-sec-to-gallon-per-min": {
+    "file": "literPerSecToGallonPerMin",
+    "varName": "literPerSecToGallonPerMin"
+  },
+  "liter-per-sec-to-cubic-meter-per-hour": {
+    "file": "literPerSecToCubicMeterPerHour",
+    "varName": "literPerSecToCubicMeterPerHour"
+  },
+  "liter-per-sec-to-cubic-feet-per-min": {
+    "file": "literPerSecToCubicFeetPerMin",
+    "varName": "literPerSecToCubicFeetPerMin"
+  },
+  "liter-per-sec-to-barrel-per-day": {
+    "file": "literPerSecToBarrelPerDay",
+    "varName": "literPerSecToBarrelPerDay"
+  },
+  "liter-per-sec-to-cubic-meter-per-sec": {
+    "file": "literPerSecToCubicMeterPerSec",
+    "varName": "literPerSecToCubicMeterPerSec"
+  },
+  "liter-per-sec-to-cubic-feet-per-sec": {
+    "file": "literPerSecToCubicFeetPerSec",
+    "varName": "literPerSecToCubicFeetPerSec"
+  },
+  "liter-per-sec-to-liter-per-min": {
+    "file": "literPerSecToLiterPerMin",
+    "varName": "literPerSecToLiterPerMin"
+  },
+  "liter-per-sec-to-gallon-per-hour": {
+    "file": "literPerSecToGallonPerHour",
+    "varName": "literPerSecToGallonPerHour"
+  },
+  "liter-per-sec-to-cubic-centimeter-per-sec": {
+    "file": "literPerSecToCubicCentimeterPerSec",
+    "varName": "literPerSecToCubicCentimeterPerSec"
+  },
+  "liter-per-sec-to-milliliter-per-min": {
+    "file": "literPerSecToMilliliterPerMin",
+    "varName": "literPerSecToMilliliterPerMin"
+  },
+  "liter-per-sec-to-cfm-unit": {
+    "file": "literPerSecToCfmUnit",
+    "varName": "literPerSecToCfmUnit"
+  },
+  "liter-per-sec-to-cmh-unit": {
+    "file": "literPerSecToCmhUnit",
+    "varName": "literPerSecToCmhUnit"
+  },
+  "liter-per-sec-to-acre-feet-per-day": {
+    "file": "literPerSecToAcreFeetPerDay",
+    "varName": "literPerSecToAcreFeetPerDay"
+  },
+  "liter-per-sec-to-million-gallons-per-day": {
+    "file": "literPerSecToMillionGallonsPerDay",
+    "varName": "literPerSecToMillionGallonsPerDay"
+  },
+  "liter-per-sec-to-flow-per-unit-area": {
+    "file": "literPerSecToFlowPerUnitArea",
+    "varName": "literPerSecToFlowPerUnitArea"
+  },
+  "liter-per-sec-to-mass-flux": {
+    "file": "literPerSecToMassFlux",
+    "varName": "literPerSecToMassFlux"
+  },
+  "liter-per-sec-to-molar-flow-rate": {
+    "file": "literPerSecToMolarFlowRate",
+    "varName": "literPerSecToMolarFlowRate"
+  },
+  "liter-per-sec-to-weight-flow-rate": {
+    "file": "literPerSecToWeightFlowRate",
+    "varName": "literPerSecToWeightFlowRate"
+  },
+  "gallon-per-min-to-liter-per-sec": {
+    "file": "gallonPerMinToLiterPerSec",
+    "varName": "gallonPerMinToLiterPerSec"
+  },
+  "gallon-per-min-to-cubic-meter-per-hour": {
+    "file": "gallonPerMinToCubicMeterPerHour",
+    "varName": "gallonPerMinToCubicMeterPerHour"
+  },
+  "degree-to-radian": {
+    "file": "degreeToRadian",
+    "varName": "degreeToRadian"
+  },
+  "degree-to-gradian": {
+    "file": "degreeToGradian",
+    "varName": "degreeToGradian"
+  },
+  "degree-to-arcminute": {
+    "file": "degreeToArcminute",
+    "varName": "degreeToArcminute"
+  },
+  "degree-to-arcsecond": {
+    "file": "degreeToArcsecond",
+    "varName": "degreeToArcsecond"
+  },
+  "degree-to-revolution": {
+    "file": "degreeToRevolution",
+    "varName": "degreeToRevolution"
+  },
+  "degree-to-mil-angle": {
+    "file": "degreeToMilAngle",
+    "varName": "degreeToMilAngle"
+  },
+  "degree-to-turn-angle": {
+    "file": "degreeToTurnAngle",
+    "varName": "degreeToTurnAngle"
+  },
+  "degree-to-quadrant-angle": {
+    "file": "degreeToQuadrantAngle",
+    "varName": "degreeToQuadrantAngle"
+  },
+  "degree-to-sextant-angle": {
+    "file": "degreeToSextantAngle",
+    "varName": "degreeToSextantAngle"
+  },
+  "degree-to-grad-angle": {
+    "file": "degreeToGradAngle",
+    "varName": "degreeToGradAngle"
+  },
+  "degree-to-circular-mil-angle": {
+    "file": "degreeToCircularMilAngle",
+    "varName": "degreeToCircularMilAngle"
+  },
+  "radian-to-degree": {
+    "file": "radianToDegree",
+    "varName": "radianToDegree"
+  },
+  "radian-to-gradian": {
+    "file": "radianToGradian",
+    "varName": "radianToGradian"
+  },
+  "radian-to-arcminute": {
+    "file": "radianToArcminute",
+    "varName": "radianToArcminute"
+  },
+  "radian-to-arcsecond": {
+    "file": "radianToArcsecond",
+    "varName": "radianToArcsecond"
+  },
+  "radian-to-revolution": {
+    "file": "radianToRevolution",
+    "varName": "radianToRevolution"
+  },
+  "radian-to-mil-angle": {
+    "file": "radianToMilAngle",
+    "varName": "radianToMilAngle"
+  },
+  "radian-to-turn-angle": {
+    "file": "radianToTurnAngle",
+    "varName": "radianToTurnAngle"
+  },
+  "radian-to-quadrant-angle": {
+    "file": "radianToQuadrantAngle",
+    "varName": "radianToQuadrantAngle"
+  },
+  "radian-to-sextant-angle": {
+    "file": "radianToSextantAngle",
+    "varName": "radianToSextantAngle"
+  },
+  "ampere-to-milliampere": {
+    "file": "ampereToMilliampere",
+    "varName": "ampereToMilliampere"
+  },
+  "ampere-to-microampere": {
+    "file": "ampereToMicroampere",
+    "varName": "ampereToMicroampere"
+  },
+  "ampere-to-kiloampere": {
+    "file": "ampereToKiloampere",
+    "varName": "ampereToKiloampere"
+  },
+  "ampere-to-abampere": {
+    "file": "ampereToAbampere",
+    "varName": "ampereToAbampere"
+  },
+  "milliampere-to-ampere": {
+    "file": "milliampereToAmpere",
+    "varName": "milliampereToAmpere"
+  },
+  "milliampere-to-microampere": {
+    "file": "milliampereToMicroampere",
+    "varName": "milliampereToMicroampere"
+  },
+  "milliampere-to-kiloampere": {
+    "file": "milliampereToKiloampere",
+    "varName": "milliampereToKiloampere"
+  },
+  "milliampere-to-abampere": {
+    "file": "milliampereToAbampere",
+    "varName": "milliampereToAbampere"
+  },
+  "microampere-to-ampere": {
+    "file": "microampereToAmpere",
+    "varName": "microampereToAmpere"
+  },
+  "microampere-to-milliampere": {
+    "file": "microampereToMilliampere",
+    "varName": "microampereToMilliampere"
+  },
+  "microampere-to-kiloampere": {
+    "file": "microampereToKiloampere",
+    "varName": "microampereToKiloampere"
+  },
+  "microampere-to-abampere": {
+    "file": "microampereToAbampere",
+    "varName": "microampereToAbampere"
+  },
+  "kiloampere-to-ampere": {
+    "file": "kiloampereToAmpere",
+    "varName": "kiloampereToAmpere"
+  },
+  "kiloampere-to-milliampere": {
+    "file": "kiloampereToMilliampere",
+    "varName": "kiloampereToMilliampere"
+  },
+  "kiloampere-to-microampere": {
+    "file": "kiloampereToMicroampere",
+    "varName": "kiloampereToMicroampere"
+  },
+  "kiloampere-to-abampere": {
+    "file": "kiloampereToAbampere",
+    "varName": "kiloampereToAbampere"
+  },
+  "abampere-to-ampere": {
+    "file": "abampereToAmpere",
+    "varName": "abampereToAmpere"
+  },
+  "abampere-to-milliampere": {
+    "file": "abampereToMilliampere",
+    "varName": "abampereToMilliampere"
+  },
+  "abampere-to-microampere": {
+    "file": "abampereToMicroampere",
+    "varName": "abampereToMicroampere"
+  },
+  "abampere-to-kiloampere": {
+    "file": "abampereToKiloampere",
+    "varName": "abampereToKiloampere"
+  },
+  "board-foot-to-cubic-foot": {
+    "file": "boardFootToCubicFoot",
+    "varName": "boardFootToCubicFoot"
+  },
+  "board-foot-to-cubic-yard": {
+    "file": "boardFootToCubicYard",
+    "varName": "boardFootToCubicYard"
+  },
+  "board-foot-to-cubic-meter": {
+    "file": "boardFootToCubicMeter",
+    "varName": "boardFootToCubicMeter"
+  },
+  "board-foot-to-cubic-inch": {
+    "file": "boardFootToCubicInch",
+    "varName": "boardFootToCubicInch"
+  },
+  "cubic-foot-to-board-foot": {
+    "file": "cubicFootToBoardFoot",
+    "varName": "cubicFootToBoardFoot"
+  },
+  "cubic-foot-to-cubic-yard": {
+    "file": "cubicFootToCubicYard",
+    "varName": "cubicFootToCubicYard"
+  },
+  "cubic-foot-to-cubic-meter": {
+    "file": "cubicFootToCubicMeter",
+    "varName": "cubicFootToCubicMeter"
+  },
+  "cubic-foot-to-cubic-inch": {
+    "file": "cubicFootToCubicInch",
+    "varName": "cubicFootToCubicInch"
+  },
+  "cubic-yard-to-board-foot": {
+    "file": "cubicYardToBoardFoot",
+    "varName": "cubicYardToBoardFoot"
+  },
+  "cubic-yard-to-cubic-foot": {
+    "file": "cubicYardToCubicFoot",
+    "varName": "cubicYardToCubicFoot"
+  },
+  "cubic-yard-to-cubic-meter": {
+    "file": "cubicYardToCubicMeter",
+    "varName": "cubicYardToCubicMeter"
+  },
+  "cubic-yard-to-cubic-inch": {
+    "file": "cubicYardToCubicInch",
+    "varName": "cubicYardToCubicInch"
+  },
+  "cubic-meter-to-board-foot": {
+    "file": "cubicMeterToBoardFoot",
+    "varName": "cubicMeterToBoardFoot"
+  },
+  "cubic-meter-to-cubic-foot": {
+    "file": "cubicMeterToCubicFoot",
+    "varName": "cubicMeterToCubicFoot"
+  },
+  "cubic-meter-to-cubic-yard": {
+    "file": "cubicMeterToCubicYard",
+    "varName": "cubicMeterToCubicYard"
+  },
+  "cubic-meter-to-cubic-inch": {
+    "file": "cubicMeterToCubicInch",
+    "varName": "cubicMeterToCubicInch"
+  },
+  "cubic-inch-to-board-foot": {
+    "file": "cubicInchToBoardFoot",
+    "varName": "cubicInchToBoardFoot"
+  },
+  "cubic-inch-to-cubic-foot": {
+    "file": "cubicInchToCubicFoot",
+    "varName": "cubicInchToCubicFoot"
+  },
+  "cubic-inch-to-cubic-yard": {
+    "file": "cubicInchToCubicYard",
+    "varName": "cubicInchToCubicYard"
+  },
+  "cubic-inch-to-cubic-meter": {
+    "file": "cubicInchToCubicMeter",
+    "varName": "cubicInchToCubicMeter"
+  },
+  "square-foot-to-square-meter": {
+    "file": "squareFootToSquareMeter",
+    "varName": "squareFootToSquareMeter"
+  },
+  "steradian-to-spat": {
+    "file": "steradianToSpat",
+    "varName": "steradianToSpatArticle"
+  },
+  "steradian-to-square-degree": {
+    "file": "steradianToSquareDegree",
+    "varName": "steradianToSquareDegreeArticle"
+  },
+  "steradian-to-square-radian": {
+    "file": "steradianToSquareRadian",
+    "varName": "steradianToSquareRadianArticle"
+  },
+  "steradian-to-square-arcmin": {
+    "file": "steradianToSquareArcminute",
+    "varName": "steradianToSquareArcminuteArticle"
+  },
+  "steradian-to-square-arcsec": {
+    "file": "steradianToSquareArcsecond",
+    "varName": "steradianToSquareArcsecondArticle"
+  },
+  "spat-to-steradian": {
+    "file": "spatToSteradian",
+    "varName": "spatToSteradianArticle"
+  },
+  "spat-to-square-degree": {
+    "file": "spatToSquareDegree",
+    "varName": "spatToSquareDegreeArticle"
+  },
+  "spat-to-square-radian": {
+    "file": "spatToSquareRadian",
+    "varName": "spatToSquareRadianArticle"
+  },
+  "spat-to-square-arcmin": {
+    "file": "spatToSquareArcminute",
+    "varName": "spatToSquareArcminuteArticle"
+  },
+  "spat-to-square-arcsec": {
+    "file": "spatToSquareArcsecond",
+    "varName": "spatToSquareArcsecondArticle"
+  },
+  "square-degree-to-steradian": {
+    "file": "squareDegreeToSteradian",
+    "varName": "squareDegreeToSteradianArticle"
+  },
+  "square-degree-to-spat": {
+    "file": "squareDegreeToSpat",
+    "varName": "squareDegreeToSpatArticle"
+  },
+  "square-degree-to-square-radian": {
+    "file": "squareDegreeToSquareRadian",
+    "varName": "squareDegreeToSquareRadianArticle"
+  },
+  "square-degree-to-square-arcmin": {
+    "file": "squareDegreeToSquareArcminute",
+    "varName": "squareDegreeToSquareArcminuteArticle"
+  },
+  "square-degree-to-square-arcsec": {
+    "file": "squareDegreeToSquareArcsecond",
+    "varName": "squareDegreeToSquareArcsecondArticle"
+  },
+  "square-radian-to-steradian": {
+    "file": "squareRadianToSteradian",
+    "varName": "squareRadianToSteradianArticle"
+  },
+  "square-radian-to-spat": {
+    "file": "squareRadianToSpat",
+    "varName": "squareRadianToSpatArticle"
+  },
+  "square-radian-to-square-degree": {
+    "file": "squareRadianToSquareDegree",
+    "varName": "squareRadianToSquareDegreeArticle"
+  },
+  "square-radian-to-square-arcmin": {
+    "file": "squareRadianToSquareArcminute",
+    "varName": "squareRadianToSquareArcminuteArticle"
+  },
+  "square-radian-to-square-arcsec": {
+    "file": "squareRadianToSquareArcsecond",
+    "varName": "squareRadianToSquareArcsecondArticle"
+  },
+  "newton-meter-to-pound-foot": {
+    "file": "newtonMeterToPoundFoot",
+    "varName": "newtonMeterToPoundFoot"
+  },
+  "newton-meter-to-pound-inch": {
+    "file": "newtonMeterToPoundInch",
+    "varName": "newtonMeterToPoundInch"
+  },
+  "newton-meter-to-kilogram-force-meter": {
+    "file": "newtonMeterToKilogramForceMeter",
+    "varName": "newtonMeterToKilogramForceMeter"
+  },
+  "newton-meter-to-newton-centimeter": {
+    "file": "newtonMeterToNewtonCentimeter",
+    "varName": "newtonMeterToNewtonCentimeter"
+  },
+  "newton-meter-to-dyne-centimeter": {
+    "file": "newtonMeterToDyneCentimeter",
+    "varName": "newtonMeterToDyneCentimeter"
+  },
+  "pound-foot-to-newton-meter": {
+    "file": "poundFootToNewtonMeter",
+    "varName": "poundFootToNewtonMeter"
+  },
+  "pound-foot-to-pound-inch": {
+    "file": "poundFootToPoundInch",
+    "varName": "poundFootToPoundInch"
+  },
+  "pound-foot-to-kilogram-force-meter": {
+    "file": "poundFootToKilogramForceMeter",
+    "varName": "poundFootToKilogramForceMeter"
+  },
+  "pound-foot-to-newton-centimeter": {
+    "file": "poundFootToNewtonCentimeter",
+    "varName": "poundFootToNewtonCentimeter"
+  },
+  "pound-foot-to-dyne-centimeter": {
+    "file": "poundFootToDyneCentimeter",
+    "varName": "poundFootToDyneCentimeter"
+  },
+  "meter-per-second-squared-to-foot-per-second-squared": {
+    "file": "meterPerSecondSquaredToFootPerSecondSquared",
+    "varName": "meterPerSecondSquaredToFootPerSecondSquared"
+  },
+  "meter-per-second-squared-to-gravity-acceleration": {
+    "file": "meterPerSecondSquaredToGravityAcceleration",
+    "varName": "meterPerSecondSquaredToGravityAcceleration"
+  },
+  "meter-per-second-squared-to-gal-acceleration": {
+    "file": "meterPerSecondSquaredToGalAcceleration",
+    "varName": "meterPerSecondSquaredToGalAcceleration"
+  },
+  "meter-per-second-squared-to-milligal-acceleration": {
+    "file": "meterPerSecondSquaredToMilligalAcceleration",
+    "varName": "meterPerSecondSquaredToMilligalAcceleration"
+  },
+  "meter-per-second-squared-to-kilometer-per-hour-second": {
+    "file": "meterPerSecondSquaredToKilometerPerHourSecond",
+    "varName": "meterPerSecondSquaredToKilometerPerHourSecond"
+  },
+  "meter-per-second-squared-to-mile-per-hour-second": {
+    "file": "meterPerSecondSquaredToMilePerHourSecond",
+    "varName": "meterPerSecondSquaredToMilePerHourSecond"
+  },
+  "foot-per-second-squared-to-meter-per-second-squared": {
+    "file": "footPerSecondSquaredToMeterPerSecondSquared",
+    "varName": "footPerSecondSquaredToMeterPerSecondSquared"
+  },
+  "foot-per-second-squared-to-gravity-acceleration": {
+    "file": "footPerSecondSquaredToGravityAcceleration",
+    "varName": "footPerSecondSquaredToGravityAcceleration"
+  },
+  "foot-per-second-squared-to-gal-acceleration": {
+    "file": "footPerSecondSquaredToGalAcceleration",
+    "varName": "footPerSecondSquaredToGalAcceleration"
+  },
+  "foot-per-second-squared-to-milligal-acceleration": {
+    "file": "footPerSecondSquaredToMilligalAcceleration",
+    "varName": "footPerSecondSquaredToMilligalAcceleration"
+  },
+  "ohm-to-kilohm": {
+    "file": "ohmToKilohm",
+    "varName": "ohmToKilohm"
+  },
+  "ohm-to-megohm": {
+    "file": "ohmToMegohm",
+    "varName": "ohmToMegohm"
+  },
+  "ohm-to-milliohm": {
+    "file": "ohmToMilliohm",
+    "varName": "ohmToMilliohm"
+  },
+  "ohm-to-microohm": {
+    "file": "ohmToMicroohm",
+    "varName": "ohmToMicroohm"
+  },
+  "ohm-to-gigaohm": {
+    "file": "ohmToGigaohm",
+    "varName": "ohmToGigaohm"
+  },
+  "kilohm-to-ohm": {
+    "file": "kilohmToOhm",
+    "varName": "kilohmToOhm"
+  },
+  "kilohm-to-megohm": {
+    "file": "kilohmToMegohm",
+    "varName": "kilohmToMegohm"
+  },
+  "kilohm-to-milliohm": {
+    "file": "kilohmToMilliohm",
+    "varName": "kilohmToMilliohm"
+  },
+  "kilohm-to-microohm": {
+    "file": "kilohmToMicroohm",
+    "varName": "kilohmToMicroohm"
+  },
+  "kilohm-to-gigaohm": {
+    "file": "kilohmToGigaohm",
+    "varName": "kilohmToGigaohm"
+  },
+  "coulomb-to-ampere-hour": {
+    "file": "coulombToAmpereHour",
+    "varName": "coulombToAmpereHour"
+  },
+  "coulomb-to-milliampere-hour": {
+    "file": "coulombToMilliampereHour",
+    "varName": "coulombToMilliampereHour"
+  },
+  "coulomb-to-kilocoulomb": {
+    "file": "coulombToKilocoulomb",
+    "varName": "coulombToKilocoulomb"
+  },
+  "coulomb-to-megacoulomb": {
+    "file": "coulombToMegacoulomb",
+    "varName": "coulombToMegacoulomb"
+  },
+  "coulomb-to-faraday": {
+    "file": "coulombToFaraday",
+    "varName": "coulombToFaraday"
+  },
+  "ampere-hour-to-coulomb": {
+    "file": "ampereHourToCoulomb",
+    "varName": "ampereHourToCoulomb"
+  },
+  "ampere-hour-to-milliampere-hour": {
+    "file": "ampereHourToMilliampereHour",
+    "varName": "ampereHourToMilliampereHour"
+  },
+  "ampere-hour-to-kilocoulomb": {
+    "file": "ampereHourToKilocoulomb",
+    "varName": "ampereHourToKilocoulomb"
+  },
+  "ampere-hour-to-megacoulomb": {
+    "file": "ampereHourToMegacoulomb",
+    "varName": "ampereHourToMegacoulomb"
+  },
+  "ampere-hour-to-faraday": {
+    "file": "ampereHourToFaraday",
+    "varName": "ampereHourToFaraday"
+  }
+}

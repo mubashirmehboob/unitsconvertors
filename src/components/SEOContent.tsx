@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { HelpCircle, ChevronDown, Layers, BookOpen, ArrowRight, ChevronRight, Award, Compass, Link2 } from "lucide-react";
 import { Category, Unit } from "../types";
 import { generateSEOContent, performConversion, getStringHash, isValidPair } from "../utils/conversionEngine";
-import { customLengthArticles, isSeoReady } from "../data/articles";
+import { isSeoReady, CustomArticleData } from "../data/articles";
+import { getCustomArticle } from "../data/articles/articleLoader";
 import { categoriesData } from "../data/convertersData";
 import { injectPageSchemas } from "../utils/schemaEngine";
 import { SITE_URL, LOGO_URL } from "../constants";
@@ -442,12 +443,24 @@ interface SEOContentProps {
 
 export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: SEOContentProps) {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [customArticle, setCustomArticle] = useState<CustomArticleData | null>(null);
 
   // Generate our rich dynamic SEO article
   const article = generateSEOContent(category, fromUnit, toUnit);
 
   const articleKey = `${fromUnit.id}-to-${toUnit.id}`;
-  const customArticle = customLengthArticles[articleKey];
+
+  useEffect(() => {
+    let isMounted = true;
+    getCustomArticle(articleKey).then((loaded) => {
+      if (isMounted) {
+        setCustomArticle(loaded);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [articleKey]);
 
   // Inject dynamic JSON-LD structured schemas to boost Google crawler indexing!
   useEffect(() => {
@@ -825,7 +838,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       const tag = document.getElementById("global-schema-jsonld");
       if (tag) tag.remove();
     };
-  }, [category, fromUnit, toUnit, article]);
+  }, [category, fromUnit, toUnit, article, customArticle]);
 
   // Handle Internal Linking Suggestions
   const handleInternalLink = (fromId: string, toId: string) => {

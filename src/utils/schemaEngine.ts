@@ -1,8 +1,7 @@
 import { categoriesData } from "../data/convertersData";
 import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "../data/calculatorsData";
-import { generateEngineeringArticle } from "../data/engineeringArticlesEngine";
 import { generateSEOContent } from "./conversionEngine";
-import { HOME_FAQS } from "../components/FaqAccordion";
+import { HOME_FAQS } from "../data/homeFaqs";
 
 export interface SchemaRouteParams {
   page: string;
@@ -475,7 +474,8 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
 
       if (activeTool) {
         // --- ENGINEERING CALCULATOR TOOL PAGE ---
-        const articleData = generateEngineeringArticle(activeTool, disc, engineeringCalculatorsData);
+        const toolHeadline = `${activeTool.name} Calculator | Formula & Step-by-Step Calculation`;
+        const toolMetaDesc = activeTool.description;
         const toolUrl = `${DOMAIN}/calculators/${catSlug}/${activeTool.slug || activeTool.id}`;
 
         // Calculator / WebApplication Schema (Step 1 requirement)
@@ -520,8 +520,8 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
         schemas.push({
           "@context": "https://schema.org",
           "@type": "Article",
-          "headline": articleData.title,
-          "description": articleData.metaDescription,
+          "headline": toolHeadline,
+          "description": toolMetaDesc,
           "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": toolUrl
@@ -588,20 +588,31 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
         });
 
         // FAQPage Schema
-        if (articleData.faqs && articleData.faqs.length > 0) {
-          schemas.push({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": articleData.faqs.map(f => ({
-              "@type": "Question",
-              "name": f.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": f.answer
+        const toolFaqs = activeTool.faqs && activeTool.faqs.length > 0 
+          ? activeTool.faqs 
+          : [
+              {
+                question: `How does the ${activeTool.name} calculation work?`,
+                answer: `The ${activeTool.name} uses governing engineering equations to compute results based on standard physics and mathematical principles.`
+              },
+              {
+                question: `What unit systems are supported for ${activeTool.name}?`,
+                answer: `Standard SI metric units and US customary / Imperial units are supported with automatic unit conversions.`
               }
-            }))
-          });
-        }
+            ];
+
+        schemas.push({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": toolFaqs.map(f => ({
+            "@type": "Question",
+            "name": f.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.answer
+            }
+          }))
+        });
         return schemas;
 
       } else {

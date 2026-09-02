@@ -19,16 +19,19 @@ export default defineConfig(() => {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
+              if (id.includes('katex')) {
+                return 'vendor-katex';
+              }
               if (id.includes('lucide-react')) {
                 return 'vendor-icons';
+              }
+              if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
+                return 'vendor-react';
               }
               return 'vendor';
             }
             if (id.includes('src/data/calculatorsData')) {
               return 'data-calculators';
-            }
-            if (id.includes('src/data/articles')) {
-              return 'data-articles';
             }
           }
         }
