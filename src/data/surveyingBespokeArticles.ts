@@ -17,11 +17,11 @@ export const surveyingBespokeArticlesMap: Record<
 > = {
   // 1. DEGREE TO DMS CALCULATOR
   "degree-to-dms-calc": (canonicalUrl, relatedTools, relevantUnitCategories) => ({
-    title: "Degree ↔ DMS Calculator | Surveying & GIS Angular Conversion",
+    title: "Degree to DMS Calculator | Surveying & GIS Angular Conversion",
     metaDescription: "Convert decimal degrees into Degrees, Minutes, and Seconds (DMS), DMM, and total arcseconds for land surveying, geodetic coordinates, boundary mapping, and GIS spatial layers.",
     canonicalUrl,
     introduction: {
-      overview: "The Degree ↔ DMS Calculator performs bi-directional transformation between floating-point Decimal Degrees (DD) and the sexagesimal Degrees, Minutes, and Seconds (DMS) angular measurement system. In land surveying, boundary retracement, geodesy, and GIS database compilation, angular coordinates are frequently gathered from optical total stations and cadastral deed records in sexagesimal notation (D° M' S\"), while digital spatial engines and GNSS receivers process coordinates natively in decimal degrees. This calculator resolves decimal angular values into integer arc degrees, arcminutes, fractional arcseconds, Degrees Decimal Minutes (DMM), and total cumulative arcseconds.",
+      overview: "The Degree to DMS Calculator performs bi-directional transformation between floating-point Decimal Degrees (DD) and the sexagesimal Degrees, Minutes, and Seconds (DMS) angular measurement system. In land surveying, boundary retracement, geodesy, and GIS database compilation, angular coordinates are frequently gathered from optical total stations and cadastral deed records in sexagesimal notation (D° M' S\"), while digital spatial engines and GNSS receivers process coordinates natively in decimal degrees. This calculator resolves decimal angular values into integer arc degrees, arcminutes, fractional arcseconds, Degrees Decimal Minutes (DMM), and total cumulative arcseconds.",
       applications: [
         "Converting total station horizontal and vertical angle readouts into decimal formats for CAD parcel drawing.",
         "Translating cadastral deed boundary bearings (e.g., N 45° 52' 21\" E) into spatial GIS polygon attribute tables.",
@@ -38,7 +38,7 @@ export const surveyingBespokeArticlesMap: Record<
         "Mining & Hydrographic Surveying"
       ]
     },
-    quickAnswer: "The Degree ↔ DMS Calculator converts decimal degrees into sexagesimal notation by isolating the integer degree D = ⌊DD⌋, multiplying the remainder by 60 to extract arcminutes M = ⌊(DD - D) × 60⌋, and multiplying the residual minute fraction by 60 to obtain arcseconds S = ((DD - D) × 60 - M) × 60. With a default input of 179.35°, the calculator produces 179° 21' 0\" (179 degrees, 21 minutes, 0 seconds), equivalent to 10,761 arcminutes and 645,660 total arcseconds.",
+    quickAnswer: "The Degree to DMS Calculator converts decimal degrees into sexagesimal notation by isolating the integer degree D = ⌊DD⌋, multiplying the remainder by 60 to extract arcminutes M = ⌊(DD - D) × 60⌋, and multiplying the residual minute fraction by 60 to obtain arcseconds S = ((DD - D) × 60 - M) × 60. With a default input of 179.35°, the calculator produces 179° 21' 0\" (179 degrees, 21 minutes, 0 seconds), equivalent to 10,761 arcminutes and 645,660 total arcseconds.",
     governingEquation: {
       formula: "D = \\lfloor DD \\rfloor, \\quad M = \\lfloor (DD - D) \\times 60 \\rfloor, \\quad S = \\left((DD - D) \\times 60 - M\\right) \\times 60",
       explanation: "The base-60 sexagesimal decomposition partitions an arc degree into 60 arcminutes and each arcminute into 60 arcseconds (3,600 arcseconds per degree). The floor function ⌊ ⌋ extracts the whole integer unit at each stage, while the decimal remainder cascades to the next finer subdivision.",
@@ -109,8 +109,8 @@ export const surveyingBespokeArticlesMap: Record<
     ],
     faqs: [
       {
-        question: "What does the Degree ↔ DMS Calculator calculate?",
-        answer: "The Degree ↔ DMS Calculator converts continuous decimal degrees into sexagesimal Degrees (°), Minutes ('), and Seconds (\") notation, Degrees Decimal Minutes (DMM), total cumulative minutes, and total arcseconds for land surveying and GIS workflows."
+        question: "What does the Degree to DMS Calculator calculate?",
+        answer: "The Degree to DMS Calculator converts continuous decimal degrees into sexagesimal Degrees (°), Minutes ('), and Seconds (\") notation, Degrees Decimal Minutes (DMM), total cumulative minutes, and total arcseconds for land surveying and GIS workflows."
       },
       {
         question: "What is the mathematical formula used for Degree to DMS conversion?",
@@ -156,11 +156,11 @@ export const surveyingBespokeArticlesMap: Record<
 
   // 2. DEGREE TO DECIMAL DEGREE CALCULATOR
   "degree-to-decimal-degree-calc": (canonicalUrl, relatedTools, relevantUnitCategories) => ({
-    title: "Degree ↔ Decimal Degree Calculator | Surveying Sexagesimal Solver",
+    title: "Degree to Decimal Degree Calculator | Surveying Sexagesimal Solver",
     metaDescription: "Convert Degrees, Minutes, and Seconds (DMS) into exact Decimal Degrees (DD) for GPS navigation, geodetic survey adjustments, GIS layer creation, and CAD mapping.",
     canonicalUrl,
     introduction: {
-      overview: "The Degree ↔ Decimal Degree Calculator converts sexagesimal angle components—Degrees (°), Minutes ('), and Seconds (\")—into unified, high-precision Decimal Degrees (DD). Cadastral survey plats, historic land patents, legal property deeds, and optical theodolite observations record angles in discrete degree-minute-second integers. Modern Geographic Information Systems (GIS), GNSS post-processing software, and coordinate geometry (COGO) routines require continuous decimal degree floating-point inputs for trigonometric geodesy and spatial distance computations.",
+      overview: "The Degree to Decimal Degree Calculator converts sexagesimal angle components—Degrees (°), Minutes ('), and Seconds (\")—into unified, high-precision Decimal Degrees (DD). Cadastral survey plats, historic land patents, legal property deeds, and optical theodolite observations record angles in discrete degree-minute-second integers. Modern Geographic Information Systems (GIS), GNSS post-processing software, and coordinate geometry (COGO) routines require continuous decimal degree floating-point inputs for trigonometric geodesy and spatial distance computations.",
       applications: [
         "Transforming optical total station horizontal circle readings (DMS) into decimal degrees for least-squares traverse adjustments.",
         "Ingesting deed calls and metes-and-bounds legal descriptions into GIS property boundary parcel fabrics.",
@@ -177,7 +177,7 @@ export const surveyingBespokeArticlesMap: Record<
         "Hydrographic & Marine Surveying"
       ]
     },
-    quickAnswer: "The Degree ↔ Decimal Degree Calculator transforms sexagesimal coordinates into decimal degrees using the exact relationship DD = D + (M / 60) + (S / 3600). With default inputs of 45° Degrees, 52' Minutes, and 21\" Seconds, the calculator computes 45.872500 Decimal Degrees (°).",
+    quickAnswer: "The Degree to Decimal Degree Calculator transforms sexagesimal coordinates into decimal degrees using the exact relationship DD = D + (M / 60) + (S / 3600). With default inputs of 45° Degrees, 52' Minutes, and 21\" Seconds, the calculator computes 45.872500 Decimal Degrees (°).",
     governingEquation: {
       formula: "DD = D + \\frac{M}{60} + \\frac{S}{3600}",
       explanation: "Each sexagesimal arcminute represents exactly 1/60th of an arc degree, and each arcsecond represents exactly 1/3600th of an arc degree (1/60th of an arcminute). Summing the integer degrees with the fractional contributions yields the normalized decimal degree value.",
@@ -262,7 +262,7 @@ export const surveyingBespokeArticlesMap: Record<
     ],
     faqs: [
       {
-        question: "What does the Degree ↔ Decimal Degree Calculator calculate?",
+        question: "What does the Degree to Decimal Degree Calculator calculate?",
         answer: "The calculator converts sexagesimal Degrees (°), Minutes ('), and Seconds (\") into unified Decimal Degrees (DD) for GIS mapping, GPS receivers, and geodetic surveying computations."
       },
       {
@@ -309,11 +309,11 @@ export const surveyingBespokeArticlesMap: Record<
 
   // 3. DECIMAL DEGREE TO DMS CALCULATOR
   "decimal-degree-to-dms-calc": (canonicalUrl, relatedTools, relevantUnitCategories) => ({
-    title: "Decimal Degree ↔ DMS Calculator | GIS Coordinate Format Converter",
+    title: "Decimal Degree to DMS Calculator | GIS Coordinate Format Converter",
     metaDescription: "Convert DMS coordinate components into exact Decimal Degrees (DD) for GIS databases, AutoCAD Civil 3D, GNSS positioning, and cadastral survey analysis.",
     canonicalUrl,
     introduction: {
-      overview: "The Decimal Degree ↔ DMS Calculator bridges the gap between field surveying coordinate notations and digital geospatial data processing. Civil engineering design software (such as AutoCAD Civil 3D, MicroStation OpenSite, and Bentley InRoads) and geographic information systems (ArcGIS, QGIS, PostGIS) require decimal degree angular parameters for geodetic projection transformations. This tool transforms discrete sexagesimal Degrees (°), Minutes ('), and Seconds (\") into standardized decimal degree values with sub-millimeter angular precision.",
+      overview: "The Decimal Degree to DMS Calculator bridges the gap between field surveying coordinate notations and digital geospatial data processing. Civil engineering design software (such as AutoCAD Civil 3D, MicroStation OpenSite, and Bentley InRoads) and geographic information systems (ArcGIS, QGIS, PostGIS) require decimal degree angular parameters for geodetic projection transformations. This tool transforms discrete sexagesimal Degrees (°), Minutes ('), and Seconds (\") into standardized decimal degree values with sub-millimeter angular precision.",
       applications: [
         "Converting field survey coordinate lists (DMS) for direct import into QGIS and ArcGIS attribute tables.",
         "Validating boundary traverse survey closures using decimal degree trigonometric COGO functions.",
@@ -330,7 +330,7 @@ export const surveyingBespokeArticlesMap: Record<
         "Precision Agriculture & Construction Guidance"
       ]
     },
-    quickAnswer: "The Decimal Degree ↔ DMS Calculator calculates exact decimal degrees from sexagesimal components using DD = D + (M / 60) + (S / 3600). With default input values of 122° Degrees, 25' Minutes, and 36\" Seconds, the calculator computes 122.426667 Decimal Degrees (°).",
+    quickAnswer: "The Decimal Degree to DMS Calculator calculates exact decimal degrees from sexagesimal components using DD = D + (M / 60) + (S / 3600). With default input values of 122° Degrees, 25' Minutes, and 36\" Seconds, the calculator computes 122.426667 Decimal Degrees (°).",
     governingEquation: {
       formula: "DD = D + \\frac{M}{60} + \\frac{S}{3600}",
       explanation: "Sexagesimal coordinates divide an arc degree into 60 arcminutes and 3,600 arcseconds. The formula computes the fractional contribution of minutes (M/60) and seconds (S/3600) and sums them with the integer degrees to produce the unified decimal degree value.",
@@ -415,8 +415,8 @@ export const surveyingBespokeArticlesMap: Record<
     ],
     faqs: [
       {
-        question: "What does the Decimal Degree ↔ DMS Calculator calculate?",
-        answer: "The Decimal Degree ↔ DMS Calculator converts sexagesimal Degrees (°), Minutes ('), and Seconds (\") into exact continuous Decimal Degrees (DD) for GIS databases, CAD software, and GNSS coordinate workflows."
+        question: "What does the Decimal Degree to DMS Calculator calculate?",
+        answer: "The Decimal Degree to DMS Calculator converts sexagesimal Degrees (°), Minutes ('), and Seconds (\") into exact continuous Decimal Degrees (DD) for GIS databases, CAD software, and GNSS coordinate workflows."
       },
       {
         question: "What formula is used to calculate Decimal Degrees from DMS?",

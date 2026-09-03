@@ -8,6 +8,7 @@ import { categoriesData } from "../data/convertersData";
 import { injectPageSchemas } from "../utils/schemaEngine";
 import { SITE_URL, LOGO_URL } from "../constants";
 import MathFormula from "./MathFormula";
+import FormattedText from "./FormattedText";
 
 // --- REUSABLE SUB-COMPONENTS FOR TOPICAL SEO & INTERNAL LINKING ---
 
@@ -409,8 +410,7 @@ function ReferencesSection({ references }: ReferencesSectionProps) {
   const defaultRefs = [
     "International Bureau of Weights and Measures (BIPM). <em>The International System of Units (SI Brochure)</em>, 9th edition, 2019.",
     "National Institute of Standards and Technology (NIST). <em>Guide for the Use of the International System of Units (SI)</em>, NIST Special Publication 811.",
-    "International Organization for Standardization (ISO). <em>ISO 80000-1: Quantities and Units — Part 1: General</em>.",
-    "CODATA Internationally Recommended Values of the Fundamental Physical Constants."
+    "International Organization for Standardization (ISO). <em>ISO 80000-1: Quantities and Units — Part 1: General</em>."
   ];
 
   const items = references && references.length > 0 ? references : defaultRefs;
@@ -442,7 +442,7 @@ interface SEOContentProps {
 }
 
 export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: SEOContentProps) {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [customArticle, setCustomArticle] = useState<CustomArticleData | null>(null);
 
   // Generate our rich dynamic SEO article
@@ -961,7 +961,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
         <section className="flex flex-col gap-4">
           <div className="prose dark:prose-invert max-w-none flex flex-col gap-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             {customArticle.introduction.map((p, idx) => (
-              <p key={idx}>{p}</p>
+              <p key={idx}><FormattedText text={p} /></p>
             ))}
           </div>
         </section>
@@ -972,9 +972,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
                 Quick Answer
               </h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                {customArticle.quickAnswer.text}
-              </p>
+              <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={customArticle.quickAnswer.text} />
             </div>
             <div className="flex-shrink-0 min-w-[260px] sm:min-w-[290px] w-auto max-w-full p-4 sm:px-5 sm:py-4 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex flex-col items-center justify-center text-center">
               <span className="text-[10px] font-black tracking-wider uppercase opacity-85">Conversion Standard</span>
@@ -983,7 +981,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               </div>
               <div className="text-xs opacity-90 mt-2 leading-relaxed flex flex-col gap-1 text-center whitespace-pre-line">
                 {formatSubtextLines(customArticle.quickAnswer.subtext).map((line, lIdx) => (
-                  <span key={lIdx} className="block">{line}</span>
+                  <span key={lIdx} className="block"><FormattedText text={line} /></span>
                 ))}
               </div>
             </div>
@@ -995,13 +993,9 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
             {customArticle.formulaTitle || `How to Convert ${fromUnit.name} to ${toUnit.name}`}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-            {customArticle.formula.text}
-          </p>
+          <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={customArticle.formula.text} />
           <MathFormula formula={customArticle.formula.math} displayMode={true} />
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-            {customArticle.formula.subtext}
-          </p>
+          <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={customArticle.formula.subtext} />
         </section>
 
         {/* Practical Tip */}
@@ -1011,9 +1005,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               {customArticle.practicalTip.title || "Practical Pro-Tip"}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              {customArticle.practicalTip.text}
-            </p>
+            <FormattedText as="p" className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed" text={customArticle.practicalTip.text} />
           </section>
         )}
 
@@ -1025,9 +1017,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                 <span className="h-2 w-2 rounded-full bg-blue-500" />
                 {customArticle.aboutSourceUnit.title}
               </h4>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                {customArticle.aboutSourceUnit.text}
-              </p>
+              <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={customArticle.aboutSourceUnit.text} />
             </div>
             
             <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 shadow-xs flex flex-col gap-3">
@@ -1035,9 +1025,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                 <span className="h-2 w-2 rounded-full bg-cyan-500" />
                 {customArticle.aboutTargetUnit.title}
               </h4>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                {customArticle.aboutTargetUnit.text}
-              </p>
+              <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={customArticle.aboutTargetUnit.text} />
             </div>
           </section>
         )}
@@ -1047,14 +1035,12 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
             {customArticle.relationshipTitle || `The Relationship Between ${fromUnit.name} and ${toUnit.name}`}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-            {customArticle.relationship}
-          </p>
+          <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={customArticle.relationship} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
             {customArticle.relationshipItems?.map((item, idx) => (
               <div key={idx} className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{item.label}</span>
-                <span className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">{item.value}</span>
+                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider"><FormattedText text={item.label} /></span>
+                <span className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200 mt-1"><FormattedText text={item.value} /></span>
               </div>
             ))}
           </div>
@@ -1069,11 +1055,11 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             <div className="flex flex-col gap-4">
               {customArticle.examples.items?.map((ex, idx) => (
                 <div key={idx} className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
-                  <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">{ex.title}</span>
-                  <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm">{ex.subtitle}</p>
+                  <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider"><FormattedText text={ex.title} /></span>
+                  <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm"><FormattedText text={ex.subtitle} /></p>
                   <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-1 text-slate-500 dark:text-slate-400">
                     {ex.steps?.map((step, sIdx) => (
-                      <li key={sIdx}>{step}</li>
+                      <li key={sIdx}><FormattedText text={step} /></li>
                     ))}
                   </ol>
                 </div>
@@ -1093,19 +1079,19 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                 <thead>
                   <tr className="bg-[var(--background-secondary)] dark:bg-slate-950 border-b border-[var(--border-subtle)] dark:border-slate-800">
                     {customArticle.table.headers?.map((h, hIdx) => (
-                      <th key={hIdx} className={`p-4 font-bold text-slate-900 dark:text-white ${hIdx >= 2 ? 'hidden sm:table-cell' : ''}`}>{h}</th>
+                      <th key={hIdx} className={`p-4 font-bold text-slate-900 dark:text-white ${hIdx >= 2 ? 'hidden sm:table-cell' : ''}`}><FormattedText text={h} /></th>
                     ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[var(--divider-subtle)] dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-900/50">
                   {customArticle.table.rows?.map((row, rIdx) => (
                     <tr key={rIdx} className="hover:bg-[var(--surface-hover)] dark:hover:bg-slate-950/20 transition-all">
-                      <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400">{row.fromVal}</td>
-                      <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.toVal}</td>
-                      <td className="p-4 text-xs text-slate-400 font-mono hidden sm:table-cell">{row.extra}</td>
-                      {row.extra2 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra2}</td>}
-                      {row.extra3 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra3}</td>}
-                      {row.extra4 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.extra4}</td>}
+                      <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400"><FormattedText text={row.fromVal} /></td>
+                      <td className="p-4 font-mono font-bold text-slate-900 dark:text-white"><FormattedText text={row.toVal} /></td>
+                      <td className="p-4 text-xs text-slate-400 font-mono hidden sm:table-cell"><FormattedText text={row.extra} /></td>
+                      {row.extra2 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell"><FormattedText text={row.extra2} /></td>}
+                      {row.extra3 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell"><FormattedText text={row.extra3} /></td>}
+                      {row.extra4 && <td className="p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell"><FormattedText text={row.extra4} /></td>}
                     </tr>
                   ))}
                 </tbody>
@@ -1121,9 +1107,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
               {customArticle.expertNote.title || "Did You Know? (Expert Engineering Note)"}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              {customArticle.expertNote.text}
-            </p>
+            <FormattedText as="p" className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed" text={customArticle.expertNote.text} />
           </section>
         )}
 
@@ -1136,10 +1120,8 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {customArticle.applications.items?.map((app, idx) => (
                 <div key={idx} className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
-                  <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">{app.title}</span>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                    {app.text}
-                  </p>
+                  <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider"><FormattedText text={app.title} /></span>
+                  <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={app.text} />
                 </div>
               ))}
             </div>
@@ -1154,7 +1136,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             </h3>
             <ul className="list-disc pl-5 text-xs sm:text-sm space-y-2 text-slate-500 dark:text-slate-400 leading-relaxed">
               {(Array.isArray(customArticle.pitfalls) ? customArticle.pitfalls : customArticle.pitfalls.items)?.map((item: any, idx: number) => (
-                <li key={idx}>{typeof item === 'string' ? item : item.text || item.title}</li>
+                <li key={idx}><FormattedText text={typeof item === 'string' ? item : item.text || item.title} /></li>
               ))}
             </ul>
           </section>
@@ -1178,12 +1160,12 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                     onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
                     className="w-full flex items-center justify-between p-4 sm:p-5 font-display font-bold text-left text-slate-900 dark:text-white cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors text-xs sm:text-sm"
                   >
-                    <span>{faq.question}</span>
+                    <span><FormattedText text={faq.question} /></span>
                     <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""} shrink-0 ml-2`} />
                   </button>
                   {openFaqIndex === idx && (
                     <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
-                      {faq.answer}
+                      <FormattedText text={faq.answer} />
                     </div>
                   )}
                 </div>
@@ -2865,7 +2847,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             About {fromUnit.name} to {fromUnit.name === toUnit.name ? toUnit.name : `${toUnit.name} Conversion`}
           </h2>
           <div className="prose dark:prose-invert max-w-none">
-            <p className="whitespace-pre-line text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{article.introduction}</p>
+            <FormattedText as="p" className="whitespace-pre-line text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={article.introduction} />
           </div>
         </section>
       )
@@ -2878,9 +2860,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
               {article.formulaSection.heading}
             </h3>
-            <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
-              {article.formulaSection.text}
-            </p>
+            <FormattedText as="p" className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm leading-relaxed" text={article.formulaSection.text} />
           </div>
           <div className="flex-shrink-0 min-w-[240px] sm:min-w-[280px] w-auto max-w-full p-4 sm:px-5 sm:py-4 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg flex items-center justify-center text-xs sm:text-sm md:text-base font-mono font-black select-all text-center">
             <MathFormula formula={article.formulaSection.formula} asInline={true} className="text-white dark:text-white" />
@@ -2890,36 +2870,43 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
     },
     {
       id: "table",
-      node: article.conversionTable && article.conversionTable.length > 0 ? (
-        <section className="flex flex-col gap-4" key="table">
-          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-            Common {fromUnit.name} to {toUnit.name} Conversion Table
-          </h3>
-          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
-            Quick reference chart showing standard values converted from {fromUnit.plural} to {toUnit.plural}:
-          </p>
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
-            <table className="w-full text-left text-xs sm:text-sm border-collapse">
-              <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
-                  <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white">{fromUnit.name} ({fromUnit.symbol})</th>
-                  <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white">{toUnit.name} ({toUnit.symbol})</th>
-                  <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white hidden sm:table-cell">Context / Typical Use</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
-                {article.conversionTable.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
-                    <td className="p-3 sm:p-4 font-mono font-medium text-slate-900 dark:text-white">{row.value} {fromUnit.symbol}</td>
-                    <td className="p-3 sm:p-4 font-mono font-bold text-blue-600 dark:text-cyan-400" dangerouslySetInnerHTML={{ __html: `${row.converted} ${toUnit.symbol}` }} />
-                    <td className="p-3 sm:p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.context}</td>
+      node: article.conversionTable && article.conversionTable.length > 0 ? (() => {
+        const hasTableContext = article.conversionTable.some(r => r.context && r.context.trim().length > 0);
+        return (
+          <section className="flex flex-col gap-4" key="table">
+            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+              Common {fromUnit.name} to {toUnit.name} Conversion Table
+            </h3>
+            <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
+              Quick reference chart showing standard values converted from {fromUnit.plural} to {toUnit.plural}:
+            </p>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
+                    <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white">{fromUnit.name} ({fromUnit.symbol})</th>
+                    <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white">{toUnit.name} ({toUnit.symbol})</th>
+                    {hasTableContext && (
+                      <th className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white hidden sm:table-cell">Context / Typical Use</th>
+                    )}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      ) : null
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                  {article.conversionTable.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                      <td className="p-3 sm:p-4 font-mono font-medium text-slate-900 dark:text-white">{row.value} {fromUnit.symbol}</td>
+                      <td className="p-3 sm:p-4 font-mono font-bold text-blue-600 dark:text-cyan-400" dangerouslySetInnerHTML={{ __html: `${row.converted} ${toUnit.symbol}` }} />
+                      {hasTableContext && (
+                        <td className="p-3 sm:p-4 text-xs text-slate-500 dark:text-slate-400 hidden sm:table-cell">{row.context}</td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        );
+      })() : null
     },
     {
       id: "solver",
@@ -2936,7 +2923,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             {article.stepByStep.map((step, idx) => (
               <div key={idx} className="flex gap-3">
                 <span className="text-blue-500 font-bold">[{idx + 1}]</span>
-                <p className="text-slate-700 dark:text-slate-300">{step}</p>
+                <FormattedText as="p" className="text-slate-700 dark:text-slate-300" text={step} />
               </div>
             ))}
           </div>
@@ -2953,11 +2940,11 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {article.examples.items.map((ex, idx) => (
               <div key={idx} className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 flex flex-col gap-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Example {idx + 1}</span>
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Example {idx + 1}:</span>
                   <span className="text-xs font-mono font-bold text-blue-600 dark:text-cyan-400">{ex.input} {fromUnit.symbol} = <span dangerouslySetInnerHTML={{ __html: ex.output }} /> {toUnit.symbol}</span>
                 </div>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{ex.explanation}</p>
+                <FormattedText as="p" className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" text={ex.explanation} />
               </div>
             ))}
           </div>
@@ -2971,9 +2958,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
             {article.historySection.heading}
           </h3>
-          <div className="prose dark:prose-invert max-w-none text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
-            {article.historySection.text}
-          </div>
+          <FormattedText as="div" className="prose dark:prose-invert max-w-none text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line" text={article.historySection.text} />
         </section>
       ) : null
     },
@@ -2996,12 +2981,12 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-4 sm:p-5 font-display font-bold text-left text-slate-900 dark:text-white cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors text-xs sm:text-sm"
                 >
-                  <span>{faq.question}</span>
+                  <span><FormattedText text={faq.question} /></span>
                   <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""} shrink-0 ml-2`} />
                 </button>
                 {openFaqIndex === idx && (
                   <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
-                    {faq.answer}
+                    <FormattedText text={faq.answer} />
                   </div>
                 )}
               </div>

@@ -125,4 +125,22 @@ input[type="number"] {
   white-space: nowrap;
 }
 
+/* Ensure strong tags are visibly bold and distinct across themes */
+strong, b {
+  font-weight: 700;
+}
+
+article strong,
+.article-content strong,
+#seo-article strong {
+  font-weight: 700;
+  color: rgb(15 23 42);
+}
+
+.dark article strong,
+.dark .article-content strong,
+.dark #seo-article strong {
+  color: rgb(248 250 252);
+}
+
 

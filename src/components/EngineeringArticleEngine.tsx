@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { EngineeringArticleData } from "../data/engineeringArticlesEngine";
 import MathFormula from "./MathFormula";
+import FormattedText from "./FormattedText";
 
 interface EngineeringArticleEngineProps {
   article: EngineeringArticleData;
@@ -43,7 +44,7 @@ export default function EngineeringArticleEngine({
         </div>
 
         <div className="prose dark:prose-invert text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
-          <p>{article.introduction.overview}</p>
+          <FormattedText as="p" text={article.introduction.overview} />
         </div>
 
         {/* Real-World Applications & Industries Grid (Sections 2 & 3) */}
@@ -86,9 +87,7 @@ export default function EngineeringArticleEngine({
           <Zap className="h-4 w-4 text-amber-500" />
           4. Quick Answer & Key Summary
         </div>
-        <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
-          {article.quickAnswer}
-        </p>
+        <FormattedText as="p" className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed" text={article.quickAnswer} />
       </section>
 
       {/* 5. Governing Equation & Variables Table */}
@@ -106,9 +105,7 @@ export default function EngineeringArticleEngine({
           <MathFormula formula={article.governingEquation.formula} displayMode={true} className="text-amber-400 dark:text-amber-400 bg-transparent border-0 shadow-none my-0 py-0" />
         </div>
 
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          {article.governingEquation.explanation}
-        </p>
+        <FormattedText as="p" className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed" text={article.governingEquation.explanation} />
 
         {/* Variables Table */}
         <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
@@ -124,10 +121,10 @@ export default function EngineeringArticleEngine({
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
               {article.governingEquation.variables.map((v, idx) => (
                 <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/50">
-                  <td className="p-3 font-semibold text-slate-900 dark:text-slate-100">{v.label}</td>
-                  <td className="p-3 font-mono font-bold text-amber-600 dark:text-amber-400">{v.symbol}</td>
-                  <td className="p-3 font-mono text-slate-500">{v.unit}</td>
-                  <td className="p-3">{v.description}</td>
+                  <td className="p-3 font-semibold text-slate-900 dark:text-slate-100"><FormattedText text={v.label} /></td>
+                  <td className="p-3 font-mono font-bold text-amber-600 dark:text-amber-400"><FormattedText text={v.symbol} /></td>
+                  <td className="p-3 font-mono text-slate-500"><FormattedText text={v.unit} /></td>
+                  <td className="p-3"><FormattedText text={v.description} /></td>
                 </tr>
               ))}
             </tbody>
@@ -151,12 +148,10 @@ export default function EngineeringArticleEngine({
             {article.inputParameters.map((inp, idx) => (
               <div key={idx} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-1 text-xs">
                 <div className="flex items-center justify-between font-bold text-slate-900 dark:text-slate-100">
-                  <span>{inp.label} ({inp.name})</span>
-                  <span className="font-mono text-amber-600 dark:text-amber-400">{inp.defaultValue} {inp.unit}</span>
+                  <span><FormattedText text={inp.label} /> (<FormattedText text={inp.name} />)</span>
+                  <span className="font-mono text-amber-600 dark:text-amber-400">{inp.defaultValue} <FormattedText text={inp.unit} /></span>
                 </div>
-                <p className="text-slate-500 dark:text-slate-400 leading-normal">
-                  {inp.explanation}
-                </p>
+                <FormattedText as="p" className="text-slate-500 dark:text-slate-400 leading-normal" text={inp.explanation} />
               </div>
             ))}
           </div>
@@ -174,16 +169,14 @@ export default function EngineeringArticleEngine({
 
             <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200/60 dark:border-emerald-900/40 space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-emerald-700 dark:text-emerald-400">
-                Primary Output Unit: {article.outputExplanation.unit}
+                Primary Output Unit: <FormattedText text={article.outputExplanation.unit} />
               </span>
-              <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                {article.outputExplanation.interpretation}
-              </p>
+              <FormattedText as="p" className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium" text={article.outputExplanation.interpretation} />
             </div>
 
             <div className="space-y-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               <h3 className="font-bold text-slate-900 dark:text-slate-100">Design & Safety Impact:</h3>
-              <p>{article.outputExplanation.designImpact}</p>
+              <FormattedText as="p" text={article.outputExplanation.designImpact} />
             </div>
           </div>
         </section>
@@ -209,22 +202,22 @@ export default function EngineeringArticleEngine({
           <div className="flex flex-wrap gap-2">
             {article.stepByStepExample.givenInputs.map((g, idx) => (
               <span key={idx} className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 font-mono font-semibold text-slate-800 dark:text-slate-200 text-xs">
-                {g.label} = {g.value} {g.unit}
+                <FormattedText text={g.label} /> = {g.value} <FormattedText text={g.unit} />
               </span>
             ))}
           </div>
 
-          <p>{article.stepByStepExample.substitution}</p>
+          <FormattedText as="p" text={article.stepByStepExample.substitution} />
 
           <div className="p-4 rounded-2xl bg-slate-950 text-amber-300 font-mono text-xs space-y-2 border border-slate-800">
             {article.stepByStepExample.intermediateSteps.map((step, idx) => (
-              <div key={idx}>{step}</div>
+              <div key={idx}><FormattedText text={step} /></div>
             ))}
           </div>
 
           <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-between text-xs sm:text-sm">
             <span>Final Calculated Output Result:</span>
-            <span className="font-mono text-base">{article.stepByStepExample.finalResult} {article.stepByStepExample.unit}</span>
+            <span className="font-mono text-base"><FormattedText text={article.stepByStepExample.finalResult} /> <FormattedText text={article.stepByStepExample.unit} /></span>
           </div>
         </div>
       </section>
@@ -234,25 +227,23 @@ export default function EngineeringArticleEngine({
         <div className="flex items-center gap-2">
           <Lightbulb className="h-5 w-5 text-amber-500" />
           <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            9. Application Example: {article.practicalExample.scenarioTitle}
+            9. Application Example: <FormattedText text={article.practicalExample.scenarioTitle} />
           </h2>
         </div>
 
         <div className="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          <p className="italic font-medium text-slate-700 dark:text-slate-200">
-            {article.practicalExample.industryContext}
-          </p>
+          <FormattedText as="p" className="italic font-medium text-slate-700 dark:text-slate-200" text={article.practicalExample.industryContext} />
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <span className="font-bold text-slate-900 dark:text-slate-100 block text-xs uppercase tracking-wider">
               Problem Statement:
             </span>
-            <p>{article.practicalExample.problemStatement}</p>
+            <FormattedText as="p" text={article.practicalExample.problemStatement} />
           </div>
           <div className="p-4 rounded-2xl bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 space-y-2">
             <span className="font-bold text-amber-800 dark:text-amber-400 block text-xs uppercase tracking-wider">
               Analytical Solution & Verification:
             </span>
-            <p>{article.practicalExample.engineeringSolution}</p>
+            <FormattedText as="p" text={article.practicalExample.engineeringSolution} />
           </div>
         </div>
       </section>
@@ -273,7 +264,7 @@ export default function EngineeringArticleEngine({
             {article.assumptions.map((ass, idx) => (
               <li key={idx} className="flex items-start gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
-                <span>{ass}</span>
+                <FormattedText as="span" text={ass} />
               </li>
             ))}
           </ul>
@@ -292,7 +283,7 @@ export default function EngineeringArticleEngine({
             {article.limitations.map((lim, idx) => (
               <li key={idx} className="flex items-start gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
-                <span>{lim}</span>
+                <FormattedText as="span" text={lim} />
               </li>
             ))}
           </ul>
@@ -316,7 +307,7 @@ export default function EngineeringArticleEngine({
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 font-bold text-[10px] shrink-0 mt-0.5">
                   {idx + 1}
                 </span>
-                <p className="leading-relaxed">{mistake}</p>
+                <FormattedText as="p" className="leading-relaxed" text={mistake} />
               </div>
             ))}
           </div>
@@ -333,7 +324,7 @@ export default function EngineeringArticleEngine({
             {article.bestPractices.map((tip, idx) => (
               <div key={idx} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-2.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                <span>{tip}</span>
+                <FormattedText as="span" text={tip} />
               </div>
             ))}
           </div>
@@ -366,13 +357,13 @@ export default function EngineeringArticleEngine({
                   onClick={() => toggleFaq(idx)}
                   className="w-full p-4 text-left flex items-center justify-between gap-4 text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition-colors cursor-pointer"
                 >
-                  <span>{faq.question}</span>
+                  <span><FormattedText text={faq.question} /></span>
                   {isOpen ? <ChevronUp className="h-4 w-4 shrink-0 text-amber-500" /> : <ChevronDown className="h-4 w-4 shrink-0 text-slate-400" />}
                 </button>
 
                 {isOpen && (
                   <div className="px-4 pb-4 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/50 dark:border-slate-800/50 pt-3 animate-in fade-in duration-150">
-                    {faq.answer}
+                    <FormattedText text={faq.answer} />
                   </div>
                 )}
               </div>

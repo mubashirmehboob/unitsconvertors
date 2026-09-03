@@ -1,6 +1,7 @@
 import { Category, Unit } from "../types";
 import { categoriesData } from "../data/convertersData";
 import { categoryGenerators } from "./articleGenerators";
+import { sanitizeArticleData } from "./mathSanitizer";
 
 /**
  * Perform unit conversion using base-unit architecture.
@@ -546,7 +547,7 @@ export function generateSEOContent(
 ): SEOArticle {
   const specializedGenerator = categoryGenerators[category.id];
   if (specializedGenerator) {
-    return specializedGenerator(category, fromUnit, toUnit, formatOpts);
+    return sanitizeArticleData(specializedGenerator(category, fromUnit, toUnit, formatOpts));
   }
 
   const catName = category.name;
@@ -564,12 +565,13 @@ export function generateSEOContent(
   const title = `Free ${fromName} to ${toName} Converter - ${fromSym} to ${toSym}`;
   const metaDescription = `Quickly convert ${fromPlural} to ${toPlural} (${fromSym} to ${toSym}) with our high-precision online unit converter. Includes step-by-step conversion formulas, worked examples, and full conversion tables.`;
 
+  // MANDATORY: Use HTML <strong>...</strong> for bold emphasis. Never use Markdown **...** syntax.
   const introOptions = [
     `Converting ${fromPlural} to ${toPlural} is straightforward once you know the fixed relationship between the two units. The sections below explain the formula, provide worked examples, and show where this conversion is commonly used. Whether you are dealing with academic coursework, precision engineering, or everyday planning, understanding this conversion factor ensures your measurements remain accurate and consistent.`,
-    `Understanding the scale of **${fromPlural}** (${fromSym}) relative to **${toPlural}** (${toSym}) helps bridge the gap between different measurement systems. Because industries across the globe standardise on different units—such as SI Metric, US Customary, or Imperial—performing precise calculations is essential. Below, we break down the exact mathematics, provide a convenient conversion grid, and walk through real examples.`,
+    `Understanding the scale of <strong>${fromPlural}</strong> (${fromSym}) relative to <strong>${toPlural}</strong> (${toSym}) helps bridge the gap between different measurement systems. Because industries across the globe standardise on different units—such as SI Metric, US Customary, or Imperial—performing precise calculations is essential. Below, we break down the exact mathematics, provide a convenient conversion grid, and walk through real examples.`,
     `Have you ever wondered exactly how many ${toPlural} make up a single ${fromName}? When working in fields like physics, construction, or daily trade, shifting between ${fromSym} and ${toSym} is a routine necessity. Rather than relying on guesswork, this guide outlines the direct scaling coefficients, explains step-by-step calculations, and clarifies common pitfalls to ensure error-free measurements.`,
-    `Measurements are more than just numbers—they represent centuries of standardized human agreement. Comparing **${fromPlural}** to **${toPlural}** reveals how our engineering and scientific communities maintain precise communication across boundaries. We have designed this guide to detail the underlying mathematical factors, present clear solved examples, and address the most frequently asked questions.`,
-    `In daily applications and industrial processes alike, converting **${fromName}** to **${toName}** plays a critical role. Whether calibrating instruments, scaling blueprints, or adjusting recipe proportions, precision is non-negotiable. Read on to find the exact algebraic formula, study several practical step-by-step calculations, and reference our high-precision value table.`
+    `Measurements are more than just numbers—they represent centuries of standardized human agreement. Comparing <strong>${fromPlural}</strong> to <strong>${toPlural}</strong> reveals how our engineering and scientific communities maintain precise communication across boundaries. We have designed this guide to detail the underlying mathematical factors, present clear solved examples, and address the most frequently asked questions.`,
+    `In daily applications and industrial processes alike, converting <strong>${fromName}</strong> to <strong>${toName}</strong> plays a critical role. Whether calibrating instruments, scaling blueprints, or adjusting recipe proportions, precision is non-negotiable. Read on to find the exact algebraic formula, study several practical step-by-step calculations, and reference our high-precision value table.`
   ];
   const introduction = introOptions[hash % introOptions.length];
 
@@ -594,7 +596,7 @@ export function generateSEOContent(
     const relativeFactor = fromUnit.factor / toUnit.factor;
     const formattedRelative = formatUnitValue(relativeFactor, formatOpts).html;
     formulaMath = `1 ${fromSym} = ${formattedRelative} ${toSym}`;
-    formulaText = `Converting standard units is a direct linear process. To translate **${fromPlural}** to **${toPlural}**, you multiply the input value by the relative coefficient of **${formattedRelative}**. Conversely, to perform the opposite operation, you divide the value by this same scale factor.`;
+    formulaText = `Converting standard units is a direct linear process. To translate <strong>${fromPlural}</strong> to <strong>${toPlural}</strong>, you multiply the input value by the relative coefficient of <strong>${formattedRelative}</strong>. Conversely, to perform the opposite operation, you divide the value by this same scale factor.`;
   }
 
   // Worked examples
@@ -668,11 +670,11 @@ export function generateSEOContent(
     };
   });
 
-  const historyText = `The measurement of **${catName}** has a rich historical lineage. In ancient civilizations, measurements were highly localized and frequently based on human body proportions or local trade standards—such as the cubit, foot, or grain weights. 
+  const historyText = `The measurement of <strong>${catName}</strong> has a rich historical lineage. In ancient civilizations, measurements were highly localized and frequently based on human body proportions or local trade standards—such as the cubit, foot, or grain weights. 
   
   In 1799, the French Academy of Sciences introduced the Metric System (SI), establishing the meter and kilogram to standardize globally. Concurrently, the British Empire formalized the Imperial system in 1824, which is closely related to the US Customary system used in the United States today. 
   
-  **${fromName}** and **${toName}** represent these distinct historical efforts to categorize physical realities. Today, precise conversions between them are standardized by international treaty to guarantee safety, quality, and uniformity across global manufacturing, aerospace engineering, shipping logistics, and international scientific collaborations.`;
+  <strong>${fromName}</strong> and <strong>${toName}</strong> represent these distinct historical efforts to categorize physical realities. Today, precise conversions between them are standardized by international treaty to guarantee safety, quality, and uniformity across global manufacturing, aerospace engineering, shipping logistics, and international scientific collaborations.`;
 
   // Rotated headings
   const relHeadings = [
@@ -718,7 +720,7 @@ export function generateSEOContent(
 
   const faqs = generateCategoryFAQs(category, fromUnit, toUnit, pairKey);
 
-  return {
+  return sanitizeArticleData({
     title,
     metaDescription,
     introduction,
@@ -738,7 +740,7 @@ export function generateSEOContent(
       heading: historyHeading,
       text: historyText
     }
-  };
+  });
 }
 
 export interface UnitPairResult {

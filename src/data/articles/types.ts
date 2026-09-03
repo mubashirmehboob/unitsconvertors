@@ -1,3 +1,23 @@
+/**
+ * MANDATORY ARTICLE FORMATTING RULE FOR UnitsConvertors.com:
+ * 
+ * 1. NEVER use Markdown bold syntax `**...**` anywhere inside article content.
+ * 2. For text that should be visibly bold, ALWAYS use proper HTML `<strong>...</strong>` tags.
+ * 3. This rule applies to:
+ *    - existing articles
+ *    - newly generated articles
+ *    - regenerated articles
+ *    - edited articles
+ *    - FAQs
+ *    - worked examples
+ *    - tables
+ *    - notes
+ *    - introductions
+ *    - SEO content
+ *    - related content sections
+ * 4. Exception: Do NOT alter legitimate mathematical power operators or code expressions
+ *    containing asterisks (e.g. `10**12` or `Math.sin(x)**2`). Only target text emphasis.
+ */
 export interface CustomArticleData {
   fromUnitId: string;
   toUnitId: string;

@@ -4,7 +4,28 @@ import { bespokeArticlesMap } from "./bespokeArticles";
 import { ArticleGeneratorContext } from "./articleTemplates/types";
 import { getCategoryTemplate } from "./articleTemplates/registry";
 import { generateUniversalFallbackArticle, universalDisciplineStandardsMap } from "./articleTemplates/universalFallback";
+import { sanitizeArticleData } from "../utils/mathSanitizer";
 
+/**
+ * MANDATORY ARTICLE FORMATTING RULE FOR UnitsConvertors.com:
+ * 
+ * 1. NEVER use Markdown bold syntax `**...**` anywhere inside article content.
+ * 2. For text that should be visibly bold, ALWAYS use proper HTML `<strong>...</strong>` tags.
+ * 3. This rule applies to:
+ *    - existing articles
+ *    - newly generated articles
+ *    - regenerated articles
+ *    - edited articles
+ *    - FAQs
+ *    - worked examples
+ *    - tables
+ *    - notes
+ *    - introductions
+ *    - SEO content
+ *    - related content sections
+ * 4. Exception: Do NOT alter legitimate mathematical power operators or code expressions
+ *    containing asterisks (e.g. `10**12` or `Math.sin(x)**2`). Only target text emphasis.
+ */
 export interface EngineeringArticleFAQ {
   question: string;
   answer: string;
@@ -137,7 +158,7 @@ export function generateEngineeringArticle(
 
   // 1. PRIORITY 1: Calculator-specific bespoke article override
   if (bespokeArticlesMap[tool.id]) {
-    return bespokeArticlesMap[tool.id](canonicalUrl, relatedTools, relevantUnitCategories);
+    return sanitizeArticleData(bespokeArticlesMap[tool.id](canonicalUrl, relatedTools, relevantUnitCategories));
   }
 
   // Calculate default step-by-step output
@@ -178,10 +199,10 @@ export function generateEngineeringArticle(
   // 2. PRIORITY 2: Category-specific article template from registry
   const categoryTemplate = getCategoryTemplate(normalizedDiscId) || getCategoryTemplate(discipline.id);
   if (categoryTemplate) {
-    return categoryTemplate.generateArticle(ctx);
+    return sanitizeArticleData(categoryTemplate.generateArticle(ctx));
   }
 
   // 3. PRIORITY 3: Universal fallback article structure
-  return generateUniversalFallbackArticle(ctx);
+  return sanitizeArticleData(generateUniversalFallbackArticle(ctx));
 }
 

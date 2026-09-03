@@ -5935,8 +5935,8 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   {
     id: "degree-to-dms-calc",
     slug: "degree-to-dms-calc",
-    title: "Degree ↔ DMS Calculator",
-    name: "Degree ↔ DMS Calculator",
+    title: "Degree to DMS Calculator",
+    name: "Degree to DMS Calculator",
     discipline: "Surveying & GIS",
     disciplineId: "surveying-gis-calc",
     description: "Convert decimal degrees into Degrees, Minutes, and Seconds (DMS) angle notation and total arcsecond GIS values.",
@@ -5959,8 +5959,8 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   {
     id: "degree-to-decimal-degree-calc",
     slug: "degree-to-decimal-degree-calc",
-    title: "Degree ↔ Decimal Degree Calculator",
-    name: "Degree ↔ Decimal Degree Calculator",
+    title: "Degree to Decimal Degree Calculator",
+    name: "Degree to Decimal Degree Calculator",
     discipline: "Surveying & GIS",
     disciplineId: "surveying-gis-calc",
     description: "Convert sexagesimal degree, minute, and second component angles into exact normalized decimal degrees.",
@@ -5985,8 +5985,8 @@ export const engineeringCalculatorRegistry: EngineeringTool[] = [
   {
     id: "decimal-degree-to-dms-calc",
     slug: "decimal-degree-to-dms-calc",
-    title: "Decimal Degree ↔ DMS Calculator",
-    name: "Decimal Degree ↔ DMS Calculator",
+    title: "Decimal Degree to DMS Calculator",
+    name: "Decimal Degree to DMS Calculator",
     discipline: "Surveying & GIS",
     disciplineId: "surveying-gis-calc",
     description: "Convert DMS coordinate inputs into precise Decimal Degrees required for GIS, AutoCAD, and surveying software.",

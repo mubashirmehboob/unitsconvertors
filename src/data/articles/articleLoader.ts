@@ -1,5 +1,6 @@
 import { CustomArticleData } from "./types";
 import slugToExportJson from "./slugToExport.json";
+import { sanitizeArticleData } from "../../utils/mathSanitizer";
 
 // Safely obtain Vite import.meta.glob in browser and build environments
 const modules: Record<string, () => Promise<any>> = 
@@ -36,8 +37,9 @@ export async function getCustomArticle(slug: string): Promise<CustomArticleData 
 
   try {
     const mod = await loader();
-    const article = (mod[entry.varName] || mod.default || mod) as CustomArticleData;
-    if (article && article.h1) {
+    const rawArticle = (mod[entry.varName] || mod.default || mod) as CustomArticleData;
+    if (rawArticle && rawArticle.h1) {
+      const article = sanitizeArticleData(rawArticle);
       articleCache.set(slug, article);
       return article;
     }

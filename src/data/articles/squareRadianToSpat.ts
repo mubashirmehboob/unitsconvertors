@@ -18,11 +18,11 @@ export const squareRadianToSpatArticle: CustomArticleData = {
   },
   aboutSourceUnit: {
     title: "Understanding the Square Radian (rad²)",
-    text: "The square radian (rad²) is the geometric solid-angle unit representing the angular area subtended by 1 radian by 1 radian on a spherical surface. Dimensionally identical to 1 steradian (1 rad² = 1 sr), it emerges naturally from double integrals across spherical coordinates."
+    text: "The square radian (rad²) is a dimensional representation of solid angle equivalent to the steradian (1 rad² = 1 sr). While mathematical calculus and double integrals across spherical coordinates frequently write the unit dimensionally as rad², the official SI coherent derived unit name is the steradian."
   },
   aboutTargetUnit: {
     title: "Understanding the Spat (sp)",
-    text: "The spat (symbol: sp) is a non-SI unit of solid angle that quantifies the complete enclosed solid angle of an entire sphere (4π steradians). It is widely applied in isotropic radiation analysis, omnidirectional antenna evaluations, and global sphere flux integrations."
+    text: "The spat (symbol: sp) is a non-SI unit of solid angle representing the complete enclosed solid angle of an entire sphere (4π steradians, approximately 12.56637 sr). It is an uncommon unit primarily of theoretical or historical interest; modern astrophysics, optics, and radiometry rely almost exclusively on steradians and square degrees."
   },
   relationship: "One spat equals exactly 4π square radians (≈ 12.56637 rad²). Conversely, 1 square radian equals exactly 1 / (4π) spats (≈ 0.07957747 sp or 7.95775% of a full sphere). A hemisphere (2π rad²) equals exactly 0.5 spats.",
   relationshipTitle: "Square Radian to Full-Sphere Fractional Scaling",

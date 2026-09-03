@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import katex from "katex";
+import { cleanMathToUnicode } from "../utils/mathSanitizer";
 
 interface MathFormulaProps {
   formula: string;
@@ -15,8 +16,8 @@ function normalizeToLatex(input: string): string {
   if (!input) return "";
   let s = input.trim();
 
-  // Escape % symbol so it does not comment out LaTeX
-  s = s.replace(/%/g, "\\%");
+  // Escape unescaped % symbol so it does not comment out LaTeX
+  s = s.replace(/(?<!\\)%/g, "\\%");
 
   // Convert plain text equation symbols, Greek letters, and fractions to clean LaTeX equivalents
   s = s
@@ -64,7 +65,7 @@ function normalizeToLatex(input: string): string {
   s = s.replace(/√/g, "\\sqrt{}");
 
   // Normalize multi-character subscripts like N_driven -> N_{\text{driven}}, L_10 -> L_{10}
-  s = s.replace(/_([a-zA-Z0-9]+)(?!})/g, (match, p1) => {
+  s = s.replace(/_([a-zA-Z0-9]+)(?!})/g, (_match, p1) => {
     if (/^[a-zA-Z]{2,}$/.test(p1)) {
       return `_{\\text{${p1}}}`;
     }
@@ -128,7 +129,7 @@ export default function MathFormula({
         <span className="inline-flex flex-wrap items-center gap-1 font-sans">
           {parts.map((part, idx) => {
             if (part.type === "text") {
-              return <span key={idx}>{part.content}</span>;
+              return <span key={idx}>{cleanMathToUnicode(part.content)}</span>;
             }
             try {
               const html = katex.renderToString(normalizeToLatex(part.content), {
@@ -144,8 +145,8 @@ export default function MathFormula({
                 />
               );
             } catch (err) {
-              console.warn("KaTeX inline rendering error:", err);
-              return <code key={idx} className="font-mono text-xs">{part.content}</code>;
+              console.warn("KaTeX inline rendering fallback:", err);
+              return <span key={idx} className="font-mono text-sm">{cleanMathToUnicode(part.content)}</span>;
             }
           })}
         </span>
@@ -162,7 +163,7 @@ export default function MathFormula({
       });
       return html;
     } catch (err) {
-      console.warn("KaTeX equation rendering error:", err, "for formula:", formula);
+      console.warn("KaTeX equation rendering fallback:", err, "for formula:", formula);
       return null;
     }
   }, [formula, displayMode, asInline, hasTextColor]);
@@ -174,9 +175,13 @@ export default function MathFormula({
     return <span className={className}>{renderedContent}</span>;
   }
 
-  // Fallback if KaTeX failed to produce string
+  // Fallback to clean Unicode math if KaTeX failed to produce string
   if (typeof renderedContent !== "string") {
-    return <code className={`font-mono text-xs ${hasTextColor ? "" : "text-current"} ${className}`}>{formula}</code>;
+    return (
+      <span className={`font-mono text-sm ${hasTextColor ? "" : "text-current"} ${className}`}>
+        {cleanMathToUnicode(formula)}
+      </span>
+    );
   }
 
   // Block math rendering container

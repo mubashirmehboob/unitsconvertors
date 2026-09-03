@@ -18,7 +18,12 @@ export interface ArticleGeneratorContext {
 
 /**
  * Universal Category Template Contract
- * Each category template implements this contract to populate domain-specific articles
+ * Each category template implements this contract to populate domain-specific articles.
+ * 
+ * MANDATORY ARTICLE FORMATTING RULE FOR UnitsConvertors.com:
+ * 1. NEVER use Markdown bold syntax `**...**` anywhere inside article content.
+ * 2. For text that should be visibly bold, ALWAYS use proper HTML `<strong>...</strong>` tags.
+ * 3. Never use Markdown `**...**` in introductions, overviews, equations, examples, or FAQs.
  */
 export interface CalculatorCategoryArticleTemplate {
   categoryId: string; // e.g., "electrical-calc", "mechanical-calc", "civil-calc"

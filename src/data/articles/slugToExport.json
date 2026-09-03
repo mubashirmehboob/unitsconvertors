@@ -2558,5 +2558,85 @@
   "ampere-hour-to-faraday": {
     "file": "ampereHourToFaraday",
     "varName": "ampereHourToFaraday"
+  },
+  "pound-inch-to-newton-meter": {
+    "file": "poundInchToNewtonMeter",
+    "varName": "poundInchToNewtonMeter"
+  },
+  "pound-inch-to-pound-foot": {
+    "file": "poundInchToPoundFoot",
+    "varName": "poundInchToPoundFoot"
+  },
+  "pound-inch-to-kilogram-force-meter": {
+    "file": "poundInchToKilogramForceMeter",
+    "varName": "poundInchToKilogramForceMeter"
+  },
+  "pound-inch-to-newton-centimeter": {
+    "file": "poundInchToNewtonCentimeter",
+    "varName": "poundInchToNewtonCentimeter"
+  },
+  "pound-inch-to-dyne-centimeter": {
+    "file": "poundInchToDyneCentimeter",
+    "varName": "poundInchToDyneCentimeter"
+  },
+  "kilogram-force-meter-to-newton-meter": {
+    "file": "kilogramForceMeterToNewtonMeter",
+    "varName": "kilogramForceMeterToNewtonMeter"
+  },
+  "kilogram-force-meter-to-pound-foot": {
+    "file": "kilogramForceMeterToPoundFoot",
+    "varName": "kilogramForceMeterToPoundFoot"
+  },
+  "kilogram-force-meter-to-pound-inch": {
+    "file": "kilogramForceMeterToPoundInch",
+    "varName": "kilogramForceMeterToPoundInch"
+  },
+  "kilogram-force-meter-to-newton-centimeter": {
+    "file": "kilogramForceMeterToNewtonCentimeter",
+    "varName": "kilogramForceMeterToNewtonCentimeter"
+  },
+  "kilogram-force-meter-to-dyne-centimeter": {
+    "file": "kilogramForceMeterToDyneCentimeter",
+    "varName": "kilogramForceMeterToDyneCentimeter"
+  },
+  "foot-per-second-squared-to-kilometer-per-hour-second": {
+    "file": "footPerSecondSquaredToKilometerPerHourSecond",
+    "varName": "footPerSecondSquaredToKilometerPerHourSecond"
+  },
+  "foot-per-second-squared-to-mile-per-hour-second": {
+    "file": "footPerSecondSquaredToMilePerHourSecond",
+    "varName": "footPerSecondSquaredToMilePerHourSecond"
+  },
+  "gravity-acceleration-to-meter-per-second-squared": {
+    "file": "gravityAccelerationToMeterPerSecondSquared",
+    "varName": "gravityAccelerationToMeterPerSecondSquared"
+  },
+  "gravity-acceleration-to-foot-per-second-squared": {
+    "file": "gravityAccelerationToFootPerSecondSquared",
+    "varName": "gravityAccelerationToFootPerSecondSquared"
+  },
+  "gravity-acceleration-to-gal-acceleration": {
+    "file": "gravityAccelerationToGalAcceleration",
+    "varName": "gravityAccelerationToGalAcceleration"
+  },
+  "gravity-acceleration-to-milligal-acceleration": {
+    "file": "gravityAccelerationToMilligalAcceleration",
+    "varName": "gravityAccelerationToMilligalAcceleration"
+  },
+  "gravity-acceleration-to-kilometer-per-hour-second": {
+    "file": "gravityAccelerationToKilometerPerHourSecond",
+    "varName": "gravityAccelerationToKilometerPerHourSecond"
+  },
+  "gravity-acceleration-to-mile-per-hour-second": {
+    "file": "gravityAccelerationToMilePerHourSecond",
+    "varName": "gravityAccelerationToMilePerHourSecond"
+  },
+  "gal-acceleration-to-meter-per-second-squared": {
+    "file": "galAccelerationToMeterPerSecondSquared",
+    "varName": "galAccelerationToMeterPerSecondSquared"
+  },
+  "gal-acceleration-to-foot-per-second-squared": {
+    "file": "galAccelerationToFootPerSecondSquared",
+    "varName": "galAccelerationToFootPerSecondSquared"
   }
 }
