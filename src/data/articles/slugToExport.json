@@ -279,6 +279,46 @@
     "file": "microfaradToMillifarad",
     "varName": "microfaradToMillifarad"
   },
+  "microfarad-to-nanofarad": {
+    "file": "microfaradToNanofarad",
+    "varName": "microfaradToNanofarad"
+  },
+  "microfarad-to-picofarad": {
+    "file": "microfaradToPicofarad",
+    "varName": "microfaradToPicofarad"
+  },
+  "nanofarad-to-farad": {
+    "file": "nanofaradToFarad",
+    "varName": "nanofaradToFarad"
+  },
+  "nanofarad-to-millifarad": {
+    "file": "nanofaradToMillifarad",
+    "varName": "nanofaradToMillifarad"
+  },
+  "nanofarad-to-microfarad": {
+    "file": "nanofaradToMicrofarad",
+    "varName": "nanofaradToMicrofarad"
+  },
+  "nanofarad-to-picofarad": {
+    "file": "nanofaradToPicofarad",
+    "varName": "nanofaradToPicofarad"
+  },
+  "picofarad-to-farad": {
+    "file": "picofaradToFarad",
+    "varName": "picofaradToFarad"
+  },
+  "picofarad-to-millifarad": {
+    "file": "picofaradToMillifarad",
+    "varName": "picofaradToMillifarad"
+  },
+  "picofarad-to-microfarad": {
+    "file": "picofaradToMicrofarad",
+    "varName": "picofaradToMicrofarad"
+  },
+  "picofarad-to-nanofarad": {
+    "file": "picofaradToNanofarad",
+    "varName": "picofaradToNanofarad"
+  },
   "gram-to-kilogram": {
     "file": "gramToKilogram",
     "varName": "gramToKilogram"
@@ -2518,6 +2558,46 @@
   "kilohm-to-gigaohm": {
     "file": "kilohmToGigaohm",
     "varName": "kilohmToGigaohm"
+  },
+  "megohm-to-ohm": {
+    "file": "megohmToOhm",
+    "varName": "megohmToOhm"
+  },
+  "megohm-to-kilohm": {
+    "file": "megohmToKilohm",
+    "varName": "megohmToKilohm"
+  },
+  "megohm-to-milliohm": {
+    "file": "megohmToMilliohm",
+    "varName": "megohmToMilliohm"
+  },
+  "megohm-to-microohm": {
+    "file": "megohmToMicroohm",
+    "varName": "megohmToMicroohm"
+  },
+  "megohm-to-gigaohm": {
+    "file": "megohmToGigaohm",
+    "varName": "megohmToGigaohm"
+  },
+  "milliohm-to-ohm": {
+    "file": "milliohmToOhm",
+    "varName": "milliohmToOhm"
+  },
+  "milliohm-to-kilohm": {
+    "file": "milliohmToKilohm",
+    "varName": "milliohmToKilohm"
+  },
+  "milliohm-to-megohm": {
+    "file": "milliohmToMegohm",
+    "varName": "milliohmToMegohm"
+  },
+  "milliohm-to-microohm": {
+    "file": "milliohmToMicroohm",
+    "varName": "milliohmToMicroohm"
+  },
+  "milliohm-to-gigaohm": {
+    "file": "milliohmToGigaohm",
+    "varName": "milliohmToGigaohm"
   },
   "coulomb-to-ampere-hour": {
     "file": "coulombToAmpereHour",
