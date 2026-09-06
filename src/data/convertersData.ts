@@ -796,13 +796,14 @@ export const categoriesData: Category[] = [
     id: "inductance",
     name: "Inductance",
     icon: "Waves",
-    description: "Convert electrical inductance values including henrys, millihenrys, and microhenrys.",
+    description: "Convert electrical inductance values including henrys, millihenrys, microhenrys, nanohenrys, and picohenrys.",
     baseUnitId: "henry",
     units: [
       { id: "henry", name: "Henry", plural: "Henrys", symbol: "H", factor: 1 },
       { id: "millihenry", name: "Millihenry", plural: "Millihenrys", symbol: "mH", factor: 0.001 },
       { id: "microhenry", name: "Microhenry", plural: "Microhenrys", symbol: "µH", factor: 0.000001 },
-      { id: "nanohenry", name: "Nanohenry", plural: "Nanohenrys", symbol: "nH", factor: 1e-9 }
+      { id: "nanohenry", name: "Nanohenry", plural: "Nanohenrys", symbol: "nH", factor: 1e-9 },
+      { id: "picohenry", name: "Picohenry", plural: "Picohenrys", symbol: "pH", factor: 1e-12 }
     ]
   },
   {

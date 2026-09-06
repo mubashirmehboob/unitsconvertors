@@ -56,6 +56,14 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "nanohenry-to-henry": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "nanohenry-to-millihenry": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "nanohenry-to-microhenry": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
+  "henry-to-picohenry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "millihenry-to-picohenry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
+  "microhenry-to-picohenry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "nanohenry-to-picohenry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "picohenry-to-henry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "picohenry-to-millihenry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
+  "picohenry-to-microhenry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "picohenry-to-nanohenry": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
 
   "becquerel-to-curie": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "becquerel-to-rutherford": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
@@ -717,7 +725,17 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "ampere-hour-to-milliampere-hour": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.95 },
   "ampere-hour-to-kilocoulomb": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
   "ampere-hour-to-megacoulomb": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
-  "ampere-hour-to-faraday": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 }
+  "ampere-hour-to-faraday": { seoReady: true, publishedAt: "2026-08-17", updatedAt: "2026-08-17", priority: 0.9 },
+  "milliampere-hour-to-coulomb": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "milliampere-hour-to-ampere-hour": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "milliampere-hour-to-kilocoulomb": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
+  "milliampere-hour-to-megacoulomb": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
+  "milliampere-hour-to-faraday": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
+  "kilocoulomb-to-coulomb": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "kilocoulomb-to-ampere-hour": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "kilocoulomb-to-milliampere-hour": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
+  "kilocoulomb-to-megacoulomb": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
+  "kilocoulomb-to-faraday": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

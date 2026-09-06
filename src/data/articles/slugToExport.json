@@ -159,6 +159,38 @@
     "file": "nanohenryToMicrohenry",
     "varName": "nanohenryToMicrohenry"
   },
+  "henry-to-picohenry": {
+    "file": "henryToPicohenry",
+    "varName": "henryToPicohenry"
+  },
+  "millihenry-to-picohenry": {
+    "file": "millihenryToPicohenry",
+    "varName": "millihenryToPicohenry"
+  },
+  "microhenry-to-picohenry": {
+    "file": "microhenryToPicohenry",
+    "varName": "microhenryToPicohenry"
+  },
+  "nanohenry-to-picohenry": {
+    "file": "nanohenryToPicohenry",
+    "varName": "nanohenryToPicohenry"
+  },
+  "picohenry-to-henry": {
+    "file": "picohenryToHenry",
+    "varName": "picohenryToHenry"
+  },
+  "picohenry-to-millihenry": {
+    "file": "picohenryToMillihenry",
+    "varName": "picohenryToMillihenry"
+  },
+  "picohenry-to-microhenry": {
+    "file": "picohenryToMicrohenry",
+    "varName": "picohenryToMicrohenry"
+  },
+  "picohenry-to-nanohenry": {
+    "file": "picohenryToNanohenry",
+    "varName": "picohenryToNanohenry"
+  },
   "becquerel-to-curie": {
     "file": "becquerelToCurie",
     "varName": "becquerelToCurie"
@@ -2638,6 +2670,46 @@
   "ampere-hour-to-faraday": {
     "file": "ampereHourToFaraday",
     "varName": "ampereHourToFaraday"
+  },
+  "milliampere-hour-to-coulomb": {
+    "file": "milliampereHourToCoulomb",
+    "varName": "milliampereHourToCoulomb"
+  },
+  "milliampere-hour-to-ampere-hour": {
+    "file": "milliampereHourToAmpereHour",
+    "varName": "milliampereHourToAmpereHour"
+  },
+  "milliampere-hour-to-kilocoulomb": {
+    "file": "milliampereHourToKilocoulomb",
+    "varName": "milliampereHourToKilocoulomb"
+  },
+  "milliampere-hour-to-megacoulomb": {
+    "file": "milliampereHourToMegacoulomb",
+    "varName": "milliampereHourToMegacoulomb"
+  },
+  "milliampere-hour-to-faraday": {
+    "file": "milliampereHourToFaraday",
+    "varName": "milliampereHourToFaraday"
+  },
+  "kilocoulomb-to-coulomb": {
+    "file": "kilocoulombToCoulomb",
+    "varName": "kilocoulombToCoulomb"
+  },
+  "kilocoulomb-to-ampere-hour": {
+    "file": "kilocoulombToAmpereHour",
+    "varName": "kilocoulombToAmpereHour"
+  },
+  "kilocoulomb-to-milliampere-hour": {
+    "file": "kilocoulombToMilliampereHour",
+    "varName": "kilocoulombToMilliampereHour"
+  },
+  "kilocoulomb-to-megacoulomb": {
+    "file": "kilocoulombToMegacoulomb",
+    "varName": "kilocoulombToMegacoulomb"
+  },
+  "kilocoulomb-to-faraday": {
+    "file": "kilocoulombToFaraday",
+    "varName": "kilocoulombToFaraday"
   },
   "pound-inch-to-newton-meter": {
     "file": "poundInchToNewtonMeter",
