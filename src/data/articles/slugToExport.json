@@ -435,6 +435,42 @@
     "file": "kilogramToUsTon",
     "varName": "kilogramToUsTon"
   },
+  "kilogram-to-imperial-ton": {
+    "file": "kilogramToImperialTon",
+    "varName": "kilogramToImperialTon"
+  },
+  "kilogram-to-carat": {
+    "file": "kilogramToCarat",
+    "varName": "kilogramToCarat"
+  },
+  "kilogram-to-grain": {
+    "file": "kilogramToGrain",
+    "varName": "kilogramToGrain"
+  },
+  "kilogram-to-slug": {
+    "file": "kilogramToSlug",
+    "varName": "kilogramToSlug"
+  },
+  "kilogram-to-troy-ounce": {
+    "file": "kilogramToTroyOunce",
+    "varName": "kilogramToTroyOunce"
+  },
+  "milligram-to-gram": {
+    "file": "milligramToGram",
+    "varName": "milligramToGram"
+  },
+  "milligram-to-kilogram": {
+    "file": "milligramToKilogram",
+    "varName": "milligramToKilogram"
+  },
+  "milligram-to-microgram": {
+    "file": "milligramToMicrogram",
+    "varName": "milligramToMicrogram"
+  },
+  "milligram-to-pound": {
+    "file": "milligramToPound",
+    "varName": "milligramToPound"
+  },
   "square-meter-to-square-kilometer": {
     "file": "squareMeterToSquareKilometer",
     "varName": "squareMeterToSquareKilometer"
@@ -518,6 +554,42 @@
   "square-kilometer-to-bigha": {
     "file": "squareKilometerToBigha",
     "varName": "squareKilometerToBigha"
+  },
+  "square-kilometer-to-kanal": {
+    "file": "squareKilometerToKanal",
+    "varName": "squareKilometerToKanal"
+  },
+  "square-centimeter-to-square-meter": {
+    "file": "squareCentimeterToSquareMeter",
+    "varName": "squareCentimeterToSquareMeter"
+  },
+  "square-centimeter-to-square-kilometer": {
+    "file": "squareCentimeterToSquareKilometer",
+    "varName": "squareCentimeterToSquareKilometer"
+  },
+  "square-centimeter-to-square-millimeter": {
+    "file": "squareCentimeterToSquareMillimeter",
+    "varName": "squareCentimeterToSquareMillimeter"
+  },
+  "square-centimeter-to-square-mile": {
+    "file": "squareCentimeterToSquareMile",
+    "varName": "squareCentimeterToSquareMile"
+  },
+  "square-centimeter-to-square-yard": {
+    "file": "squareCentimeterToSquareYard",
+    "varName": "squareCentimeterToSquareYard"
+  },
+  "square-centimeter-to-square-foot": {
+    "file": "squareCentimeterToSquareFoot",
+    "varName": "squareCentimeterToSquareFoot"
+  },
+  "square-centimeter-to-square-inch": {
+    "file": "squareCentimeterToSquareInch",
+    "varName": "squareCentimeterToSquareInch"
+  },
+  "square-centimeter-to-acre": {
+    "file": "squareCentimeterToAcre",
+    "varName": "squareCentimeterToAcre"
   },
   "liter-to-milliliter": {
     "file": "literToMilliliter",
@@ -615,6 +687,10 @@
     "file": "milliliterToCupUs",
     "varName": "milliliterToCupUs"
   },
+  "milliliter-to-cup": {
+    "file": "milliliterToCupUs",
+    "varName": "milliliterToCupUs"
+  },
   "milliliter-to-tablespoon-us": {
     "file": "milliliterToTablespoonUs",
     "varName": "milliliterToTablespoonUs"
@@ -626,6 +702,18 @@
   "milliliter-to-fluid-ounce-us": {
     "file": "milliliterToFluidOunceUs",
     "varName": "milliliterToFluidOunceUs"
+  },
+  "milliliter-to-fluid-ounce": {
+    "file": "milliliterToFluidOunceUs",
+    "varName": "milliliterToFluidOunceUs"
+  },
+  "milliliter-to-barrel": {
+    "file": "milliliterToBarrel",
+    "varName": "milliliterToBarrel"
+  },
+  "milliliter-to-oil-barrel": {
+    "file": "milliliterToBarrel",
+    "varName": "milliliterToBarrel"
   },
   "milliliter-to-pint-us": {
     "file": "milliliterToPintUs",
@@ -2371,6 +2459,30 @@
     "file": "cubicMeterToCubicInch",
     "varName": "cubicMeterToCubicInch"
   },
+  "cubic-meter-to-liter": {
+    "file": "cubicMeterToLiter",
+    "varName": "cubicMeterToLiter"
+  },
+  "cubic-meter-to-milliliter": {
+    "file": "cubicMeterToMilliliter",
+    "varName": "cubicMeterToMilliliter"
+  },
+  "cubic-meter-to-cubic-centimeter": {
+    "file": "cubicMeterToCubicCentimeter",
+    "varName": "cubicMeterToCubicCentimeter"
+  },
+  "cubic-meter-to-gallon-us": {
+    "file": "cubicMeterToGallonUs",
+    "varName": "cubicMeterToGallonUs"
+  },
+  "cubic-meter-to-us-gallon": {
+    "file": "cubicMeterToGallonUs",
+    "varName": "cubicMeterToGallonUs"
+  },
+  "cubic-meter-to-gallon": {
+    "file": "cubicMeterToGallonUs",
+    "varName": "cubicMeterToGallonUs"
+  },
   "cubic-inch-to-board-foot": {
     "file": "cubicInchToBoardFoot",
     "varName": "cubicInchToBoardFoot"
@@ -2790,5 +2902,41 @@
   "gal-acceleration-to-foot-per-second-squared": {
     "file": "galAccelerationToFootPerSecondSquared",
     "varName": "galAccelerationToFootPerSecondSquared"
+  },
+  "rankine-to-celsius": {
+    "file": "rankineToCelsius",
+    "varName": "rankineToCelsius"
+  },
+  "rankine-to-fahrenheit": {
+    "file": "rankineToFahrenheit",
+    "varName": "rankineToFahrenheit"
+  },
+  "rankine-to-kelvin": {
+    "file": "rankineToKelvin",
+    "varName": "rankineToKelvin"
+  },
+  "rankine-to-reaumur": {
+    "file": "rankineToReaumur",
+    "varName": "rankineToReaumur"
+  },
+  "rankine-to-newton": {
+    "file": "rankineToNewton",
+    "varName": "rankineToNewton"
+  },
+  "rankine-to-romer": {
+    "file": "rankineToRomer",
+    "varName": "rankineToRomer"
+  },
+  "rankine-to-delisle": {
+    "file": "rankineToDelisle",
+    "varName": "rankineToDelisle"
+  },
+  "reaumur-to-celsius": {
+    "file": "reaumurToCelsius",
+    "varName": "reaumurToCelsius"
+  },
+  "reaumur-to-fahrenheit": {
+    "file": "reaumurToFahrenheit",
+    "varName": "reaumurToFahrenheit"
   }
 }

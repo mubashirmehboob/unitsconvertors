@@ -118,6 +118,25 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "gram-to-imperial-ton": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.8 },
   "gram-to-carat": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.8 },
 
+  "kilogram-to-gram": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.95 },
+  "kilogram-to-milligram": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.9 },
+  "kilogram-to-microgram": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.9 },
+  "kilogram-to-pound": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.95 },
+  "kilogram-to-ounce": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.9 },
+  "kilogram-to-stone": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.9 },
+  "kilogram-to-metric-ton": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.9 },
+  "kilogram-to-us-ton": { seoReady: true, publishedAt: "2026-07-19", updatedAt: "2026-07-19", priority: 0.9 },
+  "kilogram-to-imperial-ton": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "kilogram-to-carat": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "kilogram-to-grain": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "kilogram-to-slug": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "kilogram-to-troy-ounce": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+
+  "milligram-to-gram": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "milligram-to-kilogram": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "milligram-to-microgram": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "milligram-to-pound": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+
   "square-meter-to-square-kilometer": { seoReady: true, publishedAt: "2026-07-20", updatedAt: "2026-07-20", priority: 0.8 },
   "square-meter-to-square-centimeter": { seoReady: true, publishedAt: "2026-07-20", updatedAt: "2026-07-20", priority: 0.8 },
   "square-meter-to-square-millimeter": { seoReady: true, publishedAt: "2026-07-20", updatedAt: "2026-07-20", priority: 0.8 },
@@ -140,6 +159,16 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "square-kilometer-to-acre": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
   "square-kilometer-to-hectare": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
   "square-kilometer-to-bigha": { seoReady: true, publishedAt: "2026-08-19", updatedAt: "2026-08-19", priority: 0.95 },
+  "square-kilometer-to-kanal": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+
+  "square-centimeter-to-square-meter": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "square-centimeter-to-square-kilometer": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
+  "square-centimeter-to-square-millimeter": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "square-centimeter-to-square-mile": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
+  "square-centimeter-to-square-yard": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
+  "square-centimeter-to-square-foot": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "square-centimeter-to-square-inch": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "square-centimeter-to-acre": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
 
   "liter-to-milliliter": { seoReady: true, publishedAt: "2026-07-22", updatedAt: "2026-07-22", priority: 0.8 },
   "liter-to-cubic-meter": { seoReady: true, publishedAt: "2026-07-22", updatedAt: "2026-07-22", priority: 0.8 },
@@ -358,6 +387,7 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "milliliter-to-pint-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "milliliter-to-quart-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "milliliter-to-gallon-us": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
+  "milliliter-to-barrel": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
 
   "byte-to-bit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
   "byte-to-kilobit": { seoReady: true, publishedAt: "2026-07-26", updatedAt: "2026-07-26", priority: 0.9 },
@@ -624,6 +654,10 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "cubic-meter-to-cubic-foot": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
   "cubic-meter-to-cubic-yard": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
   "cubic-meter-to-cubic-inch": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
+  "cubic-meter-to-liter": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "cubic-meter-to-milliliter": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "cubic-meter-to-cubic-centimeter": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "cubic-meter-to-gallon-us": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
   "cubic-inch-to-board-foot": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
   "cubic-inch-to-cubic-foot": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
   "cubic-inch-to-cubic-yard": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
@@ -735,7 +769,17 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "kilocoulomb-to-ampere-hour": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
   "kilocoulomb-to-milliampere-hour": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.95 },
   "kilocoulomb-to-megacoulomb": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
-  "kilocoulomb-to-faraday": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 }
+  "kilocoulomb-to-faraday": { seoReady: true, publishedAt: "2026-09-06", updatedAt: "2026-09-06", priority: 0.9 },
+
+  "rankine-to-celsius": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "rankine-to-fahrenheit": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "rankine-to-kelvin": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "rankine-to-reaumur": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
+  "rankine-to-newton": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
+  "rankine-to-romer": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
+  "rankine-to-delisle": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
+  "reaumur-to-celsius": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+  "reaumur-to-fahrenheit": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 }
 };
 
 export const seoReadySlugs = new Set<string>(
