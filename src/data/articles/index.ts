@@ -244,6 +244,15 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "knot-to-meter-per-second": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
   "knot-to-kilometer-per-hour": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
   "knot-to-mile-per-hour": { seoReady: true, publishedAt: "2026-08-21", updatedAt: "2026-08-21", priority: 0.95 },
+  "knot-to-mach": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "knot-to-speed-of-light": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 },
+  "knot-to-foot-per-second": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "mach-to-meter-per-second": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "mach-to-kilometer-per-hour": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "mach-to-mile-per-hour": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "mach-to-knot": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "mach-to-speed-of-light": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 },
+  "mach-to-foot-per-second": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
 
   "pascal-to-kilopascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.9 },
   "pascal-to-megapascal": { seoReady: true, publishedAt: "2026-07-24", updatedAt: "2026-07-24", priority: 0.8 },
@@ -779,7 +788,17 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "rankine-to-romer": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
   "rankine-to-delisle": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.9 },
   "reaumur-to-celsius": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
-  "reaumur-to-fahrenheit": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 }
+  "reaumur-to-fahrenheit": { seoReady: true, publishedAt: "2026-09-12", updatedAt: "2026-09-12", priority: 0.95 },
+
+  "millisecond-to-decade": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 },
+  "millisecond-to-century": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 },
+  "millisecond-to-fortnight": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 },
+  "microsecond-to-second": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "microsecond-to-millisecond": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "microsecond-to-nanosecond": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.95 },
+  "microsecond-to-minute": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 },
+  "microsecond-to-hour": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 },
+  "microsecond-to-day": { seoReady: true, publishedAt: "2026-09-13", updatedAt: "2026-09-13", priority: 0.9 }
 };
 
 export const seoReadySlugs = new Set<string>(

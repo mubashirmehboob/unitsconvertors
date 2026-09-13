@@ -983,6 +983,42 @@
     "file": "knotToMilePerHour",
     "varName": "knotToMilePerHour"
   },
+  "knot-to-mach": {
+    "file": "knotToMach",
+    "varName": "knotToMach"
+  },
+  "knot-to-speed-of-light": {
+    "file": "knotToSpeedOfLight",
+    "varName": "knotToSpeedOfLight"
+  },
+  "knot-to-foot-per-second": {
+    "file": "knotToFootPerSecond",
+    "varName": "knotToFootPerSecond"
+  },
+  "mach-to-meter-per-second": {
+    "file": "machToMeterPerSecond",
+    "varName": "machToMeterPerSecond"
+  },
+  "mach-to-kilometer-per-hour": {
+    "file": "machToKilometerPerHour",
+    "varName": "machToKilometerPerHour"
+  },
+  "mach-to-mile-per-hour": {
+    "file": "machToMilePerHour",
+    "varName": "machToMilePerHour"
+  },
+  "mach-to-knot": {
+    "file": "machToKnot",
+    "varName": "machToKnot"
+  },
+  "mach-to-speed-of-light": {
+    "file": "machToSpeedOfLight",
+    "varName": "machToSpeedOfLight"
+  },
+  "mach-to-foot-per-second": {
+    "file": "machToFootPerSecond",
+    "varName": "machToFootPerSecond"
+  },
   "pascal-to-kilopascal": {
     "file": "pascalToKilopascal",
     "varName": "pascalToKilopascal"
@@ -2938,5 +2974,41 @@
   "reaumur-to-fahrenheit": {
     "file": "reaumurToFahrenheit",
     "varName": "reaumurToFahrenheit"
+  },
+  "millisecond-to-decade": {
+    "file": "millisecondToDecade",
+    "varName": "millisecondToDecade"
+  },
+  "millisecond-to-century": {
+    "file": "millisecondToCentury",
+    "varName": "millisecondToCentury"
+  },
+  "millisecond-to-fortnight": {
+    "file": "millisecondToFortnight",
+    "varName": "millisecondToFortnight"
+  },
+  "microsecond-to-second": {
+    "file": "microsecondToSecond",
+    "varName": "microsecondToSecond"
+  },
+  "microsecond-to-millisecond": {
+    "file": "microsecondToMillisecond",
+    "varName": "microsecondToMillisecond"
+  },
+  "microsecond-to-nanosecond": {
+    "file": "microsecondToNanosecond",
+    "varName": "microsecondToNanosecond"
+  },
+  "microsecond-to-minute": {
+    "file": "microsecondToMinute",
+    "varName": "microsecondToMinute"
+  },
+  "microsecond-to-hour": {
+    "file": "microsecondToHour",
+    "varName": "microsecondToHour"
+  },
+  "microsecond-to-day": {
+    "file": "microsecondToDay",
+    "varName": "microsecondToDay"
   }
 }
