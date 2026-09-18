@@ -58,38 +58,49 @@ export default function Footer({ onNavigate }: FooterProps) {
             </p>
 
             {/* Social Media Links with Custom Brand Coloring */}
-            <div className="flex items-center gap-3 mt-2">
+            <div className="flex items-center gap-2.5 sm:gap-3 mt-2 flex-wrap">
               <a 
-                href="https://facebook.com" 
+                href="https://www.facebook.com/profile.php?id=61593682002256" 
                 target="_blank" 
-                rel="noreferrer referrer" 
+                rel="noopener noreferrer" 
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-100 dark:border-blue-950 bg-blue-50/50 dark:bg-blue-950/20 text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:shadow-lg hover:shadow-blue-500/15 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label="Facebook"
               >
                 <Facebook className="h-4.5 w-4.5" />
               </a>
               <a 
-                href="https://twitter.com" 
+                href="https://x.com/UnitsConvertor" 
                 target="_blank" 
-                rel="noreferrer referrer" 
+                rel="noopener noreferrer" 
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-slate-100 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label="X (formerly Twitter)"
               >
                 <span className="font-black text-sm">𝕏</span>
               </a>
               <a 
-                href="https://instagram.com" 
+                href="https://www.instagram.com/unitsconvertors/" 
                 target="_blank" 
-                rel="noreferrer referrer" 
+                rel="noopener noreferrer" 
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-pink-100 dark:border-pink-950 bg-pink-50/50 dark:bg-pink-950/20 text-[#E1306C] hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-[#E1306C] hover:shadow-lg hover:shadow-pink-500/15 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
                 aria-label="Instagram"
               >
                 <Instagram className="h-4.5 w-4.5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.pinterest.com/unitsconvertors/" 
                 target="_blank" 
-                rel="noreferrer referrer" 
+                rel="noopener noreferrer" 
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-red-100 dark:border-red-950 bg-red-50/50 dark:bg-red-950/20 text-[#E60023] hover:bg-[#E60023] hover:text-white hover:border-[#E60023] hover:shadow-lg hover:shadow-red-500/15 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+                aria-label="Pinterest"
+              >
+                <svg className="h-4.5 w-4.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.291 1.199-.334 1.357-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
+                </svg>
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/units-convertors-361288432/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-100 dark:border-sky-950 bg-sky-50/50 dark:bg-sky-950/20 text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:shadow-lg hover:shadow-blue-600/15 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 aria-label="LinkedIn"
               >
@@ -166,6 +177,21 @@ export default function Footer({ onNavigate }: FooterProps) {
               <li>
                 <a href="/converters" onClick={(e) => { e.preventDefault(); onNavigate("converters"); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
                   All Converters
+                </a>
+              </li>
+              <li>
+                <a href="/resources/unit-conversion-reference" onClick={(e) => { e.preventDefault(); onNavigate("/resources/unit-conversion-reference"); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
+                  Unit Conversion Reference
+                </a>
+              </li>
+              <li>
+                <a href="/resources/si-units-reference" onClick={(e) => { e.preventDefault(); onNavigate("/resources/si-units-reference"); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
+                  SI Units & Metric Prefixes
+                </a>
+              </li>
+              <li>
+                <a href="/resources/engineering-units-reference" onClick={(e) => { e.preventDefault(); onNavigate("/resources/engineering-units-reference"); }} className="hover:text-blue-500 hover:underline transition-colors text-left font-medium block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-1">
+                  Engineering Units Reference
                 </a>
               </li>
               <li>

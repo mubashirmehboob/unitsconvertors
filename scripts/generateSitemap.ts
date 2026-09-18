@@ -4,8 +4,9 @@ import { categoriesData } from "../src/data/convertersData";
 import { engineeringCalculatorsData, engineeringCalculatorRegistry } from "../src/data/calculatorsData";
 import { articleRegistry } from "../src/data/articles";
 import { ENGINEERING_INDEXABLE } from "../src/utils/classificationEngine";
+import { getCategoryRouteSlug } from "../src/utils/categoryRoutes";
 
-const BASE_URL = "https://www.unitsconvertors.com";
+const BASE_URL = "https://unitsconvertors.com";
 
 interface SitemapEntry {
   url: string;
@@ -63,7 +64,7 @@ function generateSitemap() {
   let converterCategoryCount = 0;
   for (const cat of categoriesData) {
     addEntry({
-      url: `${BASE_URL}/converters/${cat.id}`,
+      url: `${BASE_URL}/${getCategoryRouteSlug(cat.id)}`,
       lastmod: currentDate,
       changefreq: "weekly",
       priority: "0.8"

@@ -1,7 +1,11 @@
 import { categoriesData } from "../data/convertersData";
 import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "../data/calculatorsData";
+import { getCategoryRouteSlug } from "./categoryRoutes";
 import { generateSEOContent } from "./conversionEngine";
 import { HOME_FAQS } from "../data/homeFaqs";
+import { REFERENCE_FAQS } from "../data/referenceData";
+import { SI_FAQS } from "../data/siReferenceData";
+import { ENGINEERING_FAQS } from "../data/engineeringReferenceData";
 
 export interface SchemaRouteParams {
   page: string;
@@ -23,7 +27,14 @@ export const ORGANIZATION_SCHEMA = {
     "@type": "ImageObject",
     "url": LOGO_URL
   },
-  "description": "Professional unit conversion and engineering calculator platform providing accurate SI and NIST standard mathematical tools."
+  "description": "Professional unit conversion and engineering calculator platform providing accurate SI and NIST standard mathematical tools.",
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61593682002256",
+    "https://www.instagram.com/unitsconvertors/",
+    "https://www.pinterest.com/unitsconvertors/",
+    "https://x.com/UnitsConvertor",
+    "https://www.linkedin.com/in/units-convertors-361288432/"
+  ]
 };
 
 export const WEBSITE_SCHEMA = {
@@ -54,6 +65,243 @@ export const WEBSITE_SCHEMA = {
 export function generatePageSchemas(params: SchemaRouteParams): any[] {
   const schemas: any[] = [];
   const { page, category, fromUnit, toUnit, toolId } = params;
+
+  // UNIT CONVERSION REFERENCE RESOURCE PAGE
+  if (page === "unit-conversion-reference") {
+    const referenceUrl = `${DOMAIN}/resources/unit-conversion-reference`;
+    schemas.push(ORGANIZATION_SCHEMA);
+    schemas.push(WEBSITE_SCHEMA);
+
+    // Article Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": referenceUrl
+      },
+      "headline": "Unit Conversion Reference: Conversion Factors, Formulas & SI Units",
+      "description": "Complete unit conversion reference with SI units, conversion factors, formulas, metric prefixes, and common metric and imperial conversions.",
+      "image": LOGO_URL,
+      "author": {
+        "@type": "Organization",
+        "name": "UnitsConvertors Standards & Editorial Team",
+        "url": DOMAIN
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN,
+        "logo": {
+          "@type": "ImageObject",
+          "url": LOGO_URL
+        }
+      },
+      "datePublished": "2024-01-15T00:00:00+00:00",
+      "dateModified": "2026-03-01T00:00:00+00:00",
+      "inLanguage": "en"
+    });
+
+    // Breadcrumbs Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${DOMAIN}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": `${DOMAIN}/#resources`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Unit Conversion Reference",
+          "item": referenceUrl
+        }
+      ]
+    });
+
+    // FAQPage Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": REFERENCE_FAQS.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    });
+
+    return schemas;
+  }
+
+  // SI UNITS & METRIC PREFIXES REFERENCE RESOURCE PAGE
+  if (page === "si-units-reference") {
+    const referenceUrl = `${DOMAIN}/resources/si-units-reference`;
+    schemas.push(ORGANIZATION_SCHEMA);
+    schemas.push(WEBSITE_SCHEMA);
+
+    // Article Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": referenceUrl
+      },
+      "headline": "SI Units & Metric Prefixes Reference",
+      "description": "Complete SI units reference covering the seven base units, derived units, symbols, metric prefixes, definitions, and practical conversion examples.",
+      "image": LOGO_URL,
+      "author": {
+        "@type": "Organization",
+        "name": "UnitsConvertors Standards & Editorial Team",
+        "url": DOMAIN
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN,
+        "logo": {
+          "@type": "ImageObject",
+          "url": LOGO_URL
+        }
+      },
+      "datePublished": "2024-01-15T00:00:00+00:00",
+      "dateModified": "2026-03-01T00:00:00+00:00",
+      "inLanguage": "en"
+    });
+
+    // Breadcrumbs Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${DOMAIN}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": `${DOMAIN}/#resources`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "SI Units & Metric Prefixes Reference",
+          "item": referenceUrl
+        }
+      ]
+    });
+
+    // FAQPage Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": SI_FAQS.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    });
+
+    return schemas;
+  }
+
+  // ENGINEERING UNITS & CONVERSION REFERENCE RESOURCE PAGE
+  if (page === "engineering-units-reference") {
+    const referenceUrl = `${DOMAIN}/resources/engineering-units-reference`;
+    schemas.push(ORGANIZATION_SCHEMA);
+    schemas.push(WEBSITE_SCHEMA);
+
+    // Article Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": referenceUrl
+      },
+      "headline": "Engineering Units & Conversion Reference",
+      "description": "Engineering units reference covering force, pressure, torque, energy, power, electrical units, SI units, conversion factors, formulas, and practical examples.",
+      "image": LOGO_URL,
+      "author": {
+        "@type": "Organization",
+        "name": "UnitsConvertors Standards & Editorial Team",
+        "url": DOMAIN
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN,
+        "logo": {
+          "@type": "ImageObject",
+          "url": LOGO_URL
+        }
+      },
+      "datePublished": "2024-01-15T00:00:00+00:00",
+      "dateModified": "2026-03-01T00:00:00+00:00",
+      "inLanguage": "en"
+    });
+
+    // Breadcrumbs Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${DOMAIN}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": `${DOMAIN}/#resources`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Engineering Units & Conversion Reference",
+          "item": referenceUrl
+        }
+      ]
+    });
+
+    // FAQPage Schema
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": ENGINEERING_FAQS.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    });
+
+    return schemas;
+  }
 
   // 1. HOME PAGE
   if (page === "home") {
@@ -165,8 +413,8 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
       "itemListElement": categoriesData.map((cat, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "name": cat.name,
-        "url": `${DOMAIN}/converters/${cat.id}`
+        "name": `${cat.name} Conversion`,
+        "url": `${DOMAIN}/${getCategoryRouteSlug(cat.id)}`
       }))
     });
     return schemas;
@@ -176,11 +424,11 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
   if (page === "category" && category) {
     const catObj = categoriesData.find(c => c.id === category);
     if (catObj) {
-      const canonicalUrl = `${DOMAIN}/converters/${catObj.id}`;
+      const canonicalUrl = `${DOMAIN}/${getCategoryRouteSlug(catObj.id)}`;
       schemas.push({
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": `${catObj.name} Converters Studio | UnitsConvertors.com`,
+        "name": `${catObj.name} Conversion | Free Online ${catObj.name} Unit Converter | UnitsConvertors`,
         "description": catObj.description,
         "url": canonicalUrl,
         "inLanguage": "en",
@@ -198,7 +446,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
       schemas.push({
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": `${catObj.name} Converters Studio | UnitsConvertors.com`,
+        "name": `${catObj.name} Conversion | Free Online ${catObj.name} Unit Converter | UnitsConvertors`,
         "description": catObj.description,
         "url": canonicalUrl,
         "inLanguage": "en",
@@ -221,13 +469,7 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Unit Converters",
-            "item": `${DOMAIN}/converters`
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": `${catObj.name} Converters`,
+            "name": `${catObj.name} Conversion`,
             "item": canonicalUrl
           }
         ]
@@ -333,18 +575,12 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Unit Converters",
-            "item": `${DOMAIN}/converters`
+            "name": `${catObj.name} Conversion`,
+            "item": `${DOMAIN}/${getCategoryRouteSlug(catObj.id)}`
           },
           {
             "@type": "ListItem",
             "position": 3,
-            "name": catObj.name,
-            "item": `${DOMAIN}/converters/${catObj.id}`
-          },
-          {
-            "@type": "ListItem",
-            "position": 4,
             "name": toolName,
             "item": canonicalUrl
           }

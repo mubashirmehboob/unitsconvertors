@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { Category } from "../types";
 import { categoryIconMap, getCategoryStyle } from "./Header";
+import { getCategoryRouteUrl } from "../utils/categoryRoutes";
 
 interface InternalLinkingDirectoryProps {
   categories: Category[];
@@ -204,7 +205,7 @@ export default function InternalLinkingDirectory({
                 return (
                   <a
                     key={cat.id}
-                    href={`/converters/${cat.id}`}
+                    href={getCategoryRouteUrl(cat.id)}
                     onClick={(e) => handleLinkClick(e, cat.id)}
                     className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-sm hover:-translate-y-0.5 transition-all flex flex-col items-center justify-center text-center gap-2 group"
                   >
@@ -527,6 +528,117 @@ export default function InternalLinkingDirectory({
               })()}
             </div>
           )}
+        </div>
+
+        {/* Metrology & Engineering Reference Hubs Cross-Links */}
+        <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h4 className="font-display font-bold text-sm text-slate-900 dark:text-white">
+                Metrology Standards & Engineering Handbooks
+              </h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Explore our foundational reference libraries for formal SI definitions, metric prefixes, and engineering analysis.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
+            <a
+              href="/resources/unit-conversion-reference"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/resources/unit-conversion-reference");
+              }}
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block mb-1">
+                  Reference Guide
+                </span>
+                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors block">
+                  Unit Conversion Reference
+                </span>
+                <span className="text-[11px] text-slate-400 dark:text-slate-500 mt-1 block leading-normal">
+                  All formulas, exact factors, and BIPM/NIST measurement definitions.
+                </span>
+              </div>
+              <span className="text-[10px] font-bold text-blue-500 flex items-center gap-1 mt-3 pt-2 border-t border-slate-100 dark:border-slate-900">
+                Read Reference <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </a>
+
+            <a
+              href="/resources/si-units-reference"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/resources/si-units-reference");
+              }}
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-emerald-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-1">
+                  Metric Standards
+                </span>
+                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors block">
+                  SI Units & Metric Prefixes
+                </span>
+                <span className="text-[11px] text-slate-400 dark:text-slate-500 mt-1 block leading-normal">
+                  7 SI base units, 22 derived units, and complete prefix scales from quecto to quetta.
+                </span>
+              </div>
+              <span className="text-[10px] font-bold text-emerald-500 flex items-center gap-1 mt-3 pt-2 border-t border-slate-100 dark:border-slate-900">
+                Explore SI Units <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </a>
+
+            <a
+              href="/resources/engineering-units-reference"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/resources/engineering-units-reference");
+              }}
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-purple-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider block mb-1">
+                  Applied Physics
+                </span>
+                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors block">
+                  Engineering Units Reference
+                </span>
+                <span className="text-[11px] text-slate-400 dark:text-slate-500 mt-1 block leading-normal">
+                  Dimensional analysis, imperial vs metric engineering standards, and unit systems.
+                </span>
+              </div>
+              <span className="text-[10px] font-bold text-purple-500 flex items-center gap-1 mt-3 pt-2 border-t border-slate-100 dark:border-slate-900">
+                View Handbook <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </a>
+
+            <a
+              href="/calculators"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/calculators");
+              }}
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-indigo-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider block mb-1">
+                  Engineering Solvers
+                </span>
+                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors block">
+                  Engineering Calculators Hub
+                </span>
+                <span className="text-[11px] text-slate-400 dark:text-slate-500 mt-1 block leading-normal">
+                  120+ specialized calculators across electrical, civil, mechanical, fluid, and physics.
+                </span>
+              </div>
+              <span className="text-[10px] font-bold text-indigo-500 flex items-center gap-1 mt-3 pt-2 border-t border-slate-100 dark:border-slate-900">
+                Launch Calculators <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </a>
+          </div>
         </div>
 
       </div>

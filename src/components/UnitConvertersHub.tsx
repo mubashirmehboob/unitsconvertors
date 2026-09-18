@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { categoriesData } from "../data/convertersData";
 import { categoryIconMap, getCategoryStyle } from "./Header";
+import { getCategoryRouteUrl } from "../utils/categoryRoutes";
 
 interface UnitConvertersHubProps {
   onNavigate: (category: string, fromUnit?: string, toUnit?: string, extraPage?: string) => void;
@@ -183,7 +184,7 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
                 return (
                   <a
                     key={cat.id}
-                    href={`/converters/${cat.id}`}
+                    href={getCategoryRouteUrl(cat.id)}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate(cat.id);

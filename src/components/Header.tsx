@@ -4,7 +4,7 @@ import {
   Zap, Activity, Droplet, ChefHat, Database, Cpu, Lightbulb, Atom,
   Search, Moon, Sun, Menu, X, Heart, Info, Mail, ChevronDown, ArrowRight,
   Volume2, Hammer, Waves, Compass, HardHat, Wifi, Shield, Orbit,
-  RotateCw, Battery, Radio, TrendingUp, Layers, Calculator, MapPin, Navigation, Globe
+  RotateCw, Battery, Radio, TrendingUp, Layers, Calculator, MapPin, Navigation, Globe, BookOpen, Wrench
 } from "lucide-react";
 import Logo from "./Logo";
 import { categoriesData } from "../data/convertersData";
@@ -404,6 +404,8 @@ export default function Header({
   const [engCalculatorsOpen, setEngCalculatorsOpen] = useState(false);
   const [mobileUnitConvertersOpen, setMobileUnitConvertersOpen] = useState(true);
   const [mobileEngCalculatorsOpen, setMobileEngCalculatorsOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<{
     category: Category;
@@ -419,6 +421,7 @@ export default function Header({
   const searchRef = useRef<HTMLDivElement>(null);
   const unitConvertersRef = useRef<HTMLDivElement>(null);
   const engCalculatorsRef = useRef<HTMLDivElement>(null);
+  const resourcesRef = useRef<HTMLDivElement>(null);
 
   // Close search and dropdowns when clicking outside
   useEffect(() => {
@@ -434,6 +437,9 @@ export default function Header({
       }
       if (engCalculatorsRef.current && !engCalculatorsRef.current.contains(event.target as Node)) {
         setEngCalculatorsOpen(false);
+      }
+      if (resourcesRef.current && !resourcesRef.current.contains(event.target as Node)) {
+        setResourcesOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -522,6 +528,10 @@ export default function Header({
   const pathname = typeof window !== "undefined" ? window.location.pathname : "";
   const isConverters = pathname === "/converters" || pathname.startsWith("/converters/") || categoriesData.some(c => c.id === currentCategory);
   const isCalculators = pathname === "/calculators" || pathname.startsWith("/calculators/") || currentCategory === "calculators" || currentCategory === "engineering-calculators" || currentCategory === "engineering-category";
+  const isReference = pathname === "/resources/unit-conversion-reference" || currentCategory === "unit-conversion-reference";
+  const isSiReference = pathname === "/resources/si-units-reference" || currentCategory === "si-units-reference";
+  const isEngineeringReference = pathname === "/resources/engineering-units-reference" || currentCategory === "engineering-units-reference";
+  const isResources = isReference || isEngineeringReference || (pathname.startsWith("/resources/") && !isSiReference);
   const isAbout = pathname === "/about" || currentCategory === "about";
   const isContact = pathname === "/contact" || currentCategory === "contact";
   const isPrivacy = pathname === "/privacy-policy" || pathname === "/privacy" || currentCategory === "privacy" || currentCategory === "privacy-policy";
@@ -529,7 +539,7 @@ export default function Header({
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md transition-colors duration-200">
       <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between gap-4 sm:gap-6">
+        <div className="flex h-16 items-center justify-between gap-2 lg:gap-3">
           
           {/* Logo & Website Name */}
           <a 
@@ -549,14 +559,14 @@ export default function Header({
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-4" id="desktop-nav" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-0.5 lg:gap-1 xl:gap-2 shrink-0" id="desktop-nav" aria-label="Main navigation">
             <a
               href="/converters"
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate("converters");
               }}
-              className={`text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-3 py-1.5 ${
+              className={`text-xs lg:text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 xl:px-2.5 py-1.5 ${
                 isConverters
                   ? "text-blue-600 dark:text-blue-400 font-bold bg-blue-50/80 dark:bg-blue-950/40"
                   : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
@@ -571,7 +581,7 @@ export default function Header({
                 e.preventDefault();
                 onNavigate("calculators");
               }}
-              className={`text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-3 py-1.5 ${
+              className={`text-xs lg:text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 xl:px-2.5 py-1.5 ${
                 isCalculators
                   ? "text-blue-600 dark:text-blue-400 font-bold bg-blue-50/80 dark:bg-blue-950/40"
                   : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
@@ -580,13 +590,100 @@ export default function Header({
               Calculators
             </a>
 
+            {/* Resources Dropdown */}
+            <div 
+              className="relative" 
+              ref={resourcesRef}
+              onMouseEnter={() => setResourcesOpen(true)}
+              onMouseLeave={() => setResourcesOpen(false)}
+            >
+              <button
+                type="button"
+                id="resources-menu-button"
+                onClick={() => setResourcesOpen(prev => !prev)}
+                aria-expanded={resourcesOpen}
+                aria-haspopup="true"
+                className={`flex items-center gap-1 text-xs lg:text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 xl:px-2.5 py-1.5 ${
+                  isResources || resourcesOpen
+                    ? "text-blue-600 dark:text-blue-400 font-bold bg-blue-50/80 dark:bg-blue-950/40"
+                    : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
+                }`}
+              >
+                <span>Resources</span>
+                <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${resourcesOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : "text-slate-400"}`} />
+              </button>
+
+              {resourcesOpen && (
+                <div 
+                  className="absolute left-0 top-full mt-1 w-64 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl py-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="resources-menu-button"
+                >
+                  <a
+                    href="/resources/unit-conversion-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("/resources/unit-conversion-reference");
+                      setResourcesOpen(false);
+                    }}
+                    role="menuitem"
+                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs lg:text-sm transition-colors ${
+                      isReference
+                        ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+                    }`}
+                  >
+                    <BookOpen className="h-4 w-4 text-blue-500 shrink-0" />
+                    <span>Unit Conversion Reference</span>
+                  </a>
+
+                  <a
+                    href="/resources/si-units-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("/resources/si-units-reference");
+                      setResourcesOpen(false);
+                    }}
+                    role="menuitem"
+                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs lg:text-sm transition-colors ${
+                      isSiReference
+                        ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+                    }`}
+                  >
+                    <Atom className="h-4 w-4 text-cyan-500 shrink-0" />
+                    <span>SI Units & Metric Prefixes</span>
+                  </a>
+
+                  <a
+                    href="/resources/engineering-units-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("/resources/engineering-units-reference");
+                      setResourcesOpen(false);
+                    }}
+                    role="menuitem"
+                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs lg:text-sm transition-colors ${
+                      isEngineeringReference
+                        ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
+                    }`}
+                  >
+                    <Wrench className="h-4 w-4 text-purple-500 shrink-0" />
+                    <span>Engineering Units Reference</span>
+                  </a>
+                </div>
+              )}
+            </div>
+
             <a
               href="/about"
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate("about");
               }}
-              className={`text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-3 py-1.5 ${
+              className={`text-xs lg:text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 xl:px-2.5 py-1.5 ${
                 isAbout
                   ? "text-blue-600 dark:text-blue-400 font-bold bg-blue-50/80 dark:bg-blue-950/40"
                   : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
@@ -601,7 +698,7 @@ export default function Header({
                 e.preventDefault();
                 onNavigate("contact");
               }}
-              className={`text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-3 py-1.5 ${
+              className={`text-xs lg:text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 xl:px-2.5 py-1.5 ${
                 isContact
                   ? "text-blue-600 dark:text-blue-400 font-bold bg-blue-50/80 dark:bg-blue-950/40"
                   : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
@@ -616,7 +713,7 @@ export default function Header({
                 e.preventDefault();
                 onNavigate("privacy-policy");
               }}
-              className={`text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-3 py-1.5 ${
+              className={`text-xs lg:text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 xl:px-2.5 py-1.5 ${
                 isPrivacy
                   ? "text-blue-600 dark:text-blue-400 font-bold bg-blue-50/80 dark:bg-blue-950/40"
                   : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
@@ -832,6 +929,81 @@ export default function Header({
               <Calculator className="h-5 w-5 text-amber-500" />
               Calculators
             </a>
+
+            {/* Resources Collapsible Group */}
+            <div className="flex flex-col">
+              <button
+                type="button"
+                onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+                className={`flex items-center justify-between p-3 rounded-xl text-sm font-bold transition-colors ${
+                  isResources || mobileResourcesOpen
+                    ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900/50"
+                    : "text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900"
+                }`}
+                aria-expanded={mobileResourcesOpen}
+              >
+                <div className="flex items-center gap-3">
+                  <BookOpen className="h-5 w-5 text-indigo-500" />
+                  <span>Resources</span>
+                </div>
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileResourcesOpen ? "rotate-180 text-indigo-600 dark:text-indigo-400" : "text-slate-400"}`} />
+              </button>
+
+              {mobileResourcesOpen && (
+                <div className="flex flex-col gap-1 pl-4 pr-1 py-2 my-1 border-l-2 border-indigo-200 dark:border-indigo-900 ml-4 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <a
+                    href="/resources/unit-conversion-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("/resources/unit-conversion-reference");
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-2.5 p-2.5 rounded-lg text-xs sm:text-sm transition-colors ${
+                      isReference
+                        ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 font-medium"
+                    }`}
+                  >
+                    <BookOpen className="h-4 w-4 text-blue-500 shrink-0" />
+                    <span>Unit Conversion Reference</span>
+                  </a>
+
+                  <a
+                    href="/resources/si-units-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("/resources/si-units-reference");
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-2.5 p-2.5 rounded-lg text-xs sm:text-sm transition-colors ${
+                      isSiReference
+                        ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 font-medium"
+                    }`}
+                  >
+                    <Atom className="h-4 w-4 text-cyan-500 shrink-0" />
+                    <span>SI Units & Metric Prefixes</span>
+                  </a>
+
+                  <a
+                    href="/resources/engineering-units-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("/resources/engineering-units-reference");
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-2.5 p-2.5 rounded-lg text-xs sm:text-sm transition-colors ${
+                      isEngineeringReference
+                        ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
+                        : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 font-medium"
+                    }`}
+                  >
+                    <Wrench className="h-4 w-4 text-purple-500 shrink-0" />
+                    <span>Engineering Units Reference</span>
+                  </a>
+                </div>
+              )}
+            </div>
 
             <a
               href="/about"

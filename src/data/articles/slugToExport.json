@@ -1103,6 +1103,42 @@
     "file": "megapascalToPsi",
     "varName": "megapascalToPsi"
   },
+  "megapascal-to-atmosphere": {
+    "file": "megapascalToAtmosphere",
+    "varName": "megapascalToAtmosphere"
+  },
+  "megapascal-to-torr": {
+    "file": "megapascalToTorr",
+    "varName": "megapascalToTorr"
+  },
+  "megapascal-to-mmhg": {
+    "file": "megapascalToMmhg",
+    "varName": "megapascalToMmhg"
+  },
+  "bar-to-pascal": {
+    "file": "barToPascal",
+    "varName": "barToPascal"
+  },
+  "bar-to-kilopascal": {
+    "file": "barToKilopascal",
+    "varName": "barToKilopascal"
+  },
+  "bar-to-megapascal": {
+    "file": "barToMegapascal",
+    "varName": "barToMegapascal"
+  },
+  "bar-to-millibar": {
+    "file": "barToMillibar",
+    "varName": "barToMillibar"
+  },
+  "bar-to-psi": {
+    "file": "barToPsi",
+    "varName": "barToPsi"
+  },
+  "bar-to-atmosphere": {
+    "file": "barToAtmosphere",
+    "varName": "barToAtmosphere"
+  },
   "joule-to-kilojoule": {
     "file": "jouleToKilojoule",
     "varName": "jouleToKilojoule"
@@ -1182,6 +1218,46 @@
   "calorie-to-kilojoule": {
     "file": "calorieToKilojoule",
     "varName": "calorieToKilojoule"
+  },
+  "calorie-to-kilocalorie": {
+    "file": "calorieToKilocalorie",
+    "varName": "calorieToKilocalorie"
+  },
+  "calorie-to-watt-hour": {
+    "file": "calorieToWattHour",
+    "varName": "calorieToWattHour"
+  },
+  "calorie-to-kilowatt-hour": {
+    "file": "calorieToKilowattHour",
+    "varName": "calorieToKilowattHour"
+  },
+  "calorie-to-btu": {
+    "file": "calorieToBtu",
+    "varName": "calorieToBtu"
+  },
+  "calorie-to-electron-volt": {
+    "file": "calorieToElectronVolt",
+    "varName": "calorieToElectronVolt"
+  },
+  "calorie-to-erg": {
+    "file": "calorieToErg",
+    "varName": "calorieToErg"
+  },
+  "calorie-to-foot-pound": {
+    "file": "calorieToFootPound",
+    "varName": "calorieToFootPound"
+  },
+  "kilocalorie-to-joule": {
+    "file": "kilocalorieToJoule",
+    "varName": "kilocalorieToJoule"
+  },
+  "kilocalorie-to-kilojoule": {
+    "file": "kilocalorieToKilojoule",
+    "varName": "kilocalorieToKilojoule"
+  },
+  "kilocalorie-to-calorie": {
+    "file": "kilocalorieToCalorie",
+    "varName": "kilocalorieToCalorie"
   },
   "watt-to-kilowatt": {
     "file": "wattToKilowatt",

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { categoriesData } from "../data/convertersData";
 import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "../data/calculatorsData";
+import { getCategoryByRouteSlug, getCategoryRouteSlug, getCategoryRouteUrl } from "../utils/categoryRoutes";
 
 export interface RouteState {
   page: string;
@@ -112,9 +113,9 @@ export function useNavigation() {
       } else if (supportPages.includes(first)) {
         setRoute({ page: first, category: "", fromUnit: "", toUnit: "" });
       } else {
-        const cat = categoriesData.find((c) => c.id === first);
+        const catByRoute = getCategoryByRouteSlug(first);
+        const cat = catByRoute || categoriesData.find((c) => c.id === first);
         if (cat) {
-          // Legacy URL structure without /converters prefix: redirect to canonical /converters/ URL
           if (segments.length > 1) {
             const pairSegment = segments[1];
             const parts = pairSegment.split("-to-");
@@ -128,13 +129,15 @@ export function useNavigation() {
                 toUnit: parts[1],
               });
             } else {
-              const canonicalPath = `/converters/${cat.id}`;
+              const canonicalPath = getCategoryRouteUrl(cat.id);
               window.history.replaceState(null, "", canonicalPath);
               setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
             }
           } else {
-            const canonicalPath = `/converters/${cat.id}`;
-            window.history.replaceState(null, "", canonicalPath);
+            const canonicalPath = getCategoryRouteUrl(cat.id);
+            if (path !== canonicalPath) {
+              window.history.replaceState(null, "", canonicalPath);
+            }
             setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
           }
         } else {
@@ -189,7 +192,7 @@ export function useNavigation() {
         } else if (fromUnit && toUnit) {
           targetPath = `/converters/${category}/${fromUnit}-to-${toUnit}`;
         } else {
-          targetPath = `/converters/${category}`;
+          targetPath = getCategoryRouteUrl(category);
         }
       }
 

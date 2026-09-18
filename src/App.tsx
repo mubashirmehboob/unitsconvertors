@@ -11,6 +11,7 @@ import CategoryCard from "./components/CategoryCard";
 import ConverterTool from "./components/ConverterTool";
 import AdPlaceholder from "./components/AdPlaceholder";
 import { categoriesData } from "./data/convertersData";
+import { getCategoryRouteSlug, getCategoryByRouteSlug, getCategoryRouteUrl } from "./utils/categoryRoutes";
 import { engineeringCalculatorsData, getCategorySlugForDiscipline } from "./data/calculatorsData";
 import { ConversionHistoryItem, FavoriteTool } from "./types";
 import { performConversion, runEngineAudit, isValidPair } from "./utils/conversionEngine";
@@ -27,6 +28,9 @@ const ValidatorPage = React.lazy(() => import("./components/ValidatorPage"));
 const EngineeringCalculatorsView = React.lazy(() => import("./components/EngineeringCalculatorsView"));
 const EngineeringCategoryPage = React.lazy(() => import("./components/EngineeringCategoryPage"));
 const UnitConvertersHub = React.lazy(() => import("./components/UnitConvertersHub"));
+const UnitConversionReference = React.lazy(() => import("./components/UnitConversionReference"));
+const SiUnitsReference = React.lazy(() => import("./components/SiUnitsReference"));
+const EngineeringUnitsReference = React.lazy(() => import("./components/EngineeringUnitsReference"));
 
 const constructionCalcRedirects: Record<string, string> = {
   "board-foot-to-sq-foot": "board-foot-to-sq-foot",
@@ -287,6 +291,27 @@ export default function App() {
         description: descText,
         canonicalUrl: canonical
       });
+    } else if (route.page === "unit-conversion-reference") {
+      applyAutomatedSeo({
+        pageType: "support-page",
+        title: "Unit Conversion Reference: Conversion Factors & Formulas | UnitsConvertors",
+        description: "Complete unit conversion reference with SI units, conversion factors, formulas, metric prefixes, and common metric and imperial conversions.",
+        canonicalUrl: `${SITE_URL}/resources/unit-conversion-reference`
+      });
+    } else if (route.page === "si-units-reference") {
+      applyAutomatedSeo({
+        pageType: "support-page",
+        title: "SI Units & Metric Prefixes Reference | UnitsConvertors",
+        description: "Complete SI units reference covering the seven base units, derived units, symbols, metric prefixes, definitions, and practical conversion examples.",
+        canonicalUrl: `${SITE_URL}/resources/si-units-reference`
+      });
+    } else if (route.page === "engineering-units-reference") {
+      applyAutomatedSeo({
+        pageType: "support-page",
+        title: "Engineering Units & Conversion Reference | UnitsConvertors",
+        description: "Engineering units reference covering force, pressure, torque, energy, power, electrical units, SI units, conversion factors, formulas, and practical examples.",
+        canonicalUrl: `${SITE_URL}/resources/engineering-units-reference`
+      });
     } else if (route.page === "converters") {
       applyAutomatedSeo({
         pageType: "converters-hub",
@@ -301,7 +326,7 @@ export default function App() {
         isEngineering: false,
         title: `${route.category ? route.category.toUpperCase() : "Converters"} | UnitsConvertors.com`,
         description: descText,
-        canonicalUrl: route.category ? `${SITE_URL}/converters/${route.category}` : `${SITE_URL}/converters`
+        canonicalUrl: route.category ? `${SITE_URL}${getCategoryRouteUrl(route.category)}` : `${SITE_URL}/converters`
       });
     } else if (route.page === "converter") {
       applyAutomatedSeo({
@@ -340,6 +365,19 @@ export default function App() {
   useEffect(() => {
     const parsePath = () => {
       const path = window.location.pathname;
+      const hash = window.location.hash.replace(/^#\/?/, "");
+
+      // Handle legacy hash navigation e.g. /#speed-conversion or /#speed
+      if ((!path || path === "/") && hash) {
+        const catByHash = getCategoryByRouteSlug(hash) || categoriesData.find(c => c.id === hash || `${c.id}-conversion` === hash);
+        if (catByHash) {
+          const canonicalCategoryPath = getCategoryRouteUrl(catByHash.id);
+          window.history.replaceState(null, "", canonicalCategoryPath);
+          setRoute({ page: "category", category: catByHash.id, fromUnit: "", toUnit: "" });
+          return;
+        }
+      }
+
       if (!path || path === "/") {
         setRoute({ page: "home", category: "", fromUnit: "", toUnit: "" });
         return;
@@ -405,13 +443,34 @@ export default function App() {
         } else {
           setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
         }
+      } else if (first === "resources") {
+        if (segments.length >= 2 && segments[1] === "unit-conversion-reference") {
+          setRoute({ page: "unit-conversion-reference", category: "", fromUnit: "", toUnit: "" });
+        } else if (segments.length >= 2 && segments[1] === "si-units-reference") {
+          setRoute({ page: "si-units-reference", category: "", fromUnit: "", toUnit: "" });
+        } else if (segments.length >= 2 && segments[1] === "engineering-units-reference") {
+          setRoute({ page: "engineering-units-reference", category: "", fromUnit: "", toUnit: "" });
+        } else {
+          setRoute({ page: "home", category: "", fromUnit: "", toUnit: "" });
+        }
+      } else if (first === "unit-conversion-reference") {
+        window.history.replaceState(null, "", "/resources/unit-conversion-reference");
+        setRoute({ page: "unit-conversion-reference", category: "", fromUnit: "", toUnit: "" });
+      } else if (first === "si-units-reference") {
+        window.history.replaceState(null, "", "/resources/si-units-reference");
+        setRoute({ page: "si-units-reference", category: "", fromUnit: "", toUnit: "" });
+      } else if (first === "engineering-units-reference") {
+        window.history.replaceState(null, "", "/resources/engineering-units-reference");
+        setRoute({ page: "engineering-units-reference", category: "", fromUnit: "", toUnit: "" });
       } else if (first === "converters") {
         if (segments.length === 1) {
           setRoute({ page: "converters", category: "", fromUnit: "", toUnit: "" });
         } else if (segments.length === 2) {
           const second = segments[1];
-          const cat = categoriesData.find((c) => c.id === second);
+          const cat = categoriesData.find((c) => c.id === second) || getCategoryByRouteSlug(second);
           if (cat) {
+            const canonicalPath = getCategoryRouteUrl(cat.id);
+            window.history.replaceState(null, "", canonicalPath);
             setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
           } else {
             setRoute({ page: "converters", category: "", fromUnit: "", toUnit: "" });
@@ -430,7 +489,7 @@ export default function App() {
               toUnit: "",
             });
           } else {
-            const cat = categoriesData.find((c) => c.id === second);
+            const cat = categoriesData.find((c) => c.id === second) || getCategoryByRouteSlug(second);
             if (cat) {
               const parts = third.split("-to-");
               if (parts.length === 2) {
@@ -441,6 +500,8 @@ export default function App() {
                   toUnit: parts[1],
                 });
               } else {
+                const canonicalPath = getCategoryRouteUrl(cat.id);
+                window.history.replaceState(null, "", canonicalPath);
                 setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
               }
             } else {
@@ -451,9 +512,8 @@ export default function App() {
       } else if (supportPages.includes(first)) {
         setRoute({ page: first, category: "", fromUnit: "", toUnit: "" });
       } else {
-        const cat = categoriesData.find(c => c.id === first);
+        const cat = getCategoryByRouteSlug(first) || categoriesData.find(c => c.id === first);
         if (cat) {
-          // Legacy URL structure without /converters prefix: redirect to canonical /converters/ URL
           if (segments.length > 1) {
             const pairSegment = segments[1];
             if (cat.id === "construction" && constructionCalcRedirects[pairSegment]) {
@@ -473,14 +533,16 @@ export default function App() {
                 window.history.replaceState(null, "", canonicalPath);
                 setRoute({ page: "converter", category: cat.id, fromUnit: parts[0], toUnit: parts[1] });
               } else {
-                const canonicalPath = `/converters/${cat.id}`;
+                const canonicalPath = getCategoryRouteUrl(cat.id);
                 window.history.replaceState(null, "", canonicalPath);
                 setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
               }
             }
           } else {
-            const canonicalPath = `/converters/${cat.id}`;
-            window.history.replaceState(null, "", canonicalPath);
+            const canonicalPath = getCategoryRouteUrl(cat.id);
+            if (path !== canonicalPath) {
+              window.history.replaceState(null, "", canonicalPath);
+            }
             setRoute({ page: "category", category: cat.id, fromUnit: "", toUnit: "" });
           }
         } else {
@@ -497,7 +559,15 @@ export default function App() {
 
   const handleNavigate = (category: string, fromUnit?: string, toUnit?: string, extraPage?: string, toolSlug?: string) => {
     let targetPath = "/";
-    if (extraPage) {
+    if (category.startsWith("/")) {
+      targetPath = category;
+    } else if (category === "unit-conversion-reference") {
+      targetPath = "/resources/unit-conversion-reference";
+    } else if (category === "si-units-reference") {
+      targetPath = "/resources/si-units-reference";
+    } else if (category === "engineering-units-reference") {
+      targetPath = "/resources/engineering-units-reference";
+    } else if (extraPage) {
       if (category === "calculators" || category === "engineering-calculators") {
         const catSlug = getCategorySlugForDiscipline(extraPage);
         targetPath = toolSlug ? `/calculators/${catSlug}/${toolSlug}` : `/calculators/${catSlug}`;
@@ -560,7 +630,7 @@ export default function App() {
       } else if (fromUnit && toUnit) {
         targetPath = `/converters/${category}/${fromUnit}-to-${toUnit}`;
       } else {
-        targetPath = `/converters/${category}`;
+        targetPath = getCategoryRouteUrl(category);
       }
     }
 
@@ -964,19 +1034,27 @@ export default function App() {
           <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4 animate-in fade-in duration-200">
             {/* Breadcrumb Navigation */}
             <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2" aria-label="Breadcrumb">
-              <button 
-                onClick={() => handleNavigate("home")}
+              <a 
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate("home");
+                }}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
                 Home
-              </button>
+              </a>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-              <button 
-                onClick={() => handleNavigate("converters")}
+              <a 
+                href="/converters"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate("converters");
+                }}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
                 Converters
-              </button>
+              </a>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
               <span className="text-slate-700 dark:text-slate-200 font-bold">
                 {activeCategory.name} Converters
@@ -1020,19 +1098,75 @@ export default function App() {
                   activeCategory.units.map(unitB => {
                     if (unitA.id === unitB.id || !isValidPair(activeCategory.id, unitA.id, unitB.id)) return null;
                     return (
-                      <div
+                      <a
                         key={`${unitA.id}-to-${unitB.id}`}
-                        onClick={() => handleNavigate(activeCategory.id, unitA.id, unitB.id)}
-                        className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/60 bg-white dark:bg-slate-900 hover:border-blue-500 cursor-pointer transition-all flex items-center justify-between group"
+                        href={`/converters/${activeCategory.id}/${unitA.id}-to-${unitB.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNavigate(activeCategory.id, unitA.id, unitB.id);
+                        }}
+                        className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800/60 bg-white dark:bg-slate-900 hover:border-blue-500 cursor-pointer transition-all flex items-center justify-between group block"
                       >
                         <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
                           {unitA.name} to {unitB.name}
                         </span>
                         <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
-                      </div>
+                      </a>
                     );
                   })
                 ))}
+              </div>
+            </div>
+
+            {/* Category Metrology & Engineering Reference Links */}
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40 space-y-3 mt-2">
+              <div className="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+                {activeCategory.name} Standards & Reference Handbooks
+              </div>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
+                Explore formal BIPM and NIST metrological definitions, conversion factors, and companion engineering solvers related to {activeCategory.name.toLowerCase()}:
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <a
+                  href="/resources/unit-conversion-reference"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate("unit-conversion-reference");
+                  }}
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                >
+                  Unit Conversion Reference (All Factors & Formulas)
+                </a>
+                <a
+                  href="/resources/si-units-reference"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate("si-units-reference");
+                  }}
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                >
+                  SI Units & Metric Prefixes Reference
+                </a>
+                <a
+                  href="/resources/engineering-units-reference"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate("engineering-units-reference");
+                  }}
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                >
+                  Engineering Units & Dimensional Standards
+                </a>
+                <a
+                  href="/calculators"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigate("calculators");
+                  }}
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                >
+                  Engineering Calculators Hub
+                </a>
               </div>
             </div>
 
@@ -1044,26 +1178,38 @@ export default function App() {
           <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-4 animate-in fade-in duration-200">
             {/* Breadcrumb Navigation */}
             <nav className="text-xs font-semibold text-slate-400 flex items-center gap-2" aria-label="Breadcrumb">
-              <button 
-                onClick={() => handleNavigate("home")}
+              <a 
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate("home");
+                }}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
                 Home
-              </button>
+              </a>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-              <button 
-                onClick={() => handleNavigate("converters")}
+              <a 
+                href="/converters"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate("converters");
+                }}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
                 Converters
-              </button>
+              </a>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-              <button 
-                onClick={() => handleNavigate(activeCategory.id)}
+              <a 
+                href={getCategoryRouteUrl(activeCategory.id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate(activeCategory.id);
+                }}
                 className="hover:text-blue-500 cursor-pointer transition-colors"
               >
                 {activeCategory.name}
-              </button>
+              </a>
               <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
               <span className="text-slate-700 dark:text-slate-200 font-bold">
                 {activeCategory.units.find(u => u.id === route.fromUnit)?.name} to {activeCategory.units.find(u => u.id === route.toUnit)?.name}
@@ -1852,6 +1998,27 @@ export default function App() {
               initialToolId={route.fromUnit}
               onNavigate={handleNavigate} 
             />
+          </React.Suspense>
+        )}
+
+        {/* VIEW: UNIT CONVERSION REFERENCE RESOURCE PAGE */}
+        {route.page === "unit-conversion-reference" && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading unit conversion reference...</div>}>
+            <UnitConversionReference onNavigate={handleNavigate} />
+          </React.Suspense>
+        )}
+
+        {/* VIEW: SI UNITS & METRIC PREFIXES REFERENCE RESOURCE PAGE */}
+        {route.page === "si-units-reference" && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading SI units reference...</div>}>
+            <SiUnitsReference onNavigate={handleNavigate} />
+          </React.Suspense>
+        )}
+
+        {/* VIEW: ENGINEERING UNITS & CONVERSION REFERENCE RESOURCE PAGE */}
+        {route.page === "engineering-units-reference" && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading engineering units reference...</div>}>
+            <EngineeringUnitsReference onNavigate={handleNavigate} />
           </React.Suspense>
         )}
 

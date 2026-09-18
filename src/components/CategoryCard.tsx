@@ -2,6 +2,7 @@ import React from "react";
 import { Ruler } from "lucide-react";
 import { categoryIconMap, getCategoryStyle } from "./Header";
 import { Category } from "../types";
+import { getCategoryRouteUrl } from "../utils/categoryRoutes";
 
 interface CategoryCardProps {
   key?: string;
@@ -12,20 +13,17 @@ interface CategoryCardProps {
 export default function CategoryCard({ category, onNavigate }: CategoryCardProps) {
   const Icon = categoryIconMap[category.id] || Ruler;
   const style = getCategoryStyle(category.id);
+  const routeUrl = getCategoryRouteUrl(category.id);
 
   return (
-    <div 
-      role="button"
-      tabIndex={0}
-      onClick={() => onNavigate(category.id)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onNavigate(category.id);
-        }
+    <a 
+      href={routeUrl}
+      onClick={(e) => {
+        e.preventDefault();
+        onNavigate(category.id);
       }}
       aria-label={`${category.name} Converters`}
-      className={`group relative flex flex-col items-center justify-center rounded-[24px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 px-2 pt-[15px] pb-[15px] hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/20 dark:hover:shadow-black/30 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all duration-300 ease-out cursor-pointer min-h-[120px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900`}
+      className={`group relative flex flex-col items-center justify-center rounded-[24px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 px-2 pt-[15px] pb-[15px] hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/20 dark:hover:shadow-black/30 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all duration-300 ease-out cursor-pointer min-h-[120px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 block`}
       id={`cat-card-${category.id}`}
     >
       {/* Subtle background glow effect */}
@@ -38,6 +36,6 @@ export default function CategoryCard({ category, onNavigate }: CategoryCardProps
       <span className="font-sans text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-center mt-3 tracking-tight transition-colors line-clamp-2 px-1">
         {category.name} Converters
       </span>
-    </div>
+    </a>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { HelpCircle, ChevronDown, Layers, BookOpen, ArrowRight, ChevronRight, Award, Compass, Link2 } from "lucide-react";
+import { HelpCircle, ChevronDown, Layers, BookOpen, ArrowRight, ChevronRight, Award, Compass, Link2, Scale } from "lucide-react";
 import { Category, Unit } from "../types";
 import { generateSEOContent, performConversion, getStringHash, isValidPair } from "../utils/conversionEngine";
 import { isSeoReady, CustomArticleData } from "../data/articles";
 import { getCustomArticle } from "../data/articles/articleLoader";
 import { categoriesData } from "../data/convertersData";
 import { injectPageSchemas } from "../utils/schemaEngine";
+import { getCategoryRouteUrl } from "../utils/categoryRoutes";
 import { SITE_URL, LOGO_URL } from "../constants";
 import MathFormula from "./MathFormula";
 import FormattedText from "./FormattedText";
@@ -117,7 +118,7 @@ function RelatedConvertersCards({
         </div>
 
         <a
-          href={`/converters/${category.id}`}
+          href={getCategoryRouteUrl(category.id)}
           onClick={(e) => {
             e.preventDefault();
             onNavigate(category.id);
@@ -362,7 +363,7 @@ function ExploreMoreSection({
         </div>
 
         <a
-          href={`/converters/${category.id}`}
+          href={getCategoryRouteUrl(category.id)}
           onClick={(e) => {
             e.preventDefault();
             onNavigate(category.id);
@@ -403,10 +404,12 @@ function ExploreMoreSection({
 
 interface ReferencesSectionProps {
   references?: string[];
+  category?: Category;
+  onNavigate?: (category: string, fromUnit?: string, toUnit?: string) => void;
   key?: React.Key;
 }
 
-function ReferencesSection({ references }: ReferencesSectionProps) {
+function ReferencesSection({ references, category, onNavigate }: ReferencesSectionProps) {
   const defaultRefs = [
     "International Bureau of Weights and Measures (BIPM). <em>The International System of Units (SI Brochure)</em>, 9th edition, 2019.",
     "National Institute of Standards and Technology (NIST). <em>Guide for the Use of the International System of Units (SI)</em>, NIST Special Publication 811.",
@@ -430,6 +433,63 @@ function ReferencesSection({ references }: ReferencesSectionProps) {
           ))}
         </ul>
       </div>
+
+      {onNavigate && (
+        <div className="p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/60 flex flex-col gap-3">
+          <div className="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+            Companion Metrology Reference Hubs & Handbooks
+          </div>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Deepen your understanding of official measurement standards, fundamental SI definitions, metric prefixes, and engineering analysis:
+          </p>
+          <div className="flex flex-wrap gap-2.5 pt-1">
+            <a
+              href="/resources/unit-conversion-reference"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/resources/unit-conversion-reference");
+              }}
+              className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-200/70 transition-colors inline-flex items-center gap-1.5"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+              Unit Conversion Reference Guide
+            </a>
+            <a
+              href="/resources/si-units-reference"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/resources/si-units-reference");
+              }}
+              className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-200/70 transition-colors inline-flex items-center gap-1.5"
+            >
+              <Scale className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              SI Units & Metric Prefixes Reference
+            </a>
+            <a
+              href="/resources/engineering-units-reference"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/resources/engineering-units-reference");
+              }}
+              className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-200/70 transition-colors inline-flex items-center gap-1.5"
+            >
+              <Award className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+              Engineering Units & Dimensional Standards
+            </a>
+            <a
+              href="/calculators"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("/calculators");
+              }}
+              className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-200/70 transition-colors inline-flex items-center gap-1.5"
+            >
+              <ArrowRight className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+              Engineering Calculators Hub
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -491,7 +551,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           "@type": "ListItem",
           "position": 3,
           "name": `${category.name} Converters`,
-          "item": `${SITE_URL}/converters/${category.id}`
+          "item": `${SITE_URL}${getCategoryRouteUrl(category.id)}`
         },
         {
           "@type": "ListItem",
@@ -2827,8 +2887,16 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           onNavigate={onNavigate}
         />
 
+        {/* 11b. Explore More in Category */}
+        <ExploreMoreSection
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
+
         {/* 12. Standards & References */}
-        <ReferencesSection />
+        <ReferencesSection category={category} onNavigate={onNavigate} />
 
       </article>
     );
@@ -3009,15 +3077,27 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
       )
     },
     {
+      id: "explore",
+      node: (
+        <ExploreMoreSection
+          key="explore"
+          category={category}
+          fromUnit={fromUnit}
+          toUnit={toUnit}
+          onNavigate={onNavigate}
+        />
+      )
+    },
+    {
       id: "references",
       node: (
-        <ReferencesSection key="references" />
+        <ReferencesSection key="references" category={category} onNavigate={onNavigate} />
       )
     }
   ];
 
   // Render standard blocks in exact recommended page order for full topical authority
-  const standardOrder = ["intro", "formula", "table", "solver", "examples", "history", "faqs", "related", "references"];
+  const standardOrder = ["intro", "formula", "table", "solver", "examples", "history", "faqs", "related", "explore", "references"];
 
   const renderedStandardNodes = standardOrder
     .map(id => standardBlocks.find(b => b.id === id))
