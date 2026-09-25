@@ -663,6 +663,46 @@
     "file": "cupUsToTeaspoonUs",
     "varName": "cupUsToTeaspoonUs"
   },
+  "cup-us-to-fluid-ounce-us": {
+    "file": "cupUsToFluidOunceUs",
+    "varName": "cupUsToFluidOunceUs"
+  },
+  "cup-us-to-pint-us": {
+    "file": "cupUsToPintUs",
+    "varName": "cupUsToPintUs"
+  },
+  "cup-us-to-quart-us": {
+    "file": "cupUsToQuartUs",
+    "varName": "cupUsToQuartUs"
+  },
+  "cup-us-to-gallon-us": {
+    "file": "cupUsToGallonUs",
+    "varName": "cupUsToGallonUs"
+  },
+  "tablespoon-us-to-milliliter": {
+    "file": "tablespoonUsToMilliliter",
+    "varName": "tablespoonUsToMilliliter"
+  },
+  "tablespoon-us-to-liter": {
+    "file": "tablespoonUsToLiter",
+    "varName": "tablespoonUsToLiter"
+  },
+  "tablespoon-us-to-cup-us": {
+    "file": "tablespoonUsToCupUs",
+    "varName": "tablespoonUsToCupUs"
+  },
+  "tablespoon-us-to-teaspoon-us": {
+    "file": "tablespoonUsToTeaspoonUs",
+    "varName": "tablespoonUsToTeaspoonUs"
+  },
+  "tablespoon-us-to-fluid-ounce-us": {
+    "file": "tablespoonUsToFluidOunceUs",
+    "varName": "tablespoonUsToFluidOunceUs"
+  },
+  "tablespoon-us-to-pint-us": {
+    "file": "tablespoonUsToPintUs",
+    "varName": "tablespoonUsToPintUs"
+  },
   "milliliter-to-liter": {
     "file": "milliliterToLiter",
     "varName": "milliliterToLiter"
@@ -1339,6 +1379,46 @@
     "file": "megawattToBtuPerHour",
     "varName": "megawattToBtuPerHour"
   },
+  "megawatt-to-calorie-per-second": {
+    "file": "megawattToCaloriePerSecond",
+    "varName": "megawattToCaloriePerSecond"
+  },
+  "gigawatt-to-watt": {
+    "file": "gigawattToWatt",
+    "varName": "gigawattToWatt"
+  },
+  "gigawatt-to-kilowatt": {
+    "file": "gigawattToKilowatt",
+    "varName": "gigawattToKilowatt"
+  },
+  "gigawatt-to-megawatt": {
+    "file": "gigawattToMegawatt",
+    "varName": "gigawattToMegawatt"
+  },
+  "gigawatt-to-horsepower-mechanical": {
+    "file": "gigawattToHorsepowerMechanical",
+    "varName": "gigawattToHorsepowerMechanical"
+  },
+  "gigawatt-to-horsepower-metric": {
+    "file": "gigawattToHorsepowerMetric",
+    "varName": "gigawattToHorsepowerMetric"
+  },
+  "gigawatt-to-btu-per-hour": {
+    "file": "gigawattToBtuPerHour",
+    "varName": "gigawattToBtuPerHour"
+  },
+  "gigawatt-to-calorie-per-second": {
+    "file": "gigawattToCaloriePerSecond",
+    "varName": "gigawattToCaloriePerSecond"
+  },
+  "horsepower-mechanical-to-watt": {
+    "file": "horsepowerMechanicalToWatt",
+    "varName": "horsepowerMechanicalToWatt"
+  },
+  "horsepower-mechanical-to-kilowatt": {
+    "file": "horsepowerMechanicalToKilowatt",
+    "varName": "horsepowerMechanicalToKilowatt"
+  },
   "mpg-us-to-mpg-uk": {
     "file": "mpgUsToMpgUk",
     "varName": "mpgUsToMpgUk"
@@ -1420,43 +1500,43 @@
     "varName": "litersPerKmToLitersPer100km"
   },
   "miles-per-liter-to-mpg-us": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "milesPerLiterToMpgUs",
     "varName": "milesPerLiterToMpgUs"
   },
   "mpg-us-to-miles-per-liter": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "mpgUsToMilesPerLiter",
     "varName": "mpgUsToMilesPerLiter"
   },
   "miles-per-liter-to-mpg-uk": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "milesPerLiterToMpgUk",
     "varName": "milesPerLiterToMpgUk"
   },
   "mpg-uk-to-miles-per-liter": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "mpgUkToMilesPerLiter",
     "varName": "mpgUkToMilesPerLiter"
   },
   "miles-per-liter-to-km-per-liter": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "milesPerLiterToKmPerLiter",
     "varName": "milesPerLiterToKmPerLiter"
   },
   "km-per-liter-to-miles-per-liter": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "kmPerLiterToMilesPerLiter",
     "varName": "kmPerLiterToMilesPerLiter"
   },
   "miles-per-liter-to-liters-per-100km": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "milesPerLiterToLitersPer100km",
     "varName": "milesPerLiterToLitersPer100km"
   },
   "liters-per-100km-to-miles-per-liter": {
-    "file": "fuelEconomyMilesPerLiter",
+    "file": "litersPer100kmToMilesPerLiter",
     "varName": "litersPer100kmToMilesPerLiter"
   },
   "km-per-gallon-us-to-mpg-us": {
-    "file": "fuelEconomyKmPerGallonUs",
+    "file": "kmPerGallonUsToMpgUs",
     "varName": "kmPerGallonUsToMpgUs"
   },
   "mpg-us-to-km-per-gallon-us": {
-    "file": "fuelEconomyKmPerGallonUs",
+    "file": "mpgUsToKmPerGallonUs",
     "varName": "mpgUsToKmPerGallonUs"
   },
   "km-per-gallon-us-to-mpg-uk": {
