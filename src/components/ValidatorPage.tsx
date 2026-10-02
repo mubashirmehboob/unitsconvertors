@@ -164,7 +164,7 @@ export default function ValidatorPage() {
         <div className="overflow-x-auto rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+              <tr className="bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800 text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                 <th className="p-4">Measurement Class / Category</th>
                 <th className="p-4 text-center">Unit Count</th>
                 <th className="p-4 text-center">Pair Permutations</th>

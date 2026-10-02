@@ -3166,5 +3166,171 @@
   "microsecond-to-day": {
     "file": "microsecondToDay",
     "varName": "microsecondToDay"
-  }
+  },
+  "pound-per-gallon-us-to-kilogram-per-cubic-meter": {
+    "file": "poundPerGallonUsToKgPerCubicMeter",
+    "varName": "poundPerGallonUsToKgPerCubicMeter"
+  },
+  "pound-per-gallon-us-to-gram-per-cubic-centimeter": {
+    "file": "poundPerGallonUsToGramPerCubicCentimeter",
+    "varName": "poundPerGallonUsToGramPerCubicCentimeter"
+  },
+  "pound-per-gallon-us-to-pound-per-cubic-foot": {
+    "file": "poundPerGallonUsToPoundPerCubicFoot",
+    "varName": "poundPerGallonUsToPoundPerCubicFoot"
+  },
+  "pound-per-gallon-us-to-gram-per-liter": {
+    "file": "poundPerGallonUsToGramPerLiter",
+    "varName": "poundPerGallonUsToGramPerLiter"
+  },
+  "pound-per-gallon-us-to-ounce-per-cubic-inch": {
+    "file": "poundPerGallonUsToOuncePerCubicInch",
+    "varName": "poundPerGallonUsToOuncePerCubicInch"
+  },
+  "ounce-per-cubic-inch-to-kilogram-per-cubic-meter": {
+    "file": "ouncePerCubicInchToKgPerCubicMeter",
+    "varName": "ouncePerCubicInchToKgPerCubicMeter"
+  },
+  "ounce-per-cubic-inch-to-gram-per-cubic-centimeter": {
+    "file": "ouncePerCubicInchToGramPerCubicCentimeter",
+    "varName": "ouncePerCubicInchToGramPerCubicCentimeter"
+  },
+  "ounce-per-cubic-inch-to-pound-per-cubic-foot": {
+    "file": "ouncePerCubicInchToPoundPerCubicFoot",
+    "varName": "ouncePerCubicInchToPoundPerCubicFoot"
+  },
+  "ounce-per-cubic-inch-to-gram-per-liter": {
+    "file": "ouncePerCubicInchToGramPerLiter",
+    "varName": "ouncePerCubicInchToGramPerLiter"
+  },
+  "ounce-per-cubic-inch-to-pound-per-gallon-us": {
+    "file": "ouncePerCubicInchToPoundPerGallonUs",
+    "varName": "ouncePerCubicInchToPoundPerGallonUs"
+  },
+  "pascal-sound-to-decibel-spl": {
+    "file": "pascalSoundToDecibelSpl",
+    "varName": "pascalSoundToDecibelSpl"
+  },
+  "pascal-sound-to-sound-pressure": {
+    "file": "pascalSoundToSoundPressure",
+    "varName": "pascalSoundToSoundPressure"
+  },
+  "pascal-sound-to-sound-intensity": {
+    "file": "pascalSoundToSoundIntensity",
+    "varName": "pascalSoundToSoundIntensity"
+  },
+  "pascal-sound-to-watt-m2-sound": {
+    "file": "pascalSoundToWattM2Sound",
+    "varName": "pascalSoundToWattM2Sound"
+  },
+  "sound-pressure-to-decibel": {
+    "file": "soundPressureToDecibel",
+    "varName": "soundPressureToDecibel"
+  },
+  "sound-pressure-to-bel": {
+    "file": "soundPressureToBel",
+    "varName": "soundPressureToBel"
+  },
+  "sound-pressure-to-decibel-spl": {
+    "file": "soundPressureToDecibelSpl",
+    "varName": "soundPressureToDecibelSpl"
+  },
+  "sound-pressure-to-pascal-sound": {
+    "file": "soundPressureToPascalSound",
+    "varName": "soundPressureToPascalSound"
+  },
+  "sound-pressure-to-sound-intensity": {
+    "file": "soundPressureToSoundIntensity",
+    "varName": "soundPressureToSoundIntensity"
+  },
+  "sound-pressure-to-watt-m2-sound": {
+    "file": "soundPressureToWattM2Sound",
+    "varName": "soundPressureToWattM2Sound"
+  },
+  "dyne-to-kilonewton": {
+    "file": "dyneToKilonewton",
+    "varName": "dyneToKilonewton"
+  },
+  "dyne-to-meganewton": {
+    "file": "dyneToMeganewton",
+    "varName": "dyneToMeganewton"
+  },
+  "dyne-to-ounce-force": {
+    "file": "dyneToOunceForce",
+    "varName": "dyneToOunceForce"
+  },
+  "dyne-to-gram-force": {
+    "file": "dyneToGramForce",
+    "varName": "dyneToGramForce"
+  },
+  "dyne-to-ton-force-us": {
+    "file": "dyneToTonForceUs",
+    "varName": "dyneToTonForceUs"
+  },
+  "dyne-to-ton-force-metric": {
+    "file": "dyneToTonForceMetric",
+    "varName": "dyneToTonForceMetric"
+  },
+  "dyne-to-sthene": {
+    "file": "dyneToSthene",
+    "varName": "dyneToSthene"
+  },
+  "dyne-to-millinewton": {
+    "file": "dyneToMillinewton",
+    "varName": "dyneToMillinewton"
+  },
+  "dyne-to-micronewton": {
+    "file": "dyneToMicronewton",
+    "varName": "dyneToMicronewton"
+  },
+  "gallon-per-min-to-cubic-feet-per-min": {
+    "file": "gallonPerMinToCubicFeetPerMin",
+    "varName": "gallonPerMinToCubicFeetPerMin"
+  },
+  "gallon-per-min-to-barrel-per-day": {
+    "file": "gallonPerMinToBarrelPerDay",
+    "varName": "gallonPerMinToBarrelPerDay"
+  },
+  "gallon-per-min-to-cubic-meter-per-sec": {
+    "file": "gallonPerMinToCubicMeterPerSec",
+    "varName": "gallonPerMinToCubicMeterPerSec"
+  },
+  "gallon-per-min-to-cubic-feet-per-sec": {
+    "file": "gallonPerMinToCubicFeetPerSec",
+    "varName": "gallonPerMinToCubicFeetPerSec"
+  },
+  "gallon-per-min-to-liter-per-min": {
+    "file": "gallonPerMinToLiterPerMin",
+    "varName": "gallonPerMinToLiterPerMin"
+  },
+  "gallon-per-min-to-gallon-per-hour": {
+    "file": "gallonPerMinToGallonPerHour",
+    "varName": "gallonPerMinToGallonPerHour"
+  },
+  "gallon-per-min-to-cubic-centimeter-per-sec": {
+    "file": "gallonPerMinToCubicCentimeterPerSec",
+    "varName": "gallonPerMinToCubicCentimeterPerSec"
+  },
+  "gallon-per-min-to-milliliter-per-min": {
+    "file": "gallonPerMinToMilliliterPerMin",
+    "varName": "gallonPerMinToMilliliterPerMin"
+  },
+  "gallon-per-min-to-cfm-unit": {
+    "file": "gallonPerMinToCfmUnit",
+    "varName": "gallonPerMinToCfmUnit"
+  },
+  "gallon-per-min-to-cmh-unit": {
+    "file": "gallonPerMinToCmhUnit",
+    "varName": "gallonPerMinToCmhUnit"
+  },
+  "radian-to-circular-mil-angle": "radianToCircularMilAngle",
+  "gradian-to-degree": "gradianToDegree",
+  "gradian-to-radian": "gradianToRadian",
+  "gradian-to-arcminute": "gradianToArcminute",
+  "gradian-to-arcsecond": "gradianToArcsecond",
+  "gradian-to-revolution": "gradianToRevolution",
+  "gradian-to-mil-angle": "gradianToMilAngle",
+  "gradian-to-turn-angle": "gradianToTurnAngle",
+  "gradian-to-quadrant-angle": "gradianToQuadrantAngle",
+  "radian-to-grad-angle": "radianToGradAngle"
 }

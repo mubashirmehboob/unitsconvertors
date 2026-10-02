@@ -528,10 +528,11 @@ export default function Header({
   const pathname = typeof window !== "undefined" ? window.location.pathname : "";
   const isConverters = pathname === "/converters" || pathname.startsWith("/converters/") || categoriesData.some(c => c.id === currentCategory);
   const isCalculators = pathname === "/calculators" || pathname.startsWith("/calculators/") || currentCategory === "calculators" || currentCategory === "engineering-calculators" || currentCategory === "engineering-category";
+  const isGuides = pathname === "/guides" || pathname.startsWith("/guides/") || currentCategory === "guides";
   const isReference = pathname === "/resources/unit-conversion-reference" || currentCategory === "unit-conversion-reference";
-  const isSiReference = pathname === "/resources/si-units-reference" || currentCategory === "si-units-reference";
+  const isSiUnits = pathname === "/resources/si-units-reference" || pathname === "/si-units-reference" || currentCategory === "si-units-reference";
   const isEngineeringReference = pathname === "/resources/engineering-units-reference" || currentCategory === "engineering-units-reference";
-  const isResources = isReference || isEngineeringReference || (pathname.startsWith("/resources/") && !isSiReference);
+  const isResources = isReference || isSiUnits || isEngineeringReference || (pathname.startsWith("/resources/"));
   const isAbout = pathname === "/about" || currentCategory === "about";
   const isContact = pathname === "/contact" || currentCategory === "contact";
   const isPrivacy = pathname === "/privacy-policy" || pathname === "/privacy" || currentCategory === "privacy" || currentCategory === "privacy-policy";
@@ -558,7 +559,7 @@ export default function Header({
             </span>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation: Converters | Calculators | Guides | SI Units | About | Contact | Privacy */}
           <nav className="hidden md:flex items-center gap-0.5 lg:gap-1 xl:gap-2 shrink-0" id="desktop-nav" aria-label="Main navigation">
             <a
               href="/converters"
@@ -588,6 +589,21 @@ export default function Header({
               }`}
             >
               Calculators
+            </a>
+
+            <a
+              href="/guides"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("guides");
+              }}
+              className={`text-xs lg:text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-2 xl:px-2.5 py-1.5 ${
+                isGuides
+                  ? "text-blue-600 dark:text-blue-400 font-bold bg-blue-50/80 dark:bg-blue-950/40"
+                  : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
+              }`}
+            >
+              Guides
             </a>
 
             {/* Resources Dropdown */}
@@ -647,7 +663,7 @@ export default function Header({
                     }}
                     role="menuitem"
                     className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs lg:text-sm transition-colors ${
-                      isSiReference
+                      isSiUnits
                         ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
                         : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
                     }`}
@@ -930,6 +946,23 @@ export default function Header({
               Calculators
             </a>
 
+            <a
+              href="/guides"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate("guides");
+                setMobileMenuOpen(false);
+              }}
+              className={`flex items-center gap-3 p-3 rounded-xl text-sm font-bold transition-colors ${
+                isGuides
+                  ? "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900/50"
+                  : "text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900"
+              }`}
+            >
+              <BookOpen className="h-5 w-5 text-indigo-500" />
+              Guides
+            </a>
+
             {/* Resources Collapsible Group */}
             <div className="flex flex-col">
               <button
@@ -976,7 +1009,7 @@ export default function Header({
                       setMobileMenuOpen(false);
                     }}
                     className={`flex items-center gap-2.5 p-2.5 rounded-lg text-xs sm:text-sm transition-colors ${
-                      isSiReference
+                      isSiUnits
                         ? "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold"
                         : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 font-medium"
                     }`}

@@ -13,7 +13,7 @@ Table.displayName = "Table";
 
 export const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(
   ({ className = "", children, ...props }, ref) => (
-    <thead ref={ref} className={`bg-[var(--background-secondary)] dark:bg-slate-950 border-b border-[var(--border-subtle)] dark:border-slate-800 ${className}`} {...props}>
+    <thead ref={ref} className={`bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800 ${className}`} {...props}>
       {children}
     </thead>
   )
@@ -22,7 +22,7 @@ TableHeader.displayName = "TableHeader";
 
 export const TableBody = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(
   ({ className = "", children, ...props }, ref) => (
-    <tbody ref={ref} className={`divide-y divide-[var(--divider-subtle)] dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-900/50 ${className}`} {...props}>
+    <tbody ref={ref} className={`divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900 ${className}`} {...props}>
       {children}
     </tbody>
   )
@@ -31,7 +31,7 @@ TableBody.displayName = "TableBody";
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(
   ({ className = "", children, ...props }, ref) => (
-    <tr ref={ref} className={`hover:bg-[var(--surface-hover)] dark:hover:bg-slate-950/20 transition-colors ${className}`} {...props}>
+    <tr ref={ref} className={`hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition-colors ${className}`} {...props}>
       {children}
     </tr>
   )

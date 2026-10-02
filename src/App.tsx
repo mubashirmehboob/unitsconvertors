@@ -3,7 +3,7 @@ import {
   Ruler, HelpCircle, ChevronRight, Check, History, Heart, 
   Trash2, Moon, Star, Award, Shield, CheckCircle, ArrowRight,
   TrendingUp, Compass, Mail, Phone, MapPin, List, Eye, ArrowUpDown, ChevronDown,
-  Zap, Lock, Info, Search, Layers, Grid, X
+  Zap, Lock, Info, Search, Layers, Grid, X, BookOpen
 } from "lucide-react";
 import Header, { categoryIconMap, getCategoryStyle } from "./components/Header";
 import Footer from "./components/Footer";
@@ -18,6 +18,7 @@ import { performConversion, runEngineAudit, isValidPair } from "./utils/conversi
 import { applyAutomatedSeo } from "./utils/classificationEngine";
 import { injectPageSchemas } from "./utils/schemaEngine";
 import { SITE_URL } from "./constants";
+import { getGuideBySlug } from "./data/guidesData";
 
 // Lazy-loaded components for optimal code-splitting and core web vitals
 const SEOContent = React.lazy(() => import("./components/SEOContent"));
@@ -31,6 +32,7 @@ const UnitConvertersHub = React.lazy(() => import("./components/UnitConvertersHu
 const UnitConversionReference = React.lazy(() => import("./components/UnitConversionReference"));
 const SiUnitsReference = React.lazy(() => import("./components/SiUnitsReference"));
 const EngineeringUnitsReference = React.lazy(() => import("./components/EngineeringUnitsReference"));
+const GuidesPage = React.lazy(() => import("./components/GuidesPage"));
 
 const constructionCalcRedirects: Record<string, string> = {
   "board-foot-to-sq-foot": "board-foot-to-sq-foot",
@@ -319,6 +321,24 @@ export default function App() {
         description: "Explore free online unit converters for length, mass, area, volume, temperature, pressure, energy, power, light, electricity, data, and more. Convert units instantly with precision.",
         canonicalUrl: `${SITE_URL}/converters`
       });
+    } else if (route.page === "guides") {
+      const guideSlug = route.category;
+      const currentGuide = guideSlug ? getGuideBySlug(guideSlug) : undefined;
+      if (currentGuide) {
+        applyAutomatedSeo({
+          pageType: "support-page",
+          title: currentGuide.seoTitle || `${currentGuide.title} | UnitsConvertors.com`,
+          description: currentGuide.description,
+          canonicalUrl: `${SITE_URL}/guides/${currentGuide.slug}`
+        });
+      } else {
+        applyAutomatedSeo({
+          pageType: "support-page",
+          title: "Guides | Unit Conversion & Measurement Resources",
+          description: "Practical guides to unit conversion, measurement systems, SI units, conversion formulas, and related reference topics from UnitsConvertors.com.",
+          canonicalUrl: `${SITE_URL}/guides`
+        });
+      }
     } else if (route.page === "category") {
       const descText = route.category ? `Explore all available ${route.category} converters on UnitsConvertors.com.` : "Explore comprehensive unit converters on UnitsConvertors.com.";
       applyAutomatedSeo({
@@ -392,7 +412,14 @@ export default function App() {
       const first = segments[0];
       const supportPages = ["about", "contact", "privacy", "privacy-policy", "terms", "disclaimer", "sitemap", "favorites", "validator", "converters"];
       
-      if (first === "calculators" || first === "engineering-calculators") {
+      if (first === "guides") {
+        if (segments.length === 1) {
+          setRoute({ page: "guides", category: "", fromUnit: "", toUnit: "" });
+        } else {
+          setRoute({ page: "guides", category: segments[1], fromUnit: "", toUnit: "" });
+        }
+        return;
+      } else if (first === "calculators" || first === "engineering-calculators") {
         if (segments.length === 1) {
           setRoute({ page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" });
         } else if (segments.length === 2) {
@@ -578,6 +605,8 @@ export default function App() {
       targetPath = "/";
     } else if (category === "converters") {
       targetPath = "/converters";
+    } else if (category === "guides") {
+      targetPath = fromUnit ? `/guides/${fromUnit}` : "/guides";
     } else if (category === "about") {
       targetPath = "/about";
     } else if (category === "contact") {
@@ -721,7 +750,7 @@ export default function App() {
                   
                   {/* HERO SECTION */}
                   <section 
-                    className="relative overflow-hidden bg-slate-50/45 dark:bg-slate-950/45 rounded-b-3xl border-b border-x border-slate-100 dark:border-slate-900 py-5 flex flex-col items-center"
+                    className="relative overflow-hidden bg-slate-50/45 dark:bg-slate-950/45 rounded-b-3xl border-b border-x border-slate-100 dark:border-slate-900 pt-5 pb-[15px] flex flex-col items-center"
                     style={{ 
                       backgroundImage: 'radial-gradient(circle, rgba(148, 163, 184, 0.08) 1.5px, transparent 1.5px)', 
                       backgroundSize: '24px 24px' 
@@ -742,7 +771,7 @@ export default function App() {
                       </div>
 
                       {/* Row of 4 trust benefit badges */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 px-0 w-full max-w-[910px] border-t border-slate-200/50 dark:border-slate-800/50">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 -mt-2 pt-0 px-0 w-full max-w-[910px] border-0">
                         {/* Benefit 1 */}
                         <div className="flex items-center gap-3 justify-center md:justify-start">
                           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 border border-blue-100/40 dark:border-blue-900/20">
@@ -1133,7 +1162,7 @@ export default function App() {
                     e.preventDefault();
                     handleNavigate("unit-conversion-reference");
                   }}
-                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   Unit Conversion Reference (All Factors & Formulas)
                 </a>
@@ -1143,7 +1172,7 @@ export default function App() {
                     e.preventDefault();
                     handleNavigate("si-units-reference");
                   }}
-                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   SI Units & Metric Prefixes Reference
                 </a>
@@ -1153,7 +1182,7 @@ export default function App() {
                     e.preventDefault();
                     handleNavigate("engineering-units-reference");
                   }}
-                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   Engineering Units & Dimensional Standards
                 </a>
@@ -1163,7 +1192,7 @@ export default function App() {
                     e.preventDefault();
                     handleNavigate("calculators");
                   }}
-                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   Engineering Calculators Hub
                 </a>
@@ -1330,7 +1359,7 @@ export default function App() {
                 <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white mt-4 flex items-center gap-2">
                   <Mail className="h-5 w-5 text-blue-500" /> Get in Touch
                 </h3>
-                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+                <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200 dark:border-slate-800 flex flex-col gap-2">
                   <p className="m-0">
                     <strong>Email:</strong> <a href="mailto:unitsconvertors@gmail.com" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">unitsconvertors@gmail.com</a>
                   </p>
@@ -1369,7 +1398,7 @@ export default function App() {
                 <p className="m-0">
                   For partnerships, advertising opportunities, or other business-related requests, please contact us at:
                 </p>
-                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
+                <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200 dark:border-slate-800">
                   <p className="m-0">
                     <strong>Email:</strong> <a href="mailto:unitsconvertors@gmail.com" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">unitsconvertors@gmail.com</a>
                   </p>
@@ -1589,7 +1618,7 @@ export default function App() {
               <p>
                 If you have any questions about this Privacy Policy or our security practices, please contact us:
               </p>
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex flex-col gap-1">
+              <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200 dark:border-slate-800 flex flex-col gap-1">
                 <p className="m-0">
                   <strong>Email:</strong> <a href="mailto:unitsconvertors@gmail.com" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">unitsconvertors@gmail.com</a>
                 </p>
@@ -1728,7 +1757,7 @@ export default function App() {
               <p>
                 If you have any questions about these Terms & Conditions, please contact us:
               </p>
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex flex-col gap-1">
+              <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200 dark:border-slate-800 flex flex-col gap-1">
                 <p className="m-0">
                   <strong>Email:</strong> <a href="mailto:unitsconvertors@gmail.com" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">unitsconvertors@gmail.com</a>
                 </p>
@@ -1848,7 +1877,7 @@ export default function App() {
               <p>
                 If you have any questions regarding this Disclaimer, please contact us:
               </p>
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex flex-col gap-1">
+              <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200 dark:border-slate-800 flex flex-col gap-1">
                 <p className="m-0">
                   <strong>Email:</strong> <a href="mailto:unitsconvertors@gmail.com" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">unitsconvertors@gmail.com</a>
                 </p>
@@ -1877,6 +1906,76 @@ export default function App() {
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                 A complete catalog listing all converter pages, core informational entries, and links.
               </p>
+            </div>
+
+            {/* Core Educational Hubs & References */}
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+              <h2 className="font-display font-bold text-slate-900 dark:text-white text-base border-b border-slate-100 dark:border-slate-800 pb-3 flex items-center gap-2 mb-4">
+                <BookOpen className="h-5 w-5 text-indigo-500" />
+                Guides & Educational Resources
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                <div>
+                  <a
+                    href="/guides"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("guides");
+                    }}
+                    className="font-semibold text-blue-600 dark:text-blue-400 hover:underline block"
+                  >
+                    Guides Hub (/guides)
+                  </a>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Central educational index for unit conversion, SI standards, and measurement guides.
+                  </p>
+                </div>
+                <div>
+                  <a
+                    href="/resources/si-units-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("si-units-reference");
+                    }}
+                    className="font-semibold text-blue-600 dark:text-blue-400 hover:underline block"
+                  >
+                    SI Units Reference (/resources/si-units-reference)
+                  </a>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Base units, derived units, metric prefixes, and notation standards.
+                  </p>
+                </div>
+                <div>
+                  <a
+                    href="/resources/unit-conversion-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("unit-conversion-reference");
+                    }}
+                    className="font-semibold text-blue-600 dark:text-blue-400 hover:underline block"
+                  >
+                    Unit Conversion Reference (/resources/unit-conversion-reference)
+                  </a>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Conversion factors, formulas, and imperial-metric comparisons.
+                  </p>
+                </div>
+                <div>
+                  <a
+                    href="/resources/engineering-units-reference"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("engineering-units-reference");
+                    }}
+                    className="font-semibold text-blue-600 dark:text-blue-400 hover:underline block"
+                  >
+                    Engineering Units Reference (/resources/engineering-units-reference)
+                  </a>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Force, pressure, torque, energy, and thermodynamics units.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -1974,6 +2073,13 @@ export default function App() {
               </div>
             )}
           </div>
+        )}
+
+        {/* VIEW: GUIDES HUB & DETAIL */}
+        {route.page === "guides" && (
+          <React.Suspense fallback={<div className="py-12 text-center text-slate-400">Loading guides hub...</div>}>
+            <GuidesPage onNavigate={handleNavigate} currentGuideSlug={route.category} />
+          </React.Suspense>
         )}
 
         {/* VIEW: UNIT CONVERTERS HUB */}

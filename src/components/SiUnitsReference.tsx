@@ -137,7 +137,7 @@ export default function SiUnitsReference({ onNavigate }: SiUnitsReferenceProps) 
   };
 
   return (
-    <div className="w-full bg-[var(--background)] dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen">
+    <div className="w-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen">
       {/* Breadcrumb Header Bar */}
       <div className="border-b border-slate-200 dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/60 sticky top-0 z-20 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between text-xs sm:text-sm">

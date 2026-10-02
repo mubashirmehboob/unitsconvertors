@@ -99,10 +99,7 @@ export default function InternalLinkingDirectory({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] font-black text-blue-600 dark:text-cyan-400 tracking-wider uppercase bg-blue-50 dark:bg-cyan-950/40 px-3 py-1 rounded-full w-fit">
-              Crawlable Index Matrix
-            </span>
-            <h3 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mt-2">
+            <h3 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
               HTML Directory & SEO Link Index
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -152,7 +149,7 @@ export default function InternalLinkingDirectory({
                     key={idx}
                     href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
-                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
+                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
@@ -207,7 +204,7 @@ export default function InternalLinkingDirectory({
                     key={cat.id}
                     href={getCategoryRouteUrl(cat.id)}
                     onClick={(e) => handleLinkClick(e, cat.id)}
-                    className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-sm hover:-translate-y-0.5 transition-all flex flex-col items-center justify-center text-center gap-2 group"
+                    className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 hover:border-blue-500 hover:shadow-sm hover:-translate-y-0.5 transition-all flex flex-col items-center justify-center text-center gap-2 group"
                   >
                     <div className={`h-9 w-9 rounded-xl ${style.bg} ${style.text} flex items-center justify-center group-hover:scale-105 transition-transform`}>
                       <CatIcon className="h-4.5 w-4.5" />
@@ -236,7 +233,7 @@ export default function InternalLinkingDirectory({
                     key={idx}
                     href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
-                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-sky-500 hover:shadow-md transition-all flex flex-col justify-between"
+                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
@@ -290,7 +287,7 @@ export default function InternalLinkingDirectory({
                     key={idx}
                     href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
-                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
+                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
@@ -346,7 +343,7 @@ export default function InternalLinkingDirectory({
                     key={idx}
                     href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
-                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
+                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
@@ -400,7 +397,7 @@ export default function InternalLinkingDirectory({
                     key={idx}
                     href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                     onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
-                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-orange-500 hover:shadow-md transition-all flex flex-col justify-between"
+                    className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-orange-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
@@ -486,7 +483,7 @@ export default function InternalLinkingDirectory({
                         key={idx}
                         href={`/converters/${item.cat}/${item.from}-to-${item.to}`}
                         onClick={(e) => handleLinkClick(e, item.cat, item.from, item.to)}
-                        className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-rose-500 hover:shadow-md transition-all flex flex-col justify-between"
+                        className="group p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-rose-500 hover:shadow-md transition-all flex flex-col justify-between"
                       >
                         <div>
                           <div className="flex items-center justify-between mb-1.5">
@@ -549,7 +546,7 @@ export default function InternalLinkingDirectory({
                 e.preventDefault();
                 onNavigate("/resources/unit-conversion-reference");
               }}
-              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 hover:shadow-sm transition-all group flex flex-col justify-between"
             >
               <div>
                 <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block mb-1">
@@ -573,7 +570,7 @@ export default function InternalLinkingDirectory({
                 e.preventDefault();
                 onNavigate("/resources/si-units-reference");
               }}
-              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-emerald-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500 hover:shadow-sm transition-all group flex flex-col justify-between"
             >
               <div>
                 <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-1">
@@ -597,7 +594,7 @@ export default function InternalLinkingDirectory({
                 e.preventDefault();
                 onNavigate("/resources/engineering-units-reference");
               }}
-              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-purple-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-purple-500 hover:shadow-sm transition-all group flex flex-col justify-between"
             >
               <div>
                 <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider block mb-1">
@@ -621,7 +618,7 @@ export default function InternalLinkingDirectory({
                 e.preventDefault();
                 onNavigate("/calculators");
               }}
-              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-indigo-500 hover:shadow-sm transition-all group flex flex-col justify-between"
+              className="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-indigo-500 hover:shadow-sm transition-all group flex flex-col justify-between"
             >
               <div>
                 <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider block mb-1">

@@ -121,10 +121,7 @@ export default function FeaturedConverters({ onNavigate }: FeaturedConvertersPro
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-6" id="featured-converters">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-[10px] font-black text-blue-600 dark:text-cyan-400 tracking-wider uppercase bg-blue-50 dark:bg-cyan-950/40 px-3 py-1 rounded-full">
-              Global Favorites
-            </span>
-            <h2 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mt-2">
+            <h2 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
               Featured Unit Converters
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -179,10 +176,7 @@ export default function FeaturedConverters({ onNavigate }: FeaturedConvertersPro
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-6" id="recently-added">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-[10px] font-black text-cyan-600 dark:text-emerald-400 tracking-wider uppercase bg-cyan-50 dark:bg-emerald-950/40 px-3 py-1 rounded-full">
-              Database Updates
-            </span>
-            <h2 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mt-2">
+            <h2 className="font-display text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
               Recently Added Converters
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">

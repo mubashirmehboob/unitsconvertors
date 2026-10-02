@@ -135,7 +135,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
     filteredRad.length;
 
   return (
-    <div className="w-full bg-[var(--background)] text-slate-800 dark:text-slate-200 transition-colors duration-150">
+    <div className="w-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-150">
       {/* Top Breadcrumb & Metadata Header */}
       <div className="border-b border-slate-200 dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/60">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -198,7 +198,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                 placeholder="Search units (e.g. meter, psi, joule, pascal)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             {searchQuery && (
@@ -295,7 +295,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                         <th className="p-3">Numerical Value</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                    <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                       {SI_BASE_UNITS.map((u, i) => (
                         <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                           <td className="p-3 font-medium text-slate-900 dark:text-white">{u.quantity}</td>
@@ -329,7 +329,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                         <th className="p-3">In SI Base Units</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                    <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                       {SI_DERIVED_UNITS.slice(0, 14).map((d, idx) => {
                         const targetTool = DERIVED_QUANTITY_LINKS[d.quantity];
                         return (
@@ -404,7 +404,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Physical Example</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {SI_PREFIXES.map((p, idx) => (
                       <tr key={idx} className={`hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors ${p.factorExponent > 24 || p.factorExponent < -24 ? "bg-amber-50/40 dark:bg-amber-950/20" : ""}`}>
                         <td className="p-3 font-semibold text-slate-900 dark:text-white">
@@ -471,7 +471,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3 text-right">Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredLength.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -531,7 +531,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredArea.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -582,7 +582,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredVolume.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -633,7 +633,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredMass.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -674,7 +674,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredTime.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -719,7 +719,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/50 space-y-3">
                   <h3 className="font-bold text-slate-900 dark:text-white text-sm">Celsius to Fahrenheit</h3>
-                  <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-950 font-mono text-center">
+                  <div className="p-3 rounded-lg bg-slate-50/45 dark:bg-slate-950/45 font-mono text-center">
                     <MathFormula formula="T(^\circ\text{F}) = \left( T(^\circ\text{C}) \times \frac{9}{5} \right) + 32" displayMode />
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400">
@@ -729,7 +729,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
 
                 <div className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/50 space-y-3">
                   <h3 className="font-bold text-slate-900 dark:text-white text-sm">Fahrenheit to Celsius</h3>
-                  <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-950 font-mono text-center">
+                  <div className="p-3 rounded-lg bg-slate-50/45 dark:bg-slate-950/45 font-mono text-center">
                     <MathFormula formula="T(^\circ\text{C}) = \left( T(^\circ\text{F}) - 32 \right) \times \frac{5}{9}" displayMode />
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400">
@@ -739,7 +739,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
 
                 <div className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/50 space-y-3">
                   <h3 className="font-bold text-slate-900 dark:text-white text-sm">Celsius to Kelvin</h3>
-                  <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-950 font-mono text-center">
+                  <div className="p-3 rounded-lg bg-slate-50/45 dark:bg-slate-950/45 font-mono text-center">
                     <MathFormula formula="T(\text{K}) = T(^\circ\text{C}) + 273.15" displayMode />
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400">
@@ -749,7 +749,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
 
                 <div className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/50 space-y-3">
                   <h3 className="font-bold text-slate-900 dark:text-white text-sm">Fahrenheit to Rankine</h3>
-                  <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-950 font-mono text-center">
+                  <div className="p-3 rounded-lg bg-slate-50/45 dark:bg-slate-950/45 font-mono text-center">
                     <MathFormula formula="T(^\circ\text{R}) = T(^\circ\text{F}) + 459.67" displayMode />
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400">
@@ -792,7 +792,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredSpeed.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -840,7 +840,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredAcc.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -888,7 +888,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredForce.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -951,7 +951,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredPressure.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -999,7 +999,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredEnergy.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -1050,7 +1050,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Authority / Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredPower.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -1098,7 +1098,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredTorque.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -1224,7 +1224,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredElec.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -1272,7 +1272,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {filteredRad.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-medium text-slate-900 dark:text-white">{row.fromUnit} ({row.fromSymbol})</td>
@@ -1313,7 +1313,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <th className="p-3">Practical Scenario</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-950">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                     {METRIC_IMPERIAL_COMPARISONS.map((m, idx) => (
                       <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
                         <td className="p-3 font-semibold text-slate-900 dark:text-white">{m.category}</td>
@@ -1422,7 +1422,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                       <strong>Problem Statement:</strong> {ex.problem}
                     </p>
 
-                    <div className="p-3 rounded-lg bg-slate-100 dark:bg-slate-950 font-mono text-xs sm:text-sm text-center">
+                    <div className="p-3 rounded-lg bg-slate-50/45 dark:bg-slate-950/45 font-mono text-xs sm:text-sm text-center">
                       <MathFormula formula={ex.formula} displayMode />
                     </div>
 
@@ -1676,7 +1676,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                     e.preventDefault();
                     onNavigate("/resources/si-units-reference");
                   }}
-                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors inline-flex items-center gap-2 shadow-2xs"
+                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors inline-flex items-center gap-2 shadow-2xs"
                 >
                   <Scale className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   SI Units & Metric Prefixes Reference
@@ -1687,7 +1687,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                     e.preventDefault();
                     onNavigate("/resources/engineering-units-reference");
                   }}
-                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors inline-flex items-center gap-2 shadow-2xs"
+                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors inline-flex items-center gap-2 shadow-2xs"
                 >
                   <Calculator className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                   Engineering Units & Conversion Reference
@@ -1698,7 +1698,7 @@ export default function UnitConversionReference({ onNavigate }: UnitConversionRe
                     e.preventDefault();
                     onNavigate("/calculators");
                   }}
-                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors inline-flex items-center gap-2 shadow-2xs"
+                  className="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors inline-flex items-center gap-2 shadow-2xs"
                 >
                   <ArrowRight className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                   Engineering Calculators Directory

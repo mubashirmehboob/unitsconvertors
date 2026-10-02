@@ -4,16 +4,18 @@
 @variant dark (&:where(.dark, .dark *));
 
 :root {
+  --background: #ffffff;
   --background-primary: #ffffff;
   --background-secondary: #f8fafc;
   --surface: #ffffff;
   --surface-hover: #f1f5f9;
-  --border-subtle: #e5e7eb;
-  --divider-subtle: #eef2f7;
+  --border-subtle: #e2e8f0;
+  --divider-subtle: #e2e8f0;
 }
 
 .dark {
-  --background-primary: #020617;
+  --background: #0f172a;
+  --background-primary: #0f172a;
   --background-secondary: #0f172a;
   --surface: #0f172a;
   --surface-hover: #1e293b;

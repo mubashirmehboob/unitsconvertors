@@ -244,7 +244,7 @@ export default function EngineeringCalculatorsView({
             <div
               key={idx}
               onClick={() => onNavigate("calculators", undefined, undefined, item.catSlug, item.slug)}
-              className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between space-y-3"
+              className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-amber-400 dark:hover:border-amber-600 hover:shadow-md transition-all cursor-pointer group flex flex-col justify-between space-y-3"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-1">
@@ -273,7 +273,7 @@ export default function EngineeringCalculatorsView({
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
             <h3 className="font-bold text-slate-900 dark:text-white text-sm">
               What is the difference between unit converters and engineering calculators?
             </h3>
@@ -282,7 +282,7 @@ export default function EngineeringCalculatorsView({
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
             <h3 className="font-bold text-slate-900 dark:text-white text-sm">
               Are these calculators free for commercial and academic engineering use?
             </h3>
@@ -291,7 +291,7 @@ export default function EngineeringCalculatorsView({
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
             <h3 className="font-bold text-slate-900 dark:text-white text-sm">
               What standard measurement systems do the calculators support?
             </h3>
@@ -300,7 +300,7 @@ export default function EngineeringCalculatorsView({
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
             <h3 className="font-bold text-slate-900 dark:text-white text-sm">
               How are formulas and assumptions verified?
             </h3>

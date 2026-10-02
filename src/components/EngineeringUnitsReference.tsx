@@ -94,7 +94,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
   }, [searchQuery]);
 
   return (
-    <div className="w-full bg-[var(--background)] dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen">
+    <div className="w-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen">
       {/* Breadcrumb Header Bar */}
       <div className="border-b border-slate-200 dark:border-slate-800 bg-[var(--surface)] dark:bg-slate-900/60 sticky top-0 z-20 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between text-xs sm:text-sm">
@@ -160,7 +160,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <a
                   key={sec.id}
                   href={`#${sec.id}`}
-                  className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors truncate font-medium"
+                  className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-700 transition-colors truncate font-medium"
                 >
                   {sec.title}
                 </a>
@@ -181,7 +181,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 placeholder="Search by quantity, unit, symbol, formula, or keyword (e.g. pascal, torque, psi, ohm, flow)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             {searchQuery && (
@@ -214,7 +214,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               Measurement units in engineering serve three critical functions:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-semibold text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                   Structural & Machine Safety
@@ -223,7 +223,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   Yield strengths, working load limits, and pressure relief setpoints rely on exact unit definitions to maintain design factors of safety and prevent physical failure.
                 </p>
               </div>
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-semibold text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
                   <Layers className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   Global Interchangeability
@@ -232,7 +232,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   International supply chains require precise dimensional harmonization—such as metric fastener thread pitches (ISO) versus Unified National threads (ANSI/ASME).
                 </p>
               </div>
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-semibold text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
                   <Cpu className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   Coherence in Computation
@@ -358,7 +358,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Force */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">Force</h3>
                   <button
@@ -379,7 +379,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               </div>
 
               {/* Torque */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">Torque & Moment</h3>
                   <button
@@ -400,7 +400,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               </div>
 
               {/* Work & Energy */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">Work and Energy</h3>
                   <button
@@ -421,7 +421,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               </div>
 
               {/* Power */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">Power</h3>
                   <button
@@ -442,7 +442,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               </div>
 
               {/* Stress & Strain */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">Stress & Strain</h3>
                   <button
@@ -463,7 +463,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               </div>
 
               {/* Mass & Volumetric Flow Rate */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">Mass & Volumetric Flow Rate</h3>
                   <button
@@ -498,7 +498,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white text-sm">Voltage (V)</div>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   Electric potential difference: work required to move unit charge (<span className="font-mono">1 V = 1 J/C</span>).
@@ -506,7 +506,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">1 kV = 10³ V; 1 mV = 10⁻³ V</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white text-sm">Current (A)</div>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   Time rate of net electric charge flow through a cross section (<span className="font-mono">1 A = 1 C/s</span>). SI base unit.
@@ -514,7 +514,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">1 mA = 10⁻³ A; 1 µA = 10⁻⁶ A</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-900 dark:text-white text-sm">Resistance (Ω)</span>
                   <button
@@ -530,7 +530,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">1 kΩ = 10³ Ω; 1 MΩ = 10⁶ Ω</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <span className="font-bold text-slate-900 dark:text-white text-sm">Conductance (S)</span>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   Reciprocal of resistance (<span className="font-mono">G = 1/R</span>). Measured in Siemens (<span className="font-mono">1 S = 1 Ω⁻¹ = 1 A/V</span>).
@@ -538,7 +538,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">Historically termed &quot;mho&quot; (deprecated)</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-900 dark:text-white text-sm">Capacitance (F)</span>
                   <button
@@ -554,7 +554,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">1 µF = 10⁻⁶ F; 1 pF = 10⁻¹² F</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-900 dark:text-white text-sm">Inductance (H)</span>
                   <button
@@ -570,7 +570,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">1 mH = 10⁻³ H; 1 µH = 10⁻⁶ H</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-900 dark:text-white text-sm">Electric Charge (C)</span>
                   <button
@@ -586,7 +586,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">1 Ah = 3,600 C; 1 mAh = 3.6 C</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <span className="font-bold text-slate-900 dark:text-white text-sm">AC Power Triangle</span>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   Real power (<span className="font-mono">W</span>), Apparent power (<span className="font-mono">VA</span>), and Reactive power (<span className="font-mono">VAR</span>).
@@ -594,7 +594,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 <div className="text-[11px] font-mono text-blue-600 dark:text-blue-400">P = S · cos(θ) [Power Factor PF]</div>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <span className="font-bold text-slate-900 dark:text-white text-sm">Frequency (Hz)</span>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   Periodic oscillations per second (<span className="font-mono">1 Hz = 1 s⁻¹</span>). Angular frequency is <span className="font-mono">ω = 2πf</span> rad/s.
@@ -693,7 +693,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                   Pressure: Absolute vs. Gauge (psia vs. psig)
                 </h3>
@@ -708,7 +708,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                   Viscosity: Dynamic (μ) vs. Kinematic (ν)
                 </h3>
@@ -820,7 +820,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               {filteredFormulas.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xs space-y-4"
+                  className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs space-y-4"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
@@ -898,7 +898,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Mass vs Weight */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                   The Mass vs. Weight Conundrum (lbm vs. lbf and Slugs)
                 </h3>
@@ -916,7 +916,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               </div>
 
               {/* US Customary vs UK Imperial Gallons */}
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-3">
+              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
                 <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                   US Customary vs. British Imperial Volumetric Measures
                 </h3>
@@ -965,7 +965,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               {WORKED_ENGINEERING_EXAMPLES.map((ex, idx) => (
                 <div
                   key={idx}
-                  className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xs space-y-4"
+                  className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs space-y-4"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-slate-100 dark:border-slate-800 pb-3">
                     <h3 className="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white">
@@ -1030,7 +1030,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                   1. Squaring or Cubing Non-Linear Unit Powers
                 </div>
@@ -1039,7 +1039,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                   2. Using Gauge Pressure in Gas Laws
                 </div>
@@ -1048,7 +1048,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                   3. Applying Temperature Offsets to Differences
                 </div>
@@ -1057,7 +1057,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                   4. Conflating Mechanical, Metric, and Electrical Horsepower
                 </div>
@@ -1066,7 +1066,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                   5. Metric Prefix Case-Sensitivity Confusion
                 </div>
@@ -1075,7 +1075,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2">
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
                 <div className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                   6. Premature Rounding in Intermediate Computations
                 </div>
@@ -1105,7 +1105,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/force-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Force</span>
@@ -1120,7 +1120,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/pressure-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Pressure</span>
@@ -1135,7 +1135,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/torque-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Torque</span>
@@ -1150,7 +1150,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/power-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Power</span>
@@ -1165,7 +1165,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/energy-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Energy</span>
@@ -1180,7 +1180,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/density-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Density</span>
@@ -1195,7 +1195,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/flow-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Flow Rate</span>
@@ -1210,7 +1210,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/temperature-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Temperature</span>
@@ -1225,7 +1225,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/electric-resistance-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Resistance</span>
@@ -1240,7 +1240,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/capacitance-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Capacitance</span>
@@ -1255,7 +1255,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/inductance-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Inductance</span>
@@ -1270,7 +1270,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                   e.preventDefault();
                   onNavigate("/electric-charge-conversion");
                 }}
-                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
+                className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-left group block"
               >
                 <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   <span>Electric Charge</span>
@@ -1314,7 +1314,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               {ENGINEERING_FAQS.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 overflow-hidden shadow-xs"
+                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-xs"
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
@@ -1355,7 +1355,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
               {ENGINEERING_STANDARDS_REFERENCES.map((ref, idx) => (
                 <div
                   key={idx}
-                  className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 space-y-2"
+                  className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2"
                 >
                   <div className="text-xs font-semibold text-blue-600 dark:text-blue-400 font-mono">
                     {ref.code}
@@ -1396,7 +1396,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                     e.preventDefault();
                     onNavigate("/resources/unit-conversion-reference");
                   }}
-                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   <BookOpen className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   Unit Conversion Reference (All Factors & Formulas)
@@ -1407,7 +1407,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                     e.preventDefault();
                     onNavigate("/resources/si-units-reference");
                   }}
-                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   <Scale className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                   SI Units & Metric Prefixes Reference
@@ -1418,7 +1418,7 @@ export default function EngineeringUnitsReference({ onNavigate }: EngineeringUni
                     e.preventDefault();
                     onNavigate("/calculators");
                   }}
-                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   <ArrowRight className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   Engineering Calculators Directory

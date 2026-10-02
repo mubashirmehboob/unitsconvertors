@@ -935,7 +935,7 @@ export default function ConverterTool({
         </div>
 
         {/* Calculation Result Display Panel */}
-        <div className="mt-5 p-4 rounded-2xl bg-slate-50/50 dark:bg-slate-950/20 border border-slate-150 dark:border-slate-800/80 flex flex-row items-center justify-between gap-4">
+        <div className="mt-5 px-4 py-3 rounded-2xl bg-slate-50/50 dark:bg-slate-950/20 border border-slate-150 dark:border-slate-800/80 flex flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4 overflow-hidden max-w-full">
             <div className="hidden sm:flex items-center justify-center h-10 w-10 rounded-full bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/30 text-emerald-500 shrink-0">
               <Check className="h-5 w-5 stroke-[3]" />

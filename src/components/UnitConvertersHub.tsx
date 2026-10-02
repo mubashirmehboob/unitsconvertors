@@ -91,7 +91,7 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
   });
 
   return (
-    <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950 pb-16">
+    <div className="min-h-screen bg-white dark:bg-slate-900 pb-16">
       {/* Top Banner Accent */}
       <div className="h-1 bg-gradient-to-r from-blue-600 via-teal-500 to-sky-600" />
 
@@ -113,7 +113,7 @@ export default function UnitConvertersHub({ onNavigate }: UnitConvertersHubProps
         </nav>
 
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 sm:p-10 shadow-sm mb-10">
+        <div className="relative overflow-hidden rounded-3xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm mb-10">
           <div className="relative z-10 max-w-3xl">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
               Unit Converters

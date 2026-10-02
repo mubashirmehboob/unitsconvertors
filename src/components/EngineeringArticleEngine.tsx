@@ -49,7 +49,7 @@ export default function EngineeringArticleEngine({
 
         {/* Real-World Applications & Industries Grid (Sections 2 & 3) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
+          <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <h3 className="font-bold text-xs uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
               <Compass className="h-4 w-4 text-amber-500" />
               2. Primary Applications
@@ -64,7 +64,7 @@ export default function EngineeringArticleEngine({
             </ul>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
+          <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <h3 className="font-bold text-xs uppercase tracking-wider text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
               <Award className="h-4 w-4 text-blue-500" />
               3. Key Industries & Sector Deployment
@@ -146,7 +146,7 @@ export default function EngineeringArticleEngine({
 
           <div className="space-y-3">
             {article.inputParameters.map((inp, idx) => (
-              <div key={idx} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-1 text-xs">
+              <div key={idx} className="p-3.5 rounded-xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200/80 dark:border-slate-800 space-y-1 text-xs">
                 <div className="flex items-center justify-between font-bold text-slate-900 dark:text-slate-100">
                   <span><FormattedText text={inp.label} /> (<FormattedText text={inp.name} />)</span>
                   <span className="font-mono text-amber-600 dark:text-amber-400">{inp.defaultValue} <FormattedText text={inp.unit} /></span>
@@ -233,7 +233,7 @@ export default function EngineeringArticleEngine({
 
         <div className="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           <FormattedText as="p" className="italic font-medium text-slate-700 dark:text-slate-200" text={article.practicalExample.industryContext} />
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
+          <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <span className="font-bold text-slate-900 dark:text-slate-100 block text-xs uppercase tracking-wider">
               Problem Statement:
             </span>
@@ -322,7 +322,7 @@ export default function EngineeringArticleEngine({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {article.bestPractices.map((tip, idx) => (
-              <div key={idx} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-2.5">
+              <div key={idx} className="p-3.5 rounded-xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200/80 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-2.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
                 <FormattedText as="span" text={tip} />
               </div>
@@ -351,7 +351,7 @@ export default function EngineeringArticleEngine({
             return (
               <div 
                 key={idx}
-                className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-950/50 overflow-hidden transition-all"
+                className="rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-slate-50/45 dark:bg-slate-950/45 overflow-hidden transition-all"
               >
                 <button
                   onClick={() => toggleFaq(idx)}
@@ -387,7 +387,7 @@ export default function EngineeringArticleEngine({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {article.standardsReferences.map((ref, idx) => (
-            <div key={idx} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-1">
+            <div key={idx} className="p-3.5 rounded-xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-200/80 dark:border-slate-800 space-y-1">
               <div className="flex items-center justify-between text-xs font-bold text-slate-900 dark:text-slate-100">
                 <span className="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-mono text-[10px]">
                   {ref.organization}

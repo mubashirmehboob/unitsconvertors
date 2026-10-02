@@ -1098,7 +1098,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <FormattedText as="p" className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" text={customArticle.relationship} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
             {customArticle.relationshipItems?.map((item, idx) => (
-              <div key={idx} className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+              <div key={idx} className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-center">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider"><FormattedText text={item.label} /></span>
                 <span className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200 mt-1"><FormattedText text={item.value} /></span>
               </div>
@@ -1114,7 +1114,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             </h3>
             <div className="flex flex-col gap-4">
               {customArticle.examples.items?.map((ex, idx) => (
-                <div key={idx} className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+                <div key={idx} className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
                   <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider"><FormattedText text={ex.title} /></span>
                   <p className="font-semibold text-slate-800 dark:text-slate-200 text-sm"><FormattedText text={ex.subtitle} /></p>
                   <ol className="list-decimal pl-5 text-xs sm:text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -1137,7 +1137,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
               <table className="w-full text-left text-sm border-collapse">
                 <thead>
-                  <tr className="bg-[var(--background-secondary)] dark:bg-slate-950 border-b border-[var(--border-subtle)] dark:border-slate-800">
+                  <tr className="bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800">
                     {customArticle.table.headers?.map((h, hIdx) => (
                       <th key={hIdx} className={`p-4 font-bold text-slate-900 dark:text-white ${hIdx >= 2 ? 'hidden sm:table-cell' : ''}`}><FormattedText text={h} /></th>
                     ))}
@@ -1145,7 +1145,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                 </thead>
                 <tbody className="divide-y divide-[var(--divider-subtle)] dark:divide-slate-800 bg-[var(--surface)] dark:bg-slate-900/50">
                   {customArticle.table.rows?.map((row, rIdx) => (
-                    <tr key={rIdx} className="hover:bg-[var(--surface-hover)] dark:hover:bg-slate-950/20 transition-all">
+                    <tr key={rIdx} className="hover:bg-[var(--surface-hover)] dark:hover:bg-slate-800/40 transition-all">
                       <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400"><FormattedText text={row.fromVal} /></td>
                       <td className="p-4 font-mono font-bold text-slate-900 dark:text-white"><FormattedText text={row.toVal} /></td>
                       <td className="p-4 text-xs text-slate-400 font-mono hidden sm:table-cell"><FormattedText text={row.extra} /></td>
@@ -1338,7 +1338,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+                <tr className="bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800">
                   <th className="p-4 font-display font-bold text-slate-900 dark:text-white">Meters (m)</th>
                   <th className="p-4 font-display font-bold text-slate-900 dark:text-white">Kilometers (km)</th>
                 </tr>
@@ -1427,7 +1427,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <p className="font-bold">
             Formula:
           </p>
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-lg">
+          <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-lg">
             Kilometers = Meters ÷ 1,000
           </div>
           <h4 className="font-display font-bold text-slate-900 dark:text-white mt-2">
@@ -1436,7 +1436,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <p>
             Suppose you want to convert <strong>3,500 meters</strong> into kilometers.
           </p>
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-blue-600 dark:text-cyan-400">
+          <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-blue-600 dark:text-cyan-400">
             3,500 ÷ 1,000 = 3.5 km
           </div>
           <p>
@@ -1511,7 +1511,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               >
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-950 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
+                  className="w-full flex items-center justify-between p-5 bg-slate-50/45 dark:bg-slate-950/45 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""}`} />
@@ -1649,7 +1649,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+                <tr className="bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800">
                   <th className="p-4 font-display font-bold text-slate-900 dark:text-white">Meters (m)</th>
                   <th className="p-4 font-display font-bold text-slate-900 dark:text-white">Centimeters (cm)</th>
                 </tr>
@@ -1738,7 +1738,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <p className="font-bold">
             Formula:
           </p>
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-lg">
+          <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-lg">
             Centimeters = Meters × 100
           </div>
           <h4 className="font-display font-bold text-slate-900 dark:text-white mt-2">
@@ -1747,7 +1747,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <p>
             Suppose you want to convert <strong>4.25 meters</strong> into centimeters.
           </p>
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-blue-600 dark:text-cyan-400">
+          <div className="p-4 rounded-2xl bg-slate-50/45 dark:bg-slate-950/45 border border-slate-100 dark:border-slate-800 font-mono font-bold text-center text-blue-600 dark:text-cyan-400">
             4.25 × 100 = 425 cm
           </div>
           <p>
@@ -1821,7 +1821,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               >
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-950 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
+                  className="w-full flex items-center justify-between p-5 bg-slate-50/45 dark:bg-slate-950/45 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""}`} />
@@ -1984,11 +1984,11 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             Within the decimal-based structure of the metric system, prefix steps progress by powers of ten. Because a millimeter is extremely small, it takes exactly one thousand of them to stretch across a single standard meter.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-center">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Meters to Millimeters</span>
               <span className="text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">1 Meter = 1,000 Millimeters</span>
             </div>
-            <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-center">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Millimeters to Meters</span>
               <span className="text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">1 Millimeter = 0.001 Meters</span>
             </div>
@@ -2020,7 +2020,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             Step-by-Step Conversion Examples
           </h3>
           <div className="flex flex-col gap-4">
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 1: Converting Whole Numbers</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 3 meters to millimeters.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2031,7 +2031,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               </ul>
             </div>
             
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 2: Converting Decimal Numbers</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 0.45 meters to millimeters.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2042,7 +2042,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               </ul>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 3: High Precision Value</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 1.875 meters to millimeters.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2066,7 +2066,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <table className="w-full text-left text-sm border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+                <tr className="bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800">
                   <th className="p-4 font-bold text-slate-900 dark:text-white">Meters (m)</th>
                   <th className="p-4 font-bold text-slate-900 dark:text-white">Millimeters (mm)</th>
                   <th className="p-4 font-bold text-slate-900 dark:text-white hidden sm:table-cell">Scientific Notation</th>
@@ -2086,7 +2086,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                   { m: "50", mm: "50,000", sci: "5 × 10⁴" },
                   { m: "100", mm: "100,000", sci: "1 × 10⁵" }
                 ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-950/20 transition-all">
+                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all">
                     <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400">{row.m} m</td>
                     <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.mm} mm</td>
                     <td className="p-4 text-xs text-slate-400 hidden sm:table-cell">{row.sci}</td>
@@ -2106,28 +2106,28 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             The transition from meters to millimeters is essential in physical sciences and technical domains, including:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Mechanical Engineering</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Machining parts, gears, engines, and mechanical brackets must be specified with millimeter and sub-millimeter tolerances to ensure absolute alignment, even if the primary device dimensions span several meters.
               </p>
             </div>
             
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Architecture & Blueprint Drafting</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Blueprints for large-scale buildings display floor layouts in meters but call out wall thickness, structural gaps, window fittings, and structural beams in precise millimeters to avoid assembly issues.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Woodworking & Carpentry</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 While timber and panels are purchased and measured in meters, joint cuts, groove recess depth, and screw holes are calculated in millimeters to ensure tight, seamless fits.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Scientific Research & Physics Labs</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Optics experiments track lens distances and laser path deviations in millimeters, even when using laboratory tables spanning multiple meters.
@@ -2165,7 +2165,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               >
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-950 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
+                  className="w-full flex items-center justify-between p-5 bg-slate-50/45 dark:bg-slate-950/45 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""}`} />
@@ -2328,11 +2328,11 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             In the base-10 SI framework, increments scale exponentially. Because the micrometer is exceptionally small, it takes exactly one million individual micrometers to span the physical length of a single standard meter.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-center">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Meters to Micrometers</span>
               <span className="text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">1 Meter = 1,000,000 Micrometers</span>
             </div>
-            <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-center">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Micrometers to Meters</span>
               <span className="text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">1 Micrometer = 0.000001 Meters</span>
             </div>
@@ -2364,7 +2364,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             Step-by-Step Conversion Examples
           </h3>
           <div className="flex flex-col gap-4">
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 1: Converting Whole Numbers</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 2 meters to micrometers.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2375,7 +2375,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               </ul>
             </div>
             
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 2: Converting Small Decimals</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 0.00035 meters to micrometers.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2386,7 +2386,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               </ul>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 3: Mixed Fractional Value</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 1.25 meters to micrometers.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2410,7 +2410,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <table className="w-full text-left text-sm border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+                <tr className="bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800">
                   <th className="p-4 font-bold text-slate-900 dark:text-white">Meters (m)</th>
                   <th className="p-4 font-bold text-slate-900 dark:text-white">Micrometers (µm)</th>
                   <th className="p-4 font-bold text-slate-900 dark:text-white hidden sm:table-cell">Scientific Notation</th>
@@ -2430,7 +2430,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                   { m: "5", um: "5,000,000", sci: "5 × 10⁶" },
                   { m: "10", um: "10,000,000", sci: "1 × 10⁷" }
                 ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-950/20 transition-all">
+                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all">
                     <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400">{row.m} m</td>
                     <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.um} µm</td>
                     <td className="p-4 text-xs text-slate-400 hidden sm:table-cell">{row.sci}</td>
@@ -2450,28 +2450,28 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             Converting length values from standard meters to microscopic micrometers is a standard practice in several high-tech disciplines:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Semiconductor Manufacturing</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Integrated circuits and silicon microchips require layout dimensions mapped in micrometers. Modern transistor gates and circuitry traces are designed within fractional micrometer scales to fit millions of components onto a single millimeter of space.
               </p>
             </div>
             
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Microbiology & Cytology</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Biologists and medical lab scientists measure the diameters of red blood cells (typically 6–8 µm), hair strands (typically 50–100 µm), and bacterium cells in micrometers. They convert microscope slide coordinates from centimeters or meters into exact micrometers.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Optics & Laser Science</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Wavelengths of infrared light, optical fiber core widths, and laser beam diameters are calculated and aligned using micrometer measurements. This ensures optimal light coupling and minimal signal degradation.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Precision Engineering & Machining</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 High-end CNC machinery and metal lathes operate under tolerances calibrated to micrometers. Even if the workpiece spans several meters, the structural clearance gaps must be machined to precise micrometer fits to prevent mechanical friction or loose fits.
@@ -2509,7 +2509,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               >
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 bg-slate-50 dark:bg-slate-950 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
+                  className="w-full flex items-center justify-between p-5 bg-slate-50/45 dark:bg-slate-950/45 font-display font-bold text-left text-slate-900 dark:text-white hover:opacity-90 transition-all text-sm md:text-base"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""}`} />
@@ -2635,7 +2635,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             <p className="text-slate-700 dark:text-slate-300">
               There are exactly <strong>1,000,000,000 (one billion) nanometers</strong> in a single standard <strong>meter</strong>.
             </p>
-            <div className="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 font-mono text-center">
+            <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 font-mono text-center">
               <span className="text-xl md:text-2xl font-black text-blue-600 dark:text-cyan-400">1 m = 1,000,000,000 nm</span>
               <span className="block text-xs text-slate-400 mt-1 font-sans">Equivalent to 10⁹ nanometers (Scientific Notation)</span>
             </div>
@@ -2651,7 +2651,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             Understanding the Units: Meter and Nanometer
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
-            <div className="flex flex-col gap-2 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950">
+            <div className="flex flex-col gap-2 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
               <h4 className="font-display font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-blue-500" />
                 The Meter (m)
@@ -2660,7 +2660,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                 The <strong>meter</strong> is the fundamental base unit of length in the International System of Units (SI). Historically defined as one ten-millionth of the distance from the Earth's equator to the North Pole, it is now defined by modern physics as the exact distance traveled by light in a vacuum during a time interval of 1/299,792,458 of a second. The meter is the universal baseline for length from which all larger and smaller metric measurements are derived.
               </p>
             </div>
-            <div className="flex flex-col gap-2 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950">
+            <div className="flex flex-col gap-2 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
               <h4 className="font-display font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-cyan-500" />
                 The Nanometer (nm)
@@ -2681,11 +2681,11 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             In the decimal-based metric hierarchy, SI prefixes denote specific power-of-ten multipliers. The prefix "nano-" designates 10⁻⁹ (one-billionth). Because the unit scale decreases by a factor of one billion, the numerical representation of a length expands by that same magnitude when moving from meters to nanometers.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-            <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-center">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Meters to Nanometers</span>
               <span className="text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">1 Meter = 1,000,000,000 Nanometers</span>
             </div>
-            <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col justify-center">
+            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-center">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nanometers to Meters</span>
               <span className="text-lg font-bold text-slate-800 dark:text-slate-200 mt-1">1 Nanometer = 0.000000001 Meters</span>
             </div>
@@ -2717,7 +2717,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             Step-by-Step Conversion Examples
           </h3>
           <div className="flex flex-col gap-4">
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 1: Converting Whole Numbers</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 2 meters to nanometers.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2728,7 +2728,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               </ul>
             </div>
             
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 2: Converting Decimal Numbers</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 0.00015 meters to nanometers.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2739,7 +2739,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
               </ul>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Example 3: Nano-Scale Scientific Value</span>
               <p className="font-semibold text-slate-800 dark:text-slate-200">Convert 0.000000085 meters to nanometers.</p>
               <ul className="list-disc pl-5 text-sm space-y-1 text-slate-500 dark:text-slate-400">
@@ -2763,7 +2763,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <table className="w-full text-left text-sm border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+                <tr className="bg-slate-50/45 dark:bg-slate-950/45 border-b border-slate-200 dark:border-slate-800">
                   <th className="p-4 font-bold text-slate-900 dark:text-white">Meters (m)</th>
                   <th className="p-4 font-bold text-slate-900 dark:text-white">Nanometers (nm)</th>
                   <th className="p-4 font-bold text-slate-900 dark:text-white hidden sm:table-cell">Scientific Notation</th>
@@ -2783,7 +2783,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
                   { m: "0.5", nm: "500,000,000", sci: "5 × 10⁸ nm" },
                   { m: "1", nm: "1,000,000,000", sci: "1 × 10⁹ nm" }
                 ].map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-950/20 transition-all">
+                  <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all">
                     <td className="p-4 font-mono font-bold text-blue-600 dark:text-cyan-400">{row.m} m</td>
                     <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{row.nm} nm</td>
                     <td className="p-4 text-xs text-slate-400 font-mono hidden sm:table-cell">{row.sci}</td>
@@ -2803,28 +2803,28 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
             Length translations between meters and nanometers are highly common in the following modern industries and disciplines:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Semiconductor & CPU Manufacturing</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Computer hardware engineers design silicon microchips with transistor gates measuring only 2 to 5 nanometers. Silicon wafers themselves span about 0.3 meters (300 mm) in diameter, requiring high-precision conversions during the lithography setup.
               </p>
             </div>
             
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Optics & Laser Engineering</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Wavelengths of visible light are measured in nanometers (e.g., green light spans 520–560 nm). Laser manufacturers configure optical lenses spanning standard meter distances but calibrate laser emitter output in precise nanometers.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Virology & Molecular Biology</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Viruses are measured on the nanometer scale (ranging from 20 to 400 nm). Scientists analyzing cellular structures or DNA strands convert macroscopic laboratory equipment sizes (in meters) to atomic scales to study chemical interactions.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex flex-col gap-2">
+            <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col gap-2">
               <span className="text-xs font-extrabold text-blue-600 dark:text-cyan-400 uppercase tracking-wider">Materials Science</span>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Carbon nanotubes and graphene layers are engineered to have a thickness of under 1 nm while stretching over centimeters or meters in final commercial products. This requires seamless multi-scale length tracking.
@@ -2987,7 +2987,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
           <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
             Curious how the math works under the hood? Here is a complete breakdown explaining how our dynamic calculation engine translates 10 {fromUnit.plural} into {toUnit.plural}:
           </p>
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-5 font-mono text-xs md:text-sm flex flex-col gap-3">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/45 dark:bg-slate-950/45 p-5 font-mono text-xs md:text-sm flex flex-col gap-3">
             {article.stepByStep.map((step, idx) => (
               <div key={idx} className="flex gap-3">
                 <span className="text-blue-500 font-bold">[{idx + 1}]</span>

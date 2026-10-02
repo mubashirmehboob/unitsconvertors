@@ -3,6 +3,7 @@ import path from "path";
 import { categoriesData } from "../src/data/convertersData";
 import { engineeringCalculatorsData, engineeringCalculatorRegistry } from "../src/data/calculatorsData";
 import { articleRegistry } from "../src/data/articles";
+import { publishedGuides } from "../src/data/guidesData";
 import { ENGINEERING_INDEXABLE } from "../src/utils/classificationEngine";
 import { getCategoryRouteSlug } from "../src/utils/categoryRoutes";
 
@@ -45,6 +46,7 @@ function generateSitemap() {
     { path: "validator", priority: "0.8", changefreq: "weekly" },
     { path: "directory", priority: "0.8", changefreq: "weekly" },
     { path: "converters", priority: "0.9", changefreq: "daily" },
+    { path: "guides", priority: "0.9", changefreq: "weekly" },
     ...(ENGINEERING_INDEXABLE ? [{ path: "engineering-calculators", priority: "0.9", changefreq: "weekly" }] : [])
   ];
 
@@ -136,6 +138,20 @@ function generateSitemap() {
         priority: "0.8"
       });
       engineeringCalculatorCount++;
+    }
+  }
+
+  // F. Future Published Educational Guides (Eligible automatically when added to publishedGuides)
+  let publishedGuideCount = 0;
+  for (const guide of publishedGuides) {
+    if (guide.slug) {
+      addEntry({
+        url: `${BASE_URL}/guides/${guide.slug}`,
+        lastmod: guide.updatedAt || currentDate,
+        changefreq: "monthly",
+        priority: "0.8"
+      });
+      publishedGuideCount++;
     }
   }
 

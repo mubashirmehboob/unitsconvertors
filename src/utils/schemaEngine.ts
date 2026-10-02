@@ -66,6 +66,59 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
   const schemas: any[] = [];
   const { page, category, fromUnit, toUnit, toolId } = params;
 
+  // GUIDES HUB INDEX PAGE (/guides)
+  if (page === "guides") {
+    const guidesUrl = `${DOMAIN}/guides`;
+    schemas.push(ORGANIZATION_SCHEMA);
+    schemas.push(WEBSITE_SCHEMA);
+
+    // CollectionPage & WebPage Schema (Accurate to visible page, NO fake article schema)
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Guides | Unit Conversion & Measurement Resources",
+      "description": "Practical guides to unit conversion, measurement systems, SI units, conversion formulas, and related reference topics from UnitsConvertors.com.",
+      "url": guidesUrl,
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UnitsConvertors.com",
+        "url": DOMAIN,
+        "logo": {
+          "@type": "ImageObject",
+          "url": LOGO_URL
+        }
+      }
+    });
+
+    // Breadcrumbs Schema: Home > Guides
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${DOMAIN}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": guidesUrl
+        }
+      ]
+    });
+
+    return schemas;
+  }
+
   // UNIT CONVERSION REFERENCE RESOURCE PAGE
   if (page === "unit-conversion-reference") {
     const referenceUrl = `${DOMAIN}/resources/unit-conversion-reference`;

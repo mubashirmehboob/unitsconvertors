@@ -278,7 +278,7 @@ export default function EngineeringCalculatorWidget({
                   const found = disciplineTools.find(t => t.id === e.target.value);
                   if (found) onSelectTool(found);
                 }}
-                className="h-10 px-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer shadow-sm"
+                className="h-10 px-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer shadow-sm"
               >
                 {disciplineTools.map(t => (
                   <option key={t.id} value={t.id}>
@@ -326,7 +326,7 @@ export default function EngineeringCalculatorWidget({
                     step="any"
                     value={calcInputs[inp.name] ?? inp.defaultValue}
                     onChange={(e) => handleInputChange(inp.name, e.target.value)}
-                    className="w-full h-11 pl-4 pr-12 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all shadow-sm"
+                    className="w-full h-11 pl-4 pr-12 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500 transition-all shadow-sm"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400 pointer-events-none">
                     {inp.unit}
@@ -349,7 +349,7 @@ export default function EngineeringCalculatorWidget({
           </div>
 
           {/* Verification Footnote */}
-          <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/90 dark:bg-slate-950/80 text-xs text-slate-600 dark:text-slate-400 space-y-1.5 shadow-2xs">
+          <div className="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/45 dark:bg-slate-950/45 text-xs text-slate-600 dark:text-slate-400 space-y-1.5 shadow-2xs">
             <span className="font-bold text-slate-900 dark:text-slate-100 block tracking-tight">
               {tool.id === "degree-to-dms-calc" || tool.id === "decimal-degree-to-dms-calc" || tool.id === "degree-to-decimal-degree-calc"
                 ? "Geodetic & Angular Coordinate Verification:"

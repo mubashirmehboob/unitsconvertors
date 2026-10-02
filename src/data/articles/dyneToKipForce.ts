@@ -3,9 +3,10 @@ import { CustomArticleData } from "./types";
 export const dyneToKipForce: CustomArticleData = {
   fromUnitId: "dyne",
   toUnitId: "kip-force",
-  seoTitle: "Dyne to Kip Converter (dyn to kipf) | UnitsConvertors.com",
-  metaDescription: "Convert Dynes to Kips / Kip-force (dyn to kipf) accurately. Explore the CGS to structural engineering load conversion, exact formulas, examples, and tables.",
-  h1: "Dyne to Kip Converter",
+  seoTitle: "Dyne to Kip-force Converter (dyn to kipf) | UnitsConvertors.com",
+  metaDescription: "Convert dynes to kips / kip-force (dyn to kipf) accurately. Explore the CGS to structural engineering load conversion, exact formulas, examples, and tables.",
+  canonicalUrl: "https://unitsconvertors.com/converters/force/dyne-to-kip-force",
+  h1: "Dyne to Kip-force Converter",
   introduction: [
     "The dyne (dyn) and the kip (or kip-force, symbol: kipf / klb) represent opposite extremes of mechanical force measurement. The dyne is a precision metric unit from the centimeter-gram-second (CGS) system, while the kip is a large-scale unit widely used in American civil and structural engineering.",
     "One kip equals exactly 1,000 pounds-force (4,448.22 Newtons), representing structural loads on beams, columns, bridges, and foundation pilings. In contrast, one dyne is a sub-millinewton force (10⁻⁵ N).",

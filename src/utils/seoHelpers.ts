@@ -26,6 +26,40 @@ export function updatePageMeta(title: string, description: string, canonicalUrl?
     }
     canonical.setAttribute("href", canonicalUrl);
   }
+
+  // Open Graph tags
+  const setMetaProperty = (property: string, content: string) => {
+    let tag = document.querySelector(`meta[property="${property}"]`);
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.setAttribute("property", property);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", content);
+  };
+
+  setMetaProperty("og:title", title);
+  setMetaProperty("og:description", description);
+  setMetaProperty("og:type", "website");
+  setMetaProperty("og:site_name", "UnitsConvertors");
+  if (canonicalUrl) {
+    setMetaProperty("og:url", canonicalUrl);
+  }
+
+  // Twitter cards
+  const setMetaName = (name: string, content: string) => {
+    let tag = document.querySelector(`meta[name="${name}"]`);
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.setAttribute("name", name);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", content);
+  };
+
+  setMetaName("twitter:card", "summary");
+  setMetaName("twitter:title", title);
+  setMetaName("twitter:description", description);
 }
 
 export function updateRobotsTag(indexable = true) {
