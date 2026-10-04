@@ -26,17 +26,35 @@ export interface GuideItem {
 import { whatIsUnitConversionGuide } from "./guides/whatIsUnitConversion";
 import { howToConvertUnitsGuide } from "./guides/howToConvertUnits";
 import { unitConversionExplainedGuide } from "./guides/unitConversionExplained";
+import { howUnitConversionFormulasWorkGuide } from "./guides/howUnitConversionFormulasWork";
+import { metricVsImperialUnitsGuide } from "./guides/metricVsImperialUnits";
+import { siUnitsExplainedGuide } from "./guides/siUnitsExplained";
+import { commonMeasurementUnitsConversionFactorsGuide } from "./guides/commonMeasurementUnitsConversionFactors";
+import { unitConversionFactorsGuide } from "./guides/unitConversionFactors";
+import { howToConvertBetweenUnitSystemsGuide } from "./guides/howToConvertBetweenUnitSystems";
 
 export {
   whatIsUnitConversionGuide,
   howToConvertUnitsGuide,
-  unitConversionExplainedGuide
+  unitConversionExplainedGuide,
+  howUnitConversionFormulasWorkGuide,
+  metricVsImperialUnitsGuide,
+  siUnitsExplainedGuide,
+  commonMeasurementUnitsConversionFactorsGuide,
+  unitConversionFactorsGuide,
+  howToConvertBetweenUnitSystemsGuide
 };
 
 /**
  * Current published guides list.
  */
 export const publishedGuides: GuideItem[] = [
+  commonMeasurementUnitsConversionFactorsGuide,
+  unitConversionFactorsGuide,
+  howToConvertBetweenUnitSystemsGuide,
+  howUnitConversionFormulasWorkGuide,
+  metricVsImperialUnitsGuide,
+  siUnitsExplainedGuide,
   whatIsUnitConversionGuide,
   howToConvertUnitsGuide,
   unitConversionExplainedGuide

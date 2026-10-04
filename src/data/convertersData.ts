@@ -666,8 +666,12 @@ export const categoriesData: Category[] = [
       { id: "ampere", name: "Ampere", plural: "Amperes", symbol: "A", factor: 1 },
       { id: "milliampere", name: "Milliampere", plural: "Milliamperes", symbol: "mA", factor: 0.001 },
       { id: "microampere", name: "Microampere", plural: "Microamperes", symbol: "µA", factor: 0.000001 },
+      { id: "nanoampere", name: "Nanoampere", plural: "Nanoamperes", symbol: "nA", factor: 0.000000001 },
+      { id: "picoampere", name: "Picoampere", plural: "Picoamperes", symbol: "pA", factor: 0.000000000001 },
       { id: "kiloampere", name: "Kiloampere", plural: "Kiloamperes", symbol: "kA", factor: 1000 },
-      { id: "abampere", name: "Abampere", plural: "Abamperes", symbol: "abA", factor: 10 }
+      { id: "abampere", name: "Abampere", plural: "Abamperes", symbol: "abA", factor: 10 },
+      { id: "biot", name: "Biot", plural: "Biots", symbol: "Bi", factor: 10 },
+      { id: "statampere", name: "Statampere", plural: "Statamperes", symbol: "statA", factor: 3.33564095198152e-10 }
     ]
   },
   {

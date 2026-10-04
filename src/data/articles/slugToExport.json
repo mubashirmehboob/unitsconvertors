@@ -2695,6 +2695,30 @@
     "file": "squareFootToSquareMeter",
     "varName": "squareFootToSquareMeter"
   },
+  "square-foot-to-square-yard": {
+    "file": "squareFootToSquareYard",
+    "varName": "squareFootToSquareYard"
+  },
+  "square-foot-to-square-inch": {
+    "file": "squareFootToSquareInch",
+    "varName": "squareFootToSquareInch"
+  },
+  "square-yard-to-square-foot": {
+    "file": "squareYardToSquareFoot",
+    "varName": "squareYardToSquareFoot"
+  },
+  "square-yard-to-square-meter": {
+    "file": "squareYardToSquareMeter",
+    "varName": "squareYardToSquareMeter"
+  },
+  "square-yard-to-square-inch": {
+    "file": "squareYardToSquareInch",
+    "varName": "squareYardToSquareInch"
+  },
+  "square-inch-to-square-foot": {
+    "file": "squareInchToSquareFoot",
+    "varName": "squareInchToSquareFoot"
+  },
   "steradian-to-spat": {
     "file": "steradianToSpat",
     "varName": "steradianToSpatArticle"
@@ -3323,14 +3347,152 @@
     "file": "gallonPerMinToCmhUnit",
     "varName": "gallonPerMinToCmhUnit"
   },
-  "radian-to-circular-mil-angle": "radianToCircularMilAngle",
-  "gradian-to-degree": "gradianToDegree",
-  "gradian-to-radian": "gradianToRadian",
-  "gradian-to-arcminute": "gradianToArcminute",
-  "gradian-to-arcsecond": "gradianToArcsecond",
-  "gradian-to-revolution": "gradianToRevolution",
-  "gradian-to-mil-angle": "gradianToMilAngle",
-  "gradian-to-turn-angle": "gradianToTurnAngle",
-  "gradian-to-quadrant-angle": "gradianToQuadrantAngle",
-  "radian-to-grad-angle": "radianToGradAngle"
+  "radian-to-circular-mil-angle": {
+    "file": "radianToCircularMilAngle",
+    "varName": "radianToCircularMilAngle"
+  },
+  "gradian-to-degree": {
+    "file": "gradianToDegree",
+    "varName": "gradianToDegree"
+  },
+  "gradian-to-radian": {
+    "file": "gradianToRadian",
+    "varName": "gradianToRadian"
+  },
+  "gradian-to-arcminute": {
+    "file": "gradianToArcminute",
+    "varName": "gradianToArcminute"
+  },
+  "gradian-to-arcsecond": {
+    "file": "gradianToArcsecond",
+    "varName": "gradianToArcsecond"
+  },
+  "gradian-to-revolution": {
+    "file": "gradianToRevolution",
+    "varName": "gradianToRevolution"
+  },
+  "gradian-to-mil-angle": {
+    "file": "gradianToMilAngle",
+    "varName": "gradianToMilAngle"
+  },
+  "gradian-to-turn-angle": {
+    "file": "gradianToTurnAngle",
+    "varName": "gradianToTurnAngle"
+  },
+  "gradian-to-quadrant-angle": {
+    "file": "gradianToQuadrantAngle",
+    "varName": "gradianToQuadrantAngle"
+  },
+  "radian-to-grad-angle": {
+    "file": "radianToGradAngle",
+    "varName": "radianToGradAngle"
+  },
+  "ampere-to-nanoampere": {
+    "file": "ampereToNanoampere",
+    "varName": "ampereToNanoampere"
+  },
+  "ampere-to-picoampere": {
+    "file": "ampereToPicoampere",
+    "varName": "ampereToPicoampere"
+  },
+  "ampere-to-statampere": {
+    "file": "ampereToStatampere",
+    "varName": "ampereToStatampere"
+  },
+  "ampere-to-biot": {
+    "file": "ampereToBiot",
+    "varName": "ampereToBiot"
+  },
+  "milliampere-to-nanoampere": {
+    "file": "milliampereToNanoampere",
+    "varName": "milliampereToNanoampere"
+  },
+  "milliampere-to-picoampere": {
+    "file": "milliampereToPicoampere",
+    "varName": "milliampereToPicoampere"
+  },
+  "milliampere-to-statampere": {
+    "file": "milliampereToStatampere",
+    "varName": "milliampereToStatampere"
+  },
+  "milliampere-to-biot": {
+    "file": "milliampereToBiot",
+    "varName": "milliampereToBiot"
+  },
+  "microampere-to-nanoampere": {
+    "file": "microampereToNanoampere",
+    "varName": "microampereToNanoampere"
+  },
+  "kbps-to-Tbps": {
+    "file": "kilobitPerSecToTerabitPerSec",
+    "varName": "kbpsToTbpsArticle"
+  },
+  "kbps-to-tbps": {
+    "file": "kilobitPerSecToTerabitPerSec",
+    "varName": "kbpsToTbpsArticle"
+  },
+  "kbps-to-KBps": {
+    "file": "kilobitPerSecToKilobytePerSec",
+    "varName": "kbpsToKilobytePerSecArticle"
+  },
+  "kbps-to-kbps": {
+    "file": "kilobitPerSecToKilobytePerSec",
+    "varName": "kbpsToKilobytePerSecArticle"
+  },
+  "kbps-to-MBps": {
+    "file": "kilobitPerSecToMegabytePerSec",
+    "varName": "kbpsToMegabytePerSecArticle"
+  },
+  "kbps-to-mbps": {
+    "file": "kilobitPerSecToMegabytePerSec",
+    "varName": "kbpsToMegabytePerSecArticle"
+  },
+  "kbps-to-GBps": {
+    "file": "kilobitPerSecToGigabytePerSec",
+    "varName": "kbpsToGigabytePerSecArticle"
+  },
+  "kbps-to-gbps": {
+    "file": "kilobitPerSecToGigabytePerSec",
+    "varName": "kbpsToGigabytePerSecArticle"
+  },
+  "Mbps-to-bps": {
+    "file": "megabitPerSecToBitPerSec",
+    "varName": "mbpsToBitPerSecArticle"
+  },
+  "mbps-to-bps": {
+    "file": "megabitPerSecToBitPerSec",
+    "varName": "mbpsToBitPerSecArticle"
+  },
+  "Mbps-to-Bps": {
+    "file": "megabitPerSecToBytePerSec",
+    "varName": "mbpsToBytePerSecArticle"
+  },
+  "Mbps-to-kbps": {
+    "file": "megabitPerSecToKilobitPerSec",
+    "varName": "mbpsToKbpsArticle"
+  },
+  "mbps-to-kbps": {
+    "file": "megabitPerSecToKilobitPerSec",
+    "varName": "mbpsToKbpsArticle"
+  },
+  "Mbps-to-Gbps": {
+    "file": "megabitPerSecToGigabitPerSec",
+    "varName": "mbpsToGbpsArticle"
+  },
+  "mbps-to-gbps": {
+    "file": "megabitPerSecToGigabitPerSec",
+    "varName": "mbpsToGbpsArticle"
+  },
+  "Mbps-to-Tbps": {
+    "file": "megabitPerSecToTerabitPerSec",
+    "varName": "mbpsToTbpsArticle"
+  },
+  "mbps-to-tbps": {
+    "file": "megabitPerSecToTerabitPerSec",
+    "varName": "mbpsToTbpsArticle"
+  },
+  "Mbps-to-KBps": {
+    "file": "megabitPerSecToKilobytePerSec",
+    "varName": "mbpsToKilobytePerSecArticle"
+  }
 }

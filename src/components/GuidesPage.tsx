@@ -13,6 +13,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { publishedGuides, getGuideBySlug, GuideItem } from "../data/guidesData";
+import { renderGuideHtml } from "../utils/guideRenderer";
 
 interface GuidesPageProps {
   onNavigate: (route: string, fromUnit?: string, toUnit?: string, extraPage?: string) => void;
@@ -75,7 +76,7 @@ export default function GuidesPage({ onNavigate, currentGuideSlug }: GuidesPageP
             {activeGuide.content && (
               <div 
                 className="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: activeGuide.content }}
+                dangerouslySetInnerHTML={{ __html: renderGuideHtml(activeGuide.content) }}
                 onClick={(e) => {
                   const target = (e.target as HTMLElement).closest("a");
                   if (target) {

@@ -711,7 +711,13 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "cubic-inch-to-cubic-foot": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
   "cubic-inch-to-cubic-yard": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
   "cubic-inch-to-cubic-meter": { seoReady: true, publishedAt: "2026-09-01", updatedAt: "2026-09-01", priority: 0.95 },
-  "square-foot-to-square-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-08-11", priority: 0.9 },
+  "square-foot-to-square-meter": { seoReady: true, publishedAt: "2026-08-11", updatedAt: "2026-10-04", priority: 0.95 },
+  "square-foot-to-square-yard": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "square-foot-to-square-inch": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "square-yard-to-square-foot": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "square-yard-to-square-meter": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "square-yard-to-square-inch": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "square-inch-to-square-foot": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
 
   "steradian-to-spat": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
   "steradian-to-square-degree": { seoReady: true, publishedAt: "2026-08-13", updatedAt: "2026-08-13", priority: 0.9 },
@@ -892,7 +898,28 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "gradian-to-revolution": { seoReady: true, publishedAt: "2026-10-02", updatedAt: "2026-10-02", priority: 0.95 },
   "gradian-to-mil-angle": { seoReady: true, publishedAt: "2026-10-02", updatedAt: "2026-10-02", priority: 0.95 },
   "gradian-to-turn-angle": { seoReady: true, publishedAt: "2026-10-02", updatedAt: "2026-10-02", priority: 0.95 },
-  "gradian-to-quadrant-angle": { seoReady: true, publishedAt: "2026-10-02", updatedAt: "2026-10-02", priority: 0.95 }
+  "gradian-to-quadrant-angle": { seoReady: true, publishedAt: "2026-10-02", updatedAt: "2026-10-02", priority: 0.95 },
+
+  "ampere-to-nanoampere": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "ampere-to-picoampere": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "ampere-to-statampere": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "ampere-to-biot": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "milliampere-to-nanoampere": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "milliampere-to-picoampere": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "milliampere-to-statampere": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "milliampere-to-biot": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+  "microampere-to-nanoampere": { seoReady: true, publishedAt: "2026-10-03", updatedAt: "2026-10-03", priority: 0.95 },
+
+  "kbps-to-Tbps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "kbps-to-KBps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "kbps-to-MBps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "kbps-to-GBps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "Mbps-to-bps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "Mbps-to-Bps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "Mbps-to-kbps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "Mbps-to-Gbps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "Mbps-to-Tbps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+  "Mbps-to-KBps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 }
 };
 
 export const seoReadySlugs = new Set<string>(
