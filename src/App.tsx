@@ -21,9 +21,9 @@ import { SITE_URL } from "./constants";
 import { getGuideBySlug } from "./data/guidesData";
 
 // Lazy-loaded components for optimal code-splitting and core web vitals
+import EngineeringCalculatorCategories from "./components/EngineeringCalculatorCategories";
 const SEOContent = React.lazy(() => import("./components/SEOContent"));
 const FaqAccordion = React.lazy(() => import("./components/FaqAccordion"));
-const FeaturedConverters = React.lazy(() => import("./components/FeaturedConverters"));
 const InternalLinkingDirectory = React.lazy(() => import("./components/InternalLinkingDirectory"));
 const ValidatorPage = React.lazy(() => import("./components/ValidatorPage"));
 const EngineeringCalculatorsView = React.lazy(() => import("./components/EngineeringCalculatorsView"));
@@ -749,14 +749,8 @@ export default function App() {
                 <div className="flex flex-col gap-8 sm:gap-10 pb-[25px] animate-in fade-in duration-300">
                   
                   {/* HERO SECTION */}
-                  <section 
-                    className="relative overflow-hidden bg-slate-50/45 dark:bg-slate-950/45 rounded-b-3xl border-b border-x border-slate-100 dark:border-slate-900 pt-5 pb-[15px] flex flex-col items-center"
-                    style={{ 
-                      backgroundImage: 'radial-gradient(circle, rgba(148, 163, 184, 0.08) 1.5px, transparent 1.5px)', 
-                      backgroundSize: '24px 24px' 
-                    }}
-                  >
-                      <div className="w-full max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 relative z-10 text-center items-center">
+                  <section className="relative pt-5 pb-[15px] flex flex-col items-center">
+                    <div className="w-full max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 relative z-10 text-center items-center -mb-10 pb-[15px]">
                       
                       {/* Live Converter Tool Component */}
                       <div className="w-full mt-2">
@@ -771,7 +765,7 @@ export default function App() {
                       </div>
 
                       {/* Row of 4 trust benefit badges */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 -mt-2 pt-0 px-0 w-full max-w-[910px] border-0">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-0 pt-0 px-0 w-full max-w-[910px] border-0">
                         {/* Benefit 1 */}
                         <div className="flex items-center gap-3 justify-center md:justify-start">
                           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 border border-blue-100/40 dark:border-blue-900/20">
@@ -902,10 +896,8 @@ export default function App() {
                     )}
                   </section>
 
-                  {/* POPULAR CONVERTERS */}
-                  <React.Suspense fallback={<div className="py-8 text-center text-slate-400">Loading popular converters...</div>}>
-                    <FeaturedConverters onNavigate={handleNavigate} />
-                  </React.Suspense>
+                  {/* ENGINEERING CALCULATOR CATEGORIES */}
+                  <EngineeringCalculatorCategories onNavigate={handleNavigate} />
 
                   {/* WHY CHOOSE US (6 PREMIUM FEATURE CARDS) */}
                   <section className="bg-[var(--background-secondary)] dark:bg-slate-900/10 border-y border-[var(--border-subtle)] dark:border-slate-800/80 py-[32px] my-2">
