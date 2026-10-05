@@ -32,6 +32,7 @@ import { siUnitsExplainedGuide } from "./guides/siUnitsExplained";
 import { commonMeasurementUnitsConversionFactorsGuide } from "./guides/commonMeasurementUnitsConversionFactors";
 import { unitConversionFactorsGuide } from "./guides/unitConversionFactors";
 import { howToConvertBetweenUnitSystemsGuide } from "./guides/howToConvertBetweenUnitSystems";
+import { commonUnitConversionMistakesGuide } from "./guides/commonUnitConversionMistakes";
 
 export {
   whatIsUnitConversionGuide,
@@ -42,13 +43,15 @@ export {
   siUnitsExplainedGuide,
   commonMeasurementUnitsConversionFactorsGuide,
   unitConversionFactorsGuide,
-  howToConvertBetweenUnitSystemsGuide
+  howToConvertBetweenUnitSystemsGuide,
+  commonUnitConversionMistakesGuide
 };
 
 /**
  * Current published guides list.
  */
 export const publishedGuides: GuideItem[] = [
+  commonUnitConversionMistakesGuide,
   commonMeasurementUnitsConversionFactorsGuide,
   unitConversionFactorsGuide,
   howToConvertBetweenUnitSystemsGuide,

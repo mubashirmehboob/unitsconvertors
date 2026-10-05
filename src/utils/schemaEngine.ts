@@ -6,6 +6,7 @@ import { HOME_FAQS } from "../data/homeFaqs";
 import { REFERENCE_FAQS } from "../data/referenceData";
 import { SI_FAQS } from "../data/siReferenceData";
 import { ENGINEERING_FAQS } from "../data/engineeringReferenceData";
+import { getGuideBySlug } from "../data/guidesData";
 
 export interface SchemaRouteParams {
   page: string;
@@ -66,8 +67,74 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
   const schemas: any[] = [];
   const { page, category, fromUnit, toUnit, toolId } = params;
 
-  // GUIDES HUB INDEX PAGE (/guides)
+  // GUIDES HUB INDEX PAGE (/guides) & INDIVIDUAL GUIDES (/guides/:slug)
   if (page === "guides") {
+    if (category) {
+      const guide = getGuideBySlug(category);
+      if (guide) {
+        const guideUrl = `${DOMAIN}/guides/${guide.slug}`;
+        schemas.push(ORGANIZATION_SCHEMA);
+        schemas.push(WEBSITE_SCHEMA);
+
+        // Article Schema for individual published educational guide
+        schemas.push({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": guideUrl
+          },
+          "headline": guide.title,
+          "description": guide.description,
+          "image": LOGO_URL,
+          "author": {
+            "@type": "Organization",
+            "name": "UnitsConvertors.com",
+            "url": DOMAIN
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "UnitsConvertors.com",
+            "url": DOMAIN,
+            "logo": {
+              "@type": "ImageObject",
+              "url": LOGO_URL
+            }
+          },
+          "datePublished": guide.publishedAt || "2026-10-01",
+          "dateModified": guide.updatedAt || guide.publishedAt || "2026-10-05"
+        });
+
+        // Breadcrumbs Schema: Home > Guides > [Guide Title]
+        schemas.push({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": `${DOMAIN}/`
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Guides",
+              "item": `${DOMAIN}/guides`
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": guide.title,
+              "item": guideUrl
+            }
+          ]
+        });
+
+        return schemas;
+      }
+    }
+
     const guidesUrl = `${DOMAIN}/guides`;
     schemas.push(ORGANIZATION_SCHEMA);
     schemas.push(WEBSITE_SCHEMA);

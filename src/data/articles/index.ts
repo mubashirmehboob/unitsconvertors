@@ -919,7 +919,18 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "Mbps-to-kbps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
   "Mbps-to-Gbps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
   "Mbps-to-Tbps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
-  "Mbps-to-KBps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 }
+  "Mbps-to-KBps": { seoReady: true, publishedAt: "2026-10-04", updatedAt: "2026-10-04", priority: 0.95 },
+
+  "newton-centimeter-to-newton-meter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "newton-centimeter-to-pound-foot": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "newton-centimeter-to-pound-inch": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "newton-centimeter-to-kilogram-force-meter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "newton-centimeter-to-dyne-centimeter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "dyne-centimeter-to-newton-meter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "dyne-centimeter-to-pound-foot": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "dyne-centimeter-to-pound-inch": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "dyne-centimeter-to-kilogram-force-meter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "dyne-centimeter-to-newton-centimeter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 }
 };
 
 export const seoReadySlugs = new Set<string>(

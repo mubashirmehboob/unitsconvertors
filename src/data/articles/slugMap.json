@@ -729,5 +729,15 @@
   "mbps-to-gbps": "megabitPerSecToGigabitPerSec",
   "Mbps-to-Tbps": "megabitPerSecToTerabitPerSec",
   "mbps-to-tbps": "megabitPerSecToTerabitPerSec",
-  "Mbps-to-KBps": "megabitPerSecToKilobytePerSec"
+  "Mbps-to-KBps": "megabitPerSecToKilobytePerSec",
+  "newton-centimeter-to-newton-meter": "newtonCentimeterToNewtonMeter",
+  "newton-centimeter-to-pound-foot": "newtonCentimeterToPoundFoot",
+  "newton-centimeter-to-pound-inch": "newtonCentimeterToPoundInch",
+  "newton-centimeter-to-kilogram-force-meter": "newtonCentimeterToKilogramForceMeter",
+  "newton-centimeter-to-dyne-centimeter": "newtonCentimeterToDyneCentimeter",
+  "dyne-centimeter-to-newton-meter": "dyneCentimeterToNewtonMeter",
+  "dyne-centimeter-to-pound-foot": "dyneCentimeterToPoundFoot",
+  "dyne-centimeter-to-pound-inch": "dyneCentimeterToPoundInch",
+  "dyne-centimeter-to-kilogram-force-meter": "dyneCentimeterToKilogramForceMeter",
+  "dyne-centimeter-to-newton-centimeter": "dyneCentimeterToNewtonCentimeter"
 }
