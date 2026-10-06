@@ -31,7 +31,7 @@ export default function GuidesPage({ onNavigate, currentGuideSlug }: GuidesPageP
       return (
         <div className="min-h-screen bg-white dark:bg-slate-900">
           {/* Breadcrumbs */}
-          <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/45 dark:bg-slate-950/45">
+          <div className="border-none bg-transparent">
             <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
               <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                 <a
@@ -106,7 +106,7 @@ export default function GuidesPage({ onNavigate, currentGuideSlug }: GuidesPageP
     return (
       <div className="min-h-screen bg-white dark:bg-slate-900">
         {/* Breadcrumbs */}
-        <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/45 dark:bg-slate-950/45">
+        <div className="border-none bg-transparent">
           <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
               <a
@@ -169,7 +169,7 @@ export default function GuidesPage({ onNavigate, currentGuideSlug }: GuidesPageP
     <div className="min-h-screen bg-white dark:bg-slate-900">
       
       {/* Breadcrumb Bar */}
-      <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/45 dark:bg-slate-950/45">
+      <div className="border-none bg-transparent">
         <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             <a

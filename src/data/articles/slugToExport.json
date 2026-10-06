@@ -3534,5 +3534,125 @@
   "dyne-centimeter-to-newton-centimeter": {
     "file": "dyneCentimeterToNewtonCentimeter",
     "varName": "dyneCentimeterToNewtonCentimeter"
+  },
+  "gal-acceleration-to-gravity-acceleration": {
+    "file": "galAccelerationToGravityAcceleration",
+    "varName": "galAccelerationToGravityAcceleration"
+  },
+  "gal-to-standard-gravity-g": {
+    "file": "galAccelerationToGravityAcceleration",
+    "varName": "galAccelerationToGravityAcceleration"
+  },
+  "gal-acceleration-to-milligal-acceleration": {
+    "file": "galAccelerationToMilligalAcceleration",
+    "varName": "galAccelerationToMilligalAcceleration"
+  },
+  "gal-to-milligal": {
+    "file": "galAccelerationToMilligalAcceleration",
+    "varName": "galAccelerationToMilligalAcceleration"
+  },
+  "gal-acceleration-to-kilometer-per-hour-second": {
+    "file": "galAccelerationToKilometerPerHourSecond",
+    "varName": "galAccelerationToKilometerPerHourSecond"
+  },
+  "gal-to-km-h-s": {
+    "file": "galAccelerationToKilometerPerHourSecond",
+    "varName": "galAccelerationToKilometerPerHourSecond"
+  },
+  "gal-acceleration-to-mile-per-hour-second": {
+    "file": "galAccelerationToMilePerHourSecond",
+    "varName": "galAccelerationToMilePerHourSecond"
+  },
+  "gal-to-mph-s": {
+    "file": "galAccelerationToMilePerHourSecond",
+    "varName": "galAccelerationToMilePerHourSecond"
+  },
+  "milligal-acceleration-to-meter-per-second-squared": {
+    "file": "milligalAccelerationToMeterPerSecondSquared",
+    "varName": "milligalAccelerationToMeterPerSecondSquared"
+  },
+  "milligal-to-meter-sec-2": {
+    "file": "milligalAccelerationToMeterPerSecondSquared",
+    "varName": "milligalAccelerationToMeterPerSecondSquared"
+  },
+  "milligal-acceleration-to-foot-per-second-squared": {
+    "file": "milligalAccelerationToFootPerSecondSquared",
+    "varName": "milligalAccelerationToFootPerSecondSquared"
+  },
+  "milligal-to-foot-sec-2": {
+    "file": "milligalAccelerationToFootPerSecondSquared",
+    "varName": "milligalAccelerationToFootPerSecondSquared"
+  },
+  "milligal-acceleration-to-gravity-acceleration": {
+    "file": "milligalAccelerationToGravityAcceleration",
+    "varName": "milligalAccelerationToGravityAcceleration"
+  },
+  "milligal-to-standard-gravity-g": {
+    "file": "milligalAccelerationToGravityAcceleration",
+    "varName": "milligalAccelerationToGravityAcceleration"
+  },
+  "milligal-acceleration-to-gal-acceleration": {
+    "file": "milligalAccelerationToGalAcceleration",
+    "varName": "milligalAccelerationToGalAcceleration"
+  },
+  "milligal-to-gal": {
+    "file": "milligalAccelerationToGalAcceleration",
+    "varName": "milligalAccelerationToGalAcceleration"
+  },
+  "milligal-acceleration-to-kilometer-per-hour-second": {
+    "file": "milligalAccelerationToKilometerPerHourSecond",
+    "varName": "milligalAccelerationToKilometerPerHourSecond"
+  },
+  "milligal-to-km-h-s": {
+    "file": "milligalAccelerationToKilometerPerHourSecond",
+    "varName": "milligalAccelerationToKilometerPerHourSecond"
+  },
+  "milligal-acceleration-to-mile-per-hour-second": {
+    "file": "milligalAccelerationToMilePerHourSecond",
+    "varName": "milligalAccelerationToMilePerHourSecond"
+  },
+  "milligal-to-mph-s": {
+    "file": "milligalAccelerationToMilePerHourSecond",
+    "varName": "milligalAccelerationToMilePerHourSecond"
+  },
+  "microohm-to-ohm": {
+    "file": "microohmToOhm",
+    "varName": "microohmToOhm"
+  },
+  "microohm-to-kilohm": {
+    "file": "microohmToKilohm",
+    "varName": "microohmToKilohm"
+  },
+  "microohm-to-megohm": {
+    "file": "microohmToMegohm",
+    "varName": "microohmToMegohm"
+  },
+  "microohm-to-milliohm": {
+    "file": "microohmToMilliohm",
+    "varName": "microohmToMilliohm"
+  },
+  "microohm-to-gigaohm": {
+    "file": "microohmToGigaohm",
+    "varName": "microohmToGigaohm"
+  },
+  "gigaohm-to-ohm": {
+    "file": "gigaohmToOhm",
+    "varName": "gigaohmToOhm"
+  },
+  "gigaohm-to-kilohm": {
+    "file": "gigaohmToKilohm",
+    "varName": "gigaohmToKilohm"
+  },
+  "gigaohm-to-megohm": {
+    "file": "gigaohmToMegohm",
+    "varName": "gigaohmToMegohm"
+  },
+  "gigaohm-to-milliohm": {
+    "file": "gigaohmToMilliohm",
+    "varName": "gigaohmToMilliohm"
+  },
+  "gigaohm-to-microohm": {
+    "file": "gigaohmToMicroohm",
+    "varName": "gigaohmToMicroohm"
   }
 }
