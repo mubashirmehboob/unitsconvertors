@@ -789,6 +789,7 @@ export const categoriesData: Category[] = [
     description: "Convert electrical capacitance values including farads, microfarads, nanofarads, and picofarads.",
     baseUnitId: "farad",
     units: [
+      { id: "kilofarad", name: "Kilofarad", plural: "Kilofarads", symbol: "kF", factor: 1000 },
       { id: "farad", name: "Farad", plural: "Farads", symbol: "F", factor: 1 },
       { id: "millifarad", name: "Millifarad", plural: "Millifarads", symbol: "mF", factor: 0.001 },
       { id: "microfarad", name: "Microfarad", plural: "Microfarads", symbol: "µF", factor: 0.000001 },

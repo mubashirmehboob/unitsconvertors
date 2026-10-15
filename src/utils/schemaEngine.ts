@@ -61,6 +61,35 @@ export const WEBSITE_SCHEMA = {
 };
 
 /**
+ * Extracts FAQ questions and answers from guide HTML/markdown content
+ */
+function extractFaqsFromGuideContent(content?: string): { question: string; answer: string }[] {
+  if (!content) return [];
+  const faqs: { question: string; answer: string }[] = [];
+  const faqSectionMatch = content.match(/(?:Frequently Asked Questions|FAQ)[\s\S]*?(?:<\/section>|## References|<h2 id="references"|$)/i);
+  if (!faqSectionMatch) return faqs;
+  const faqBlock = faqSectionMatch[0];
+
+  const htmlRegex = /<h3[^>]*>([^<]+)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi;
+  let match: RegExpExecArray | null;
+  while ((match = htmlRegex.exec(faqBlock)) !== null) {
+    const q = match[1].trim();
+    const a = match[2].replace(/<[^>]+>/g, "").trim();
+    if (q.endsWith("?")) {
+      faqs.push({ question: q, answer: a });
+    }
+  }
+
+  if (faqs.length === 0) {
+    const mdRegex = /###\s+([^\n]+\?)\n+([\s\S]*?)(?=\n###|\n##|$)/g;
+    while ((match = mdRegex.exec(faqBlock)) !== null) {
+      faqs.push({ question: match[1].trim(), answer: match[2].replace(/<[^>]+>/g, "").trim() });
+    }
+  }
+  return faqs;
+}
+
+/**
  * Generates complete, valid, Google-compatible Schema.org structured data array for any route
  */
 export function generatePageSchemas(params: SchemaRouteParams): any[] {
@@ -130,6 +159,23 @@ export function generatePageSchemas(params: SchemaRouteParams): any[] {
             }
           ]
         });
+
+        // FAQPage Schema for Guide when FAQs exist
+        const guideFaqs = extractFaqsFromGuideContent(guide.content);
+        if (guideFaqs.length > 0) {
+          schemas.push({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": guideFaqs.map(f => ({
+              "@type": "Question",
+              "name": f.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": f.answer
+              }
+            }))
+          });
+        }
 
         return schemas;
       }

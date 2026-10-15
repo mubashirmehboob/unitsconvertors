@@ -32,7 +32,7 @@ const UnitConvertersHub = React.lazy(() => import("./components/UnitConvertersHu
 const UnitConversionReference = React.lazy(() => import("./components/UnitConversionReference"));
 const SiUnitsReference = React.lazy(() => import("./components/SiUnitsReference"));
 const EngineeringUnitsReference = React.lazy(() => import("./components/EngineeringUnitsReference"));
-const GuidesPage = React.lazy(() => import("./components/GuidesPage"));
+import GuidesPage from "./components/GuidesPage";
 
 const constructionCalcRedirects: Record<string, string> = {
   "board-foot-to-sq-foot": "board-foot-to-sq-foot",
@@ -61,13 +61,158 @@ const constructionCalcRedirects: Record<string, string> = {
   "cubic-meter-concrete-to-sq-meter-construction": "cubic-meter-to-sq-meter",
 };
 
+export interface RouteState {
+  page: string;
+  category: string;
+  fromUnit: string;
+  toUnit: string;
+}
+
+/**
+ * Synchronous Route Parser
+ * Determines the exact page, category, and unit parameters directly from pathname
+ * on the very first render tick. This eliminates the race condition where subpages
+ * briefly mount as 'home' and inadvertently flash the homepage canonical URL.
+ */
+export function parseRouteFromPath(path: string, hash: string = ""): RouteState {
+  const cleanHash = (hash || "").replace(/^#\/?/, "");
+
+  if ((!path || path === "/") && cleanHash) {
+    const catByHash = getCategoryByRouteSlug(cleanHash) || categoriesData.find(c => c.id === cleanHash || `${c.id}-conversion` === cleanHash);
+    if (catByHash) {
+      return { page: "category", category: catByHash.id, fromUnit: "", toUnit: "" };
+    }
+  }
+
+  if (!path || path === "/") {
+    return { page: "home", category: "", fromUnit: "", toUnit: "" };
+  }
+
+  const segments = path.split("/").filter(Boolean);
+  if (segments.length === 0) {
+    return { page: "home", category: "", fromUnit: "", toUnit: "" };
+  }
+
+  const first = segments[0];
+  const supportPages = ["about", "contact", "privacy", "privacy-policy", "terms", "disclaimer", "sitemap", "favorites", "validator", "converters"];
+  
+  if (first === "guides") {
+    if (segments.length === 1) {
+      return { page: "guides", category: "", fromUnit: "", toUnit: "" };
+    } else {
+      return { page: "guides", category: segments[1], fromUnit: "", toUnit: "" };
+    }
+  } else if (first === "calculators" || first === "engineering-calculators") {
+    if (segments.length === 1) {
+      return { page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" };
+    } else if (segments.length === 2) {
+      const second = segments[1];
+      const catSlug = getCategorySlugForDiscipline(second);
+      const matchedDisc = engineeringCalculatorsData.find(d => 
+        d.id === second || getCategorySlugForDiscipline(d.id) === catSlug || d.id.replace("-calc", "") === second.replace("-calc", "")
+      );
+      if (matchedDisc) {
+        return { page: "engineering-category", category: matchedDisc.id, fromUnit: "", toUnit: "" };
+      } else {
+        return { page: "engineering-calculators", category: "", fromUnit: "", toUnit: "" };
+      }
+    } else if (segments.length >= 3) {
+      const second = segments[1];
+      const third = segments[2];
+      const catSlug = getCategorySlugForDiscipline(second);
+      const matchedDisc = engineeringCalculatorsData.find(d => 
+        d.id === second || getCategorySlugForDiscipline(d.id) === catSlug || d.id.replace("-calc", "") === second.replace("-calc", "")
+      );
+      if (matchedDisc) {
+        const matchedTool = matchedDisc.tools.find(t => t.slug === third || t.id === third);
+        return { 
+          page: "engineering-category", 
+          category: matchedDisc.id, 
+          fromUnit: matchedTool ? matchedTool.id : third, 
+          toUnit: "" 
+        };
+      }
+    }
+  } else if (engineeringCalculatorsData.some(d => d.id === first || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(first))) {
+    const matchedDisc = engineeringCalculatorsData.find(d => d.id === first || getCategorySlugForDiscipline(d.id) === getCategorySlugForDiscipline(first));
+    if (matchedDisc) {
+      if (segments.length > 1) {
+        const second = segments[1];
+        const matchedTool = matchedDisc.tools.find(t => t.slug === second || t.id === second);
+        return {
+          page: "engineering-category",
+          category: matchedDisc.id,
+          fromUnit: matchedTool ? matchedTool.id : second,
+          toUnit: ""
+        };
+      } else {
+        return { page: "engineering-category", category: matchedDisc.id, fromUnit: "", toUnit: "" };
+      }
+    }
+  } else if (first === "resources") {
+    if (segments.length >= 2 && segments[1] === "unit-conversion-reference") {
+      return { page: "unit-conversion-reference", category: "", fromUnit: "", toUnit: "" };
+    } else if (segments.length >= 2 && segments[1] === "si-units-reference") {
+      return { page: "si-units-reference", category: "", fromUnit: "", toUnit: "" };
+    } else if (segments.length >= 2 && segments[1] === "engineering-units-reference") {
+      return { page: "engineering-units-reference", category: "", fromUnit: "", toUnit: "" };
+    }
+  } else if (first === "unit-conversion-reference") {
+    return { page: "unit-conversion-reference", category: "", fromUnit: "", toUnit: "" };
+  } else if (first === "si-units-reference") {
+    return { page: "si-units-reference", category: "", fromUnit: "", toUnit: "" };
+  } else if (first === "engineering-units-reference") {
+    return { page: "engineering-units-reference", category: "", fromUnit: "", toUnit: "" };
+  } else if (first === "converters") {
+    if (segments.length === 1) {
+      return { page: "converters", category: "", fromUnit: "", toUnit: "" };
+    } else if (segments.length === 2) {
+      const second = segments[1];
+      const cat = categoriesData.find((c) => c.id === second) || getCategoryByRouteSlug(second);
+      if (cat) return { page: "category", category: cat.id, fromUnit: "", toUnit: "" };
+      return { page: "converters", category: "", fromUnit: "", toUnit: "" };
+    } else if (segments.length >= 3) {
+      const second = segments[1];
+      const third = segments[2];
+      const cat = categoriesData.find((c) => c.id === second) || getCategoryByRouteSlug(second);
+      if (cat) {
+        const parts = third.split("-to-");
+        if (parts.length === 2) {
+          return { page: "converter", category: cat.id, fromUnit: parts[0], toUnit: parts[1] };
+        }
+        return { page: "category", category: cat.id, fromUnit: "", toUnit: "" };
+      }
+    }
+  } else if (supportPages.includes(first)) {
+    return { page: first, category: "", fromUnit: "", toUnit: "" };
+  } else {
+    const cat = getCategoryByRouteSlug(first) || categoriesData.find(c => c.id === first);
+    if (cat) {
+      if (segments.length > 1) {
+        const parts = segments[1].split("-to-");
+        if (parts.length === 2) {
+          return { page: "converter", category: cat.id, fromUnit: parts[0], toUnit: parts[1] };
+        }
+      }
+      return { page: "category", category: cat.id, fromUnit: "", toUnit: "" };
+    }
+  }
+
+  return { page: "home", category: "", fromUnit: "", toUnit: "" };
+}
+
 export default function App() {
-  // Routing State
-  const [route, setRoute] = useState({
-    page: "home", // "home", "about", "contact", "privacy", "terms", "disclaimer", "sitemap", "favorites", "category", "converter"
-    category: "",
-    fromUnit: "",
-    toUnit: ""
+  // Routing State - synchronously initialized from window.location.pathname to prevent canonical/title flash
+  const [route, setRoute] = useState<RouteState>(() => {
+    if (typeof window !== "undefined") {
+      return parseRouteFromPath(window.location.pathname, window.location.hash);
+    }
+    return {
+      page: "home",
+      category: "",
+      fromUnit: "",
+      toUnit: ""
+    };
   });
 
   // Quick Converter Widget States
@@ -1966,6 +2111,74 @@ export default function App() {
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     Force, pressure, torque, energy, and thermodynamics units.
                   </p>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-2.5">
+                  Popular Educational Guides
+                </span>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <a
+                    href="/guides/how-to-convert-units"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("guides", "how-to-convert-units");
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors"
+                  >
+                    How to Convert Units
+                  </a>
+                  <a
+                    href="/guides/si-units-explained"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("guides", "si-units-explained");
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors"
+                  >
+                    SI Units Explained
+                  </a>
+                  <a
+                    href="/guides/metric-vs-imperial-units"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("guides", "metric-vs-imperial-units");
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors"
+                  >
+                    Metric vs Imperial Units
+                  </a>
+                  <a
+                    href="/guides/common-unit-conversion-mistakes"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("guides", "common-unit-conversion-mistakes");
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors"
+                  >
+                    Common Conversion Mistakes
+                  </a>
+                  <a
+                    href="/guides/unit-conversion-factors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("guides", "unit-conversion-factors");
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors"
+                  >
+                    Unit Conversion Factors
+                  </a>
+                  <a
+                    href="/guides/how-to-convert-between-unit-systems"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate("guides", "how-to-convert-between-unit-systems");
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 transition-colors"
+                  >
+                    Convert Between Unit Systems
+                  </a>
                 </div>
               </div>
             </div>

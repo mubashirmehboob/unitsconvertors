@@ -930,12 +930,34 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "dyne-centimeter-to-pound-foot": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
   "dyne-centimeter-to-pound-inch": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
   "dyne-centimeter-to-kilogram-force-meter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
-  "dyne-centimeter-to-newton-centimeter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 }
+  "dyne-centimeter-to-newton-centimeter": { seoReady: true, publishedAt: "2026-10-05", updatedAt: "2026-10-05", priority: 0.95 },
+  "farad-to-kilofarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "kilofarad-to-farad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "millifarad-to-kilofarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "kilofarad-to-millifarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "microfarad-to-kilofarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "kilofarad-to-microfarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "nanofarad-to-kilofarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "kilofarad-to-nanofarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "kilofarad-to-picofarad": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "megacoulomb-to-coulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "megacoulomb-to-ampere-hour": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "megacoulomb-to-milliampere-hour": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "megacoulomb-to-kilocoulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "megacoulomb-to-faraday": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "faraday-to-coulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "faraday-to-ampere-hour": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "faraday-to-milliampere-hour": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "faraday-to-kilocoulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "faraday-to-megacoulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 }
 };
 
-export const seoReadySlugs = new Set<string>(
-  Object.keys(articleRegistry).filter((key) => articleRegistry[key].seoReady)
-);
+import slugToExportJson from "./slugToExport.json";
+
+export const seoReadySlugs = new Set<string>([
+  ...Object.keys(articleRegistry).filter((key) => articleRegistry[key].seoReady),
+  ...Object.keys(slugToExportJson)
+]);
 
 /**
  * Checks if a specific converter pair has a complete, search-indexable article.

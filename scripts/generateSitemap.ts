@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { categoriesData } from "../src/data/convertersData";
 import { engineeringCalculatorsData, engineeringCalculatorRegistry } from "../src/data/calculatorsData";
-import { articleRegistry } from "../src/data/articles";
+import { articleRegistry, isSeoReady } from "../src/data/articles";
 import { publishedGuides } from "../src/data/guidesData";
 import { ENGINEERING_INDEXABLE } from "../src/utils/classificationEngine";
 import { getCategoryRouteSlug } from "../src/utils/categoryRoutes";
@@ -87,14 +87,15 @@ function generateSitemap() {
 
         converterPairCount++;
         const metadata = articleRegistry[pairKey];
+        const hasBespoke = Boolean(metadata) || isSeoReady(unitA.id, unitB.id);
 
         let priority = "0.7";
         let lastmod = currentDate;
 
-        if (metadata) {
+        if (hasBespoke) {
           bespokeArticleCount++;
-          if (metadata.updatedAt) lastmod = metadata.updatedAt;
-          if (typeof metadata.priority === "number") {
+          if (metadata && metadata.updatedAt) lastmod = metadata.updatedAt;
+          if (metadata && typeof metadata.priority === "number") {
             priority = metadata.priority.toFixed(1);
           } else {
             priority = "0.9";
@@ -148,8 +149,8 @@ function generateSitemap() {
       addEntry({
         url: `${BASE_URL}/guides/${guide.slug}`,
         lastmod: guide.updatedAt || currentDate,
-        changefreq: "monthly",
-        priority: "0.8"
+        changefreq: "weekly",
+        priority: "0.9"
       });
       publishedGuideCount++;
     }

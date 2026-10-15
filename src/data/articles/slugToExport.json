@@ -3654,5 +3654,85 @@
   "gigaohm-to-microohm": {
     "file": "gigaohmToMicroohm",
     "varName": "gigaohmToMicroohm"
+  },
+  "farad-to-kilofarad": {
+    "file": "faradToKilofarad",
+    "varName": "faradToKilofarad"
+  },
+  "kilofarad-to-farad": {
+    "file": "kilofaradToFarad",
+    "varName": "kilofaradToFarad"
+  },
+  "millifarad-to-kilofarad": {
+    "file": "millifaradToKilofarad",
+    "varName": "millifaradToKilofarad"
+  },
+  "kilofarad-to-millifarad": {
+    "file": "kilofaradToMillifarad",
+    "varName": "kilofaradToMillifarad"
+  },
+  "microfarad-to-kilofarad": {
+    "file": "microfaradToKilofarad",
+    "varName": "microfaradToKilofarad"
+  },
+  "kilofarad-to-microfarad": {
+    "file": "kilofaradToMicrofarad",
+    "varName": "kilofaradToMicrofarad"
+  },
+  "nanofarad-to-kilofarad": {
+    "file": "nanofaradToKilofarad",
+    "varName": "nanofaradToKilofarad"
+  },
+  "kilofarad-to-nanofarad": {
+    "file": "kilofaradToNanofarad",
+    "varName": "kilofaradToNanofarad"
+  },
+  "picofarad-to-kilofarad": {
+    "file": "picofaradToKilofarad",
+    "varName": "picofaradToKilofarad"
+  },
+  "kilofarad-to-picofarad": {
+    "file": "kilofaradToPicofarad",
+    "varName": "kilofaradToPicofarad"
+  },
+  "megacoulomb-to-coulomb": {
+    "file": "megacoulombToCoulomb",
+    "varName": "megacoulombToCoulomb"
+  },
+  "megacoulomb-to-ampere-hour": {
+    "file": "megacoulombToAmpereHour",
+    "varName": "megacoulombToAmpereHour"
+  },
+  "megacoulomb-to-milliampere-hour": {
+    "file": "megacoulombToMilliampereHour",
+    "varName": "megacoulombToMilliampereHour"
+  },
+  "megacoulomb-to-kilocoulomb": {
+    "file": "megacoulombToKilocoulomb",
+    "varName": "megacoulombToKilocoulomb"
+  },
+  "megacoulomb-to-faraday": {
+    "file": "megacoulombToFaraday",
+    "varName": "megacoulombToFaraday"
+  },
+  "faraday-to-coulomb": {
+    "file": "faradayToCoulomb",
+    "varName": "faradayToCoulomb"
+  },
+  "faraday-to-ampere-hour": {
+    "file": "faradayToAmpereHour",
+    "varName": "faradayToAmpereHour"
+  },
+  "faraday-to-milliampere-hour": {
+    "file": "faradayToMilliampereHour",
+    "varName": "faradayToMilliampereHour"
+  },
+  "faraday-to-kilocoulomb": {
+    "file": "faradayToKilocoulomb",
+    "varName": "faradayToKilocoulomb"
+  },
+  "faraday-to-megacoulomb": {
+    "file": "faradayToMegacoulomb",
+    "varName": "faradayToMegacoulomb"
   }
 }

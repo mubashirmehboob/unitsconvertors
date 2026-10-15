@@ -5,6 +5,7 @@ import { generateSEOContent, performConversion, getStringHash, isValidPair } fro
 import { isSeoReady, CustomArticleData } from "../data/articles";
 import { getCustomArticle } from "../data/articles/articleLoader";
 import { categoriesData } from "../data/convertersData";
+import { publishedGuides } from "../data/guidesData";
 import { injectPageSchemas } from "../utils/schemaEngine";
 import { getCategoryRouteUrl } from "../utils/categoryRoutes";
 import { SITE_URL, LOGO_URL } from "../constants";
@@ -260,21 +261,51 @@ function RelatedGuidesSection({
     ]
   };
 
-  const guides = customArticles && customArticles.length > 0 
-    ? customArticles.map(art => ({ ...art, badge: "Educational Resource" }))
+  // Map category to real educational guide articles
+  const categoryGuideMapping: Record<string, string[]> = {
+    length: ["length-conversion", "metric-vs-imperial-units", "how-to-convert-units", "si-units-explained"],
+    "weight-mass": ["weight-conversion", "si-units-explained", "common-unit-conversion-mistakes", "how-to-convert-units"],
+    temperature: ["temperature-conversion", "how-unit-conversion-formulas-work", "how-to-convert-between-unit-systems"],
+    volume: ["volume-conversion", "common-measurement-units-conversion-factors", "how-to-convert-between-unit-systems"],
+    area: ["how-unit-conversion-formulas-work", "common-measurement-units-conversion-factors", "metric-vs-imperial-units"],
+    pressure: ["si-units-explained", "unit-conversion-factors", "how-to-convert-between-unit-systems"],
+    energy: ["si-units-explained", "unit-conversion-factors", "how-unit-conversion-formulas-work"],
+    power: ["si-units-explained", "unit-conversion-factors", "how-to-convert-units"],
+    speed: ["how-to-convert-units", "common-unit-conversion-mistakes", "metric-vs-imperial-units"],
+    force: ["si-units-explained", "unit-conversion-factors", "how-unit-conversion-formulas-work"],
+    time: ["si-units-explained", "unit-conversion-explained", "how-to-convert-units"],
+    "data-storage": ["how-unit-conversion-formulas-work", "common-unit-conversion-mistakes"]
+  };
+
+  const relevantSlugs = categoryGuideMapping[category.id] || [
+    "how-to-convert-units",
+    "common-unit-conversion-mistakes",
+    "unit-conversion-factors"
+  ];
+
+  const matchedGuides = relevantSlugs
+    .map(slug => publishedGuides.find(g => g.slug === slug))
+    .filter((g): g is NonNullable<typeof g> => Boolean(g))
+    .slice(0, 2);
+
+  const displayGuides = matchedGuides.length > 0
+    ? matchedGuides.map(g => ({
+        title: g.title,
+        description: g.description,
+        url: `/guides/${g.slug}`,
+        badge: "Educational Guide"
+      }))
     : (defaultCategoryGuides[category.id] || [
         {
           title: `${category.name} Unit Standards & Measurement Guide`,
           description: `Educational reference guide covering core units and conversion formulas in ${category.name}.`,
-          from: category.units[0]?.id || "",
-          to: category.units[1]?.id || "",
+          url: `/converters/${category.id}/${category.units[0]?.id || ""}-to-${category.units[1]?.id || ""}`,
           badge: "Category Guide"
         },
         {
           title: `SI & Imperial ${category.name} Calculations`,
           description: `Compare metric and customary unit definitions across scientific and industrial uses.`,
-          from: category.units[0]?.id || "",
-          to: category.units[2]?.id || category.units[1]?.id || "",
+          url: `/converters/${category.id}/${category.units[0]?.id || ""}-to-${category.units[2]?.id || category.units[1]?.id || ""}`,
           badge: "Educational Guide"
         }
       ]);
@@ -291,13 +322,21 @@ function RelatedGuidesSection({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-1">
-        {guides.map((guide, idx) => (
+        {displayGuides.map((guide, idx) => (
           <a
             key={idx}
-            href={`/converters/${category.id}/${guide.from}-to-${guide.to}`}
+            href={guide.url}
             onClick={(e) => {
               e.preventDefault();
-              onNavigate(category.id, guide.from, guide.to);
+              if (guide.url.startsWith("/guides/")) {
+                const slug = guide.url.replace("/guides/", "");
+                onNavigate("guides", slug);
+              } else {
+                const parts = guide.url.split("/").pop()?.split("-to-");
+                if (parts && parts.length === 2) {
+                  onNavigate(category.id, parts[0], parts[1]);
+                }
+              }
             }}
             className="p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 hover:border-indigo-500/80 dark:hover:border-indigo-500/80 hover:bg-white dark:hover:bg-slate-900 hover:shadow-sm transition-all duration-200 flex flex-col justify-between gap-3 text-left group"
           >
@@ -318,7 +357,7 @@ function RelatedGuidesSection({
             </div>
 
             <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-1 transition-transform">
-              <span>Read {guide.title}</span>
+              <span>Read Guide</span>
               <ChevronRight className="h-3.5 w-3.5" />
             </div>
           </a>
@@ -880,7 +919,7 @@ export default function SEOContent({ category, fromUnit, toUnit, onNavigate }: S
     setMetaName("twitter:description", pageDesc);
 
     // Dynamic SEO indexing control based on article completeness
-    const hasCompleteArticle = isSeoReady(fromUnit.id, toUnit.id);
+    const hasCompleteArticle = Boolean(customArticle) || isSeoReady(fromUnit.id, toUnit.id);
     const robotsContent = hasCompleteArticle ? "index, follow" : "noindex, follow";
 
     const robotsTag = document.querySelector('meta[name="robots"]');

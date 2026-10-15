@@ -224,7 +224,34 @@ export default function Footer({ onNavigate }: FooterProps) {
                   onClick={(e) => { e.preventDefault(); handleNav("guides"); }} 
                   className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left font-medium block py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
                 >
-                  Guides
+                  Guides Hub
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/guides/how-to-convert-units" 
+                  onClick={(e) => { e.preventDefault(); handleNav("guides", "how-to-convert-units"); }} 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left font-medium block py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+                >
+                  How to Convert Units
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/guides/si-units-explained" 
+                  onClick={(e) => { e.preventDefault(); handleNav("guides", "si-units-explained"); }} 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left font-medium block py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+                >
+                  SI Units Explained
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/guides/metric-vs-imperial-units" 
+                  onClick={(e) => { e.preventDefault(); handleNav("guides", "metric-vs-imperial-units"); }} 
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left font-medium block py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+                >
+                  Metric vs Imperial Units
                 </a>
               </li>
               <li>
