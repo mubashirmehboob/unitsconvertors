@@ -271,6 +271,46 @@
     "file": "megabecquerelToKilobecquerel",
     "varName": "megabecquerelToKilobecquerel"
   },
+  "becquerel-to-gigabecquerel": {
+    "file": "becquerelToGigabecquerel",
+    "varName": "becquerelToGigabecquerel"
+  },
+  "curie-to-gigabecquerel": {
+    "file": "curieToGigabecquerel",
+    "varName": "curieToGigabecquerel"
+  },
+  "rutherford-to-gigabecquerel": {
+    "file": "rutherfordToGigabecquerel",
+    "varName": "rutherfordToGigabecquerel"
+  },
+  "kilobecquerel-to-gigabecquerel": {
+    "file": "kilobecquerelToGigabecquerel",
+    "varName": "kilobecquerelToGigabecquerel"
+  },
+  "megabecquerel-to-gigabecquerel": {
+    "file": "megabecquerelToGigabecquerel",
+    "varName": "megabecquerelToGigabecquerel"
+  },
+  "gigabecquerel-to-becquerel": {
+    "file": "gigabecquerelToBecquerel",
+    "varName": "gigabecquerelToBecquerel"
+  },
+  "gigabecquerel-to-curie": {
+    "file": "gigabecquerelToCurie",
+    "varName": "gigabecquerelToCurie"
+  },
+  "gigabecquerel-to-rutherford": {
+    "file": "gigabecquerelToRutherford",
+    "varName": "gigabecquerelToRutherford"
+  },
+  "gigabecquerel-to-kilobecquerel": {
+    "file": "gigabecquerelToKilobecquerel",
+    "varName": "gigabecquerelToKilobecquerel"
+  },
+  "gigabecquerel-to-megabecquerel": {
+    "file": "gigabecquerelToMegabecquerel",
+    "varName": "gigabecquerelToMegabecquerel"
+  },
   "farad-to-millifarad": {
     "file": "faradToMillifarad",
     "varName": "faradToMillifarad"
@@ -3734,5 +3774,45 @@
   "faraday-to-megacoulomb": {
     "file": "faradayToMegacoulomb",
     "varName": "faradayToMegacoulomb"
+  },
+  "kilometer-to-hand": {
+    "file": "kilometerToHand",
+    "varName": "kilometerToHand"
+  },
+  "kilometer-to-cubit": {
+    "file": "kilometerToCubit",
+    "varName": "kilometerToCubit"
+  },
+  "centimeter-to-meter": {
+    "file": "centimeterToMeter",
+    "varName": "centimeterToMeter"
+  },
+  "centimeter-to-kilometer": {
+    "file": "centimeterToKilometer",
+    "varName": "centimeterToKilometer"
+  },
+  "centimeter-to-millimeter": {
+    "file": "centimeterToMillimeter",
+    "varName": "centimeterToMillimeter"
+  },
+  "centimeter-to-micrometer": {
+    "file": "centimeterToMicrometer",
+    "varName": "centimeterToMicrometer"
+  },
+  "centimeter-to-nanometer": {
+    "file": "centimeterToNanometer",
+    "varName": "centimeterToNanometer"
+  },
+  "centimeter-to-mile": {
+    "file": "centimeterToMile",
+    "varName": "centimeterToMile"
+  },
+  "centimeter-to-yard": {
+    "file": "centimeterToYard",
+    "varName": "centimeterToYard"
+  },
+  "centimeter-to-foot": {
+    "file": "centimeterToFoot",
+    "varName": "centimeterToFoot"
   }
 }

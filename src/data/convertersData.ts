@@ -837,7 +837,8 @@ export const categoriesData: Category[] = [
       { id: "curie", name: "Curie", plural: "Curies", symbol: "Ci", factor: 3.7e10 },
       { id: "rutherford", name: "Rutherford", plural: "Rutherfords", symbol: "Rd", factor: 1000000 },
       { id: "kilobecquerel", name: "Kilobecquerel", plural: "Kilobecquerels", symbol: "kBq", factor: 1000 },
-      { id: "megabecquerel", name: "Megabecquerel", plural: "Megabecquerels", symbol: "MBq", factor: 1000000 }
+      { id: "megabecquerel", name: "Megabecquerel", plural: "Megabecquerels", symbol: "MBq", factor: 1000000 },
+      { id: "gigabecquerel", name: "Gigabecquerel", plural: "Gigabecquerels", symbol: "GBq", factor: 1000000000 }
     ]
   }
 ];

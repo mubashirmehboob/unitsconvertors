@@ -41,6 +41,11 @@ import { milesToKilometersGuide } from "./guides/milesToKilometers";
 import { yardsToMetersGuide } from "./guides/yardsToMeters";
 import { metricLengthUnitsGuide } from "./guides/metricLengthUnits";
 import { imperialLengthUnitsGuide } from "./guides/imperialLengthUnits";
+import { massVsWeightGuide } from "./guides/massVsWeight";
+import { kilogramsGramsMilligramsMetricTonsGuide } from "./guides/kilogramsGramsMilligramsMetricTons";
+import { poundsToKilogramsGuide } from "./guides/poundsToKilograms";
+import { ouncesToGramsGuide } from "./guides/ouncesToGrams";
+import { metricVsImperialWeightUnitsGuide } from "./guides/metricVsImperialWeightUnits";
 
 export {
   whatIsUnitConversionGuide,
@@ -60,19 +65,29 @@ export {
   milesToKilometersGuide,
   yardsToMetersGuide,
   metricLengthUnitsGuide,
-  imperialLengthUnitsGuide
+  imperialLengthUnitsGuide,
+  massVsWeightGuide,
+  kilogramsGramsMilligramsMetricTonsGuide,
+  poundsToKilogramsGuide,
+  ouncesToGramsGuide,
+  metricVsImperialWeightUnitsGuide
 };
 
 /**
  * Current published guides list.
  */
 export const publishedGuides: GuideItem[] = [
+  massVsWeightGuide,
+  weightConversionGuide,
+  kilogramsGramsMilligramsMetricTonsGuide,
+  poundsToKilogramsGuide,
+  ouncesToGramsGuide,
+  metricVsImperialWeightUnitsGuide,
   milesToKilometersGuide,
   yardsToMetersGuide,
   metricLengthUnitsGuide,
   imperialLengthUnitsGuide,
   lengthConversionGuide,
-  weightConversionGuide,
   temperatureConversionGuide,
   volumeConversionGuide,
   commonUnitConversionMistakesGuide,

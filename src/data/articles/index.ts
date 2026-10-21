@@ -85,6 +85,16 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "megabecquerel-to-curie": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "megabecquerel-to-rutherford": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "megabecquerel-to-kilobecquerel": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
+  "becquerel-to-gigabecquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "curie-to-gigabecquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "rutherford-to-gigabecquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "kilobecquerel-to-gigabecquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "megabecquerel-to-gigabecquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "gigabecquerel-to-becquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "gigabecquerel-to-curie": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "gigabecquerel-to-rutherford": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "gigabecquerel-to-kilobecquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "gigabecquerel-to-megabecquerel": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
 
   "farad-to-millifarad": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
   "farad-to-microfarad": { seoReady: true, publishedAt: "2026-07-18", updatedAt: "2026-07-19", priority: 0.8 },
@@ -949,7 +959,17 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "faraday-to-ampere-hour": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
   "faraday-to-milliampere-hour": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
   "faraday-to-kilocoulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
-  "faraday-to-megacoulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 }
+  "faraday-to-megacoulomb": { seoReady: true, publishedAt: "2026-10-15", updatedAt: "2026-10-15", priority: 0.9 },
+  "kilometer-to-hand": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.85 },
+  "kilometer-to-cubit": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.85 },
+  "centimeter-to-meter": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.95 },
+  "centimeter-to-kilometer": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "centimeter-to-millimeter": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.95 },
+  "centimeter-to-micrometer": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "centimeter-to-nanometer": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "centimeter-to-mile": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "centimeter-to-yard": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.9 },
+  "centimeter-to-foot": { seoReady: true, publishedAt: "2026-10-21", updatedAt: "2026-10-21", priority: 0.95 }
 };
 
 import slugToExportJson from "./slugToExport.json";
