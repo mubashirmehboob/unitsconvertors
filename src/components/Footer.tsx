@@ -37,13 +37,13 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   return (
     <footer className="relative bg-[#f8fafc] dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-200">
-      <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
           
           {/* 1. Left Brand Section */}
-          <div className="sm:col-span-2 lg:col-span-5 flex flex-col gap-4 pr-0 lg:pr-6">
+          <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-4 pr-0">
             <div 
               onClick={() => handleNav("home")} 
               className="flex items-center gap-2.5 cursor-pointer group w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-0.5"
@@ -204,11 +204,11 @@ export default function Footer({ onNavigate }: FooterProps) {
           </div>
 
           {/* 3. Resources */}
-          <div className="sm:col-span-1 lg:col-span-2 flex flex-col gap-3">
+          <div className="sm:col-span-1 lg:col-span-3 flex flex-col gap-3">
             <h3 className="font-display text-sm font-bold text-slate-900 dark:text-slate-100 tracking-tight">
               Resources
             </h3>
-            <ul className="flex flex-col gap-2 text-sm text-slate-600 dark:text-slate-400">
+            <ul className="flex flex-col gap-2 text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">
               <li>
                 <a 
                   href="/calculators" 
@@ -227,15 +227,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   Guides Hub
                 </a>
               </li>
-              <li>
-                <a 
-                  href="/guides/how-to-convert-units" 
-                  onClick={(e) => { e.preventDefault(); handleNav("guides", "how-to-convert-units"); }} 
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-left font-medium block py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
-                >
-                  How to Convert Units
-                </a>
-              </li>
+
               <li>
                 <a 
                   href="/guides/si-units-explained" 

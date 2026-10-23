@@ -46,6 +46,11 @@ import { kilogramsGramsMilligramsMetricTonsGuide } from "./guides/kilogramsGrams
 import { poundsToKilogramsGuide } from "./guides/poundsToKilograms";
 import { ouncesToGramsGuide } from "./guides/ouncesToGrams";
 import { metricVsImperialWeightUnitsGuide } from "./guides/metricVsImperialWeightUnits";
+import { litersMillilitersCubicMetersGuide } from "./guides/litersMillilitersCubicMeters";
+import { gallonsToLitersGuide } from "./guides/gallonsToLiters";
+import { litersToGallonsGuide } from "./guides/litersToGallons";
+import { cubicMetersToLitersGuide } from "./guides/cubicMetersToLiters";
+import { usGallonsVsImperialGallonsGuide } from "./guides/usGallonsVsImperialGallons";
 
 export {
   whatIsUnitConversionGuide,
@@ -62,6 +67,11 @@ export {
   weightConversionGuide,
   temperatureConversionGuide,
   volumeConversionGuide,
+  litersMillilitersCubicMetersGuide,
+  gallonsToLitersGuide,
+  litersToGallonsGuide,
+  cubicMetersToLitersGuide,
+  usGallonsVsImperialGallonsGuide,
   milesToKilometersGuide,
   yardsToMetersGuide,
   metricLengthUnitsGuide,
@@ -90,6 +100,11 @@ export const publishedGuides: GuideItem[] = [
   lengthConversionGuide,
   temperatureConversionGuide,
   volumeConversionGuide,
+  litersMillilitersCubicMetersGuide,
+  gallonsToLitersGuide,
+  litersToGallonsGuide,
+  cubicMetersToLitersGuide,
+  usGallonsVsImperialGallonsGuide,
   commonUnitConversionMistakesGuide,
   commonMeasurementUnitsConversionFactorsGuide,
   unitConversionFactorsGuide,
