@@ -3994,5 +3994,133 @@
   "cc-to-cubic-foot": {
     "file": "cubicCentimeterToCubicFoot",
     "varName": "cubicCentimeterToCubicFoot"
+  },
+  "microsecond-to-week": {
+    "file": "microsecondToWeek",
+    "varName": "microsecondToWeek"
+  },
+  "microsecond-to-month": {
+    "file": "microsecondToMonth",
+    "varName": "microsecondToMonth"
+  },
+  "microsecond-to-year": {
+    "file": "microsecondToYear",
+    "varName": "microsecondToYear"
+  },
+  "microsecond-to-decade": {
+    "file": "microsecondToDecade",
+    "varName": "microsecondToDecade"
+  },
+  "microsecond-to-century": {
+    "file": "microsecondToCentury",
+    "varName": "microsecondToCentury"
+  },
+  "microsecond-to-fortnight": {
+    "file": "microsecondToFortnight",
+    "varName": "microsecondToFortnight"
+  },
+  "nanosecond-to-second": {
+    "file": "nanosecondToSecond",
+    "varName": "nanosecondToSecond"
+  },
+  "nanosecond-to-millisecond": {
+    "file": "nanosecondToMillisecond",
+    "varName": "nanosecondToMillisecond"
+  },
+  "nanosecond-to-microsecond": {
+    "file": "nanosecondToMicrosecond",
+    "varName": "nanosecondToMicrosecond"
+  },
+  "nanosecond-to-minute": {
+    "file": "nanosecondToMinute",
+    "varName": "nanosecondToMinute"
+  },
+  "speed-of-light-to-meter-per-second": {
+    "file": "speedOfLightToMeterPerSecond",
+    "varName": "speedOfLightToMeterPerSecond"
+  },
+  "speed-of-light-to-kilometer-per-hour": {
+    "file": "speedOfLightToKilometerPerHour",
+    "varName": "speedOfLightToKilometerPerHour"
+  },
+  "speed-of-light-to-mile-per-hour": {
+    "file": "speedOfLightToMilePerHour",
+    "varName": "speedOfLightToMilePerHour"
+  },
+  "speed-of-light-to-knot": {
+    "file": "speedOfLightToKnot",
+    "varName": "speedOfLightToKnot"
+  },
+  "speed-of-light-to-mach": {
+    "file": "speedOfLightToMach",
+    "varName": "speedOfLightToMach"
+  },
+  "speed-of-light-to-foot-per-second": {
+    "file": "speedOfLightToFootPerSecond",
+    "varName": "speedOfLightToFootPerSecond"
+  },
+  "foot-per-second-to-meter-per-second": {
+    "file": "footPerSecondToMeterPerSecond",
+    "varName": "footPerSecondToMeterPerSecond"
+  },
+  "foot-per-second-to-kilometer-per-hour": {
+    "file": "footPerSecondToKilometerPerHour",
+    "varName": "footPerSecondToKilometerPerHour"
+  },
+  "foot-per-second-to-mile-per-hour": {
+    "file": "footPerSecondToMilePerHour",
+    "varName": "footPerSecondToMilePerHour"
+  },
+  "foot-per-second-to-knot": {
+    "file": "footPerSecondToKnot",
+    "varName": "footPerSecondToKnot"
+  },
+  "foot-per-second-to-mach": {
+    "file": "footPerSecondToMach",
+    "varName": "footPerSecondToMach"
+  },
+  "foot-per-second-to-speed-of-light": {
+    "file": "footPerSecondToSpeedOfLight",
+    "varName": "footPerSecondToSpeedOfLight"
+  },
+  "reaumur-to-kelvin": {
+    "file": "reaumurToKelvin",
+    "varName": "reaumurToKelvin"
+  },
+  "reaumur-to-rankine": {
+    "file": "reaumurToRankine",
+    "varName": "reaumurToRankine"
+  },
+  "reaumur-to-newton": {
+    "file": "reaumurToNewton",
+    "varName": "reaumurToNewton"
+  },
+  "reaumur-to-romer": {
+    "file": "reaumurToRomer",
+    "varName": "reaumurToRomer"
+  },
+  "reaumur-to-delisle": {
+    "file": "reaumurToDelisle",
+    "varName": "reaumurToDelisle"
+  },
+  "newton-to-celsius": {
+    "file": "newtonToCelsius",
+    "varName": "newtonToCelsius"
+  },
+  "newton-to-fahrenheit": {
+    "file": "newtonToFahrenheit",
+    "varName": "newtonToFahrenheit"
+  },
+  "newton-to-kelvin": {
+    "file": "newtonToKelvin",
+    "varName": "newtonToKelvin"
+  },
+  "newton-to-rankine": {
+    "file": "newtonToRankine",
+    "varName": "newtonToRankine"
+  },
+  "newton-to-reaumur": {
+    "file": "newtonToReaumur",
+    "varName": "newtonToReaumur"
   }
 }

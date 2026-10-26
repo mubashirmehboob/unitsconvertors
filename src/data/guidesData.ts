@@ -51,6 +51,10 @@ import { gallonsToLitersGuide } from "./guides/gallonsToLiters";
 import { litersToGallonsGuide } from "./guides/litersToGallons";
 import { cubicMetersToLitersGuide } from "./guides/cubicMetersToLiters";
 import { usGallonsVsImperialGallonsGuide } from "./guides/usGallonsVsImperialGallons";
+import { celsiusToFahrenheitGuide } from "./guides/celsiusToFahrenheit";
+import { fahrenheitToCelsiusGuide } from "./guides/fahrenheitToCelsius";
+import { celsiusVsFahrenheitGuide } from "./guides/celsiusVsFahrenheit";
+import { kelvinExplainedGuide } from "./guides/kelvinExplained";
 
 export {
   whatIsUnitConversionGuide,
@@ -66,6 +70,10 @@ export {
   lengthConversionGuide,
   weightConversionGuide,
   temperatureConversionGuide,
+  celsiusToFahrenheitGuide,
+  fahrenheitToCelsiusGuide,
+  celsiusVsFahrenheitGuide,
+  kelvinExplainedGuide,
   volumeConversionGuide,
   litersMillilitersCubicMetersGuide,
   gallonsToLitersGuide,
@@ -87,6 +95,11 @@ export {
  * Current published guides list.
  */
 export const publishedGuides: GuideItem[] = [
+  temperatureConversionGuide,
+  celsiusToFahrenheitGuide,
+  fahrenheitToCelsiusGuide,
+  celsiusVsFahrenheitGuide,
+  kelvinExplainedGuide,
   massVsWeightGuide,
   weightConversionGuide,
   kilogramsGramsMilligramsMetricTonsGuide,
@@ -98,7 +111,6 @@ export const publishedGuides: GuideItem[] = [
   metricLengthUnitsGuide,
   imperialLengthUnitsGuide,
   lengthConversionGuide,
-  temperatureConversionGuide,
   volumeConversionGuide,
   litersMillilitersCubicMetersGuide,
   gallonsToLitersGuide,

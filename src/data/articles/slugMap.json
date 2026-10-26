@@ -804,5 +804,15 @@
   "cubic-centimeter-to-cubic-meter": "cubicCentimeterToCubicMeter",
   "cc-to-cubic-meter": "cubicCentimeterToCubicMeter",
   "cubic-centimeter-to-cubic-foot": "cubicCentimeterToCubicFoot",
-  "cc-to-cubic-foot": "cubicCentimeterToCubicFoot"
+  "cc-to-cubic-foot": "cubicCentimeterToCubicFoot",
+  "microsecond-to-week": "microsecondToWeek",
+  "microsecond-to-month": "microsecondToMonth",
+  "microsecond-to-year": "microsecondToYear",
+  "microsecond-to-decade": "microsecondToDecade",
+  "microsecond-to-century": "microsecondToCentury",
+  "microsecond-to-fortnight": "microsecondToFortnight",
+  "nanosecond-to-second": "nanosecondToSecond",
+  "nanosecond-to-millisecond": "nanosecondToMillisecond",
+  "nanosecond-to-microsecond": "nanosecondToMicrosecond",
+  "nanosecond-to-minute": "nanosecondToMinute"
 }

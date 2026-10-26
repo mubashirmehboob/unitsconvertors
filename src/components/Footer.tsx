@@ -37,10 +37,10 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   return (
     <footer className="relative bg-[#f8fafc] dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+      <div className="max-w-[1080px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 w-full mx-auto">
           
           {/* 1. Left Brand Section */}
           <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-4 pr-0">
