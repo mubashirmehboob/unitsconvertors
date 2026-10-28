@@ -55,6 +55,11 @@ import { celsiusToFahrenheitGuide } from "./guides/celsiusToFahrenheit";
 import { fahrenheitToCelsiusGuide } from "./guides/fahrenheitToCelsius";
 import { celsiusVsFahrenheitGuide } from "./guides/celsiusVsFahrenheit";
 import { kelvinExplainedGuide } from "./guides/kelvinExplained";
+import { timeConversionGuide } from "./guides/timeConversion";
+import { areaConversionGuide } from "./guides/areaConversion";
+import { squareMetersSquareFeetSquareInchesGuide } from "./guides/squareMetersSquareFeetSquareInches";
+import { speedConversionGuide } from "./guides/speedConversion";
+import { kmhVsMphGuide } from "./guides/kmhVsMph";
 
 export {
   whatIsUnitConversionGuide,
@@ -88,13 +93,23 @@ export {
   kilogramsGramsMilligramsMetricTonsGuide,
   poundsToKilogramsGuide,
   ouncesToGramsGuide,
-  metricVsImperialWeightUnitsGuide
+  metricVsImperialWeightUnitsGuide,
+  timeConversionGuide,
+  areaConversionGuide,
+  squareMetersSquareFeetSquareInchesGuide,
+  speedConversionGuide,
+  kmhVsMphGuide
 };
 
 /**
  * Current published guides list.
  */
 export const publishedGuides: GuideItem[] = [
+  timeConversionGuide,
+  areaConversionGuide,
+  squareMetersSquareFeetSquareInchesGuide,
+  speedConversionGuide,
+  kmhVsMphGuide,
   temperatureConversionGuide,
   celsiusToFahrenheitGuide,
   fahrenheitToCelsiusGuide,

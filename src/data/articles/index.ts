@@ -1031,7 +1031,31 @@ export const articleRegistry: Record<string, ArticleMetadata> = {
   "newton-to-fahrenheit": { seoReady: true, publishedAt: "2026-10-26", updatedAt: "2026-10-26", priority: 0.95 },
   "newton-to-kelvin": { seoReady: true, publishedAt: "2026-10-26", updatedAt: "2026-10-26", priority: 0.95 },
   "newton-to-rankine": { seoReady: true, publishedAt: "2026-10-26", updatedAt: "2026-10-26", priority: 0.95 },
-  "newton-to-reaumur": { seoReady: true, publishedAt: "2026-10-26", updatedAt: "2026-10-26", priority: 0.95 }
+  "newton-to-reaumur": { seoReady: true, publishedAt: "2026-10-26", updatedAt: "2026-10-26", priority: 0.95 },
+  "bar-to-torr": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "bar-to-millimeter-of-mercury": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "bar-to-mmhg": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-pascal": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-kilopascal": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-megapascal": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-bar": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-psi": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-atmosphere": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-torr": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-millimeter-of-mercury": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "millibar-to-mmhg": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "psi-to-pascal": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "psi-to-kilopascal": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "kilocalorie-to-watt-hour": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "kilocalorie-to-kilowatt-hour": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "kilocalorie-to-btu": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "kilocalorie-to-electron-volt": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "kilocalorie-to-erg": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "kilocalorie-to-foot-pound": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "watt-hour-to-joule": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "watt-hour-to-kilojoule": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "watt-hour-to-calorie": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 },
+  "watt-hour-to-kilocalorie": { seoReady: true, publishedAt: "2026-10-28", updatedAt: "2026-10-28", priority: 0.95 }
 };
 
 import slugToExportJson from "./slugToExport.json";

@@ -4122,5 +4122,101 @@
   "newton-to-reaumur": {
     "file": "newtonToReaumur",
     "varName": "newtonToReaumur"
+  },
+  "bar-to-torr": {
+    "file": "barToTorr",
+    "varName": "barToTorr"
+  },
+  "bar-to-millimeter-of-mercury": {
+    "file": "barToMillimeterOfMercury",
+    "varName": "barToMillimeterOfMercury"
+  },
+  "bar-to-mmhg": {
+    "file": "barToMillimeterOfMercury",
+    "varName": "barToMillimeterOfMercury"
+  },
+  "millibar-to-pascal": {
+    "file": "millibarToPascal",
+    "varName": "millibarToPascal"
+  },
+  "millibar-to-kilopascal": {
+    "file": "millibarToKilopascal",
+    "varName": "millibarToKilopascal"
+  },
+  "millibar-to-megapascal": {
+    "file": "millibarToMegapascal",
+    "varName": "millibarToMegapascal"
+  },
+  "millibar-to-bar": {
+    "file": "millibarToBar",
+    "varName": "millibarToBar"
+  },
+  "millibar-to-psi": {
+    "file": "millibarToPsi",
+    "varName": "millibarToPsi"
+  },
+  "millibar-to-atmosphere": {
+    "file": "millibarToAtmosphere",
+    "varName": "millibarToAtmosphere"
+  },
+  "millibar-to-torr": {
+    "file": "millibarToTorr",
+    "varName": "millibarToTorr"
+  },
+  "millibar-to-millimeter-of-mercury": {
+    "file": "millibarToMillimeterOfMercury",
+    "varName": "millibarToMillimeterOfMercury"
+  },
+  "millibar-to-mmhg": {
+    "file": "millibarToMillimeterOfMercury",
+    "varName": "millibarToMillimeterOfMercury"
+  },
+  "psi-to-pascal": {
+    "file": "psiToPascal",
+    "varName": "psiToPascal"
+  },
+  "psi-to-kilopascal": {
+    "file": "psiToKilopascal",
+    "varName": "psiToKilopascal"
+  },
+  "kilocalorie-to-watt-hour": {
+    "file": "kilocalorieToWattHour",
+    "varName": "kilocalorieToWattHour"
+  },
+  "kilocalorie-to-kilowatt-hour": {
+    "file": "kilocalorieToKilowattHour",
+    "varName": "kilocalorieToKilowattHour"
+  },
+  "kilocalorie-to-btu": {
+    "file": "kilocalorieToBtu",
+    "varName": "kilocalorieToBtu"
+  },
+  "kilocalorie-to-electron-volt": {
+    "file": "kilocalorieToElectronVolt",
+    "varName": "kilocalorieToElectronVolt"
+  },
+  "kilocalorie-to-erg": {
+    "file": "kilocalorieToErg",
+    "varName": "kilocalorieToErg"
+  },
+  "kilocalorie-to-foot-pound": {
+    "file": "kilocalorieToFootPound",
+    "varName": "kilocalorieToFootPound"
+  },
+  "watt-hour-to-joule": {
+    "file": "wattHourToJoule",
+    "varName": "wattHourToJoule"
+  },
+  "watt-hour-to-kilojoule": {
+    "file": "wattHourToKilojoule",
+    "varName": "wattHourToKilojoule"
+  },
+  "watt-hour-to-calorie": {
+    "file": "wattHourToCalorie",
+    "varName": "wattHourToCalorie"
+  },
+  "watt-hour-to-kilocalorie": {
+    "file": "wattHourToKilocalorie",
+    "varName": "wattHourToKilocalorie"
   }
 }
